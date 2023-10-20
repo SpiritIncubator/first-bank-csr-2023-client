@@ -2,7 +2,7 @@
 import Phaser from 'phaser';
 import shareCanvas from './shareCanvas';
 
-export default class RoomScene extends Phaser.Scene {
+export default class Scene extends Phaser.Scene {
   constructor() {
     super('hello-world');
   }
