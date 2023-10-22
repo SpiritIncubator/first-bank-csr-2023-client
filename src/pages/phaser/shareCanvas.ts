@@ -14,16 +14,18 @@ async function shareCanvas(snapshot: HTMLImageElement | Phaser.Display.Color) {
   const shareImage = canvas.toDataURL('image/png');
   const blob = await (await fetch(shareImage)).blob();
   canvas.remove(); ''
+
   const filesArray = [
     new File([blob], 'wallemon.png', {
       type: blob.type,
       lastModified: new Date().getTime(),
     }),
   ];
+
   const shareData = {
     files: filesArray,
-    title: 'WalleMon',
-    text: 'Look my WalleMon!',
+    title: 'Some Title',
+    text: 'description for sharing',
   };
 
   try {
