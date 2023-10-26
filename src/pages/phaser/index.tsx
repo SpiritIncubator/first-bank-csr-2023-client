@@ -1,6 +1,8 @@
 'use client'
 import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
+
+import Button from '@mui/material/Button';
 import 'src/app/globals.css'
 
 
@@ -17,13 +19,18 @@ const Game: React.FC = () => {
 
       const config: Phaser.Types.Core.GameConfig = {
         type: Phaser.AUTO,
+        width: "100%",
+        height: 600,
         scale: {
           mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT,
           parent: 'scene',
-          width: '100%',
-          height: '100%',
+          // width: '800px',
+          // height: '600px',
         },
         scene: [Scene],
+        physics: {
+          default: "arcade",
+        },
       };
 
       new Phaser.Game(config)
@@ -32,14 +39,23 @@ const Game: React.FC = () => {
 
 
   return <>
+
     <Box sx={{
       padding: "0 20px",
-      width: "100%",
-      margin: "0 auto"
+
+      margin: "0"
     }}>
 
       <div id="scene"></div>
     </Box>
+    <Box sx={{
+      display: 'flex',
+      justifyContent: 'space-between',
+    }} position="fixed" bottom="0" left="0" right="0">
+      <Button id="leftArrow" sx={{ background: "white" }}> Left </Button>
+      <Button id="rightArrow" sx={{ background: "white" }}> Right </Button>
+    </Box>
+
     <div id="share"></div>
   </>
 
