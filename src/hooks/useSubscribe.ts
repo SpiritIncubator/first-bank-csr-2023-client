@@ -1,5 +1,5 @@
 /** @format */
-
+"use client"
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import io, { Socket } from 'socket.io-client';
 
