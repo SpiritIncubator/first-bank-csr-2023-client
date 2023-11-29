@@ -19,11 +19,12 @@ const StyledTypography = styled(Typography)`
 type ButtonProps = {
 	text: string;
 	properties?: ButtonOwnProps;
+	onClickHandler?: () => void;
 };
 
-const Button = ({ text, properties }: ButtonProps) => {
+const Button = ({ text, properties, onClickHandler }: ButtonProps) => {
 	return (
-		<StyledButton variant='contained' {...properties}>
+		<StyledButton variant='contained' {...properties} onClick={onClickHandler}>
 			<StyledTypography >{text}</StyledTypography>
 		</StyledButton>
 	);
