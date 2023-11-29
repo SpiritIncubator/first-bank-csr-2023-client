@@ -8,6 +8,7 @@ import useStore from '@/app/atoms/useStore';
 import { questionList } from './spec';
 
 const MAX_QUESTION_COUNT = questionList.length;
+const headLine = ['A', 'B', 'C', 'D'];
 
 const QuestionsPage = () => {
   const router = useRouter();
@@ -59,8 +60,11 @@ const QuestionsPage = () => {
 
       {targetQuestion.options.map((option, index) => {
         return (
-          <Box key={index} onClick={() => updateSelectQuestion(index)}>
-            <Typography>{option.content}</Typography>
+          <Box key={index} display="flex" alignItems="center" bgcolor="#F9F8F3" mb={2.5} py={2.5} pl={3.5} pr={4.5} borderRadius={5} style={{ cursor: 'pointer'}} onClick={() => updateSelectQuestion(index)}>
+            <Box width={36} height={36} bgcolor="#BBC318" color="#fff" borderRadius={100} textAlign="center" lineHeight={2} mr={3.5}>{headLine[index]}</Box>
+            <Box width={260}>
+              <Typography lineHeight={2}>{option.content}</Typography>
+            </Box>
           </Box>
         )
       })}
