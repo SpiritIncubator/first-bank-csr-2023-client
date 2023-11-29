@@ -16,19 +16,23 @@ export const questionList: Array<LevelType> = [
 			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
 		options: [
 			{
-				content: 'first1',
+				content:
+					'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 0,
 			},
 			{
-				content: 'second1',
+				content:
+					'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 0,
 			},
 			{
-				content: 'three1',
+				content:
+					'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 0,
 			},
 			{
-				content: 'four1',
+				content:
+					'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 0,
 			},
 		],
