@@ -1,10 +1,19 @@
+'use client';
+
 import React from 'react';
 import { Box, Typography } from '@mui/material';
+import { useRouter } from 'next/navigation'
 
 import StyleButton from '@/app/_components/Button/Button';
 import ToggleButton from './components/ToggleButton';
 
 const MainPage = () => {
+	const router = useRouter();
+
+	function redirectToQuestionsPage() {
+		router.push('/main/questions');
+	}
+
 	return (
 		<Box
 			width="100%"
@@ -20,7 +29,7 @@ const MainPage = () => {
 					{/* TODO will put image in here */}
 					<Typography lineHeight={2} fontSize={16}>挑戰看看，你能不能成功判斷出低碳足跡的商品，累積最少的碳排放呢?</Typography>
 					<Box mt={5.5}>
-						<StyleButton text="start" />
+						<StyleButton text="start" onClickHandler={redirectToQuestionsPage} />
           </Box>
           <Box mt={7.5}>
           <ToggleButton />
