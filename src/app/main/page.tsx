@@ -5,7 +5,7 @@ import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation'
 
 import StyleButton from '@/app/_components/Button/Button';
-import ToggleButton from './components/ToggleButton';
+import ToggleButton from './components/ToggleButton/ToggleButton';
 
 const MainPage = () => {
 	const router = useRouter();
