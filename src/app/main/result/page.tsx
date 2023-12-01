@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 
+import Ratting from '@/app/_components/Ratting/Ratting';
 import useStore from '@/app/atoms/useStore';
 import AirHintIcon from '@/app/_assets/images/airHint.svg';
 import SlashIcon from '@/app/_assets/images/slash.svg';
@@ -47,6 +48,7 @@ const ResultPage = () => {
           </Typography>
         </Box>
       </Box>
+      <Ratting rate={3}  />
     </Box>
   )
 }
