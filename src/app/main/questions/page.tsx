@@ -27,8 +27,8 @@ const QuestionsPage = () => {
     setCurrentQuestionIndex(prevStep => prevStep === MAX_QUESTION_COUNT - 1 ? prevStep : prevStep + 1);
   }
 
-  function questionFinalStep() {
-    setQuestionAnswer(selectedAnswer);
+  function toFinalStep(entireSelectedAnswer: any[]) {
+    setQuestionAnswer(entireSelectedAnswer);
     router.push('/main/result');
   }
 
@@ -36,14 +36,13 @@ const QuestionsPage = () => {
     setSelectAnswer(prevState => {
       const newSelectedAnswerList = [...prevState];
       newSelectedAnswerList[currentQuestionIndex] = { index: order, score: targetQuestion.options[order].score };
+      
+      if (currentQuestionIndex === MAX_QUESTION_COUNT - 1) {
+        toFinalStep(newSelectedAnswerList);
+      }
 
       return newSelectedAnswerList;
     });
-    if (currentQuestionIndex === MAX_QUESTION_COUNT - 1) {
-      questionFinalStep();
-
-      return;
-    }
 
     jumpToNextQuestion();
   }
