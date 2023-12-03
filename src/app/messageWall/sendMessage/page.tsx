@@ -1,11 +1,10 @@
 'use client'
 import React from 'react';
 import Image from 'next/image';
-import { Box, TextField, Button, Container } from '@mui/material';
+import { Box, Button, Container } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 export default function SendMessage() {
-  // Use MUI's useTheme hook to access the current theme if you need to reference the theme in your styles
   const theme = useTheme();
 
   const mobileContainerStyle = {
@@ -15,10 +14,11 @@ export default function SendMessage() {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: theme.palette.background.paper, // You can customize this color
+    backgroundColor: theme.palette.background.paper,
   };
 
-  // Replace any 'color' prop with your specific color if needed
+  const onConfirm = () => { }
+
   return (
     <Container maxWidth="sm" sx={mobileContainerStyle}>
       <Box sx={{
@@ -80,51 +80,82 @@ export default function SendMessage() {
           fill />
       </Box>
 
-      {/* You can add custom styles using the `sx` prop as shown below */}
-      <TextField
-        label="留下你的留言 Content"
-        multiline
-        rows={4}
-        variant="outlined"
-        fullWidth
-        margin="normal"
+      <Box
+        component="form"
         sx={{
-          borderColor: 'primary.main', // Use your color here
-          '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-              borderColor: 'primary.main', // Use your color here
+          width: '100%',
+          '& .input-base': {
+            width: '100%',
+            padding: '20px 24px',
+            fontSize: '1rem',
+            borderRadius: '20px',
+            border: '2px solid #E9E3D8',
+            backgroundColor: '#F9F8F3',
+            margin: '8px 0',
+            boxSizing: 'border-box',
+            outline: 'none',
+            transition: 'border-color 0.2s ease-in-out',
+            letterSpacing: '1.28px',
+            '&:focus': {
+              borderColor: '#594A39',
+            },
+            '&::placeholder': {
+              color: 'rgba(0, 0, 0, 0.6)',
             },
           },
-        }}
-      />
-      <TextField
-        label="留聯人名字 Name"
-        variant="outlined"
-        fullWidth
-        margin="normal"
-        sx={{
-          borderColor: 'primary.main', // Use your color here
-          '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-              borderColor: 'primary.main', // Use your color here
+          '& .textarea-base': {
+            letterSpacing: '1.28px',
+            width: '100%',
+            padding: '20px 24px',
+            fontSize: '1rem',
+            borderRadius: '20px',
+            border: '2px solid #E9E3D8',
+            backgroundColor: '#F9F8F3',
+            resize: 'none',
+            boxSizing: 'border-box',
+            outline: 'none',
+            transition: 'border-color 0.2s ease-in-out',
+            '&:focus': {
+              borderColor: '#594A39',
             },
           },
-        }}
-      />
-      {/* Add your color selection component here */}
-      <Button
-        variant="contained"
-        fullWidth
-        sx={{
-          mt: 2,
-          bgcolor: 'primary.main', // Use your color here
-          '&:hover': {
-            bgcolor: 'primary.dark', // Use your color here
+          '& .input-base::placeholder, & .textarea-base::placeholder': {
+            color: '#B1AAA2', // Theme color for placeholder
+            opacity: 1, // Full opacity
           },
         }}
       >
-        OK! 送出
-      </Button>
-    </Container>
+        <textarea
+          placeholder="請寫下你會如何在生活中實踐永續，或是今天的觀展心得吧！（字數限制50字） "
+          className="textarea-base"
+          rows={4}
+        />
+        <input
+          type="text"
+          placeholder="請留下你的大名吧！"
+          className="input-base"
+        />
+        {/* Continue with your form elements and submit button */}
+      </Box>
+
+      <Box sx={{
+        width: "200px",
+        height: "67px",
+        margin: '0 auto',
+        overflow: 'hidden',
+        position: 'relative',
+        marginTop: "50px",
+        cursor: 'pointer'
+      }}
+        onClick={onConfirm}>
+        <Image
+          src="/assets/sendMessage_confirm.svg"
+          alt="divider"
+          fill />
+      </Box>
+
+
+    </Container >
   );
 }
+
