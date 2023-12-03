@@ -5,10 +5,11 @@ import { Box } from '@mui/material';
 
 import { StyledTypography } from './ToggleButton.style';
 import type { LangBtnType } from './types';
-import {languageButtons} from './spec'
+import { languageButtons } from './spec'
+import useFirstBankTranslation from '@/app/_locales/hooks';
 
 const ToggleButton = () => {
-	const [lang, setLang] = useState('zh');
+	const { setLang, lang } = useFirstBankTranslation();
 
 	function renderToggleButton(btnParams: LangBtnType) {
 		return <StyledTypography key={btnParams.key} isActive={btnParams.key === lang} onClick={() => setLang(btnParams.key)}>{ btnParams.text}</StyledTypography>

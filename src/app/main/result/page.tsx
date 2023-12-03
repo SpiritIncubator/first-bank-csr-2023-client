@@ -7,12 +7,15 @@ import Image from 'next/image';
 
 import Ratting from '@/app/_components/Ratting/Ratting';
 import useStore from '@/app/atoms/useStore';
+import { useTranslation } from '@/app/_locales/hooks/useTranslation';
+
 import AirHintIcon from '@/app/_assets/images/airHint.svg';
 import SlashIcon from '@/app/_assets/images/slash.svg';
 import UnitIcon from '@/app/_assets/images/unit.svg';
 
 const ResultPage = () => {
   const questionAnswers = useStore(state => state.questionAnswer);
+  const { t } = useTranslation('common');
 
   const score = questionAnswers.reduce((acc, cur) => {
     return acc + cur.score;
@@ -22,7 +25,7 @@ const ResultPage = () => {
     <Box pt={4} px={3}>
       <Box display="flex" justifyContent="center" flexDirection="column">
         <Typography>
-          碳足跡
+          {t('title')}
         </Typography>
         <Box display="flex" width="100%" height={90} bgcolor="#958B73" borderRadius={5} border="5px solid #F2cD90" alignItems="center" pl={2}>
           <Box flex={1}>

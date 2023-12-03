@@ -143,4 +143,23 @@ export const questionList: Array<LevelType> = [
 			},
 		],
 	},
+	{
+		imgSrc: '',
+		description:
+			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
+		options: [
+			{
+				content: 'first8',
+				score: 18,
+			},
+			{
+				content: 'second8',
+				score: 86,
+			},
+			{
+				content: 'three87',
+				score: 34,
+			},
+		],
+	},
 ];
