@@ -1,6 +1,6 @@
-import 'src/types'
 import { createTheme } from '@mui/material'
 
+// @todo: fix the problem with the theme
 const theme = createTheme({
   palette: {
     green1: {

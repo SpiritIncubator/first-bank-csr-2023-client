@@ -2,6 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Box, Button, Container } from '@mui/material';
+import ColorPicker from 'src/components/ColorPicker';
 import { useTheme } from '@mui/material/styles';
 
 export default function SendMessage() {
@@ -71,7 +72,7 @@ export default function SendMessage() {
         overflow: 'hidden',
         position: 'relative',
         marginTop: "60px",
-        marginBottom: "60px"
+        marginBottom: "20px"
       }}>
         <Image
           src="/assets/divider.svg"
@@ -84,6 +85,7 @@ export default function SendMessage() {
         component="form"
         sx={{
           width: '100%',
+          marginBottom: '40px',
           '& .input-base': {
             width: '100%',
             padding: '20px 24px',
@@ -125,11 +127,60 @@ export default function SendMessage() {
           },
         }}
       >
+        <Box sx={{
+          width: "202px",
+          height: "30px",
+          margin: '0 auto',
+          overflow: 'hidden',
+          position: 'relative',
+          marginBottom: "10px",
+          display: 'flex'
+        }}>
+          <Image
+            width="129"
+            height="38"
+            src="/assets/sendMessage_write.svg"
+            alt="sendMessage_write"
+            style={{ marginRight: '8px' }}
+          />
+          <Image
+            width="65"
+            height="38"
+            src="/assets/sendMessage_content.svg"
+            alt="sendMessage_content"
+
+          />
+        </Box>
         <textarea
           placeholder="請寫下你會如何在生活中實踐永續，或是今天的觀展心得吧！（字數限制50字） "
           className="textarea-base"
           rows={4}
         />
+        <Box sx={{
+          width: "202px",
+          height: "30px",
+          margin: '0 auto',
+          overflow: 'hidden',
+          position: 'relative',
+          marginBottom: "10px",
+          marginTop: "30px",
+          display: 'flex'
+        }}>
+          <Image
+            width="129"
+            height="38"
+            src="/assets/sendMessage_writeName.svg"
+            alt="sendMessage_writeName"
+            style={{ marginRight: '8px' }}
+          />
+          <Image
+            width="45"
+            height="38"
+            src="/assets/sendMessage_name.svg"
+            alt="sendMessage_name"
+
+          />
+        </Box>
         <input
           type="text"
           placeholder="請留下你的大名吧！"
@@ -137,6 +188,11 @@ export default function SendMessage() {
         />
         {/* Continue with your form elements and submit button */}
       </Box>
+
+      <ColorPicker
+        onColorChange={(color: string) => console.log(color)}
+        defaultColor="#F8E47E"
+      />
 
       <Box sx={{
         width: "200px",
