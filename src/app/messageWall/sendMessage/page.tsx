@@ -2,7 +2,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { Box, Button, Container } from '@mui/material';
-import ColorPicker from 'src/components/ColorPicker';
+import ColorPicker from '@/components/ColorPicker';
+import colors from '@/constants/colors';
 import { useTheme } from '@mui/material/styles';
 
 export default function SendMessage() {
@@ -91,15 +92,15 @@ export default function SendMessage() {
             padding: '20px 24px',
             fontSize: '1rem',
             borderRadius: '20px',
-            border: '2px solid #E9E3D8',
-            backgroundColor: '#F9F8F3',
+            border: `2px solid ${colors.brown1}`,
+            backgroundColor: colors.brown,
             margin: '8px 0',
             boxSizing: 'border-box',
             outline: 'none',
             transition: 'border-color 0.2s ease-in-out',
             letterSpacing: '1.28px',
             '&:focus': {
-              borderColor: '#594A39',
+              borderColor: colors.brown4,
             },
             '&::placeholder': {
               color: 'rgba(0, 0, 0, 0.6)',
@@ -111,18 +112,18 @@ export default function SendMessage() {
             padding: '20px 24px',
             fontSize: '1rem',
             borderRadius: '20px',
-            border: '2px solid #E9E3D8',
-            backgroundColor: '#F9F8F3',
+            border: `2px solid ${colors.brown1}`,
+            backgroundColor: colors.brown,
             resize: 'none',
             boxSizing: 'border-box',
             outline: 'none',
             transition: 'border-color 0.2s ease-in-out',
             '&:focus': {
-              borderColor: '#594A39',
+              borderColor: colors.brown4,
             },
           },
           '& .input-base::placeholder, & .textarea-base::placeholder': {
-            color: '#B1AAA2', // Theme color for placeholder
+            color: colors.brown2, // Theme color for placeholder
             opacity: 1, // Full opacity
           },
         }}
