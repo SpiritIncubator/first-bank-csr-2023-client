@@ -1,5 +1,6 @@
 'use client'
 import React from 'react';
+import Image from 'next/image';
 import { Box, TextField, Button, Container } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
@@ -8,21 +9,77 @@ export default function SendMessage() {
   const theme = useTheme();
 
   const mobileContainerStyle = {
-    maxWidth: '600px',
+    maxWidth: '390px',
     margin: '0 auto', // Center the container
-    padding: theme.spacing(2),
-    border: `1px solid ${theme.palette.divider}`, // You can customize this color
-    borderRadius: theme.shape.borderRadius,
+    padding: '80px 24px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    boxShadow: theme.shadows[1],
     backgroundColor: theme.palette.background.paper, // You can customize this color
   };
 
   // Replace any 'color' prop with your specific color if needed
   return (
     <Container maxWidth="sm" sx={mobileContainerStyle}>
+      <Box sx={{
+        width: "230px",
+        height: "240px",
+        margin: '0 auto',
+        overflow: 'hidden',
+        position: 'relative'
+      }}>
+        <Image
+          src="/assets/bird_books.png"
+          alt="bird_books"
+          objectFit='contain'
+          fill
+          style={{ marginBottom: "16px" }} />
+      </Box>
+      <Box sx={{
+        width: "250px",
+        height: "60px",
+        margin: '0 auto',
+        overflow: 'hidden',
+        position: 'relative'
+      }}>
+        <Image
+          src="/assets/sendMessage_title.svg"
+          alt="sendMessage_title"
+          objectFit='contain'
+          fill
+          style={{ marginBottom: "16px" }} />
+      </Box>
+      <Box sx={{
+        width: "240px",
+        height: "45px",
+        margin: '0 auto',
+        overflow: 'hidden',
+        position: 'relative'
+      }}>
+        <Image
+          src="/assets/sendMessage_subTitle.svg"
+          alt="sendMessage_subTitle"
+          objectFit='contain'
+          fill
+          style={{ marginTop: "-12px" }} />
+      </Box>
+
+      <Box sx={{
+        width: "342px",
+        height: "5px",
+        margin: '0 auto',
+        overflow: 'hidden',
+        position: 'relative',
+        marginTop: "60px",
+        marginBottom: "60px"
+      }}>
+        <Image
+          src="/assets/divider.svg"
+          alt="divider"
+          objectFit='contain'
+          fill />
+      </Box>
+
       {/* You can add custom styles using the `sx` prop as shown below */}
       <TextField
         label="留下你的留言 Content"
