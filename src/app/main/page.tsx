@@ -3,12 +3,16 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 import StyleButton from '@/app/_components/Button/Button';
+import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import ToggleButton from './components/ToggleButton/ToggleButton';
 
 const MainPage = () => {
 	const router = useRouter();
+	const { t } = useTranslation('common');
+
 
 	function redirectToQuestionsPage() {
 		router.push('/main/questions');
@@ -22,7 +26,9 @@ const MainPage = () => {
 			flexDirection="column"
 			justifyContent="50%"
 			alignItems="50%">
-			<Box flex={1}>image</Box>
+			<Box flex={1}>
+				{/* <Image src="" alt="" /> */}
+			</Box>
 			<Box flex={1} display="flex" justifyContent="center">
 				<Box width="310px" display="flex" flexDirection="column" alignItems="center">
 					<Typography fontSize={32} fontWeight={900}>低碳消費大挑戰</Typography>
@@ -32,7 +38,7 @@ const MainPage = () => {
 						<StyleButton text="start" onClickHandler={redirectToQuestionsPage} />
           </Box>
           <Box mt={7.5}>
-          <ToggleButton />
+          	<ToggleButton />
           </Box>
 				</Box>
 			</Box>
