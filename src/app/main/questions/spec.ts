@@ -35,15 +35,15 @@ export const questionList: Array<LevelType> = [
 			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
 		options: [
 			{
-				content: 'first2',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 30,
 			},
 			{
-				content: 'second2',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 20,
 			},
 			{
-				content: 'three2',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 15,
 			},
 		],
@@ -54,15 +54,15 @@ export const questionList: Array<LevelType> = [
 			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
 		options: [
 			{
-				content: 'first3',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 12.3,
 			},
 			{
-				content: 'second3',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 44.3,
 			},
 			{
-				content: 'three3',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 14.4,
 			},
 		],
@@ -73,15 +73,15 @@ export const questionList: Array<LevelType> = [
 			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
 		options: [
 			{
-				content: 'first4',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 67.6,
 			},
 			{
-				content: 'second4',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 33,
 			},
 			{
-				content: 'three4',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 57,
 			},
 		],
@@ -92,15 +92,15 @@ export const questionList: Array<LevelType> = [
 			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
 		options: [
 			{
-				content: 'first5',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 54,
 			},
 			{
-				content: 'second5',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 66.6,
 			},
 			{
-				content: 'three5',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 77.7,
 			},
 		],
@@ -111,15 +111,15 @@ export const questionList: Array<LevelType> = [
 			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
 		options: [
 			{
-				content: 'first6',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 88.7,
 			},
 			{
-				content: 'second6',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 43,
 			},
 			{
-				content: 'three6',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 54.6,
 			},
 		],
@@ -130,15 +130,15 @@ export const questionList: Array<LevelType> = [
 			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
 		options: [
 			{
-				content: 'first7',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 78,
 			},
 			{
-				content: 'second7',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 87,
 			},
 			{
-				content: 'three7',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 34,
 			},
 		],
@@ -149,15 +149,15 @@ export const questionList: Array<LevelType> = [
 			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
 		options: [
 			{
-				content: 'first8',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 18,
 			},
 			{
-				content: 'second8',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 86,
 			},
 			{
-				content: 'three87',
+				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
 				score: 34,
 			},
 		],

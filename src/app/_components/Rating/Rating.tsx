@@ -11,7 +11,7 @@ type RattingProp = {
   rate: number
 }
 
-const Ratting = ({rate}: RattingProp) => {
+const Rating = ({rate}: RattingProp) => {
   const starts = new Array(MAX_STARTS).fill(0);
 
   if (rate > MAX_STARTS) {
@@ -33,4 +33,4 @@ const Ratting = ({rate}: RattingProp) => {
   )
 }
 
-export default Ratting
+export default Rating

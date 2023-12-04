@@ -75,9 +75,7 @@ const QuestionsPage = () => {
         {currentQuestionIndex + 1} / {MAX_QUESTION_COUNT}
       </Box>
       <Box mb={5} display="flex" flexDirection="column" alignItems="center" width="65%">
-        <Box>
-          <Box width={160} height={160} bgcolor="#E9E3D8">
-          </Box>
+        <Box width={160} height={160} bgcolor="#E9E3D8" mt={2.5}>
         </Box>
         <Box mt={4} lineHeight={2} fontWeight={400}>
           {targetQuestion.description}

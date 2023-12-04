@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import MuiButton, { ButtonOwnProps } from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import Typography, {TypographyProps} from '@mui/material/Typography';
 import {styled} from '@mui/material/styles';
 
 const StyledButton = styled(MuiButton)`
@@ -10,22 +10,27 @@ const StyledButton = styled(MuiButton)`
 	border-radius: 84px;
   background: #7DBD36;
   color: #fff;
+
+	&.MuiButton-root:hover {
+		background-color: #B8C318;
+	}
 `;
 
-const StyledTypography = styled(Typography)`
+const StyledTypography = styled(Typography) <TypographyProps>`
   letter-spacing: 5px;
 `;
 
 type ButtonProps = {
 	text: string;
-	properties?: ButtonOwnProps;
+	styles?: CSSProperties;
+	buttonProperties?: ButtonOwnProps;
 	onClickHandler?: () => void;
 };
 
-const Button = ({ text, properties, onClickHandler }: ButtonProps) => {
+const Button = ({ text, styles, buttonProperties, onClickHandler }: ButtonProps) => {
 	return (
-		<StyledButton variant='contained' {...properties} onClick={onClickHandler}>
-			<StyledTypography >{text}</StyledTypography>
+		<StyledButton style={{ ...styles }} onClick={onClickHandler} {...buttonProperties}>
+			<StyledTypography component="span" >{text}</StyledTypography>
 		</StyledButton>
 	);
 };
