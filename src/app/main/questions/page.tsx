@@ -7,6 +7,7 @@ import Image from 'next/image';
 
 import useStore from '@/app/atoms/useStore';
 import PrevIcon from '@/app/_assets/images/prevBtn.svg';
+import { caveat } from '@/app/layout';;
 import { questionList } from './spec';
 
 const MAX_QUESTION_COUNT = questionList.length;
@@ -69,10 +70,17 @@ const QuestionsPage = () => {
   return (
     <Box width="100%" height="100%" display="flex" flexDirection="column" alignItems="center">
       <Box width="100%" px={2.5} py={3} display="flex" alignItems="center" justifyContent="flex-start">
-        <Box mr={1}>
+        <Box mr={1} display="flex" alignItems="center">
           <Image src={PrevIcon} alt="prev" onClick={checkNumberOfQuestion} />
         </Box>
-        {currentQuestionIndex + 1} / {MAX_QUESTION_COUNT}
+        <Box display="flex" alignItems="center" position="relative">
+          <Typography className={caveat.className} display="inline-block" fontSize={40} mr={1} color="#7DBD36" fontWeight={900}>
+            {String(currentQuestionIndex + 1).padStart(2, '0')}
+          </Typography>
+          <Typography className={caveat.className} color="#948775" position="relative" top={8} right={2}>
+            {` / ${MAX_QUESTION_COUNT}`}
+          </Typography>
+        </Box>
       </Box>
       <Box mb={5} display="flex" flexDirection="column" alignItems="center" width="65%">
         <Box width={160} height={160} bgcolor="#E9E3D8" mt={2.5}>
@@ -85,7 +93,7 @@ const QuestionsPage = () => {
         {targetQuestion.options.map((option, index) => {
         return (
           <Box key={index} display="flex" alignItems="center" bgcolor="#F9F8F3" mb={2.5} py={2.5} pl={1} pr={2.5} borderRadius={5} style={{ cursor: 'pointer'}} onClick={() => updateSelectQuestion(index)}>
-            <Box width={36} height={36} bgcolor="#BBC318" color="#fff" borderRadius={100} textAlign="center" lineHeight={2.25} mr={1}>{headLine[index]}</Box>
+            <Box width={36} height={36} bgcolor="#BBC318" color="#fff" borderRadius={100} textAlign="center" lineHeight={2.25} mr={1.75}>{headLine[index]}</Box>
             <Box width={260}>
               <Typography lineHeight={2} fontSize={16}>{option.content}</Typography>
             </Box>
