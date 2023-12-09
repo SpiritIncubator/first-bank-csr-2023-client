@@ -3,10 +3,17 @@ import React from 'react';
 import Image from 'next/image';
 import { Box, Button, Container } from '@mui/material';
 import ColorPicker from '@/components/ColorPicker';
+import Modal from '@mui/material/Modal';
 import colors from '@/constants/colors';
+import ErrorModal from './components/ErrorModal'
 import { useTheme } from '@mui/material/styles';
+import { error } from 'console';
 
 export default function SendMessage() {
+  const [name, setName] = React.useState('');
+  const [message, setMessage] = React.useState('');
+  const [errorModalOpen, setErrorModalOpen] = React.useState(true);
+  const [errorMessage, setErrorMessage] = React.useState('');
   const theme = useTheme();
 
   const mobileContainerStyle = {
@@ -19,7 +26,19 @@ export default function SendMessage() {
     backgroundColor: theme.palette.background.paper,
   };
 
-  const onConfirm = () => { }
+  const onSubmit = () => {
+    if (!name) {
+      setErrorMessage('請輸入你的名字')
+    }
+    if (message.length < 10) {
+      setErrorMessage('請輸入最少十個字')
+    }
+
+  }
+
+  const onConfirmError = () => {
+    setErrorMessage('')
+  }
 
   return (
     <Container maxWidth="sm" sx={mobileContainerStyle}>
@@ -156,6 +175,7 @@ export default function SendMessage() {
           placeholder="請寫下你會如何在生活中實踐永續，或是今天的觀展心得吧！（字數限制50字） "
           className="textarea-base"
           rows={4}
+          onChange={(e) => setMessage(e.target.value)}
         />
         <Box sx={{
           width: "202px",
@@ -186,6 +206,7 @@ export default function SendMessage() {
           type="text"
           placeholder="請留下你的大名吧！"
           className="input-base"
+          onChange={(e) => setName(e.target.value)}
         />
         {/* Continue with your form elements and submit button */}
       </Box>
@@ -204,14 +225,18 @@ export default function SendMessage() {
         marginTop: "50px",
         cursor: 'pointer'
       }}
-        onClick={onConfirm}>
+        onClick={onSubmit}>
         <Image
           src="/assets/sendMessage_confirm.svg"
           alt="divider"
           fill />
       </Box>
 
-
+      {errorMessage &&
+        <ErrorModal
+          message={errorMessage}
+          open={!!errorMessage}
+          onConfirm={onConfirmError} />}
     </Container >
   );
 }
