@@ -3,17 +3,19 @@ import React from 'react';
 import Image from 'next/image';
 import { Box, Button, Container } from '@mui/material';
 import ColorPicker from '@/components/ColorPicker';
-import Modal from '@mui/material/Modal';
 import colors from '@/constants/colors';
 import ErrorModal from './components/ErrorModal'
+import ConfirmSubmit from './components/ConfirmSubmit'
 import { useTheme } from '@mui/material/styles';
 import { error } from 'console';
 
 export default function SendMessage() {
   const [name, setName] = React.useState('');
   const [message, setMessage] = React.useState('');
-  const [errorModalOpen, setErrorModalOpen] = React.useState(true);
+  const [noteColor, setNoteColor] = React.useState('#F8E47E');
   const [errorMessage, setErrorMessage] = React.useState('');
+  const [readyToSubmit, setReadyToSubmit] = React.useState(false);
+  const [finishSubmit, setFinishSubmit] = React.useState(false);
   const theme = useTheme();
 
   const mobileContainerStyle = {
@@ -23,24 +25,42 @@ export default function SendMessage() {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    color: colors.brown4,
     backgroundColor: theme.palette.background.paper,
   };
 
   const onSubmit = () => {
     if (!name) {
       setErrorMessage('請輸入你的名字')
+      return
     }
     if (message.length < 10) {
       setErrorMessage('請輸入最少十個字')
+      return
     }
-
+    if (message.length > 50) {
+      setErrorMessage('請輸入最多五十個字')
+      return
+    }
+    setReadyToSubmit(true);
   }
 
   const onConfirmError = () => {
     setErrorMessage('')
   }
 
-  return (
+  const onConfirmSubmit = () => {
+    //@todo: api for submitting message 
+    setFinishSubmit(true)
+  }
+
+  return readyToSubmit ?
+    <ConfirmSubmit
+      noteColor={noteColor}
+      name={name}
+      message={message}
+      onReject={() => setReadyToSubmit(false)}
+      onConfirm={onConfirmSubmit} /> :
     <Container maxWidth="sm" sx={mobileContainerStyle}>
       <Box sx={{
         width: "230px",
@@ -119,7 +139,7 @@ export default function SendMessage() {
             transition: 'border-color 0.2s ease-in-out',
             letterSpacing: '1.28px',
             '&:focus': {
-              borderColor: colors.brown4,
+              border: `2px solid ${colors.brown4}`,
             },
             '&::placeholder': {
               color: 'rgba(0, 0, 0, 0.6)',
@@ -138,7 +158,7 @@ export default function SendMessage() {
             outline: 'none',
             transition: 'border-color 0.2s ease-in-out',
             '&:focus': {
-              borderColor: colors.brown4,
+              border: `2px solid ${colors.brown4}`,
             },
           },
           '& .input-base::placeholder, & .textarea-base::placeholder': {
@@ -212,8 +232,8 @@ export default function SendMessage() {
       </Box>
 
       <ColorPicker
-        onColorChange={(color: string) => console.log(color)}
         defaultColor="#F8E47E"
+        onColorChange={setNoteColor}
       />
 
       <Box sx={{
@@ -238,6 +258,5 @@ export default function SendMessage() {
           open={!!errorMessage}
           onConfirm={onConfirmError} />}
     </Container >
-  );
 }
 
