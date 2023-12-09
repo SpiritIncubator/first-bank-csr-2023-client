@@ -40,6 +40,7 @@ export default function ConfirmSubmit({
         flexDirection: 'column',
         justifyContent: 'center',
         position: 'relative',
+        wordBreak: 'break-word',
         color: colors.brown4,
         boxShadow: '0px 10px 15px 0px rgba(89, 74, 57, 0.08)'
       }}>
@@ -113,8 +114,11 @@ export default function ConfirmSubmit({
             overflow: 'hidden',
             position: 'relative',
             marginBottom: '40px',
-            marginTop: '-8px'
-          }}>
+            marginTop: '-8px',
+            marginRight: '20px',
+            cursor: 'pointer'
+          }}
+          onClick={onConfirm}>
           <Image
             fill
             src="/assets/sendMessage_confirmSubmit_yes.svg"
@@ -128,8 +132,10 @@ export default function ConfirmSubmit({
             overflow: 'hidden',
             position: 'relative',
             marginBottom: '40px',
-            marginTop: '-8px'
-          }}>
+            marginTop: '-8px',
+            cursor: 'pointer'
+          }}
+          onClick={onReject}>
           <Image
             fill
             src="/assets/sendMessage_confirmSubmit_no.svg"

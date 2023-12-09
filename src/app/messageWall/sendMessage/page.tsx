@@ -7,7 +7,6 @@ import colors from '@/constants/colors';
 import ErrorModal from './components/ErrorModal'
 import ConfirmSubmit from './components/ConfirmSubmit'
 import { useTheme } from '@mui/material/styles';
-import { error } from 'console';
 
 export default function SendMessage() {
   const [name, setName] = React.useState('');
@@ -50,17 +49,35 @@ export default function SendMessage() {
   }
 
   const onConfirmSubmit = () => {
+    console.log('onConfirmSubmit :', onConfirmSubmit);
     //@todo: api for submitting message 
     setFinishSubmit(true)
   }
 
-  return readyToSubmit ?
-    <ConfirmSubmit
-      noteColor={noteColor}
-      name={name}
-      message={message}
-      onReject={() => setReadyToSubmit(false)}
-      onConfirm={onConfirmSubmit} /> :
+  return <>
+    <Box sx={{
+      ...readyToSubmit && !finishSubmit ? {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        bgcolor: 'white',
+        width: '100%',
+        height: '100%',
+        zIndex: 1,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      } : {
+        display: 'none'
+      }
+    }}>
+      <ConfirmSubmit
+        noteColor={noteColor}
+        name={name}
+        message={message}
+        onReject={() => setReadyToSubmit(false)}
+        onConfirm={onConfirmSubmit} />
+    </Box>
     <Container maxWidth="sm" sx={mobileContainerStyle}>
       <Box sx={{
         width: "230px",
@@ -258,5 +275,6 @@ export default function SendMessage() {
           open={!!errorMessage}
           onConfirm={onConfirmError} />}
     </Container >
+  </>
 }
 
