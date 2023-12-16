@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
@@ -82,20 +82,20 @@ const QuestionsPage = () => {
           </Typography>
         </Box>
       </Box>
-      <Box mb={5} display="flex" flexDirection="column" alignItems="center" width="65%">
+      <Box mb={5} display="flex" flexDirection="column" alignItems="center" width="85%" maxWidth={324}>
         <Box width={160} height={160} bgcolor="#E9E3D8" mt={2.5}>
         </Box>
-        <Box mt={4} lineHeight={2} fontWeight={400}>
+        <Box mt={4} lineHeight={2} fontWeight={700} fontSize={20} letterSpacing={1} color="#594A39">
           {targetQuestion.description}
         </Box>
       </Box>
-      <Box width="80%">
+      <Box width="90%" maxWidth={396} display="flex" flexDirection="column" alignItems="center">
         {targetQuestion.options.map((option, index) => {
         return (
-          <Box key={index} display="flex" alignItems="center" bgcolor="#F9F8F3" mb={2.5} py={2.5} pl={1} pr={2.5} borderRadius={5} style={{ cursor: 'pointer'}} onClick={() => updateSelectQuestion(index)}>
+          <Box key={index} display="flex" alignItems="center" bgcolor="#F9F8F3" maxWidth={342} mb={2.5} py={2.5} pl={1} pr={2.5} borderRadius={5} style={{ cursor: 'pointer'}} onClick={() => updateSelectQuestion(index)}>
             <Box width={36} height={36} bgcolor="#BBC318" color="#fff" borderRadius={100} textAlign="center" lineHeight={2.25} mr={1.75}>{headLine[index]}</Box>
             <Box width={260}>
-              <Typography lineHeight={2} fontSize={16}>{option.content}</Typography>
+              <Typography lineHeight={2} fontSize={16} color="#594A39">{option.content}</Typography>
             </Box>
           </Box>
         )

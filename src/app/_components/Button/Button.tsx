@@ -6,7 +6,7 @@ import Typography, {TypographyProps} from '@mui/material/Typography';
 import {styled} from '@mui/material/styles';
 
 const StyledButton = styled(MuiButton)`
-	padding: 12px 35px;
+	padding: 12px 42px;
 	border-radius: 84px;
   background: #7DBD36;
   color: #fff;
@@ -29,8 +29,8 @@ type ButtonProps = {
 
 const Button = ({ text, styles, buttonProperties, onClickHandler }: ButtonProps) => {
 	return (
-		<StyledButton style={{ ...styles }} onClick={onClickHandler} {...buttonProperties}>
-			<StyledTypography component="span" >{text}</StyledTypography>
+		<StyledButton size="large" style={{ ...styles }} onClick={onClickHandler}>
+			<StyledTypography component="span" fontSize={20}>{text}</StyledTypography>
 		</StyledButton>
 	);
 };
