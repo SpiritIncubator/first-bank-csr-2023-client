@@ -1,0 +1,147 @@
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Image from 'next/image';
+import colors from '@/constants/colors';
+import Paper from '@mui/material/Paper';
+
+export default function ConfirmSubmit({
+  message,
+  name,
+  onConfirm,
+  onReject,
+  noteColor = '#F8E47E'
+}: {
+  message: string,
+  name: string,
+  onConfirm: () => void
+  onReject: () => void
+  noteColor: string
+}) {
+  return (
+    <Box maxWidth="600px" sx={{
+      margin: '0 auto',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+
+      p: 2
+    }}>
+      <Paper elevation={3} sx={{
+        bgcolor: noteColor,
+        padding: '24px 32px',
+        mb: '40px',
+        width: '100%',
+        maxWidth: '360px',
+        aspectRatio: '1 / 1',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        position: 'relative',
+        wordBreak: 'break-word',
+        color: colors.brown4,
+        boxShadow: '0px 10px 15px 0px rgba(89, 74, 57, 0.08)'
+      }}>
+        <Typography variant="h6" component="div" sx={{
+          fontWeight: '700',
+          letterSpacing: '1.84px',
+        }}>
+          {message}
+        </Typography>
+        <Typography sx={{
+          position: 'absolute',
+          fontWeight: '500',
+          bottom: '24px',
+          letterSpacing: '1.6px',
+          fontSize: '20px',
+          right: '32px', // Align with the right padding of the Paper
+        }}>
+          {name}
+        </Typography>
+      </Paper>
+      <Box
+        sx={{
+          width: "108px",
+          height: "83px",
+          margin: '0 auto',
+          overflow: 'hidden',
+          position: 'relative',
+          marginBottom: '14px'
+        }}>
+        <Image
+          fill
+          src="/assets/sendMessage_confirm_bird.svg"
+          alt="bird" />
+      </Box>
+      <Box
+        sx={{
+          width: "175px",
+          height: "38px",
+          margin: '0 auto',
+          overflow: 'hidden',
+          position: 'relative',
+          px: "56px"
+        }}>
+        <Image
+          fill
+          src="/assets/sendMessage_confirmSubmit_title.svg"
+          alt="is the content confirmed title" />
+      </Box>
+      <Box
+        sx={{
+          width: "220px",
+          height: "38px",
+          margin: '0 auto',
+          overflow: 'hidden',
+          position: 'relative',
+          marginBottom: '40px',
+          marginTop: '-8px'
+        }}>
+        <Image
+          fill
+          src="/assets/sendMessage_confirmSubmit_subtitle.svg"
+          alt="is the content confirmed subtitle" />
+      </Box>
+
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '320px' }}>
+        <Box
+          sx={{
+            width: "140px",
+            height: "57px",
+            margin: '0 auto',
+            overflow: 'hidden',
+            position: 'relative',
+            marginBottom: '40px',
+            marginTop: '-8px',
+            marginRight: '20px',
+            cursor: 'pointer'
+          }}
+          onClick={onConfirm}>
+          <Image
+            fill
+            src="/assets/sendMessage_confirmSubmit_yes.svg"
+            alt="sendMessage_confirmSubmit_yes" />
+        </Box>
+        <Box
+          sx={{
+            width: "140px",
+            height: "57px",
+            margin: '0 auto',
+            overflow: 'hidden',
+            position: 'relative',
+            marginBottom: '40px',
+            marginTop: '-8px',
+            cursor: 'pointer'
+          }}
+          onClick={onReject}>
+          <Image
+            fill
+            src="/assets/sendMessage_confirmSubmit_no.svg"
+            alt="sendMessage_confirmSubmit_no" />
+        </Box>
+      </Box>
+    </Box >
+  )
+}

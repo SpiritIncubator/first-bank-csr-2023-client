@@ -9,11 +9,20 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   margin:0;
+  color: #594A39;
+  font-family: "Noto Sans TC";
 }
 
 body {
   margin: 0;
   padding: 0;
+}
+
+textarea,input {
+  color: #594A39;
+}
+textarea:focus,input:focus {
+  border-color: #594A39;
 }
 
 a {
