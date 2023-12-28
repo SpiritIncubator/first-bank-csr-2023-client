@@ -16,7 +16,7 @@ export default function SendMessage() {
   const [noteColor, setNoteColor] = React.useState('#F8E47E');
   const [errorMessage, setErrorMessage] = React.useState('');
   const [readyToSubmit, setReadyToSubmit] = React.useState(false);
-  const [finishSubmit, setFinishSubmit] = React.useState(true);
+  const [finishSubmit, setFinishSubmit] = React.useState(false);
   const theme = useTheme();
 
   const mobileContainerStyle = {
