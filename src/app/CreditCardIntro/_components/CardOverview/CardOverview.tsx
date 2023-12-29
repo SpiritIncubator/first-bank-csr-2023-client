@@ -1,17 +1,32 @@
 'use client'
 
-import React from 'react';
+import React, {useCallback} from 'react';
 import Image from 'next/image';
 import { Box, Typography } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
 import { IntroContainer } from './CardOverview.style';
 import CardIntroIcon from '../../assets/cardIntro.svg';
 import cardLionIcon from '../../assets/card-lion.svg';
+import BackButton from '@/assets/back.svg';
 
 import ReleaseStatistic from '../ReleaseStatistics/ReleaseStatistic';
 import DemoCard from '../DemoCard/DemoCard';
 
+
+const mockData = new Array(5).fill(0);
+
 const CardOverview = () => {
+  const router = useRouter();
+
+  const redirectToDetail = useCallback((index: string) => () => {
+    router.push(`/CreditCardIntro/${index}`);
+  }, [router]);
+
+  function renderDemoCard(_: any, index: number) {
+    return <DemoCard onRedirectToDetail={redirectToDetail(String(index))} />
+  }
+
   return (
     <IntroContainer>
       <Box padding="160px 160px 0px">
@@ -24,10 +39,15 @@ const CardOverview = () => {
         <ReleaseStatistic />
       </Box>
       <Box mt={29.25}>
-        <DemoCard />
+        <Box display="flex" px={25} gap={12.5} flexWrap="wrap" justifyContent="center">
+          {mockData.map(renderDemoCard)}
+        </Box>
       </Box>
       <Box position="absolute" bottom={0} left={120}>
         <Image src={cardLionIcon} alt="symbol-lion" />
+      </Box>
+      <Box position="absolute" left={0} top="45%">
+        <Image src={BackButton} alt="back-button" />
       </Box>
     </IntroContainer>
   )
