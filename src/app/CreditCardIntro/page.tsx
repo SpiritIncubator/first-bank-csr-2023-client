@@ -1,8 +1,8 @@
 import React from 'react'
 
-import CardOverview from './components/CardOverview/CardOverview'
+import CardOverview from './_components/CardOverview/CardOverview'
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <CardOverview />
@@ -10,4 +10,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
