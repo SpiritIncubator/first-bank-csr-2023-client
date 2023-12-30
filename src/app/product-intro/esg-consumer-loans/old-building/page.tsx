@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react';
+import Image from 'next/image';
 import {
   Box,
   Container,
@@ -32,12 +33,8 @@ const CASE_DATA = [
 const modalStyle = {
   width: '1580px',
   minHeight: '2000px',
-  position: 'absolute',
-  top: '45%',
-  left: '50%',
   borderRadius: "100px",
   overflow: 'hidden',
-  transform: 'translate(-50%, -50%)',
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: '140px',
@@ -158,38 +155,62 @@ const OldBuilding: React.FC = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={modalStyle}>
-          <Box
-            sx={{
-              width: '100%',
-              height: '900px',
-              bgcolor: 'grey.300',
-              mb: '80px',
-            }}
-          >
-            {/* First Image*/}
+
+        <Box sx={{
+          position: 'absolute',
+          top: '45%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}>
+          <Box width="180px"
+            height="180px"
+            onClick={handleCloseModal}
+            style={{
+              position: 'absolute',
+              top: '-90px',
+              right: '-90px',
+              cursor: 'pointer'
+            }} >
+            <Image
+              src="/assets/modal_close.svg"
+              alt="modal_close"
+              objectFit='contain'
+              fill
+            />
           </Box>
-          <Typography
-            width="886px"
-            height="256px"
-            mb="30px"
-            id="modal-modal-title" variant="h6" component="h2"
-            bgcolor="grey.300"
-          >
-            {selectedCase?.title}
-          </Typography>
-          <Typography
-            id="modal-modal-description" sx={{
-              color: 'var(--brown4, #594A39)',
-              fontSize: '52px',
-              fontStyle: 'normal',
-              fontWeight: 500,
-              lineHeight: '190%',
-              letterSpacing: '4.16px'
-            }}>
-            {selectedCase?.description}
-          </Typography>
-          {/* Add additional modal content here if needed */}
+          <Box sx={modalStyle}>
+            <Box
+              sx={{
+                width: '100%',
+                height: '900px',
+                bgcolor: 'grey.300',
+                mb: '80px',
+              }}
+            >
+              {/* First Image*/}
+            </Box>
+            <Typography
+              width="886px"
+              height="256px"
+              mb="30px"
+              id="modal-modal-title" variant="h6" component="h2"
+              bgcolor="grey.300"
+            >
+              {selectedCase?.title}
+            </Typography>
+            <Typography
+              id="modal-modal-description" sx={{
+                color: 'var(--brown4, #594A39)',
+                fontSize: '52px',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                lineHeight: '190%',
+                letterSpacing: '4.16px'
+              }}>
+              {selectedCase?.description}
+            </Typography>
+          </Box>
+
         </Box>
       </Modal>
     </Container >
