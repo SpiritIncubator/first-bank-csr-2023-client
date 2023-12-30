@@ -298,7 +298,6 @@ const MainPage = () => {
           </Box>
 
           {/* // lion */}
-
           <Box position="fixed" bottom="0" left="250px" height="680px" width="100%" >
             <Image
               fill
