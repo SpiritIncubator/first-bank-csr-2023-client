@@ -1,6 +1,7 @@
 'use client'
 // MainPage.tsx
 import * as React from 'react';
+import Link from 'next/link';
 import Box from '@mui/material/Box';
 import Image from 'next/image';
 import Typography from '@mui/material/Typography';
@@ -98,17 +99,18 @@ const MainPage = () => {
           </Box>
 
           <Box mb="246px" gap="80px" display="flex" width="100%" justifyContent="space-between">
-            <Paper
-              elevation={0}
-              sx={{
-                height: 500,
-                width: 500,
-                flex: 1,
-                bgcolor: 'grey.300',
-                mb: 4,
-              }}
-            >
-            </Paper>
+            <Link href='/product-intro/esg-consumer-loans/loan'>
+              <Paper
+                elevation={0}
+                sx={{
+                  height: 500,
+                  width: 500,
+                  flex: 1,
+                  bgcolor: 'grey.300',
+                  mb: 4,
+                }}
+              >
+              </Paper></Link>
             <Box flex="1">
               <Box>
                 <Typography
@@ -191,17 +193,19 @@ const MainPage = () => {
           </Box>
 
           <Box mb="246px" gap="40px" display="flex" width="100%" justifyContent="space-between">
-            <Paper
-              elevation={0}
-              sx={{
-                height: 500,
-                minWidth: 500,
-                flex: 0,
-                bgcolor: 'grey.300',
-                mb: 4,
-              }}
-            >
-            </Paper>
+            <Link href='/product-intro/esg-consumer-loans/old-building'>
+              <Paper
+                elevation={0}
+                sx={{
+                  height: 500,
+                  minWidth: 500,
+                  flex: 0,
+                  bgcolor: 'grey.300',
+                  mb: 4,
+                }}
+              >
+              </Paper>
+            </Link>
             <Box flex="2">
               <Box display="flex" flexDirection="column">
                 <Box ml="100px">
