@@ -2,7 +2,7 @@ import React from 'react'
 import { Box } from '@mui/material';
 import Image from 'next/image';
 
-import CreditCardIcon from '../../assets/creditCard.svg';
+import CreditCardIcon from '@/app/product-intro/assets/creditCard.svg';
 
 type DemoCardProps = {
   onRedirectToDetail: () => void;

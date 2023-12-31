@@ -1,17 +1,17 @@
 'use client'
 
-import React, {useCallback} from 'react';
+import React, { useCallback } from 'react';
 import Image from 'next/image';
 import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 
-import { IntroContainer } from './CardOverview.style';
-import CardIntroIcon from '../../assets/cardIntro.svg';
-import cardLionIcon from '../../assets/card-lion.svg';
+import { IntroContainer } from './style';
+import CardIntroIcon from '@/app/product-intro/assets/card-intro.svg';
+import cardLionIcon from '@/app/product-intro/assets/card-lion.svg';
 import BackButton from '@/assets/back.svg';
 
-import ReleaseStatistic from '../ReleaseStatistics/ReleaseStatistic';
-import DemoCard from '../DemoCard/DemoCard';
+import ReleaseStatistic from './_components/ReleaseStatistics/ReleaseStatistic';
+import DemoCard from './_components/DemoCard/DemoCard';
 
 
 const mockData = new Array(5).fill(0);
@@ -20,7 +20,7 @@ const CardOverview = () => {
   const router = useRouter();
 
   const redirectToDetail = useCallback((index: string) => () => {
-    router.push(`/CreditCardIntro/${index}`);
+    router.push(`/product-intro/green-credit-card/${index}`);
   }, [router]);
 
   function renderDemoCard(_: any, index: number) {
