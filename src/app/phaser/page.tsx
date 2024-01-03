@@ -1,12 +1,15 @@
 /** @format */
 
 'use client';
+import dynamic from 'next/dynamic'
 import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { useSubscribe } from '@/app/hooks/useSubscribe';
 
 import 'src/app/globals.css';
+import Phaser from 'phaser'
+import Scene from './Scene'
 
 const Game: React.FC = () => {
 	const { registerRoomHelper } = useSubscribe({
@@ -26,9 +29,7 @@ const Game: React.FC = () => {
 		if (!window || typeof window === 'undefined') return;
 
 		(async () => {
-			const Phaser = await import('phaser');
-			const SceneModule = await import('./Scene');
-			const Scene = SceneModule.default;
+
 
 			const config: Phaser.Types.Core.GameConfig = {
 				type: Phaser.AUTO,
