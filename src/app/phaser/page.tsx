@@ -4,7 +4,7 @@
 import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { useSubscribe } from '@/hooks/useSubscribe';
+import { useSubscribe } from '@/app/hooks/useSubscribe';
 
 import 'src/app/globals.css';
 

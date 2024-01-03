@@ -3,7 +3,7 @@ import React from 'react'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
-import { useSubscribe } from '@/hooks/useSubscribe';
+import { useSubscribe } from '@/app/hooks/useSubscribe';
 
 type SubscribeType = {
   message: 'L' | 'R';
