@@ -1,19 +1,5 @@
 import styled from '@emotion/styled';
-import { css } from '@emotion/css';
 import { Box, Typography } from '@mui/material';
-
-export const buttonStyle = css`
-  display: inline-block;
-  font-size: 60px;
-  font-weight: 700;
-  background-color: #B8C318;
-  padding: 20px 50px;
-  border-radius: 80px;
-  color: #ffffff;
-  width: 240px;
-  height: 124px;
-  text-align: center;
-`;
 
 export const NavBarWrapper = styled(Box)`
   position: relative;
