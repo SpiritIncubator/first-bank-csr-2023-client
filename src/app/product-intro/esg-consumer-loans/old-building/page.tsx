@@ -129,7 +129,7 @@ const OldBuilding: React.FC = () => {
                   bgcolor: 'lightgrey',
                   height: '420px',
                   width: '420px',
-                  mb: '22px',
+                  mb: '40px',
                 }} />
 
             </Box>
