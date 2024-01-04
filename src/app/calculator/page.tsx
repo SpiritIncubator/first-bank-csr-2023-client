@@ -15,7 +15,7 @@ const MainPage = () => {
 
 
 	function redirectToQuestionsPage() {
-		router.push('/main/questions');
+		router.push('/calculator/questions');
 	}
 
 	return (
@@ -35,10 +35,10 @@ const MainPage = () => {
 					<Typography lineHeight={2} fontSize={16}></Typography>
 					<Box mt={5.5}>
 						<StyleButton text="start" onClickHandler={redirectToQuestionsPage} />
-          </Box>
-          <Box mt={7.5}>
-          	<ToggleButton />
-          </Box>
+					</Box>
+					<Box mt={7.5}>
+						<ToggleButton />
+					</Box>
 				</Box>
 			</Box>
 		</Box>

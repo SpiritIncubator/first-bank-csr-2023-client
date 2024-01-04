@@ -70,7 +70,7 @@ const ResultPage = () => {
   }, []);
 
   // if (!hasAnsweredAllQuestions) {
-  //   router.push('/main');
+  //   router.push('/calculator');
   // }
 
   if (delayLoading) {

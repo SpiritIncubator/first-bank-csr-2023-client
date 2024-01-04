@@ -16,7 +16,7 @@ import RightCard from './assets/right-card.svg';
 import RightContent from './assets/right-content.svg'
 
 const StyledMainBox = styled(Box)`
-  background-image: url('/assets/main-lion.svg');
+  background-image: url('/assets/calculator-lion.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

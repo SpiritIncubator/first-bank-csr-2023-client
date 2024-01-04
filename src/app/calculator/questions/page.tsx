@@ -30,14 +30,14 @@ const QuestionsPage = () => {
 
   function toFinalStep(entireSelectedAnswer: any[]) {
     setQuestionAnswer(entireSelectedAnswer);
-    router.push('/main/result');
+    router.push('/calculator/result');
   }
 
   function updateSelectQuestion(order: number) {
     setSelectAnswer(prevState => {
       const newSelectedAnswerList = [...prevState];
       newSelectedAnswerList[currentQuestionIndex] = { index: order, score: targetQuestion.options[order].score };
-      
+
       if (currentQuestionIndex === MAX_QUESTION_COUNT - 1) {
         toFinalStep(newSelectedAnswerList);
       }
@@ -50,7 +50,7 @@ const QuestionsPage = () => {
 
   function checkNumberOfQuestion() {
     if (currentQuestionIndex === 0) {
-      router.push('/main');
+      router.push('/calculator');
 
       return;
     }
@@ -61,9 +61,9 @@ const QuestionsPage = () => {
   useEffect(() => {
     if (currentQuestionIndex === MAX_QUESTION_COUNT) {
       setQuestionAnswer(selectedAnswer);
-      router.push('/main/result');
+      router.push('/calculator/result');
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentQuestionIndex, selectedAnswer]);
 
 
@@ -91,15 +91,15 @@ const QuestionsPage = () => {
       </Box>
       <Box width="90%" maxWidth={396} display="flex" flexDirection="column" alignItems="center">
         {targetQuestion.options.map((option, index) => {
-        return (
-          <Box key={index} display="flex" alignItems="center" bgcolor="#F9F8F3" maxWidth={342} mb={2.5} py={2.5} pl={1} pr={2.5} borderRadius={5} style={{ cursor: 'pointer'}} onClick={() => updateSelectQuestion(index)}>
-            <Box width={36} height={36} bgcolor="#BBC318" color="#fff" borderRadius={100} textAlign="center" lineHeight={2.25} mr={1.75}>{headLine[index]}</Box>
-            <Box width={260}>
-              <Typography lineHeight={2} fontSize={16} color="#594A39">{option.content}</Typography>
+          return (
+            <Box key={index} display="flex" alignItems="center" bgcolor="#F9F8F3" maxWidth={342} mb={2.5} py={2.5} pl={1} pr={2.5} borderRadius={5} style={{ cursor: 'pointer' }} onClick={() => updateSelectQuestion(index)}>
+              <Box width={36} height={36} bgcolor="#BBC318" color="#fff" borderRadius={100} textAlign="center" lineHeight={2.25} mr={1.75}>{headLine[index]}</Box>
+              <Box width={260}>
+                <Typography lineHeight={2} fontSize={16} color="#594A39">{option.content}</Typography>
+              </Box>
             </Box>
-          </Box>
-        )
-      })}
+          )
+        })}
       </Box>
     </Box>
   )
