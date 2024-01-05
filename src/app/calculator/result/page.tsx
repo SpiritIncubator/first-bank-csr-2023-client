@@ -38,7 +38,7 @@ const ResultPage = () => {
       const questionNumber = index + 1;
 
       return (
-        <Box key={`answer-${index}`} bgcolor="#F9F8F3" mt={4} borderRadius={2.5} px={3} pb={3.75}>
+        <Box key={`answer-${index}`} bgcolor="#F9F8F3" mt={4} borderRadius={2.5} px={3} pb={10.75}>
           <Box display="flex" flexDirection="column" alignItems="center">
             <Box height={90} textAlign="left" width="100%">
               <Typography height="100%" lineHeight={2} fontSize={45} color="#7DBD36" letterSpacing={8} className={caveat.className}>

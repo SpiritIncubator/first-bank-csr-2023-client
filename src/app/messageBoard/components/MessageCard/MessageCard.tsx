@@ -20,7 +20,7 @@ const MessageCard = ({ bgColor, isTop, content, name }: MessageCardProps) => {
           {isTop && <Box position="absolute"><Image src={FlagIcon} alt="flag" /></Box>}
         </Box>
         <Box>
-          <Typography fontWeight={700} fontSize={23} letterSpacing={1} lineHeight={2}>
+          <Typography fontWeight={700} fontSize={23} minHeight={176} letterSpacing={1} lineHeight={2}>
             {content}
           </Typography>
         </Box>

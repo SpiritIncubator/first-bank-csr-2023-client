@@ -79,7 +79,7 @@ const Page = () => {
   }, [offsetValue])
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" px={23.75} pt={20}>
+    <Box display="flex" flexDirection="column" alignItems="center" px={23.75} pt={15}>
       <Image src={BgIcon} alt="bg" />
       <Box mt={9}>
         <Image src={title} alt="title" />
@@ -89,7 +89,8 @@ const Page = () => {
           display="flex"
           flexWrap="wrap"
           gap={7.5}
-          mt={12.5}
+          // 12.5
+          mt={5}
           maxHeight={2240}
           overflow="auto"
           ref={messageBoardRef}
