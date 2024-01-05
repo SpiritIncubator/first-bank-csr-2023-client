@@ -6,8 +6,8 @@ import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 
 import { IntroContainer } from './style';
-import CardIntroIcon from '@/app/product-intro/assets/card-intro.svg';
-import cardLionIcon from '@/app/product-intro/assets/card-lion.svg';
+import CardIntroIcon from '@/app/stage2/assets/card-intro.svg';
+import cardLionIcon from '@/app/stage2/assets/card-lion.svg';
 import BackButton from '@/assets/back.svg';
 
 import ReleaseStatistic from './_components/ReleaseStatistics/ReleaseStatistic';

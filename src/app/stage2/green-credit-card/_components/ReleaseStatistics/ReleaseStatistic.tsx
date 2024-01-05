@@ -2,8 +2,8 @@ import React from 'react'
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 
-import IntroBirdIcon from '@/app/product-intro/assets/introBird.svg'
-import CalculateMoney from '@/app/product-intro/assets/calculateMoney.svg';
+import IntroBirdIcon from '@/app/stage2/assets/introBird.svg'
+import CalculateMoney from '@/app/stage2/assets/calculateMoney.svg';
 
 const ReleaseStatistic = () => {
   return (

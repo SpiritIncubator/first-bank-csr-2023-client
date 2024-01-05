@@ -12,8 +12,6 @@ import MessageCard from './components/MessageCard/MessageCard';
 import BgIcon from './assets/bg.svg';
 import title from './assets/title.svg';
 
-const mockData = new Array(30).fill(0);
-
 const StyledSlider = styled(Slider)`
   .MuiSlider-thumb{
     width: 52px;
