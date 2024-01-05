@@ -68,7 +68,7 @@ const QuestionsPage = () => {
 
 
   return (
-    <Box width="100%" height="100%" display="flex" flexDirection="column" alignItems="center" position="sticky" top={0}>
+    <Box width="100%" height="100%" display="flex" flexDirection="column" alignItems="center" position="sticky" pb={3}>
       <Box width="100%" px={2.5} py={3} display="flex" alignItems="center" justifyContent="flex-start">
         <Box mr={1} display="flex" alignItems="center" style={{cursor: 'pointer'}}>
           <Image src={PrevIcon} alt="prev" onClick={checkNumberOfQuestion} />
