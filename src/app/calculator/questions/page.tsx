@@ -70,7 +70,7 @@ const QuestionsPage = () => {
   return (
     <Box width="100%" height="100%" display="flex" flexDirection="column" alignItems="center">
       <Box width="100%" px={2.5} py={3} display="flex" alignItems="center" justifyContent="flex-start">
-        <Box mr={1} display="flex" alignItems="center">
+        <Box mr={1} display="flex" alignItems="center" style={{cursor: 'pointer'}}>
           <Image src={PrevIcon} alt="prev" onClick={checkNumberOfQuestion} />
         </Box>
         <Box display="flex" alignItems="center" position="relative">
@@ -92,7 +92,7 @@ const QuestionsPage = () => {
       <Box width="90%" maxWidth={396} display="flex" flexDirection="column" alignItems="center">
         {targetQuestion.options.map((option, index) => {
           return (
-            <Box key={index} display="flex" alignItems="center" bgcolor="#F9F8F3" maxWidth={342} mb={2.5} py={2.5} pl={1} pr={2.5} borderRadius={5} style={{ cursor: 'pointer' }} onClick={() => updateSelectQuestion(index)}>
+            <Box key={index} display="flex" alignItems="center" bgcolor="#F9F8F3" maxWidth={342} mb={2} py={2.5} pl={1} pr={2.5} borderRadius={5} style={{ cursor: 'pointer' }} onClick={() => updateSelectQuestion(index)}>
               <Box width={36} height={36} bgcolor="#BBC318" color="#fff" borderRadius={100} textAlign="center" lineHeight={2.25} mr={1.75}>{headLine[index]}</Box>
               <Box width={260}>
                 <Typography lineHeight={2} fontSize={16} color="#594A39">{option.content}</Typography>
