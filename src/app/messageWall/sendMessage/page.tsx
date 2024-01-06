@@ -18,7 +18,6 @@ export default function SendMessage() {
   const [readyToSubmit, setReadyToSubmit] = React.useState(false);
   const [finishSubmit, setFinishSubmit] = React.useState(false);
   const theme = useTheme();
-  console.log('NEXT_PUBLIC_BACKEND_URL', process.env.NEXT_PUBLIC_BACKEND_URL)
   const mobileContainerStyle = {
     maxWidth: '390px',
     margin: '0 auto', // Center the container
