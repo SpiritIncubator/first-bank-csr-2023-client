@@ -34,19 +34,19 @@ const StyledBox = styled(Box)`
   }
 `
 
-const STEP_HEIGHT = 13.8
+const HEIGHT_UNIT = 100
 
 const Page = () => {
-  const [value, setValue] = useState<number>(100);
+  const [value, setValue] = useState<number>(HEIGHT_UNIT);
   const [offsetValue, setOffsetValue] = useState<number>(0); // [0, 100
   const messageBoardRef = useRef<HTMLDivElement>(null);
+  const scrollableHeight = useRef(0);
+  const stepHeight = useRef(0);
   const { messages } = useMessageBoard();
-
-  console.log(messages, 'message')
 
   const handleChange = (_: Event, newValue: number | number[]) => {
     const typedValue = newValue as number;
-    const value = Math.abs(typedValue - 100) * STEP_HEIGHT;
+    const value = Math.abs(typedValue - 100) * stepHeight.current;
     setOffsetValue(value);
     setValue(typedValue);
   };
@@ -54,14 +54,17 @@ const Page = () => {
   const handleScroll = () => {
     if (messageBoardRef.current) {
       const { scrollTop } = messageBoardRef.current;
-      const sliderPercentageValue = Math.abs(Math.round(scrollTop / STEP_HEIGHT) - 100);
+      const sliderPercentageValue = Math.abs(Math.round(scrollTop / stepHeight.current) - HEIGHT_UNIT);
 
       setValue(sliderPercentageValue);
     }
   };
-
+  
   useEffect(() => {
     if (messageBoardRef.current) {
+      const { scrollHeight, offsetHeight } = messageBoardRef.current;
+      scrollableHeight.current = scrollHeight - offsetHeight;
+      stepHeight.current = scrollableHeight.current / HEIGHT_UNIT;
       messageBoardRef.current.addEventListener('scroll', handleScroll);
     }
 
@@ -70,7 +73,7 @@ const Page = () => {
         messageBoardRef.current.removeEventListener('scroll', handleScroll);
       }
     };
-  }, []);
+  }, [messages]);
 
   useEffect(() => { 
     if (messageBoardRef.current) {
