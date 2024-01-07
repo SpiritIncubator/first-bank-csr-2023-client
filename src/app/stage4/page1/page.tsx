@@ -7,8 +7,8 @@ import {
   Grid,
   Modal
 } from '@mui/material';
-
 import Image from 'next/image';
+import NavBar from '../_components/NavBar/NavBar';
 
 const CASE_DATA = [
   {
@@ -30,7 +30,7 @@ const CASE_DATA = [
 
 export default function EsgConsumerLoans() {
   return (
-    <Box px="210px" py="132px">
+    <Box px="210px" py="132px" maxWidth="2850px" mr="auto">
       <Box width="100%" height="154px" position="relative" mb="60px" >
         <Image
           fill
@@ -114,6 +114,7 @@ export default function EsgConsumerLoans() {
             mb: "160px"
           }} />
       </Box>
+      <NavBar />
     </Box>
   )
 }

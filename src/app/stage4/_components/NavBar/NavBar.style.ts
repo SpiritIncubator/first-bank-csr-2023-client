@@ -18,6 +18,7 @@ export const buttonStyle = css`
 export const NavBarWrapper = styled(Box)`
   position: fixed;
   bottom:0;
+  left:0;
   width: 100%;
   max-width: 3840px;
   display: flex;

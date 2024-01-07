@@ -9,6 +9,7 @@ import NavLink from './NavLink';
 import { navigationLinksConfig } from './spec';
 import { LinkType } from './types';
 
+
 const customPath = ['/']
 
 const NavBar = () => {
