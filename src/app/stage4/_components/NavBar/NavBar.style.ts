@@ -16,12 +16,14 @@ export const buttonStyle = css`
 `;
 
 export const NavBarWrapper = styled(Box)`
-  position: relative;
+  position: fixed;
+  bottom:0;
   width: 100%;
   max-width: 3840px;
   display: flex;
+  align-items: center;
   padding: 78px 200px;
-  background-color: pink;
+  background: linear-gradient(90deg, #F3F5DE 60.94%, #FDFDFB 100%);
 `;
 
 export const NavLinkItem = styled(Typography)`
