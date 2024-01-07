@@ -7,18 +7,18 @@ export const navigationLinksConfig: Array<LinkType> = [
 	},
 	{
 		label: '永續績效連結授信專案',
-		path: '/path1',
+		path: '/page1',
 	},
 	{
 		label: '永續績效連結授信專案',
-		path: '/path2',
+		path: '/page2',
 	},
 	{
 		label: '永續績效連結授信專案',
-		path: '/path3',
+		path: '/page3',
 	},
 	{
 		label: '綠色債券與太陽能基金',
-		path: '/path4',
+		path: '/page4',
 	},
 ];
