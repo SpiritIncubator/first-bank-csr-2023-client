@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 import useStore from '@/app/atoms/useStore';
 import PrevIcon from '@/app/_assets/images/prevBtn.svg';
-import { caveat } from '@/app/layout';;
+import { caveat } from '@/app/layout';
 import { questionList } from './spec';
 
 const MAX_QUESTION_COUNT = questionList.length;

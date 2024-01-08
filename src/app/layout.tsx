@@ -11,7 +11,7 @@ import { Inter, Caveat, Noto_Sans_TC } from 'next/font/google'
 const notoSansTC = Noto_Sans_TC({ subsets: ['latin'] })
 
 // const inter = Inter({ subsets: ['latin'] });
-// export const caveat = Caveat({ subsets: ['latin'] });
+export const caveat = Caveat({ subsets: ['latin'] });
 
 // export const metadata: Metadata = {
 //   title: '第一銀行',
