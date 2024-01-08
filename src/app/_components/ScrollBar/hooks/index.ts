@@ -58,5 +58,4 @@ const useScrollBar = ({loaded}: UseScrollBarProps) => {
 	return { value, handleChangeBarOfValue, containerRef };
 };
 
-
 export default useScrollBar;

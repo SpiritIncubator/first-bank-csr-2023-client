@@ -2,7 +2,6 @@ import React from 'react';
 import Stack from '@mui/material/Stack';
 
 import { StyledSlider } from './ScrollBar.style';
-import useScrollBar from './hooks';
 
 type ScrollBarProps = {
   value: number;

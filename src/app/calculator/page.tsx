@@ -3,10 +3,10 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
 
 import StyleButton from '@/app/_components/Button/Button';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
+import I18nButton from '@/app/_components/I18nButton/I18nButton';
 import ToggleButton from './components/ToggleButton/ToggleButton';
 
 const MainPage = () => {
@@ -37,7 +37,7 @@ const MainPage = () => {
 						<StyleButton text="start" onClickHandler={redirectToQuestionsPage} />
 					</Box>
 					<Box mt={7.5}>
-						<ToggleButton />
+						<I18nButton />
 					</Box>
 				</Box>
 			</Box>

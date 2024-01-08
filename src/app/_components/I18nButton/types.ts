@@ -1,8 +1,8 @@
 /** @format */
 
-// import { LANGUAGE_TYPE } from '@/app/_locales/i18n';
+import { LANGUAGE_TYPE } from '@/app/_locales/i18n';
 
 export type LangBtnType = {
-	key: string;
+	key: LANGUAGE_TYPE;
 	text: string;
 };

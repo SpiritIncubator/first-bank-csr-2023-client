@@ -9,6 +9,7 @@ const useFirstBankTranslation = () => {
 	const prevLang = usePrevious(currentLang);
 
 	const setLang = useCallback((lang: LANGUAGE_TYPE) => {
+		localStorage.setItem('lang', lang);
 		setCurrentLang(lang);
 	}, []);
 
