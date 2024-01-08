@@ -9,6 +9,7 @@ type MessageType = {
 
 const useMessageBoard = () => {
   const [messages, setMessages] = useState<MessageType[]>([]);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     fetch('https://firstcommercialbank-9ac085739969.herokuapp.com/api/v1/messageBoard/messages')
@@ -17,13 +18,14 @@ const useMessageBoard = () => {
 				const sortedMessages = messages.sort((a: MessageType, b: MessageType) => {
 					return a.keepTop === b.keepTop ? 0 : a.keepTop ? -1 : 1;
 				});
-
+        setLoaded(true);
 				setMessages(sortedMessages);
 			});
   }, []);
 
 
   return {
+    loaded,
 		messages,
 	};
 }
