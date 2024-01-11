@@ -20,7 +20,7 @@ const CardOverview = () => {
   const router = useRouter();
 
   const redirectToDetail = useCallback((index: string) => () => {
-    router.push(`/product-intro/green-credit-card/${index}`);
+    router.push(`/stage2/green-credit-card/${index}`);
   }, [router]);
 
   function renderDemoCard(_: any, index: number) {

@@ -99,7 +99,7 @@ const MainPage = () => {
           </Box>
 
           <Box mb="246px" gap="80px" display="flex" width="100%" justifyContent="space-between">
-            <Link href='/product-intro/esg-consumer-loans/loan'>
+            <Link href='/stage2/esg-consumer-loans/loan'>
               <Paper
                 elevation={0}
                 sx={{
@@ -193,7 +193,7 @@ const MainPage = () => {
           </Box>
 
           <Box mb="246px" gap="40px" display="flex" width="100%" justifyContent="space-between">
-            <Link href='/product-intro/esg-consumer-loans/old-building'>
+            <Link href='/stage2/esg-consumer-loans/old-building'>
               <Paper
                 elevation={0}
                 sx={{

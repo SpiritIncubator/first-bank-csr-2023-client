@@ -45,7 +45,7 @@ const Page = () => {
   const router = useRouter();
 
   const redirectToCardIntro = () => {
-    router.push('/product-intro/green-credit-card');
+    router.push('/stage2/green-credit-card');
   }
 
   return (
