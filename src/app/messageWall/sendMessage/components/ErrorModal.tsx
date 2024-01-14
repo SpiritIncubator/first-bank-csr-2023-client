@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
+import ImageButton from '@/app/_components/ImageButton/ImageButton';
 
 export default function ConfirmModal({ open, onClose, onConfirm, message }: {
   open: boolean,
@@ -58,21 +59,15 @@ export default function ConfirmModal({ open, onClose, onConfirm, message }: {
           {message}
         </Box>
 
-        <Box
+
+        <ImageButton
           onClick={onConfirm}
-          sx={{
-            width: "130px",
-            height: "53px",
-            margin: '0 auto',
-            overflow: 'hidden',
-            position: 'relative',
-            cursor: 'pointer'
-          }}>
-          <Image
-            fill
-            src="/assets/sendMessage_ok.svg"
-            alt="ok" />
-        </Box>
+          width="130px"
+          height="53px"
+          margin='0 auto'
+          src="/assets/sendMessage_ok.svg"
+          activeImageSrc="/assets/sendMessage_ok_active.svg"
+        />
       </Box>
     </Modal>
   );

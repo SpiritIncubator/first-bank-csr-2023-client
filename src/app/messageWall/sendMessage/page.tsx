@@ -19,15 +19,7 @@ export default function SendMessage() {
   const [errorMessage, setErrorMessage] = React.useState('');
   const [readyToSubmit, setReadyToSubmit] = React.useState(false);
   const [finishSubmit, setFinishSubmit] = React.useState(false);
-  const [confirmImageSrc, setConfirmImageSrc] = useState("/assets/sendMessage_confirm.svg");
 
-  const handleMouseDownOnConfirm = () => {
-    setConfirmImageSrc("/assets/sendMessage_confirm_active.svg");
-  };
-
-  const handleMouseUpOnConfirm = () => {
-    setConfirmImageSrc("/assets/sendMessage_confirm.svg");
-  };
   const mobileContainerStyle = {
     maxWidth: '390px',
     margin: '0 auto', // Center the container

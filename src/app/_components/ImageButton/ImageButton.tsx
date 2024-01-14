@@ -3,7 +3,7 @@ import { Box, BoxProps } from '@mui/material'
 import Image from 'next/image';
 
 interface ImageButtonProps {
-  onClick: () => void,
+  onClick?: () => void,
   src: string,
   activeImageSrc?: string
 }
