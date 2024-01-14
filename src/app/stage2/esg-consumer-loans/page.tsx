@@ -7,6 +7,9 @@ import Image from 'next/image';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
+import BackRightButton from '@/assets/back_right.svg';
+import BackRightActiveButton from '@/assets/back_right_active.svg';
+import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas';
 
 // Create a theme to apply consistent styling
@@ -309,8 +312,19 @@ const MainPage = () => {
               alt="lion"
             />
           </Box>
+          <ImageButton
+            onClick={() => location.href = '/stage2'}
+            src={BackRightButton}
+            activeImageSrc={BackRightActiveButton}
+            position="fixed"
+            right="0"
+            width="143px"
+            height="283px"
+            top="45%"
+          />
         </Container>
       </Box >
+
     </ThemeProvider >
   );
 };

@@ -47,6 +47,9 @@ const Page = () => {
   const redirectToCardIntro = () => {
     router.push('/stage2/green-credit-card');
   }
+  const redirectToEsgLoan = () => {
+    router.push('/stage2/esg-consumer-loans');
+  }
 
   return (
     <Box padding="170px 111px 583px 100px" display="flex" flexDirection="column" height="100%">
@@ -68,7 +71,7 @@ const Page = () => {
           <Box mt={7.5}>
             <Image src={LeftContent} alt='right-content' />
           </Box>
-          <StyledCommonButton variant='contained'>
+          <StyledCommonButton variant='contained' onClick={redirectToEsgLoan}>
             看更多
           </StyledCommonButton>
         </Box>

@@ -9,7 +9,8 @@ import { IntroContainer } from './style';
 import CardIntroIcon from '@/app/stage2/assets/card-intro.svg';
 import cardLionIcon from '@/app/stage2/assets/card-lion.svg';
 import BackLeftButton from '@/assets/back_left.svg';
-
+import BackLeftActiveButton from '@/assets/back_left_active.svg';
+import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import ReleaseStatistic from './_components/ReleaseStatistics/ReleaseStatistic';
 import DemoCard from './_components/DemoCard/DemoCard';
 
@@ -46,9 +47,17 @@ const CardOverview = () => {
       <Box position="absolute" bottom={0} left={120}>
         <Image src={cardLionIcon} alt="symbol-lion" />
       </Box>
-      <Box position="absolute" left={0} top="45%">
-        <Image src={BackLeftButton} alt="back-button" />
-      </Box>
+
+      <ImageButton
+        onClick={() => router.back()}
+        src={BackLeftButton}
+        activeImageSrc={BackLeftActiveButton}
+        width="143px"
+        height="283px"
+        position="absolute"
+        left={0}
+        top="45%"
+      />
     </IntroContainer>
   )
 }

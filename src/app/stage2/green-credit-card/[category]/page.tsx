@@ -5,11 +5,12 @@ import { Box, Typography, List, ListItem, ListItemText, ListItemIcon } from '@mu
 import Image from 'next/image';
 import CountUp from 'react-countup';
 import { useRouter } from 'next/navigation';
-
+import ImageButton from '@/app/_components/ImageButton/ImageButton';
+import BackLeftButton from '@/assets/back_left.svg';
+import BackLeftActiveButton from '@/assets/back_left_active.svg';
 import { cardDetailWithType } from './spec';
 import SymbolWithYears from './assets/symbol-years.svg';
-import BackIcon from '@/assets/back.svg';
-import { BackButtonWrap } from './style';
+
 
 type PageProps = {
   params: {
@@ -24,7 +25,7 @@ const Page = ({ params }: PageProps) => {
   function renderCardDetail(description: string, index: number) {
     const isHeadRecord = index === 0;
     return (
-      <ListItem sx={{ marginTop: isHeadRecord ? 0 : 20}}>
+      <ListItem sx={{ marginTop: isHeadRecord ? 0 : 20 }}>
         <ListItemIcon sx={{ marginRight: 10 }}>
           <Typography width={70} height={70} borderRadius={35} bgcolor="#BBC318" />
         </ListItemIcon>
@@ -78,9 +79,16 @@ const Page = ({ params }: PageProps) => {
           {detail.descriptions.map(renderCardDetail)}
         </List>
       </Box>
-      <BackButtonWrap onClick={backToPreviousPage}>
-        <Image src={BackIcon} alt="back" />
-      </BackButtonWrap>
+      <ImageButton
+        onClick={() => router.back()}
+        src={BackLeftButton}
+        activeImageSrc={BackLeftActiveButton}
+        width="143px"
+        height="283px"
+        position="absolute"
+        left={0}
+        top="45%"
+      />
     </Box>
   )
 }
