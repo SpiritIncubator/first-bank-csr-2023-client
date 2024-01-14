@@ -3,13 +3,13 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 
-import HeadImg from '../../assets/header-title.svg';
+import HeadImg from '../_assets/header-title.svg';
 
 type HeaderProps = {
   subTitle: string;
 }
 
-const Header = ({subTitle}: HeaderProps) => {
+const Header = ({ subTitle }: HeaderProps) => {
   return (
     <Box>
       <Image src={HeadImg} alt="header" />
