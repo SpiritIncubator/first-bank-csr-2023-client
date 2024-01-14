@@ -1,5 +1,8 @@
 'use client'
-// PageLayout.tsx
+import { useRouter } from 'next/navigation';
+import BackRightButton from '@/assets/back_right.svg';
+import BackRightActiveButton from '@/assets/back_right_active.svg';
+import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import React from 'react';
 import {
   Box,
@@ -9,6 +12,7 @@ import BulletPointList from '@/components/LoanBulletPointList';
 
 
 const PageLayout: React.FC = () => {
+  const router = useRouter();
   return (
     <Container
       disableGutters
@@ -65,6 +69,17 @@ const PageLayout: React.FC = () => {
       </Box>
 
       <BulletPointList />
+      <ImageButton
+        onClick={() => router.back()}
+        src={BackRightButton}
+        activeImageSrc={BackRightActiveButton}
+        position="fixed"
+        right="0"
+        width="143px"
+        height="283px"
+        top="45%"
+      />
+
     </Container>
   );
 };

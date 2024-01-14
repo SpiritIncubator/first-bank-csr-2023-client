@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import {
   Box,
@@ -9,6 +10,9 @@ import {
   Grid,
   Modal
 } from '@mui/material';
+import BackRightButton from '@/assets/back_right.svg';
+import BackRightActiveButton from '@/assets/back_right_active.svg';
+import ImageButton from '@/app/_components/ImageButton/ImageButton';
 
 
 const CASE_DATA = [
@@ -44,6 +48,7 @@ const modalStyle = {
 const OldBuilding: React.FC = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [selectedCase, setSelectedCase] = useState<any>(null);
+  const router = useRouter();
 
   const handleOpenModal = (caseData: typeof CASE_DATA[0]) => () => {
     console.log('caseData :', caseData);
@@ -213,6 +218,16 @@ const OldBuilding: React.FC = () => {
 
         </Box>
       </Modal>
+      <ImageButton
+        onClick={() => router.back()}
+        src={BackRightButton}
+        activeImageSrc={BackRightActiveButton}
+        position="fixed"
+        right="0"
+        width="143px"
+        height="283px"
+        top="45%"
+      />
     </Container >
   );
 };
