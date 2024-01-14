@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Image from 'next/image';
 
 import Star from '@/app/_assets/images/star.svg'
-import EmptyStar from '@/app/_assets/images/nonStar.svg';
+import EmptyStar from '@/app/_assets/images/emptyStar.svg';
 
 const MAX_STARTS = 3;
 

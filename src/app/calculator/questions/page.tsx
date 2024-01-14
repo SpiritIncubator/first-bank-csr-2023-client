@@ -9,6 +9,7 @@ import useStore from '@/app/atoms/useStore';
 import PrevIcon from '@/app/_assets/images/prevBtn.svg';
 import { caveat } from '@/app/layout';
 import { questionList } from './spec';
+import { StyledQuestionButton } from './style';
 
 const MAX_QUESTION_COUNT = questionList.length;
 const headLine = ['A', 'B', 'C'];
@@ -77,8 +78,8 @@ const QuestionsPage = () => {
           <Typography className={caveat.className} display="inline-block" fontSize={40} mr={1} color="#7DBD36" fontWeight={900}>
             {String(currentQuestionIndex + 1).padStart(2, '0')}
           </Typography>
-          <Typography className={caveat.className} color="#948775" position="relative" top={8} right={2}>
-            {` / ${MAX_QUESTION_COUNT}`}
+          <Typography className={caveat.className} color="#948775" position="relative" fontSize={20} top={8} right={2}>
+            {` / ${String(MAX_QUESTION_COUNT).padStart(2, '0')}`}
           </Typography>
         </Box>
       </Box>
@@ -92,12 +93,12 @@ const QuestionsPage = () => {
       <Box width="90%" maxWidth={396} display="flex" flexDirection="column" alignItems="center">
         {targetQuestion.options.map((option, index) => {
           return (
-            <Box key={index} display="flex" alignItems="center" bgcolor="#F9F8F3" maxWidth={342} mb={2} py={2.5} pl={1} pr={2.5} borderRadius={5} style={{ cursor: 'pointer' }} onClick={() => updateSelectQuestion(index)}>
+            <StyledQuestionButton key={index} onClick={() => updateSelectQuestion(index)}>
               <Box width={36} height={36} bgcolor="#BBC318" color="#fff" borderRadius={100} textAlign="center" lineHeight={2.25} mr={1.75}>{headLine[index]}</Box>
               <Box width={260}>
                 <Typography lineHeight={2} fontSize={16} color="#594A39">{option.content}</Typography>
               </Box>
-            </Box>
+            </StyledQuestionButton>
           )
         })}
       </Box>
