@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { Box, Button, Container } from '@mui/material';
 import ColorPicker from '@/components/ColorPicker';
@@ -7,8 +7,10 @@ import colors from '@/constants/colors';
 import ErrorModal from './components/ErrorModal'
 import FinalPage from './components/FinalPage'
 import ConfirmSubmit from './components/ConfirmSubmit'
-import { useTheme } from '@mui/material/styles';
+import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import { createMessage } from '@/api/index';
+
+
 
 export default function SendMessage() {
   const [name, setName] = React.useState('');
@@ -17,7 +19,15 @@ export default function SendMessage() {
   const [errorMessage, setErrorMessage] = React.useState('');
   const [readyToSubmit, setReadyToSubmit] = React.useState(false);
   const [finishSubmit, setFinishSubmit] = React.useState(false);
-  const theme = useTheme();
+  const [confirmImageSrc, setConfirmImageSrc] = useState("/assets/sendMessage_confirm.svg");
+
+  const handleMouseDownOnConfirm = () => {
+    setConfirmImageSrc("/assets/sendMessage_confirm_active.svg");
+  };
+
+  const handleMouseUpOnConfirm = () => {
+    setConfirmImageSrc("/assets/sendMessage_confirm.svg");
+  };
   const mobileContainerStyle = {
     maxWidth: '390px',
     margin: '0 auto', // Center the container
@@ -26,7 +36,7 @@ export default function SendMessage() {
     flexDirection: 'column',
     alignItems: 'center',
     color: colors.brown4,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: colors.ivory,
   };
 
   const onSubmit = () => {
@@ -62,7 +72,7 @@ export default function SendMessage() {
     console.log('result :', result);
   }
 
-  return <>
+  return <Box sx={{ bgcolor: colors.ivory }}>
     {finishSubmit ? < FinalPage /> : (
       <>
         <Box sx={{
@@ -70,7 +80,7 @@ export default function SendMessage() {
             position: 'fixed',
             top: 0,
             left: 0,
-            bgcolor: 'white',
+            bgcolor: colors.ivory,
             width: '100%',
             height: '100%',
             zIndex: 1,
@@ -95,6 +105,7 @@ export default function SendMessage() {
             margin: '0 auto',
             overflow: 'hidden',
             position: 'relative'
+
           }}>
             <Image
               src="/assets/bird_books.png"
@@ -263,21 +274,16 @@ export default function SendMessage() {
             onColorChange={setNoteColor}
           />
 
-          <Box sx={{
-            width: "200px",
-            height: "67px",
-            margin: '0 auto',
-            overflow: 'hidden',
-            position: 'relative',
-            marginTop: "50px",
-            cursor: 'pointer'
-          }}
-            onClick={onSubmit}>
-            <Image
-              src="/assets/sendMessage_confirm.svg"
-              alt="divider"
-              fill />
-          </Box>
+
+          <ImageButton
+            onClick={onSubmit}
+            src="/assets/sendMessage_confirm.svg"
+            activeImageSrc="/assets/sendMessage_confirm_active.svg"
+            width="200px"
+            height="67px"
+            margin="0 auto"
+            marginTop="50px"
+          />
 
           {errorMessage &&
             <ErrorModal
@@ -288,6 +294,6 @@ export default function SendMessage() {
       </>
     )
     }
-  </>
+  </Box>
 }
 
