@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { IntroContainer } from './style';
 import CardIntroIcon from '@/app/stage2/assets/card-intro.svg';
 import cardLionIcon from '@/app/stage2/assets/card-lion.svg';
-import BackButton from '@/assets/back.svg';
+import BackLeftButton from '@/assets/back_left.svg';
 
 import ReleaseStatistic from './_components/ReleaseStatistics/ReleaseStatistic';
 import DemoCard from './_components/DemoCard/DemoCard';
@@ -47,7 +47,7 @@ const CardOverview = () => {
         <Image src={cardLionIcon} alt="symbol-lion" />
       </Box>
       <Box position="absolute" left={0} top="45%">
-        <Image src={BackButton} alt="back-button" />
+        <Image src={BackLeftButton} alt="back-button" />
       </Box>
     </IntroContainer>
   )
