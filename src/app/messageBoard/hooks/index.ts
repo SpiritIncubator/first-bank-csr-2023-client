@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from 'react';
 
 export type MessageCardType = {
@@ -19,11 +20,16 @@ const useMessageBoard = () => {
       fetch(mock_url)
         .then(res => res.json())
         .then(data => {
-          const sortedMessages = data.sort((a: MessageCardType, b: MessageCardType) => {
+          const sortedKeepTopMessages = data.filter(
+            (message: MessageCardType) => !!message.keepTop
+          ).sort((a: MessageCardType, b: MessageCardType) => {
             return a.keepTop === b.keepTop ? 0 : a.keepTop ? -1 : 1;
           });
+
+          const nonKeepTopMessages = data.filter((message: MessageCardType) => !message.keepTop);
+          const sortedNonKeepTopMessages = nonKeepTopMessages.reverse();
+          setMessages([...sortedKeepTopMessages, ...sortedNonKeepTopMessages]);
           setLoaded(true);
-          setMessages(sortedMessages);
         })
         .catch(error => {
           console.error('Error fetching messages:', error);
@@ -37,11 +43,8 @@ const useMessageBoard = () => {
     return () => clearInterval(intervalId);
   }, []);
 
+  return { messages, loaded };
 
-  return {
-    loaded,
-    messages,
-  };
 }
 
 export default useMessageBoard
