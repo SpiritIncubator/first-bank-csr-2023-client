@@ -10,6 +10,7 @@ import ConfirmSubmit from './components/ConfirmSubmit'
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import { createMessage } from '@/api/index';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
+import FadeInOnView from '@/app/_components/Transitions/FadeInOnView';
 
 
 
@@ -269,14 +270,14 @@ export default function SendMessage() {
               {/* Continue with your form elements and submit button */}
             </Box>
           </FadeIn>
-          <FadeIn delay={0.7}>
+          <FadeInOnView>
             <ColorPicker
               defaultColor="#F8E47E"
               onColorChange={setNoteColor}
             />
-          </FadeIn>
+          </FadeInOnView>
 
-          <FadeIn delay={0.9}>
+          <FadeInOnView >
             <ImageButton
               onClick={onSubmit}
               src="/assets/sendMessage_confirm.svg"
@@ -286,7 +287,7 @@ export default function SendMessage() {
               margin="0 auto"
               marginTop="50px"
             />
-          </FadeIn>
+          </FadeInOnView>
 
           {errorMessage &&
             <ErrorModal
