@@ -3,7 +3,7 @@ import { LinkType } from "./types";
 export const navigationLinksConfig: Array<LinkType> = [
 	{
 		label: 'home',
-		path: '/',
+		path: '/stage4',
 	},
 	{
 		label: '永續績效連結授信專案',

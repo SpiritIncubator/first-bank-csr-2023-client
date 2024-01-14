@@ -9,6 +9,7 @@ import FinalPage from './components/FinalPage'
 import ConfirmSubmit from './components/ConfirmSubmit'
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import { createMessage } from '@/api/index';
+import FadeIn from '@/app/_components/Transitions/FadeIn';
 
 
 
@@ -90,192 +91,202 @@ export default function SendMessage() {
             onReject={() => setReadyToSubmit(false)}
             onConfirm={onConfirmSubmit} />
         </Box>
+
         <Container maxWidth="sm" sx={mobileContainerStyle}>
-          <Box sx={{
-            width: "230px",
-            height: "240px",
-            margin: '0 auto',
-            overflow: 'hidden',
-            position: 'relative'
-
-          }}>
-            <Image
-              src="/assets/bird_books.png"
-              alt="bird_books"
-              objectFit='contain'
-              fill
-              style={{ marginBottom: "16px" }} />
-          </Box>
-          <Box sx={{
-            width: "250px",
-            height: "60px",
-            margin: '0 auto',
-            overflow: 'hidden',
-            position: 'relative'
-          }}>
-            <Image
-              src="/assets/sendMessage_title.svg"
-              alt="sendMessage_title"
-              objectFit='contain'
-              fill
-              style={{ marginBottom: "16px" }} />
-          </Box>
-          <Box sx={{
-            width: "240px",
-            height: "45px",
-            margin: '0 auto',
-            overflow: 'hidden',
-            position: 'relative'
-          }}>
-            <Image
-              src="/assets/sendMessage_subTitle.svg"
-              alt="sendMessage_subTitle"
-              objectFit='contain'
-              fill
-              style={{ marginTop: "-12px" }} />
-          </Box>
-
-          <Box sx={{
-            width: "342px",
-            height: "5px",
-            margin: '0 auto',
-            overflow: 'hidden',
-            position: 'relative',
-            marginTop: "60px",
-            marginBottom: "20px"
-          }}>
-            <Image
-              src="/assets/divider.svg"
-              alt="divider"
-              objectFit='contain'
-              fill />
-          </Box>
-
-          <Box
-            component="form"
-            sx={{
-              width: '100%',
-              marginBottom: '40px',
-              '& .input-base': {
-                width: '100%',
-                padding: '20px 24px',
-                fontSize: '1rem',
-                borderRadius: '20px',
-                border: `2px solid ${colors.brown1}`,
-                backgroundColor: colors.brown,
-                margin: '8px 0',
-                boxSizing: 'border-box',
-                outline: 'none',
-                transition: 'border-color 0.2s ease-in-out',
-                letterSpacing: '1.28px',
-                '&:focus': {
-                  border: `2px solid ${colors.brown4}`,
-                },
-                '&::placeholder': {
-                  color: 'rgba(0, 0, 0, 0.6)',
-                },
-              },
-              '& .textarea-base': {
-                letterSpacing: '1.28px',
-                width: '100%',
-                padding: '20px 24px',
-                fontSize: '1rem',
-                borderRadius: '20px',
-                border: `2px solid ${colors.brown1}`,
-                backgroundColor: colors.brown,
-                resize: 'none',
-                boxSizing: 'border-box',
-                outline: 'none',
-                transition: 'border-color 0.2s ease-in-out',
-                '&:focus': {
-                  border: `2px solid ${colors.brown4}`,
-                },
-              },
-              '& .input-base::placeholder, & .textarea-base::placeholder': {
-                color: colors.brown2, // Theme color for placeholder
-                opacity: 1, // Full opacity
-              },
-            }}
-          >
+          <FadeIn>
             <Box sx={{
-              width: "202px",
-              height: "30px",
+              width: "230px",
+              height: "240px",
+              margin: '0 auto',
+              overflow: 'hidden',
+              position: 'relative'
+
+            }}>
+              <Image
+                src="/assets/bird_books.png"
+                alt="bird_books"
+                objectFit='contain'
+                fill
+                style={{ marginBottom: "16px" }} />
+            </Box>
+          </FadeIn>
+          <FadeIn >
+            <Box sx={{
+              width: "250px",
+              height: "60px",
+              margin: '0 auto',
+              overflow: 'hidden',
+              position: 'relative'
+            }}>
+              <Image
+                src="/assets/sendMessage_title.svg"
+                alt="sendMessage_title"
+                objectFit='contain'
+                fill
+                style={{ marginBottom: "16px" }} />
+            </Box>
+
+
+            <Box sx={{
+              width: "240px",
+              height: "45px",
+              margin: '0 auto',
+              overflow: 'hidden',
+              position: 'relative'
+            }}>
+              <Image
+                src="/assets/sendMessage_subTitle.svg"
+                alt="sendMessage_subTitle"
+                objectFit='contain'
+                fill
+                style={{ marginTop: "-12px" }} />
+            </Box>
+          </FadeIn>
+          <FadeIn delay={0.5} >
+            <Box sx={{
+              width: "342px",
+              height: "5px",
               margin: '0 auto',
               overflow: 'hidden',
               position: 'relative',
-              marginBottom: "10px",
-              display: 'flex'
+              marginTop: "60px",
+              marginBottom: "20px"
             }}>
               <Image
-                width="129"
-                height="38"
-                src="/assets/sendMessage_write.svg"
-                alt="sendMessage_write"
-                style={{ marginRight: '8px' }}
-              />
-              <Image
-                width="65"
-                height="38"
-                src="/assets/sendMessage_content.svg"
-                alt="sendMessage_content"
-
-              />
+                src="/assets/divider.svg"
+                alt="divider"
+                objectFit='contain'
+                fill />
             </Box>
-            <textarea
-              placeholder="請寫下你會如何在生活中實踐永續，或是今天的觀展心得吧！（字數限制50字） "
-              className="textarea-base"
-              rows={4}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-            <Box sx={{
-              width: "202px",
-              height: "30px",
-              margin: '0 auto',
-              overflow: 'hidden',
-              position: 'relative',
-              marginBottom: "10px",
-              marginTop: "30px",
-              display: 'flex'
-            }}>
-              <Image
-                width="129"
-                height="38"
-                src="/assets/sendMessage_writeName.svg"
-                alt="sendMessage_writeName"
-                style={{ marginRight: '8px' }}
-              />
-              <Image
-                width="45"
-                height="38"
-                src="/assets/sendMessage_name.svg"
-                alt="sendMessage_name"
 
+            <Box
+              component="form"
+              sx={{
+                width: '100%',
+                marginBottom: '40px',
+                '& .input-base': {
+                  width: '100%',
+                  padding: '20px 24px',
+                  fontSize: '1rem',
+                  borderRadius: '20px',
+                  border: `2px solid ${colors.brown1}`,
+                  backgroundColor: colors.brown,
+                  margin: '8px 0',
+                  boxSizing: 'border-box',
+                  outline: 'none',
+                  transition: 'border-color 0.2s ease-in-out',
+                  letterSpacing: '1.28px',
+                  '&:focus': {
+                    border: `2px solid ${colors.brown4}`,
+                  },
+                  '&::placeholder': {
+                    color: 'rgba(0, 0, 0, 0.6)',
+                  },
+                },
+                '& .textarea-base': {
+                  letterSpacing: '1.28px',
+                  width: '100%',
+                  padding: '20px 24px',
+                  fontSize: '1rem',
+                  borderRadius: '20px',
+                  border: `2px solid ${colors.brown1}`,
+                  backgroundColor: colors.brown,
+                  resize: 'none',
+                  boxSizing: 'border-box',
+                  outline: 'none',
+                  transition: 'border-color 0.2s ease-in-out',
+                  '&:focus': {
+                    border: `2px solid ${colors.brown4}`,
+                  },
+                },
+                '& .input-base::placeholder, & .textarea-base::placeholder': {
+                  color: colors.brown2, // Theme color for placeholder
+                  opacity: 1, // Full opacity
+                },
+              }}
+            >
+              <Box sx={{
+                width: "202px",
+                height: "30px",
+                margin: '0 auto',
+                overflow: 'hidden',
+                position: 'relative',
+                marginBottom: "10px",
+                display: 'flex'
+              }}>
+                <Image
+                  width="129"
+                  height="38"
+                  src="/assets/sendMessage_write.svg"
+                  alt="sendMessage_write"
+                  style={{ marginRight: '8px' }}
+                />
+                <Image
+                  width="65"
+                  height="38"
+                  src="/assets/sendMessage_content.svg"
+                  alt="sendMessage_content"
+
+                />
+              </Box>
+              <textarea
+                placeholder="請寫下你會如何在生活中實踐永續，或是今天的觀展心得吧！（字數限制50字） "
+                className="textarea-base"
+                rows={4}
+                onChange={(e) => setMessage(e.target.value)}
               />
+              <Box sx={{
+                width: "202px",
+                height: "30px",
+                margin: '0 auto',
+                overflow: 'hidden',
+                position: 'relative',
+                marginBottom: "10px",
+                marginTop: "30px",
+                display: 'flex'
+              }}>
+                <Image
+                  width="129"
+                  height="38"
+                  src="/assets/sendMessage_writeName.svg"
+                  alt="sendMessage_writeName"
+                  style={{ marginRight: '8px' }}
+                />
+                <Image
+                  width="45"
+                  height="38"
+                  src="/assets/sendMessage_name.svg"
+                  alt="sendMessage_name"
+
+                />
+              </Box>
+              <input
+                type="text"
+                placeholder="請留下你的大名吧！"
+                className="input-base"
+                onChange={(e) => setName(e.target.value)}
+              />
+              {/* Continue with your form elements and submit button */}
             </Box>
-            <input
-              type="text"
-              placeholder="請留下你的大名吧！"
-              className="input-base"
-              onChange={(e) => setName(e.target.value)}
+          </FadeIn>
+          <FadeIn delay={0.7}>
+            <ColorPicker
+              defaultColor="#F8E47E"
+              onColorChange={setNoteColor}
             />
-            {/* Continue with your form elements and submit button */}
-          </Box>
+          </FadeIn>
 
-          <ColorPicker
-            defaultColor="#F8E47E"
-            onColorChange={setNoteColor}
-          />
-
-
-          <ImageButton
-            onClick={onSubmit}
-            src="/assets/sendMessage_confirm.svg"
-            activeImageSrc="/assets/sendMessage_confirm_active.svg"
-            width="200px"
-            height="67px"
-            margin="0 auto"
-            marginTop="50px"
-          />
+          <FadeIn delay={0.9}>
+            <ImageButton
+              onClick={onSubmit}
+              src="/assets/sendMessage_confirm.svg"
+              activeImageSrc="/assets/sendMessage_confirm_active.svg"
+              width="200px"
+              height="67px"
+              margin="0 auto"
+              marginTop="50px"
+            />
+          </FadeIn>
 
           {errorMessage &&
             <ErrorModal
@@ -283,6 +294,7 @@ export default function SendMessage() {
               open={!!errorMessage}
               onConfirm={onConfirmError} />}
         </Container >
+
       </>
     )
     }

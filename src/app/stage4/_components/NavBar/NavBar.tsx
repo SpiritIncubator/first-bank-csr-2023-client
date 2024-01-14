@@ -10,27 +10,35 @@ import { NavBarWrapper, NavLinkItem, buttonStyle } from './NavBar.style';
 import NavLink from './NavLink';
 import { navigationLinksConfig } from './spec';
 import { LinkType } from './types';
+import HomeImageButton from './assets/stage4_nav_home.svg'
+import HomeImageActiveButton from './assets/stage4_nav_home_active.svg'
+import ImageButton from '@/app/_components/ImageButton/ImageButton';
 
 
-const customPath = ['/']
+const customPath = ['/stage4']
 
 type NavBarProps = {
   dialogContent?: () => JSX.Element
 }
 
-const NavBar = ({dialogContent: DialogContent}: NavBarProps) => {
-  function extraLink({ label, path }: LinkType) {
+const NavBar = ({ dialogContent: DialogContent }: NavBarProps) => {
+  function getHomePageButton({ label, path }: LinkType) {
     return (
-      <NavLink href={path} style={buttonStyle} key={path}>
+      <NavLink href={path} key={path}>
         <Box display="flex" justifyContent="center" alignItems="center">
-          {label}
+          <ImageButton
+            width="229px"
+            height="224px"
+            src={HomeImageButton}
+            activeImageSrc={HomeImageActiveButton}
+          />
         </Box>
       </NavLink>
     )
   }
 
   function renderLink(params: LinkType) {
-    if (customPath.includes(params.path)) return extraLink(params);
+    if (customPath.includes(params.path)) return getHomePageButton(params);
 
     return (
       <NavLink href={params.path} key={params.path}>
