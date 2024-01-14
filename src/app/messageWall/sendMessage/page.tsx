@@ -54,8 +54,7 @@ export default function SendMessage() {
   }
 
   const onConfirmSubmit = async () => {
-    console.log('onConfirmSubmit :', onConfirmSubmit);
-    //@todo: api for submitting message 
+
     setFinishSubmit(true)
 
     const result = await createMessage({
@@ -69,29 +68,26 @@ export default function SendMessage() {
   return <Box sx={{ bgcolor: colors.ivory }}>
     {finishSubmit ? < FinalPage /> : (
       <>
-        <Box sx={{
-          ...readyToSubmit ? {
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            bgcolor: colors.ivory,
-            width: '100%',
-            height: '100%',
-            zIndex: 1,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          } : {
-            display: 'none'
-          }
+        {readyToSubmit && <Box sx={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          bgcolor: colors.ivory,
+          width: '100%',
+          height: '100%',
+          zIndex: 1,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}>
           <ConfirmSubmit
             noteColor={noteColor}
             name={name}
             message={message}
+            readyToSubmit={readyToSubmit}
             onReject={() => setReadyToSubmit(false)}
             onConfirm={onConfirmSubmit} />
-        </Box>
+        </Box>}
 
         <Container maxWidth="sm" sx={mobileContainerStyle}>
           <FadeIn>
