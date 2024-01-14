@@ -101,7 +101,7 @@ export default function Stage4() {
         )
       })}
     </Grid>
-    <Box position="absolute" right={100} bottom="0">
+    <Box position="absolute" right={100} bottom="-50px">
       <Image src={LionImage} alt="Lion" width={880} height={1100} />
     </Box>
     <Box position="absolute" top={230} right={894} sx={{ transform: "rotate(-10deg)" }}>
