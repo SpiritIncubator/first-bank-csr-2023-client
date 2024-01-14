@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import Image from 'next/image';
 import colors from '@/constants/colors';
 import Paper from '@mui/material/Paper';
@@ -106,41 +106,36 @@ export default function ConfirmSubmit({
       </Box>
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '320px' }}>
-        <Box
-          sx={{
+        <ImageButton
+          src="/assets/sendMessage_confirmSubmit_yes.svg"
+          activeImageSrc="/assets/sendMessage_confirmSubmit_yes_active.svg"
+          onClick={onConfirm}
+          {
+          ...{
             width: "140px",
             height: "57px",
             margin: '0 auto',
-            overflow: 'hidden',
-            position: 'relative',
             marginBottom: '40px',
             marginTop: '-8px',
             marginRight: '20px',
-            cursor: 'pointer'
           }}
-          onClick={onConfirm}>
-          <Image
-            fill
-            src="/assets/sendMessage_confirmSubmit_yes.svg"
-            alt="sendMessage_confirmSubmit_yes" />
-        </Box>
-        <Box
-          sx={{
+
+        />
+
+        <ImageButton
+          src="/assets/sendMessage_confirmSubmit_no.svg"
+          activeImageSrc="/assets/sendMessage_confirmSubmit_no_active.svg"
+          onClick={onReject}
+          {
+          ...{
             width: "140px",
             height: "57px",
             margin: '0 auto',
-            overflow: 'hidden',
-            position: 'relative',
             marginBottom: '40px',
             marginTop: '-8px',
-            cursor: 'pointer'
           }}
-          onClick={onReject}>
-          <Image
-            fill
-            src="/assets/sendMessage_confirmSubmit_no.svg"
-            alt="sendMessage_confirmSubmit_no" />
-        </Box>
+
+        />
       </Box>
     </Box >
   )
