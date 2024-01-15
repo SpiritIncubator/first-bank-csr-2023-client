@@ -1,9 +1,11 @@
+'use client'
 import {
   Box,
   Typography,
   Paper,
   Grid,
 } from '@mui/material';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import LionImage from '@/app/stage4/_assets/stage4-lion.svg';
 import BirdImage from '@/app/stage4/_assets/stage4-bird.svg';
@@ -13,6 +15,9 @@ import PAGE1_IMAGE from './_assets/stage4-page1.svg';
 import PAGE2_IMAGE from './_assets/stage4-page2.svg';
 import PAGE3_IMAGE from './_assets/stage4-page3.svg';
 import PAGE4_IMAGE from './_assets/stage4-page4.svg';
+import DialogImg from './_assets/stage4-dialog.svg';
+import FadeIn from '@/app/_components/Transitions/FadeIn';
+import ZoomBounce from '@/app/_components/Transitions/ZoomBounce';
 
 const PAGE_DATA = [
   {
@@ -42,62 +47,75 @@ const PAGE_DATA = [
 ]
 
 export default function Stage4() {
+  const [dialogAnimation, setDialogAnimation] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setDialogAnimation(true)
+    }, 1000)
+  }, [])
+
   return <Box py="150px" px="230px">
-    <Box mb="87px">
-      <Image src={TITLE_IMAGE} alt="title" width="1441" height="283" />
-    </Box>
-    <Box mb="130px" fontSize="52px" lineHeight="98.8px" width="1840px">
-      第一銀行持續透過依公益/綠色信用卡刷卡金額固定比率提撥之刷卡金推動環保及公益活動，並啟動「減碳標籤」認證專案。
-    </Box>
+    <FadeIn>
+      <Box mb="87px">
+        <Image src={TITLE_IMAGE} alt="title" width="1441" height="283" />
+      </Box>
+      <Box mb="130px" fontSize="52px" lineHeight="98.8px" width="1840px">
+        第一銀行持續透過依公益/綠色信用卡刷卡金額固定比率提撥之刷卡金推動環保及公益活動，並啟動「減碳標籤」認證專案。
+      </Box>
+    </FadeIn>
 
     <Grid container spacing="120px" sx={{ width: "100%", maxWidth: '2536px', p: 2 }}  >
       {PAGE_DATA.map((pageData, index) => {
         const { title, description, imageUrl, link } = pageData;
-        return (<Grid
-          item
-          xs={12}
-          sm={3}
-          key={index}
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center">
-          <Link href={link} >
-            <Box
-              display="flex"
-              justifyContent="center"
-              width="100%"
-              mb="40px"
-            >
-              <Image src={imageUrl} width="420" height="420" alt="page image" />
-            </Box>
-            <Paper
-              elevation={0}
-              sx={{
-                bgcolor: 'darkgrey',
-                width: "500px",
-                height: '160px',
-                padding: '20px',
-                mb: "40px"
-              }}
-            >
-              <Typography variant="body1" color="white">
-                {title}
-              </Typography>
-            </Paper>
-            <Box sx={{
-              color: "var(--brown4, #594A39)",
-              width: "500px",
-              fontSize: "46px",
-              fontStyle: "normal",
-              fontWeight: 500,
-              lineHeight: "160%",
-              letterSpacing: "3.68px"
-            }}>
-              {description}
-            </Box>
-          </Link>
-        </Grid>
+        return (
+
+          <Grid
+            key={index}
+            item
+            xs={12}
+            sm={3}
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center">
+            <FadeIn delay={0.3 + index * 0.2}>
+              <Link href={link} >
+                <Box
+                  display="flex"
+                  justifyContent="center"
+                  width="100%"
+                  mb="40px"
+                >
+                  <Image src={imageUrl} width="420" height="420" alt="page image" />
+                </Box>
+                <Paper
+                  elevation={0}
+                  sx={{
+                    bgcolor: 'darkgrey',
+                    width: "500px",
+                    height: '160px',
+                    padding: '20px',
+                    mb: "40px"
+                  }}
+                >
+                  <Typography variant="body1" color="white">
+                    {title}
+                  </Typography>
+                </Paper>
+                <Box sx={{
+                  color: "var(--brown4, #594A39)",
+                  width: "500px",
+                  fontSize: "46px",
+                  fontStyle: "normal",
+                  fontWeight: 500,
+                  lineHeight: "160%",
+                  letterSpacing: "3.68px"
+                }}>
+                  {description}
+                </Box>
+              </Link>
+            </FadeIn>
+          </Grid>
         )
       })}
     </Grid>
@@ -107,5 +125,11 @@ export default function Stage4() {
     <Box position="absolute" top={230} right={894} sx={{ transform: "rotate(-10deg)" }}>
       <Image src={BirdImage} alt="Bird" width={377} height={308} />
     </Box>
+    <Box position="absolute" top={664} right={300}>
+      <ZoomBounce trigger={dialogAnimation} >
+        <Image src={DialogImg} alt="Bird" width={660} height={440} />
+      </ZoomBounce>
+    </Box>
+
   </Box >
 }
