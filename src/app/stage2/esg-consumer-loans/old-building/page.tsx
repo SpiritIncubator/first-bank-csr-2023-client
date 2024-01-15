@@ -8,12 +8,15 @@ import {
   Typography,
   Paper,
   Grid,
-  Modal
+  Modal,
+  Fade
 } from '@mui/material';
 import BackRightButton from '@/assets/back_right.svg';
 import BackRightActiveButton from '@/assets/back_right_active.svg';
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
-
+import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
+import FadeIn from '@/app/_components/Transitions/FadeIn';
+import ZoomBounce from '@/app/_components/Transitions/ZoomBounce';
 
 const CASE_DATA = [
   {
@@ -72,151 +75,160 @@ const OldBuilding: React.FC = () => {
         bgcolor: 'background.paper',
       }}
     >
-      <Box
-        sx={{
-          width: '500px',
-          height: '500px',
-          bgcolor: 'grey.300',
-          mb: '80px',
-        }}
-      >
-        {/* First Image*/}
-      </Box>
 
-      <Box
-        sx={{
-          width: '1200px',
-          height: '360px',
-          bgcolor: 'grey.500',
-          mb: '60px',
-        }}
-      >
-        {/* Second image */}
-      </Box>
+      <FadeInHorizontal direction='ltr' >
+        <Box
+          sx={{
+            width: '500px',
+            height: '500px',
+            bgcolor: 'grey.300',
+            mb: '80px',
+          }}
+        >
+          {/* First Image*/}
+        </Box>
 
-      <Box
-        fontSize="52px"
-        lineHeight="98.8px"
-        mb="60px"
-        width="1514px">
-        只要係屬都更危老重建需求者等，均可向第一銀行各營業單位申請貸款。如是地主自建，比照自力更新最高提供全額融資協助；另若是建商與地主合建，則提供土融最高八五成、建融最高七成，優於一般土建融開發案之融資成數，也提供權變費用、拆遷、租金補助及相關保證金的週轉融資額度。
-      </Box>
+        <Box
+          sx={{
+            width: '1200px',
+            height: '360px',
+            bgcolor: 'grey.500',
+            mb: '60px',
+          }}
+        >
+          {/* Second image */}
+        </Box>
 
-      <Box
-        sx={{
-          width: '1700px',
-          height: '700px',
-          bgcolor: 'grey.300',
-          mb: '120px',
-        }}
-      >
-        {/* Third image */}
-      </Box>
+        <Box
+          fontSize="52px"
+          lineHeight="98.8px"
+          mb="60px"
+          width="1514px">
+          只要係屬都更危老重建需求者等，均可向第一銀行各營業單位申請貸款。如是地主自建，比照自力更新最高提供全額融資協助；另若是建商與地主合建，則提供土融最高八五成、建融最高七成，優於一般土建融開發案之融資成數，也提供權變費用、拆遷、租金補助及相關保證金的週轉融資額度。
+        </Box>
+      </FadeInHorizontal>
 
-      {/* 3 column layout */}
-      <Grid container spacing={2} sx={{ width: '100%', p: 2 }}  >
-        {CASE_DATA.map((caseData, index) => {
-          const { title } = caseData;
-          return (<Grid item
-            onClick={handleOpenModal(caseData)}
-            xs={12} sm={4} key={index} display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center">
-            <Box
-              display="flex"
+
+
+      <FadeIn delay={0.6}>
+
+        <Box
+          sx={{
+            width: '1700px',
+            height: '700px',
+            bgcolor: 'grey.300',
+            mb: '120px',
+          }}
+        >
+          {/* Third image */}
+        </Box>
+      </FadeIn>
+      <FadeIn delay={1} width="100%">
+        {/* 3 column layout */}
+        <Grid container spacing={2} sx={{ width: '100%', p: 2 }}  >
+          {CASE_DATA.map((caseData, index) => {
+            const { title } = caseData;
+            return (<Grid item
+              onClick={handleOpenModal(caseData)}
+              xs={12} sm={4} key={index} display="flex"
+              flexDirection="column"
               justifyContent="center"
-              width="100%"
-            >
+              alignItems="center">
+              <Box
+                display="flex"
+                justifyContent="center"
+                width="100%"
+              >
+                <Paper
+                  elevation={0}
+                  sx={{
+                    bgcolor: 'lightgrey',
+                    height: '420px',
+                    width: '420px',
+                    mb: '40px',
+                  }} />
+
+              </Box>
               <Paper
                 elevation={0}
                 sx={{
-                  bgcolor: 'lightgrey',
-                  height: '420px',
-                  width: '420px',
-                  mb: '40px',
-                }} />
-
-            </Box>
-            <Paper
-              elevation={0}
-              sx={{
-                bgcolor: 'darkgrey',
-                width: "500px",
-                height: '160px',
-                padding: '20px'
-              }}
-            >
-              <Typography variant="body1" color="white">
-                {title}
-              </Typography>
-            </Paper>
-          </Grid>)
-        })}
-      </Grid>
+                  bgcolor: 'darkgrey',
+                  width: "500px",
+                  height: '160px',
+                  padding: '20px'
+                }}
+              >
+                <Typography variant="body1" color="white">
+                  {title}
+                </Typography>
+              </Paper>
+            </Grid>)
+          })}
+        </Grid>
+      </FadeIn>
       <Modal
         open={openModal}
         onClose={handleCloseModal}
-        aria-labelledby="modal-modal-title"
+        aria-labelledby="modal--title"
         aria-describedby="modal-modal-description"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
       >
-
-        <Box sx={{
-          position: 'absolute',
-          top: '45%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-        }}>
-          <Box width="180px"
-            height="180px"
-            onClick={handleCloseModal}
-            style={{
-              position: 'absolute',
-              top: '-90px',
-              right: '-90px',
-              cursor: 'pointer'
-            }} >
-            <Image
-              src="/assets/modal_close.svg"
-              alt="modal_close"
-              objectFit='contain'
-              fill
-            />
-          </Box>
-          <Box sx={modalStyle}>
-            <Box
-              sx={{
-                width: '100%',
-                height: '900px',
-                bgcolor: 'grey.300',
-                mb: '80px',
-              }}
-            >
-              {/* First Image*/}
+        <ZoomBounce trigger={openModal} width="100%" display="flex" justifyContent='center'>
+          <Box position="relative">
+            <Box width="180px"
+              height="180px"
+              onClick={handleCloseModal}
+              style={{
+                position: 'absolute',
+                top: '-90px',
+                right: '-90px',
+                cursor: 'pointer'
+              }} >
+              <Image
+                src="/assets/modal_close.svg"
+                alt="modal_close"
+                objectFit='contain'
+                fill
+              />
             </Box>
-            <Typography
-              width="886px"
-              height="256px"
-              mb="30px"
-              id="modal-modal-title" variant="h6" component="h2"
-              bgcolor="grey.300"
-            >
-              {selectedCase?.title}
-            </Typography>
-            <Typography
-              id="modal-modal-description" sx={{
-                color: 'var(--brown4, #594A39)',
-                fontSize: '52px',
-                fontStyle: 'normal',
-                fontWeight: 500,
-                lineHeight: '190%',
-                letterSpacing: '4.16px'
-              }}>
-              {selectedCase?.description}
-            </Typography>
+            <Box sx={modalStyle}>
+              <Box
+                sx={{
+                  width: '100%',
+                  height: '900px',
+                  bgcolor: 'grey.300',
+                  mb: '80px',
+                }}
+              >
+                {/* First Image*/}
+              </Box>
+              <Typography
+                width="886px"
+                height="256px"
+                mb="30px"
+                id="modal-modal-title" variant="h6" component="h2"
+                bgcolor="grey.300"
+              >
+                {selectedCase?.title}
+              </Typography>
+              <Typography
+                id="modal-modal-description" sx={{
+                  color: 'var(--brown4, #594A39)',
+                  fontSize: '52px',
+                  fontStyle: 'normal',
+                  fontWeight: 500,
+                  lineHeight: '190%',
+                  letterSpacing: '4.16px'
+                }}>
+                {selectedCase?.description}
+              </Typography>
+            </Box>
           </Box>
-
-        </Box>
+        </ZoomBounce>
       </Modal>
       <ImageButton
         onClick={() => router.back()}

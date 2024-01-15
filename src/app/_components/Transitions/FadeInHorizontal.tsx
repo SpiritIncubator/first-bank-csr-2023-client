@@ -15,11 +15,11 @@ type LayoutProps = {
   children: ReactNode;
   direction: 'rtl' | 'ltr';
   delay?: number;
-}
+} & Omit<React.CSSProperties, 'direction'>
 
-export default function FadeInHorizontal({ children, direction = "ltr", delay = 0 }: LayoutProps) {
+export default function FadeInHorizontal({ children, direction = "ltr", delay = 0, ...styles }: LayoutProps) {
 
-  return <motion.div style={{ height: '100%' }}
+  return <motion.div style={{ ...styles }}
     variants={direction === 'rtl' ? variantsRTL : variantsLTR}
     initial="hidden"
     animate="enter"

@@ -19,7 +19,6 @@ export default function ImageButton({ onClick, src, activeImageSrc, ...boxProps 
     setConfirmImageSrc(src);
   };
 
-
   return <Box sx={{
     overflow: 'hidden',
     position: 'relative',

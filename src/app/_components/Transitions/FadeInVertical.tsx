@@ -19,7 +19,7 @@ type Props = {
 
 const FadeInVertical: React.FC<Props> = ({ children, direction = "up", delay = 0, ...styles }) => {
 
-  return <motion.div style={{ height: '100%', ...styles }}
+  return <motion.div style={{ ...styles }}
     variants={direction === 'down' ? variantsDown : variantsUp}
     initial="hidden"
     animate="enter"
