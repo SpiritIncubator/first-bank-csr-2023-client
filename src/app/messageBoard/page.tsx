@@ -7,7 +7,6 @@ import styled from '@mui/material/styles/styled';
 import CircularProgress from '@mui/material/CircularProgress';
 import ScrollBar, { useScrollBar } from '../_components/ScrollBar';
 import useMessageBoard from './hooks';
-import colors from '@/constants/colors';
 import MessageCard from './components/MessageCard/MessageCard';
 import BgIcon from './assets/bg.svg';
 import title from './assets/title.svg';

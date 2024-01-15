@@ -1,4 +1,3 @@
-
 import React, { ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -14,11 +13,11 @@ const variantsLTR = {
 
 type LayoutProps = {
   children: ReactNode;
-  direction: 'rtl' | 'ltr'
+  direction: 'rtl' | 'ltr';
   delay?: number;
 }
 
-export default function FadeInHorizontal({ children, direction = "ltr", delay }: LayoutProps) {
+export default function FadeInHorizontal({ children, direction = "ltr", delay = 0 }: LayoutProps) {
 
   return <motion.div style={{ height: '100%' }}
     variants={direction === 'rtl' ? variantsRTL : variantsLTR}
