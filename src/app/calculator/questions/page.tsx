@@ -5,6 +5,8 @@ import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
+import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
+import FadeIn from '@/app/_components/Transitions/FadeIn';
 import useStore from '@/app/atoms/useStore';
 import PrevIcon from '@/app/_assets/images/prevBtn.svg';
 import { caveat } from '@/app/layout';
@@ -69,7 +71,7 @@ const QuestionsPage = () => {
 
 
   return (
-    <Box width="100%" display="flex" flexDirection="column" alignItems="center" position="sticky" top={0} pb={12}>
+    <Box width="100%" display="flex" flexDirection="column" alignItems="center" position="sticky" top={0} pb={6}>
       <Box width="100%" px={2.5} py={3} display="flex" alignItems="center" justifyContent="flex-start" >
         <Box mr={1} display="flex" alignItems="center" style={{cursor: 'pointer'}}>
           <Image src={PrevIcon} alt="prev" onClick={checkNumberOfQuestion} />
@@ -83,22 +85,26 @@ const QuestionsPage = () => {
           </Typography>
         </Box>
       </Box>
-      <Box mb={5} display="flex" flexDirection="column" alignItems="center" width="85%" maxWidth={324}>
-        <Box width={160} height={160} bgcolor="#E9E3D8" mt={2.5}>
-        </Box>
-        <Box mt={4} lineHeight={2} fontWeight={700} fontSize={20} letterSpacing={1} color="#594A39">
-          {targetQuestion.description}
-        </Box>
+      <Box mb={5} width="85%" maxWidth={324}>
+        <FadeIn style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'}}>
+          <Box width={160} height={160} bgcolor="#E9E3D8" mt={2.5}>
+          </Box>
+          <Box mt={4} lineHeight={2} fontWeight={700} fontSize={20} letterSpacing={1} color="#594A39">
+            {targetQuestion.description}
+          </Box>
+        </FadeIn>
       </Box>
       <Box width="90%" maxWidth={396} display="flex" flexDirection="column" alignItems="center">
         {targetQuestion.options.map((option, index) => {
           return (
-            <StyledQuestionButton key={index} onClick={() => updateSelectQuestion(index)}>
-              <Box width={36} height={36} bgcolor="#BBC318" color="#fff" borderRadius={100} textAlign="center" lineHeight={2.25} mr={1.75}>{headLine[index]}</Box>
-              <Box width={260}>
-                <Typography lineHeight={2} fontSize={16} color="#594A39">{option.content}</Typography>
-              </Box>
-            </StyledQuestionButton>
+            <FadeInHorizontal key={index} delay={index+1 * 0.3} direction='ltr'>
+              <StyledQuestionButton onClick={() => updateSelectQuestion(index)}>
+                <Box width={36} height={36} bgcolor="#BBC318" color="#fff" borderRadius={100} textAlign="center" lineHeight={2.25} mr={1.75}>{headLine[index]}</Box>
+                <Box width={260}>
+                  <Typography lineHeight={2} fontSize={16} color="#594A39">{option.content}</Typography>
+                </Box>
+              </StyledQuestionButton>
+            </FadeInHorizontal>
           )
         })}
       </Box>

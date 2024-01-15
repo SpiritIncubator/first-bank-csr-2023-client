@@ -15,15 +15,16 @@ const variantsLTR = {
 type LayoutProps = {
   children: ReactNode;
   direction: 'rtl' | 'ltr'
+  delay?: number;
 }
 
-export default function FadeInHorizontal({ children, direction = "ltr" }: LayoutProps) {
+export default function FadeInHorizontal({ children, direction = "ltr", delay }: LayoutProps) {
 
   return <motion.div style={{ height: '100%' }}
     variants={direction === 'rtl' ? variantsRTL : variantsLTR}
     initial="hidden"
     animate="enter"
-    transition={{ type: 'spring' }}>
+    transition={{ type: 'spring', delay }}>
     {children}
   </motion.div>
 }

@@ -5,11 +5,14 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 
 import Rating from '@/app/_components/Rating/Rating';
 import useStore from '@/app/atoms/useStore';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import Button from '@/app/_components/Button/Button';
+import FadeIn from '@/app/_components/Transitions/FadeIn';
+import FadeInOnView from '@/app/_components/Transitions/FadeInOnView';
 
 import AirHintIcon from '@/app/_assets/images/airHint.svg';
 import FullStarIcon from '@/app/_assets/images/fullStar.svg';
@@ -20,7 +23,7 @@ import ResultFunnyIcon from '@/app/_assets/images/resultFunny.svg';
 import DiviDer from '@/app/_assets/images/divider.svg'
 import Loading from '@/app/_assets/images/questionLoading.svg'
 import { answerList } from './spec';
-import { caveat } from '@/app/layout';;
+import { caveat } from '@/app/layout';
 
 const LOADING_DELAY_TIME = 2000;
 
@@ -38,23 +41,25 @@ const ResultPage = () => {
       const questionNumber = index + 1;
 
       return (
-        <Box key={`answer-${index}`} bgcolor="#F9F8F3" mt={4} borderRadius={2.5} px={3} pb={3.75}>
-          <Box display="flex" flexDirection="column" alignItems="center">
-            <Box height={90} textAlign="left" width="100%">
-              <Typography height="100%" lineHeight={2} fontSize={45} color="#7DBD36" letterSpacing={8} className={caveat.className}>
-                {String(questionNumber).padStart(2, '0')}
-              </Typography>
-            </Box>
-            <Box mb={2.5}>
-              <Box width={100} height={100} bgcolor="#E9E3D8" />
-            </Box>
-            <Box>
-              <Typography lineHeight={2} letterSpacing={1.2} color="#594A39">
-                {answer.content}
-              </Typography>
+        <FadeInOnView key={`answer-${index}`}>
+          <Box bgcolor="#F9F8F3" mt={4} borderRadius={2.5} px={3} pb={3.75}>
+            <Box display="flex" flexDirection="column" alignItems="center">
+              <Box height={90} textAlign="left" width="100%">
+                <Typography height="100%" lineHeight={2} fontSize={45} color="#7DBD36" letterSpacing={8} className={caveat.className}>
+                  {String(questionNumber).padStart(2, '0')}
+                </Typography>
+              </Box>
+              <Box mb={2.5}>
+                <Box width={100} height={100} bgcolor="#E9E3D8" />
+              </Box>
+              <Box>
+                <Typography lineHeight={2} letterSpacing={1.2} color="#594A39">
+                  {answer.content}
+                </Typography>
+              </Box>
             </Box>
           </Box>
-        </Box>
+        </FadeInOnView>
       )
     });
   }
@@ -69,13 +74,11 @@ const ResultPage = () => {
     }
   }, []);
 
-  // if (!hasAnsweredAllQuestions) {
-  //   router.push('/calculator');
-  // }
-
   if (delayLoading) {
     return <Box width="100%" height="100%" display="flex" justifyContent="center" alignItems="center">
-      <Image src={Loading} alt="loading" />
+      <FadeIn>
+        <Image src={Loading} alt="loading" />
+      </FadeIn>
     </Box>
   }
 
@@ -110,27 +113,48 @@ const ResultPage = () => {
         </Box>
       </Box>
       <Box mt={5} display="flex" justifyContent="center">
-        <Image src={FullStarIcon} alt="visual" />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: 0.3,
+            ease: [0, 0.71, 0.2, 1.01],
+            scale: {
+              type: "spring",
+              stiffness: 100,
+            }
+          }}
+        >
+          <Image src={FullStarIcon} alt="visual" />
+        </motion.div>
       </Box>
       <Box display="flex" flexDirection="column" alignItems="center">
-        <Box>
-          <Image src={FullStarDescriptionIcon} alt="description" />
-        </Box>
-        <Box mt={1.2} mb={2.5}>
-          <Rating rate={2} />
-        </Box>
-        <Box mb={10.5} maxWidth={342}>
-          <Typography lineHeight={2} px={3} color="#594A39">
-            自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆為此類。
-          </Typography>
-        </Box>
-        <Image src={DiviDer} alt="divider" />
+        <FadeIn delay={1} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <Box>
+            <Image src={FullStarDescriptionIcon} alt="description" />
+          </Box>
+          <Box mt={1.2} mb={2.5}>
+            <Rating rate={2} />
+          </Box>
+        </FadeIn>
+        <FadeIn delay={1.5} >
+          <Box mb={10.5} maxWidth={342}>
+            <Typography lineHeight={2} px={3} color="#594A39">
+              自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆為此類。
+            </Typography>
+          </Box>
+        </FadeIn>
       </Box>
       {/* resolution area */}
-      <Box pt={2.5} display="flex" flexDirection="column" alignItems="center" pb={10}>
-        <Typography component="span" fontSize={20} fontWeight={700} className={caveat.className}>
-          題目解答
-        </Typography>
+      <Box display="flex" flexDirection="column" alignItems="center" pb={10}>
+        <FadeIn delay={2} style={{display:' flex', flexDirection: 'column', alignItems: 'center'}}>
+          <Box mb={2.5}>
+            <Image src={DiviDer} alt="divider" />
+          </Box>
+          <Typography component="span" fontSize={20} fontWeight={700} className={caveat.className}>
+            題目解答
+          </Typography>
+        </FadeIn>
         <Box maxWidth={342}>
           {renderAnswerList()}
         </Box>

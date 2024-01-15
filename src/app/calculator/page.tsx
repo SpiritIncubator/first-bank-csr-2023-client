@@ -3,11 +3,14 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 import StyleButton from '@/app/_components/Button/Button';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import I18nButton from '@/app/_components/I18nButton/I18nButton';
 import ToggleButton from './components/ToggleButton/ToggleButton';
+import CalculatorTitle from '@/app/_assets/images/calculator-entry.svg';
+import FadeIn from '../_components/Transitions/FadeIn';
 
 const MainPage = () => {
 	const router = useRouter();
@@ -25,21 +28,26 @@ const MainPage = () => {
 			display="flex"
 			flexDirection="column"
 			bgcolor="#FDFDFB"
-			position="relative"
 		>
 			<Box flex={1}>
 				{/* <Image src="" alt="" /> */}
 			</Box>
-			<Box flex={1} display="flex" justifyContent="center">
+			<Box flex={1} display="flex" justifyContent="center" position="relative">
 				<Box width="310px" display="flex" flexDirection="column" alignItems="center">
-					<Typography fontSize={32} fontWeight={900}></Typography>
-					{/* TODO will put image in here */}
-					<Typography lineHeight={2} fontSize={16}></Typography>
+					{/* <Typography fontSize={32} fontWeight={900}></Typography> */}
+					<FadeIn>
+						<Image src={CalculatorTitle} alt="calculator" />
+					</FadeIn>
+					{/* <Typography lineHeight={2} fontSize={16}></Typography> */}
 					<Box position="absolute" bottom={148}>
-						<StyleButton text="start" onClickHandler={redirectToQuestionsPage} />
+						<FadeIn delay={0.5}>
+							<StyleButton text="start" onClickHandler={redirectToQuestionsPage} />
+						</FadeIn>
 					</Box>
 					<Box position="absolute" bottom={48}>
-						<I18nButton />
+						<FadeIn delay={1}>
+							<I18nButton />
+						</FadeIn>
 					</Box>
 				</Box>
 			</Box>
