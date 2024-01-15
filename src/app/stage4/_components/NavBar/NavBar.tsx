@@ -4,15 +4,18 @@ import React from 'react'
 import Image from 'next/image'
 import Box from '@mui/material/Box'
 
-
 import LionImage from '@/app/stage4/_assets/stage4-lion.svg';
 import { NavBarWrapper, NavLinkItem, buttonStyle } from './NavBar.style';
 import NavLink from './NavLink';
+import { useSearchParams } from 'next/navigation';
 import { navigationLinksConfig } from './spec';
 import { LinkType } from './types';
 import HomeImageButton from './assets/stage4_nav_home.svg'
 import HomeImageActiveButton from './assets/stage4_nav_home_active.svg'
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
+import ZoomBounce from '@/app/_components/Transitions/ZoomBounce';
+import useTriggerDialogAnimation from '../../hooks/useTriggerDialogAnimation';
+
 
 
 const customPath = ['/stage4']
@@ -22,6 +25,15 @@ type NavBarProps = {
 }
 
 const NavBar = ({ dialogContent: DialogContent }: NavBarProps) => {
+  const searchParams = useSearchParams();
+  const disableDialogAnimation = searchParams.get('disableDialogAnimation');
+
+
+  const { triggerAnimation } = useTriggerDialogAnimation({
+    disabled: Boolean(disableDialogAnimation),
+    delay: 100,
+  })
+
   function getHomePageButton({ label, path }: LinkType) {
     return (
       <NavLink href={path} key={path}>
@@ -51,7 +63,14 @@ const NavBar = ({ dialogContent: DialogContent }: NavBarProps) => {
     <NavBarWrapper>
       {navigationLinksConfig.map(renderLink)}
       <Box position="absolute" right={100} bottom="0" display="flex" flexDirection="column">
-        {DialogContent && <DialogContent />}
+        {DialogContent &&
+          (
+            disableDialogAnimation ? <DialogContent /> :
+              <ZoomBounce trigger={triggerAnimation}>
+                <DialogContent />
+              </ZoomBounce>
+          )
+        }
         <Image src={LionImage} alt="Lion" width={880} height={1100} />
       </Box>
     </NavBarWrapper>

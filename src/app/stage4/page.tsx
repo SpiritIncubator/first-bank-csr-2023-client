@@ -47,12 +47,7 @@ const PAGE_DATA = [
 ]
 
 export default function Stage4() {
-  const [dialogAnimation, setDialogAnimation] = useState(false);
-  useEffect(() => {
-    setTimeout(() => {
-      setDialogAnimation(true)
-    }, 1000)
-  }, [])
+
 
   return <Box py="150px" px="230px">
     <FadeIn>
@@ -126,9 +121,7 @@ export default function Stage4() {
       <Image src={BirdImage} alt="Bird" width={377} height={308} />
     </Box>
     <Box position="absolute" top={664} right={300}>
-      <ZoomBounce trigger={dialogAnimation} >
-        <Image src={DialogImg} alt="Bird" width={660} height={440} />
-      </ZoomBounce>
+      <Image src={DialogImg} alt="Bird" width={660} height={440} />
     </Box>
 
   </Box >

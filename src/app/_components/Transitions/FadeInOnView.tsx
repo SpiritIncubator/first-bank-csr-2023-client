@@ -21,7 +21,7 @@ const FadeInOnView: React.FC<FadeInOnViewProps> = ({ children, delay = 0 }) => {
           variants={fadeInVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          transition={{ duration: 1.5, delay }}
+          transition={{ duration: 1, delay }}
         >
           {children}
         </motion.div>
