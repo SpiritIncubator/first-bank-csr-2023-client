@@ -5,11 +5,14 @@ import { Box, Typography, List, ListItem, ListItemText, ListItemIcon } from '@mu
 import Image from 'next/image';
 import CountUp from 'react-countup';
 import { useRouter } from 'next/navigation';
+
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
+import FadeIn from '@/app/_components/Transitions/FadeIn';
 import BackLeftButton from '@/assets/back_left.svg';
 import BackLeftActiveButton from '@/assets/back_left_active.svg';
 import { cardDetailWithType } from './spec';
 import SymbolWithYears from './assets/symbol-years.svg';
+import Card from './assets/life-card-detail.svg';
 
 
 type PageProps = {
@@ -25,12 +28,14 @@ const Page = ({ params }: PageProps) => {
   function renderCardDetail(description: string, index: number) {
     const isHeadRecord = index === 0;
     return (
-      <ListItem sx={{ marginTop: isHeadRecord ? 0 : 20 }}>
-        <ListItemIcon sx={{ marginRight: 10 }}>
-          <Typography width={70} height={70} borderRadius={35} bgcolor="#BBC318" />
-        </ListItemIcon>
-        <ListItemText primaryTypographyProps={{ fontSize: 60, width: 1558, lineHeight: 2, letterSpacing: 8 }} primary={description} />
-      </ListItem>
+      <FadeIn delay={(index + 1) * 0.3 + 0.5}>
+        <ListItem sx={{ marginTop: isHeadRecord ? 0 : 20 }}>
+          <ListItemIcon sx={{ marginRight: 10 }}>
+            <Typography width={70} height={70} borderRadius={35} bgcolor="#BBC318" />
+          </ListItemIcon>
+          <ListItemText primaryTypographyProps={{ fontSize: 60, width: 1558, lineHeight: 2, letterSpacing: 8 }} primary={description} />
+        </ListItem>
+      </FadeIn>
     )
   }
 
@@ -44,17 +49,21 @@ const Page = ({ params }: PageProps) => {
 
   return (
     <Box
-      padding={[13.75, 29.75, 54.75, 28.628]}
+      pt={16.25}
+      // padding={[13.75, 29.75, 0, 28.628]}
       height="100%"
       display="flex"
       flexDirection="column"
+      justifyContent="flex-start"
       alignItems="center"
       position="relative"
     >
-      <Box flex={1}></Box>
-      <Box height={624} width="100%" display="flex">
-        <Box flex={1} display="flex" gap={16.25}>
-          <Box flex={1} textAlign="right">
+      <Box>
+        <Image src={Card} alt="life-card" />
+      </Box>
+      <Box height={624} width="100%" display="flex" mt={23}>
+        <FadeIn delay={0.5} flex={1} display='flex'>
+          <Box flex={1} textAlign="right" pr={16.25}>
             <Image src={SymbolWithYears} alt="years" />
           </Box>
           <Box flex={1}>
@@ -72,7 +81,7 @@ const Page = ({ params }: PageProps) => {
               <Typography fontSize={120} fontWeight={900} color="#BBC318">156,787,000</Typography>
             </Box>
           </Box>
-        </Box>
+        </FadeIn>
       </Box>
       <Box flex={1} pt={18.5}>
         <List>

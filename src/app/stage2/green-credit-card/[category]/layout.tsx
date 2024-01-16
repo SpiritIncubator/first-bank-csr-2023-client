@@ -2,7 +2,6 @@
 
 import { ReactNode } from "react";
 import FadeInHorizontal from "@/app/_components/Transitions/FadeInHorizontal";
-import { motion } from 'framer-motion';
 
 type LayoutProps = {
   children: ReactNode;
