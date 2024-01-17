@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Box, Button, Fade } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import Image from 'next/image';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/navigation';
@@ -16,15 +16,6 @@ import LeftContent from './assets/left-content.svg';
 import RightCard from './assets/right-card.svg';
 import RightContent from './assets/right-content.svg'
 import Lion from './assets/lion.svg';
-
-const StyledMainBox = styled(Box)`
-  background-image: url('/assets/lion.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 100%;
-  height: 100%;
-`;
 
 const StyledScaleImage = styled(Image)`
   transition: all 0.5s ease-in-out;

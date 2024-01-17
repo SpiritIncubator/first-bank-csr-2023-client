@@ -129,7 +129,8 @@ const ResultPage = () => {
         </motion.div>
       </Box>
       <Box display="flex" flexDirection="column" alignItems="center">
-        <FadeIn delay={1} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        {/* style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} */}
+        <FadeIn delay={1} display='flex' flexDirection='column' alignItems='center'>
           <Box>
             <Image src={FullStarDescriptionIcon} alt="description" />
           </Box>
@@ -147,7 +148,8 @@ const ResultPage = () => {
       </Box>
       {/* resolution area */}
       <Box display="flex" flexDirection="column" alignItems="center" pb={10}>
-        <FadeIn delay={2} style={{display:' flex', flexDirection: 'column', alignItems: 'center'}}>
+        {/* style={{ display: ' flex', flexDirection: 'column', alignItems: 'center' }} */}
+        <FadeIn delay={2} display='flex' flexDirection='column' alignItems='center'>
           <Box mb={2.5}>
             <Image src={DiviDer} alt="divider" />
           </Box>
