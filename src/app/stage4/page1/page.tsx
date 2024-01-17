@@ -11,6 +11,7 @@ import Image from 'next/image';
 import DialogImg from '../_assets/stage4-dialog.svg';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import FadeInOnView from '@/app/_components/Transitions/FadeInOnView';
+import ScrollBar, {useScrollBar} from '@/app/_components/ScrollBar';
 import NavBar from '../_components/NavBar/NavBar';
 
 const CASE_DATA = [
@@ -33,10 +34,11 @@ const CASE_DATA = [
 
 //EsgConsumerLoans
 export default function Page1() {
+  const { value, handleChangeBarOfValue, containerRef } = useScrollBar({});
 
   return (
-    <Box px="210px" py="132px" mr="auto" mb="320px">
-      <Box maxWidth="2404px">
+    <Box px="210px" py="132px" mr="auto" mb="320px" position="relative" ref={containerRef} height={2160} overflow="scroll">
+      <Box maxWidth="2404px" >
         <FadeIn>
           <Box width="1342px" height="154px" position="relative" mb="60px" textAlign="left" >
             <Image
@@ -128,8 +130,10 @@ export default function Page1() {
           </FadeInOnView>
         </Box>
 
+        <Box position="fixed" right={163} top={378} height={600}>
+          <ScrollBar value={value} onHandleScrollBar={handleChangeBarOfValue} />
+        </Box>
       </Box>
-
       <NavBar dialogContent={() => <Image src={DialogImg} alt="dialog" />} />
     </Box >
   )

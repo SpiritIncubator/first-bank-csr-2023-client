@@ -1,12 +1,14 @@
+'use client'
+
 import { useState, useCallback, useRef, useEffect } from 'react';
 
 const MAX_SCROLL_HEIGHT_VALUE = 100;
 
 type UseScrollBarProps = {
-  loaded: boolean;
+  loaded?: boolean;
 }
 
-const useScrollBar = ({loaded}: UseScrollBarProps) => {
+const useScrollBar = ({loaded = true}: UseScrollBarProps) => {
 	const [value, setValue] = useState(MAX_SCROLL_HEIGHT_VALUE);
 	const [offsetValue, setOffsetValue] = useState(0);
 	const containerRef = useRef<HTMLDivElement | null>(null);
@@ -35,10 +37,9 @@ const useScrollBar = ({loaded}: UseScrollBarProps) => {
 	useEffect(() => {
 		if (containerRef.current && loaded) {
 			const { scrollHeight, clientHeight } = containerRef.current;
-
-			scrollableHeight.current = scrollHeight - clientHeight;
+			scrollableHeight.current =
+				scrollHeight - clientHeight === 0 ? scrollHeight : scrollHeight - clientHeight;
 			stepHeight.current = scrollableHeight.current / MAX_SCROLL_HEIGHT_VALUE;
-
 			containerRef.current.addEventListener('scroll', handleScroll);
 		}
 

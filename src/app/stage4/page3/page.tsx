@@ -18,7 +18,7 @@ const Page = () => {
   const { containerRef, value, handleChangeBarOfValue } = useScrollBar({ loaded: true })
 
   return (
-    <Box px="210px" py="151px" mr="auto" mb="320px" ref={containerRef}>
+    <Box px="210px" py="151px" mr="auto" mb="320px" position="relative" ref={containerRef} height={2160} overflow="scroll">
       <Box maxWidth="2404px">
         <Box pt={16.75} pl={26.25} pr={20.375}>
           <Box position="relative">

@@ -21,6 +21,7 @@ import formatNumberWithCommas from '@/utils/formatNumberWithCommas';
 import NavBar from '../_components/NavBar/NavBar';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import FadeInOnView from '@/app/_components/Transitions/FadeInOnView';
+import ScrollBar, {useScrollBar} from '@/app/_components/ScrollBar';
 
 interface GridItemData {
   value: string;
@@ -30,6 +31,7 @@ interface GridItemData {
 }
 
 const GridItem: React.FC<{ data: GridItemData }> = ({ data }) => {
+
   return (
     <Box
       style={{
@@ -118,9 +120,9 @@ const gridData: GridItemData[] = [
 ]
 
 export default function Page2() {
-
+  const { value, handleChangeBarOfValue, containerRef } = useScrollBar({});
   return (
-    <Box px="210px" py="151px" mr="auto" mb="320px">
+    <Box px="210px" py="151px" mr="auto" mb="320px" height={2160} overflow="scroll" ref={containerRef} position="relative">
       <Box maxWidth="2404px">
         <FadeIn>
           <Box width="1342px" height="154px" position="relative" mb="60px" textAlign="left" >
@@ -206,9 +208,10 @@ export default function Page2() {
         </Grid>
 
       </Box>
-
       <NavBar dialogContent={() => <Image src={DialogImg} alt="dialog" />} />
-
+      <Box position="fixed" right={163} top={378} height={600}>
+        <ScrollBar value={value} onHandleScrollBar={handleChangeBarOfValue} />
+      </Box>
     </Box >
   )
 }
