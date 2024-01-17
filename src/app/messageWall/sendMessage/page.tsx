@@ -10,6 +10,8 @@ import ConfirmSubmit from './components/ConfirmSubmit'
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import { createMessage } from '@/api/index';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
+import Lottie from "lottie-react";
+import Bird1_3Animation from '@/lottieAnimations/bird_1-3_side_loop.json';
 import FadeInOnView from '@/app/_components/Transitions/FadeInOnView';
 
 
@@ -89,6 +91,8 @@ export default function SendMessage() {
             onConfirm={onConfirmSubmit} />
         </Box>}
 
+
+
         <Container maxWidth="sm" sx={mobileContainerStyle}>
           <FadeIn>
             <Box sx={{
@@ -96,15 +100,10 @@ export default function SendMessage() {
               height: "240px",
               margin: '0 auto',
               overflow: 'hidden',
-              position: 'relative'
-
+              position: 'relative',
+              marginBottom: "16px"
             }}>
-              <Image
-                src="/assets/bird_books.png"
-                alt="bird_books"
-                objectFit='contain'
-                fill
-                style={{ marginBottom: "16px" }} />
+              <Lottie animationData={Bird1_3Animation} loop={true} />
             </Box>
           </FadeIn>
           <FadeIn >
@@ -295,6 +294,6 @@ export default function SendMessage() {
       </>
     )
     }
-  </Box>
+  </Box >
 }
 
