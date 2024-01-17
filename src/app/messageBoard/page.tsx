@@ -10,6 +10,7 @@ import useMessageBoard from './hooks';
 import MessageCard from './components/MessageCard/MessageCard';
 import BgIcon from './assets/bg.svg';
 import title from './assets/title.svg';
+import colors from '@/constants/colors';
 import CardQueueAnimation from '../_components/Transitions/CardQueued';
 import { MessageCardType } from '@/app/messageBoard/hooks';
 
@@ -25,7 +26,7 @@ const Page = () => {
   const { containerRef, value, handleChangeBarOfValue } = useScrollBar({ loaded });
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" px={23.75} pt={15}>
+    <Box display="flex" flexDirection="column" alignItems="center" px={23.75} pt={15} bgcolor={colors.ivory}>
       <Image src={BgIcon} alt="bg" />
       <Box mt={9}>
         <Image src={title} alt="title" />

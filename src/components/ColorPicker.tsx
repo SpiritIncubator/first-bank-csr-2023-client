@@ -54,7 +54,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, defaultColor }
 
   return (
     <>
-      <Box sx={{ display: 'flex', gap: '20px', marginBottom: '10px' }}>
+      <Box sx={{ display: 'flex', gap: '20px', marginBottom: '10px' }} justifyContent="center">
         {colors.map((color) => (
           <ColorOption
             key={color}

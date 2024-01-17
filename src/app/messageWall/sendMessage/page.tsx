@@ -173,7 +173,7 @@ export default function SendMessage() {
                   transition: 'border-color 0.2s ease-in-out',
                   letterSpacing: '1.28px',
                   '&:focus': {
-                    border: `2px solid ${colors.brown4}`,
+                    border: `2px solid ${colors.brown2}`,
                   },
                   '&::placeholder': {
                     color: 'rgba(0, 0, 0, 0.6)',
@@ -192,7 +192,7 @@ export default function SendMessage() {
                   outline: 'none',
                   transition: 'border-color 0.2s ease-in-out',
                   '&:focus': {
-                    border: `2px solid ${colors.brown4}`,
+                    border: `2px solid ${colors.brown2}`,
                   },
                 },
                 '& .input-base::placeholder, & .textarea-base::placeholder': {
@@ -242,7 +242,7 @@ export default function SendMessage() {
                 display: 'flex'
               }}>
                 <Image
-                  width="129"
+                  width="107"
                   height="38"
                   src="/assets/sendMessage_writeName.svg"
                   alt="sendMessage_writeName"
