@@ -13,6 +13,7 @@ import FadeIn from '@/app/_components/Transitions/FadeIn';
 import Lottie from "lottie-react";
 import Bird1_3Animation from '@/lottieAnimations/bird_1-3_side_loop.json';
 import FadeInOnView from '@/app/_components/Transitions/FadeInOnView';
+import useFirstBankTranslation from '@/app/_locales/hooks';
 
 
 
@@ -23,6 +24,9 @@ export default function SendMessage() {
   const [errorMessage, setErrorMessage] = React.useState('');
   const [readyToSubmit, setReadyToSubmit] = React.useState(false);
   const [finishSubmit, setFinishSubmit] = React.useState(false);
+
+  const { lang } = useFirstBankTranslation()
+  console.log('lang :', lang);
 
   const mobileContainerStyle = {
     maxWidth: '390px',

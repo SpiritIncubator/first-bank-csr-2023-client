@@ -4,6 +4,7 @@ import BackRightButton from '@/assets/back_right.svg';
 import BackRightActiveButton from '@/assets/back_right_active.svg';
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import React from 'react';
+import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import {
   Box,
   Container,
@@ -13,6 +14,7 @@ import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 
 const PageLayout: React.FC = () => {
+  const { t } = useTranslation('common');
   const router = useRouter();
   return (
     <Container

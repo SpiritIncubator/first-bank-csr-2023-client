@@ -13,7 +13,7 @@ import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas';
 import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
 import FadeInVertical from '@/app/_components/Transitions/FadeInVertical';
-
+import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 // Create a theme to apply consistent styling
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -42,6 +42,7 @@ const theme = createTheme({
 });
 
 const MainPage = () => {
+  const { t } = useTranslation('stage2');
   return (
     <ThemeProvider theme={theme}>
       <Box overflow="scroll" width="100vw" height="100vh">
@@ -66,7 +67,7 @@ const MainPage = () => {
           }}
         >
           <FadeInHorizontal direction='ltr' >
-            <Box width="100%" height="154px" position="relative" mb="60px" >
+            <Box width="1246px" height="154px" position="relative" mb="64px" >
               <Image
                 fill
                 src="/assets/esg-consumer-loans-title.svg"
@@ -75,48 +76,58 @@ const MainPage = () => {
             </Box>
 
             <Box fontSize="52px" lineHeight="98.8px" mb="222px">
-              第一銀行持續透過依公益/綠色信用卡刷卡金額固定比率提撥之刷卡金推動環保及公益活動，
-              並啟動「減碳標籤」認證專案。
+              {t('esgLoanDesc')}
             </Box>
           </FadeInHorizontal>
           <FadeInHorizontal direction='ltr' delay={0.3} >
-            <Paper
-              elevation={0}
-              sx={{
-                width: 1200,
-                height: 220,
-                bgcolor: 'grey.300',
-                mb: 4,
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                letterSpacing: "4.16px"
-              }}
-            >
-              {/* Placeholder for the first image */}
-            </Paper>
+            <Box display="flex" gap="40px" mb="64px">
+              <Box
+                display="flex"
+                width="697px" height="87" position="relative"
+              >
+                <Image
+                  fill
+                  src="/assets/greenConsumerLoan-title-zh.svg"
+                  alt="greenConsumerLoan"
+                />
 
-            <Box sx={{ width: '100%', mb: 4 }}
-              fontSize="46px"
-              lineHeight="98.8px"
-              letterSpacing="3.68px"
-              mb="70px">
-              支持能源技術服務產業(Energy Service Companies；簡稱 ESCO產 <br />業)發展，節電、節水、節油等工程及設備貸款
+              </Box>
+              <Link href='/stage2/esg-consumer-loans/loan'>
+                <Box
+                  display="flex"
+                  width="260px" height="87px" position="relative"
+                >
+                  <Image
+                    fill
+                    src="/assets/seeMore-zh.svg"
+                    alt="see more "
+                  />
+                </Box>
+              </Link>
             </Box>
 
-            <Box mb="246px" gap="80px" display="flex" width="100%" justifyContent="space-between">
-              <Link href='/stage2/esg-consumer-loans/loan'>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    height: 500,
-                    width: 500,
-                    flex: 1,
-                    bgcolor: 'grey.300',
-                    mb: 4,
-                  }}
-                >
-                </Paper></Link>
+            <Box sx={{ width: '100%' }}
+              fontSize="46px"
+              lineHeight="73.6px"
+              letterSpacing="3.68px"
+              mb="70px"
+              maxWidth="1530px">
+              {t('greenConsumerLoanDesc')}
+            </Box>
+
+            <Box mb="246px" gap="80px" display="flex" width="100%"
+              justifyContent="space-between"
+              alignItems="center">
+
+              <Box width="500px" height="500px" position="relative" >
+                <Link href='/stage2/esg-consumer-loans/loan'>
+                  <Image
+                    fill
+                    src="/assets/greenConsumerLoan-Badges.svg"
+                    alt="greenConsumerLoan-Badges"
+                  />
+                </Link>
+              </Box>
               <Box flex="1">
                 <Box>
                   <Typography
@@ -127,7 +138,7 @@ const MainPage = () => {
                     fontSize="54px"
                     fontWeight={500}
                   >
-                    申辦戶數 <Box component="span" fontSize="42px">(戶)</Box>
+                    {t('applyHouseHolds')} <Box component="span" fontSize="42px">{t('houseHolds')}</Box>
                   </Typography>
                   <Box sx={{
                     color: '#B8C318',
@@ -149,7 +160,7 @@ const MainPage = () => {
                     fontSize="54px"
                     fontWeight={500}
                   >
-                    餘額 <Box component="span" fontSize="42px">(億元)</Box>
+                    {t('balance')} <Box component="span" fontSize="42px">{t('billion')}</Box>
                   </Typography>
                   <Box sx={{
                     color: '#B8C318',
@@ -160,12 +171,14 @@ const MainPage = () => {
                     marginTop: '-60px'
                   }}>
                     {
-                      formatNumberWithCommas(122.26)
+                      formatNumberWithCommas(122)
                     }
                   </Box>
                 </Box>
               </Box>
-              <Box flex="1" position="relative">
+              <Box flex="1" position="relative"
+                width="623px"
+                height="556px">
                 <Image
                   fill
                   src="/assets/2022-score.svg"

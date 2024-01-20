@@ -7,7 +7,10 @@ import { I18nextProvider } from 'react-i18next';
 import { i18nInstance } from '@/app/_locales/i18n';
 
 import { Inter, Caveat, Noto_Sans_TC } from 'next/font/google'
-const notoSansTC = Noto_Sans_TC({ subsets: ['latin'] })
+const notoSansTC = Noto_Sans_TC({
+  subsets: ['latin'],
+  weight: "variable"
+})
 
 // const inter = Inter({ subsets: ['latin'] });
 export const caveat = Caveat({ subsets: ['latin'] });
