@@ -1,13 +1,14 @@
 'use client'
+
 import {
   Box,
-  Container,
   Typography,
   Paper,
   Grid,
-  Modal
 } from '@mui/material';
 import Image from 'next/image';
+import { useCallback } from 'react';
+
 import DialogImg from '../_assets/stage4-dialog.svg';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import FadeInOnView from '@/app/_components/Transitions/FadeInOnView';
@@ -35,6 +36,10 @@ const CASE_DATA = [
 //EsgConsumerLoans
 export default function Page1() {
   const { value, handleChangeBarOfValue, containerRef } = useScrollBar({});
+
+  const MemorizedImage = useCallback(() => {
+    return <Image src={DialogImg} alt="dialog" />
+  }, []);
 
   return (
     <Box px="210px" py="132px" mr="auto" mb="320px" position="relative" ref={containerRef} height={2160} overflow="scroll">
@@ -134,7 +139,7 @@ export default function Page1() {
           <ScrollBar value={value} onHandleScrollBar={handleChangeBarOfValue} />
         </Box>
       </Box>
-      <NavBar dialogContent={() => <Image src={DialogImg} alt="dialog" />} />
+      <NavBar dialogContent={MemorizedImage} />
     </Box >
   )
 }
