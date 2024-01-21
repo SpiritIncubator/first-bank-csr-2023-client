@@ -17,7 +17,8 @@ import PAGE3_IMAGE from './_assets/stage4-page3.svg';
 import PAGE4_IMAGE from './_assets/stage4-page4.svg';
 import DialogImg from './_assets/stage4-dialog.svg';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
-import ZoomBounce from '@/app/_components/Transitions/ZoomBounce';
+import I18nButton from '@/app/_components/I18nButton/I18nButton';
+
 
 const PAGE_DATA = [
   {
@@ -123,6 +124,9 @@ export default function Stage4() {
     <Box position="absolute" top={664} right={300}>
       <Image src={DialogImg} alt="Bird" width={660} height={440} />
     </Box>
-
+    {/* //@todo: fix i18nButton size problem */}
+    <Box position="fixed" right="200px" top="180px" >
+      <I18nButton width={270} height={140} />
+    </Box>
   </Box >
 }

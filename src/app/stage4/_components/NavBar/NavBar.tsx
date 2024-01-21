@@ -14,8 +14,9 @@ import HomeImageButton from './assets/stage4_nav_home.svg'
 import HomeImageActiveButton from './assets/stage4_nav_home_active.svg'
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import ZoomBounce from '@/app/_components/Transitions/ZoomBounce';
+import FadeInVertical from '@/app/_components/Transitions/FadeInVertical';
+import FadeIn from '@/app/_components/Transitions/FadeIn';
 import useTriggerDialogAnimation from '../../hooks/useTriggerDialogAnimation';
-
 
 
 const customPath = ['/stage4']
@@ -60,20 +61,27 @@ const NavBar = ({ dialogContent: DialogContent }: NavBarProps) => {
   }
 
   return (
-    <NavBarWrapper>
-      {navigationLinksConfig.map(renderLink)}
-      <Box position="absolute" right={100} bottom="0" display="flex" flexDirection="column">
-        {DialogContent &&
-          (
-            disableDialogAnimation ? <DialogContent /> :
-              <ZoomBounce trigger={triggerAnimation}>
-                <DialogContent />
-              </ZoomBounce>
-          )
-        }
-        <Image src={LionImage} alt="Lion" width={880} height={1100} />
-      </Box>
-    </NavBarWrapper>
+    <Box position="fixed" bottom="0" left="0" width="100%">
+
+      <FadeInVertical direction="up" width="100%">
+        <NavBarWrapper>
+          {navigationLinksConfig.map(renderLink)}
+        </NavBarWrapper>
+      </FadeInVertical>
+      <FadeIn delay={0.5} >
+        <Box position="absolute" right={100} bottom="0" display="flex" flexDirection="column">
+          {DialogContent &&
+            (
+              disableDialogAnimation ? <DialogContent /> :
+                <ZoomBounce trigger={triggerAnimation}>
+                  <DialogContent />
+                </ZoomBounce>
+            )
+          }
+          <Image src={LionImage} alt="Lion" width={880} height={1100} />
+        </Box>
+      </FadeIn>
+    </Box>
   )
 }
 
