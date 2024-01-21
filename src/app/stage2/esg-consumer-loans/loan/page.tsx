@@ -4,6 +4,7 @@ import BackRightButton from '@/assets/back_right.svg';
 import BackRightActiveButton from '@/assets/back_right_active.svg';
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import React from 'react';
+import Image from 'next/image';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import {
   Box,
@@ -14,7 +15,7 @@ import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 
 const PageLayout: React.FC = () => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('stage2');
   const router = useRouter();
   return (
     <Container
@@ -30,35 +31,39 @@ const PageLayout: React.FC = () => {
         bgcolor: 'background.paper',
       }}
     >
-      <FadeInHorizontal direction="ltr" >
-        <Box
-          sx={{
-            width: '500px',
-            height: '500px',
-            bgcolor: 'grey.300',
-            mb: '80px',
-          }}
-        >
-          {/* First Image*/}
+      <FadeInHorizontal direction="ltr"
+        flexDirection='column'
+        display='flex'
+        alignItems="center" >
+
+        <Box width="500px" height="500px" position="relative" mb="80px">
+          <Image
+            fill
+            src="/assets/greenConsumerLoan-Badges.svg"
+            alt="greenConsumerLoan-Badges"
+          />
         </Box>
 
         <Box
-          sx={{
-            width: '1200px',
-            height: '360px',
-            bgcolor: 'grey.500',
-            mb: '60px',
-          }}
+          display="flex"
+          mb="60px"
+          width="929px" height="114px" position="relative"
         >
-          {/* Second image */}
+          <Image
+            fill
+            src="/assets/greenConsumerLoan-title-zh.svg"
+            alt="greenConsumerLoan"
+          />
+
         </Box>
 
         <Box
           fontSize="52px"
           lineHeight="98.8px"
           mb="60px"
-          width="1514px">
-          為鼓勵支持ESG綠色消費，凡購置有「綠建築」標章不動產、「節能標章」之家電產品、電動汽機車、修繕房屋使用綠建材等，提供貸款優惠。
+          width="1514px"
+          letterSpacing="4.16px">
+          {t('loan.desc')}
         </Box>
 
       </FadeInHorizontal>

@@ -2,6 +2,7 @@
 // BulletPointList.tsx
 import React from 'react';
 import { Box, Typography, List, ListItem } from '@mui/material';
+import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 
 const CustomBullet = ({ number }: { number: string }) => {
   return (
@@ -42,23 +43,15 @@ const listItemStyle = {
 };
 
 const BulletPointList: React.FC = () => {
-  // Replace this array with your actual list items
-  const listItems = [
-    '購置符合我國「綠建築標章」規範或各縣市政府規範之不動產。',
-    '修繕使用之建材符合我國「綠建材標章」規範之產品。',
-    '購置符合「節能標章」、「省水標章」或「綠建材標章」之產品，或購置符合政府補助之汽機車等。',
-    '購置符合「再生能源熱利用獎勵補助辦法」之產品。',
-    '裝置符合各縣市政府補助之「太陽光電系統」之產品。'
-  ];
-
+  const { t } = useTranslation('stage2');
   return (
     <List sx={{ listStyle: 'none', padding: 0 }}>
-      {listItems.map((text, index) => (
+      {[1, 2, 3, 4, 5].map((stringIndex, index) => (
         <ListItem key={index} sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
           <Box sx={{ mr: "32px" }}>
             <CustomBullet number={`${index + 1}`} />
           </Box>
-          <Typography maxWidth="1348px" sx={listItemStyle}>{text}</Typography>
+          <Typography maxWidth="1348px" sx={listItemStyle}>{t(`loan.feature.${stringIndex}`)}</Typography>
         </ListItem>
       ))}
     </List>
