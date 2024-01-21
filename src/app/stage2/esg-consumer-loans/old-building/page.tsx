@@ -17,21 +17,25 @@ import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import ZoomBounce from '@/app/_components/Transitions/ZoomBounce';
+import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 
 const CASE_DATA = [
   {
     title: 'Title 1',
     imageUrl: '',
+    titleImageUrl: '/assets/oldBuilding-feature1-title-zh.svg',
     "description": `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`
   },
   {
     title: 'Title 2',
     imageUrl: '',
+    titleImageUrl: '/assets/oldBuilding-feature2-title-zh.svg',
     "description": `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`
   },
   {
     title: 'Title 3',
     imageUrl: '',
+    titleImageUrl: '/assets/oldBuilding-feature3-title-zh.svg',
     "description": `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`
   }
 ]
@@ -52,6 +56,7 @@ const OldBuilding: React.FC = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [selectedCase, setSelectedCase] = useState<any>(null);
   const router = useRouter();
+  const { t } = useTranslation('stage2');
 
   const handleOpenModal = (caseData: typeof CASE_DATA[0]) => () => {
     console.log('caseData :', caseData);
@@ -76,27 +81,30 @@ const OldBuilding: React.FC = () => {
       }}
     >
 
-      <FadeInHorizontal direction='ltr' >
-        <Box
-          sx={{
-            width: '500px',
-            height: '500px',
-            bgcolor: 'grey.300',
-            mb: '80px',
-          }}
-        >
-          {/* First Image*/}
+      <FadeInHorizontal direction="ltr"
+        flexDirection='column'
+        display='flex'
+        alignItems="center" >
+
+        <Box width="500px" height="500px" position="relative" mb="80px">
+          <Image
+            fill
+            src="/assets/oldBuilding-icon.svg"
+            alt="oldBuilding-icon"
+          />
         </Box>
 
+
         <Box
-          sx={{
-            width: '1200px',
-            height: '360px',
-            bgcolor: 'grey.500',
-            mb: '60px',
-          }}
+          display="flex"
+          mb="60px"
+          width="1340px" height="114px" position="relative"
         >
-          {/* Second image */}
+          <Image
+            fill
+            src="/assets/oldBuilding-title-zh.svg"
+            alt="oldBuilding-title-zh"
+          />
         </Box>
 
         <Box
@@ -104,7 +112,7 @@ const OldBuilding: React.FC = () => {
           lineHeight="98.8px"
           mb="60px"
           width="1514px">
-          只要係屬都更危老重建需求者等，均可向第一銀行各營業單位申請貸款。如是地主自建，比照自力更新最高提供全額融資協助；另若是建商與地主合建，則提供土融最高八五成、建融最高七成，優於一般土建融開發案之融資成數，也提供權變費用、拆遷、租金補助及相關保證金的週轉融資額度。
+          {t('oldBuilding.desc')}
         </Box>
       </FadeInHorizontal>
 
@@ -125,12 +133,13 @@ const OldBuilding: React.FC = () => {
       </FadeIn>
       <FadeIn delay={1} width="100%">
         {/* 3 column layout */}
-        <Grid container spacing={2} sx={{ width: '100%', p: 2 }}  >
+        <Grid container spacing="20px" sx={{ width: '100%', }} justifyContent="center">
           {CASE_DATA.map((caseData, index) => {
-            const { title } = caseData;
+            const { title, titleImageUrl } = caseData;
             return (<Grid item
               onClick={handleOpenModal(caseData)}
-              xs={12} sm={4} key={index} display="flex"
+              xs={12}
+              sm={4} key={index} display="flex"
               flexDirection="column"
               justifyContent="center"
               alignItems="center">
@@ -149,19 +158,17 @@ const OldBuilding: React.FC = () => {
                   }} />
 
               </Box>
-              <Paper
-                elevation={0}
-                sx={{
-                  bgcolor: 'darkgrey',
-                  width: "500px",
-                  height: '160px',
-                  padding: '20px'
-                }}
-              >
-                <Typography variant="body1" color="white">
-                  {title}
-                </Typography>
-              </Paper>
+              <Box
+                width="500px"
+                height="500px"
+                position="relative"
+                mb="80px">
+                <Image
+                  fill
+                  src={titleImageUrl}
+                  alt="titleImage"
+                />
+              </Box>
             </Grid>)
           })}
         </Grid>

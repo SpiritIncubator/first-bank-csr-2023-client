@@ -54,7 +54,6 @@ const PageLayout: React.FC = () => {
             src="/assets/greenConsumerLoan-title-zh.svg"
             alt="greenConsumerLoan"
           />
-
         </Box>
 
         <Box
