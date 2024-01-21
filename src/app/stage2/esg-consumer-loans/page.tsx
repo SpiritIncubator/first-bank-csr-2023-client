@@ -285,7 +285,7 @@ const MainPage = () => {
                           marginTop: '-60px'
                         }}>
                           {
-                            formatNumberWithCommas(124.09)
+                            formatNumberWithCommas(124)
                           }
                           <Box
                             component="span"
@@ -316,7 +316,7 @@ const MainPage = () => {
                           marginTop: '-60px'
                         }}>
                           {
-                            formatNumberWithCommas(1350.5)
+                            formatNumberWithCommas(1351)
                           }
                           <Box component="span"
                             fontSize="54px"
