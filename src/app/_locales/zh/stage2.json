@@ -1,8 +1,13 @@
 {
   "esgLoanDesc": "第一銀行推出綠色消費性貸款引導客戶採用低碳產品，並提供老舊建物重建融資貸款優惠，推動都市更新，促進環境永續發展。",
   "greenConsumerLoanDesc": "針對購置綠能或節能產品，例如綠建築、油電車、電動車、節能家電之客戶，提供優惠利率貸款。",
+  "oldBuildingDesc": "全名「都市危險及老舊建築物加速重建優惠貸款」，凡屬都更危老重建需求者等，均可提出申請。",
   "applyHouseHolds": "申辦戶數",
+  "benefitedHouseholds": "受益家戶數",
   "balance": "餘額",
   "houseHolds": "(戶)",
-  "billion": "(億元)"
+  "billion": "(億元)",
+  "independentUpdateType": "自力更新型",
+  "builderIntegratedType": "建商整合型",
+  "pieces": "件"
 }

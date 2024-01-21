@@ -4,6 +4,7 @@ import i18n from 'i18next';
 import resourcesToBackend from 'i18next-resources-to-backend';
 
 import common from './en/common.json';
+import stage2 from './en/stage2.json';
 
 export enum LANGUAGE_TYPE {
 	EN = 'en',
@@ -14,6 +15,7 @@ export const i18nInstance = i18n.createInstance();
 
 export type NamespaceFields = {
 	common: typeof common;
+	stage2: typeof stage2;
 };
 
 export const DEFAULT_LANG = LANGUAGE_TYPE.ZH;
@@ -22,7 +24,11 @@ const initialI18nOptions: InitOptions = {
 	lng: DEFAULT_LANG,
 	fallbackLng: LANGUAGE_TYPE.EN,
 	returnNull: false,
-	ns: ['common'],
+	ns: [
+		'common',
+		'stage2'
+	]
+	,
 	interpolation: {
 		escapeValue: false,
 		prefix: '{',

@@ -71,7 +71,7 @@ const MainPage = () => {
               <Image
                 fill
                 src="/assets/esg-consumer-loans-title.svg"
-                alt="colorPicker_select_color"
+                alt="esg-consumer-loans-title"
               />
             </Box>
 
@@ -187,45 +187,56 @@ const MainPage = () => {
               </Box>
             </Box>
           </FadeInHorizontal>
+
+          {/* // Second Section */}
           <FadeInHorizontal direction='ltr' delay={0.5} >
-            <Paper
-              elevation={0}
-              sx={{
-                width: 1200,
-                height: 220,
-                bgcolor: 'grey.300',
-                mb: "18px",
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                letterSpacing: "4.16px"
-              }}
-            >
-              {/* Placeholder for the first image */}
-            </Paper>
+            <Box display="flex" gap="40px" mb="64px">
+              <Box
+                display="flex"
+                width="697px" height="87" position="relative"
+              >
+                <Image
+                  fill
+                  src="/assets/oldBuilding-title-zh.svg"
+                  alt="oldBuilding"
+                />
+
+              </Box>
+              <Link href='/stage2/esg-consumer-loans/old-building'>
+                <Box
+                  display="flex"
+                  width="260px" height="87px" position="relative"
+                >
+                  <Image
+                    fill
+                    src="/assets/seeMore-zh.svg"
+                    alt="see more "
+                  />
+                </Box>
+              </Link>
+            </Box>
+
+
+
             <Box sx={{ width: '100%' }}
               fontSize="46px"
-              lineHeight="98.8px"
+              lineHeight="73.6px"
               letterSpacing="3.68px"
-              mb="85px"
-            >
-              支持能源技術服務產業(Energy Service Companies；簡稱 ESCO產 <br />業)發展，節電、節水、節油等工程及設備貸款
+              mb="70px"
+              maxWidth="1530px">
+              {t('oldBuildingDesc')}
             </Box>
 
             <Box mb="246px" gap="40px" display="flex" width="100%" justifyContent="space-between">
-              <Link href='/stage2/esg-consumer-loans/old-building'>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    height: 500,
-                    minWidth: 500,
-                    flex: 0,
-                    bgcolor: 'grey.300',
-                    mb: 4,
-                  }}
-                >
-                </Paper>
-              </Link>
+              <Box width="500px" height="500px" position="relative" >
+                <Link href='/stage2/esg-consumer-loans/old-building'>
+                  <Image
+                    fill
+                    src="/assets/oldBuilding-icon.svg"
+                    alt="oldBuilding-icon"
+                  />
+                </Link>
+              </Box>
               <Box flex="2">
                 <Box display="flex" flexDirection="column">
                   <Box ml="100px">
@@ -238,7 +249,7 @@ const MainPage = () => {
                         fontSize="54px"
                         fontWeight={500}
                       >
-                        受益家戶數 <Box component="span" fontSize="42px">(戶)</Box>
+                        {t('benefitedHouseholds')} <Box component="span" fontSize="42px">{t('houseHolds')}</Box>
                       </Typography>
                       <Box sx={{
                         color: '#B8C318',
@@ -263,7 +274,7 @@ const MainPage = () => {
                           fontSize="54px"
                           fontWeight={500}
                         >
-                          自力更新型  <Box component="span" fontSize="42px">(億元)</Box>
+                          {t('independentUpdateType')} <Box component="span" fontSize="42px">{t('billion')}</Box>
                         </Typography>
                         <Box sx={{
                           color: '#B8C318',
@@ -282,7 +293,7 @@ const MainPage = () => {
                             fontSize="54px"
                             fontWeight="700"
                             letterSpacing='4.32px'
-                            color="#594A39"> /38件</Box>
+                            color="#594A39"> /38{t('pieces')}</Box>
                         </Box>
                       </Box>
                       <Box ml="60px">
@@ -294,7 +305,7 @@ const MainPage = () => {
                           fontSize="54px"
                           fontWeight={500}
                         >
-                          建商整合型  <Box component="span" fontSize="42px">(億元)</Box>
+                          {t('builderIntegratedType')}  <Box component="span" fontSize="42px">{t('billion')}</Box>
                         </Typography>
                         <Box sx={{
                           color: '#B8C318',
@@ -312,7 +323,7 @@ const MainPage = () => {
                             ml="20px"
                             fontWeight="700"
                             letterSpacing='4.32px'
-                            color="#594A39"> /165件</Box>
+                            color="#594A39"> /165{t('pieces')}</Box>
                         </Box>
                       </Box>
                     </Box>
@@ -322,15 +333,26 @@ const MainPage = () => {
             </Box>
           </FadeInHorizontal>
           {/* // lion */}
-          <FadeInVertical direction='up' delay={0.9} position="fixed" bottom="0" left="250px" height="680px" width="100%">
-            <Box >
-              <Image
-                fill
-                src="/assets/esg_lion.svg"
-                alt="lion"
-              />
-            </Box>
-          </FadeInVertical>
+          <Box position="fixed" bottom="0" right="250px" width="1000px">
+            <FadeInVertical direction='up' delay={0.9}  >
+              <Box width="720px" height="395px" left="-400px" bottom="343px" position="absolute">
+                <Image
+                  fill
+                  src="/assets/esg-consumer-loans-lionMessage.svg"
+                  alt="lion"
+                />
+              </Box>
+
+              <Box width="1000px" height="680px" position="absolute" left="0" bottom="0">
+                <Image
+                  fill
+                  src="/assets/esg_lion.svg"
+                  alt="lion"
+                />
+              </Box>
+
+            </FadeInVertical>
+          </Box>
           <ImageButton
             onClick={() => location.href = '/stage2'}
             src={BackRightButton}
