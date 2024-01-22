@@ -2,14 +2,11 @@ import { initReactI18next } from 'react-i18next';
 import type { InitOptions } from 'i18next';
 import i18n from 'i18next';
 import resourcesToBackend from 'i18next-resources-to-backend';
-
+import { LANGUAGE_TYPE } from '@/types';
 import common from './en/common.json';
 import stage2 from './en/stage2.json';
 
-export enum LANGUAGE_TYPE {
-	EN = 'en',
-	ZH = 'zh',
-}
+
 
 export const i18nInstance = i18n.createInstance();
 

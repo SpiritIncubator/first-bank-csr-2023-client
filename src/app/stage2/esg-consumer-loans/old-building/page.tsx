@@ -18,26 +18,65 @@ import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import ZoomBounce from '@/app/_components/Transitions/ZoomBounce';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
+import useFirstBankTranslation from '@/app/_locales/hooks';
+import { LANGUAGE_TYPE } from '@/types';
 
-const CASE_DATA = [
+enum CASE_NAME {
+  CASE1 = 'CASE1',
+  CASE2 = 'CASE2',
+  CASE3 = 'CASE3'
+}
+
+
+const CASE_DATA_ZH = [
   {
-    title: 'Title 1',
+    name: CASE_NAME.CASE1,
     imageUrl: '',
     titleImageUrl: '/assets/oldBuilding-feature1-title-zh.svg',
-    "description": `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`
+    description: `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`,
+    detailTitleImageUrl: '/assets/oldBuilding-feature1-inner-title-zh.svg',
+    detailTitleWidth: 874,
+    detailTitleHeight: 205,
+    detailDescription: `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。
+
+    第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`
   },
   {
-    title: 'Title 2',
+    name: CASE_NAME.CASE2,
     imageUrl: '',
     titleImageUrl: '/assets/oldBuilding-feature2-title-zh.svg',
-    "description": `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`
+    "description": `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`,
+    detailTitleWidth: 1258,
+    detailTitleHeight: 205,
+    detailTitleImageUrl: '/assets/oldBuilding-feature2-inner-title-zh.svg',
+    detailDescription: `921大地震受災戶的「埔里中華商場」，在經過第一銀行都更團隊詳細說明都市更新整體融資架構及內容後，終於取得更新會及住戶認同，接受全盤風險考量的更新規劃。第一銀行繼「尚華仁愛大樓都市更新自建融資案」後，再次以提供100％的全額融資方式協助「埔里鎮中華商場都市更新自建」，重現埔里中華商場嶄新風貌。`
   },
   {
-    title: 'Title 3',
+    name: CASE_NAME.CASE3,
     imageUrl: '',
     titleImageUrl: '/assets/oldBuilding-feature3-title-zh.svg',
-    "description": `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`
+    "description": `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`,
+    detailTitleWidth: 1085,
+    detailTitleHeight: 332,
+    detailTitleImageUrl: '/assets/oldBuilding-feature3-inner-title-zh.svg',
+    detailDescription: `水源路四、五期整宅為當初臺北市政府為安置公共工程拆遷戶而興建的整建住宅，其屋齡都已超過50年，住戶卻都還住在裡面。
+
+    更新前每戶不足10坪的居住環境、無停車位，生活空間狹小窳陋，更有漏水、治安、牆壁損毀及消防安全等嚴重問題而自願更新重建。該案原地主超過170人，人數眾多、土地產權複雜，更增添整合與融資難度。歷經近 12 個寒暑，第一銀行從整合、規劃、都更核定、融資核定到完工交屋，終於在2018年讓水源路四、五期整宅都更案原地主順利搬回新家。`
   }
+]
+
+
+const CASE_DATA_EN = [
+  {
+    imageUrl: '',
+    name: CASE_NAME.CASE1,
+    titleImageUrl: '/assets/oldBuilding-feature1-title-zh.svg',
+    "description": `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`,
+    detailTitleWidth: 874,
+    detailTitleHeight: 205,
+    "detailTitleImageUrl": "",
+    "detailDescription": "",
+  },
 ]
 
 
@@ -57,8 +96,18 @@ const OldBuilding: React.FC = () => {
   const [selectedCase, setSelectedCase] = useState<any>(null);
   const router = useRouter();
   const { t } = useTranslation('stage2');
+  const { lang } = useFirstBankTranslation()
+  console.log('lang :', lang);
 
-  const handleOpenModal = (caseData: typeof CASE_DATA[0]) => () => {
+
+  const caseDataMapping = {
+    [LANGUAGE_TYPE.ZH]: CASE_DATA_ZH,
+    [LANGUAGE_TYPE.EN]: CASE_DATA_EN
+  }
+
+  const mappedCaseData = caseDataMapping[lang]
+
+  const handleOpenModal = (caseData: typeof CASE_DATA_ZH[0]) => () => {
     console.log('caseData :', caseData);
     setSelectedCase(caseData);
     setOpenModal(true);
@@ -134,8 +183,8 @@ const OldBuilding: React.FC = () => {
       <FadeIn delay={1} width="100%">
         {/* 3 column layout */}
         <Grid container spacing="20px" sx={{ width: '100%', }} justifyContent="center">
-          {CASE_DATA.map((caseData, index) => {
-            const { title, titleImageUrl } = caseData;
+          {mappedCaseData.map((caseData, index) => {
+            const { titleImageUrl } = caseData;
             return (<Grid item
               onClick={handleOpenModal(caseData)}
               xs={12}
@@ -208,20 +257,21 @@ const OldBuilding: React.FC = () => {
                   width: '100%',
                   height: '900px',
                   bgcolor: 'grey.300',
-                  mb: '80px',
+                  mb: '100px',
                 }}
               >
                 {/* First Image*/}
               </Box>
-              <Typography
-                width="886px"
-                height="256px"
-                mb="30px"
-                id="modal-modal-title" variant="h6" component="h2"
-                bgcolor="grey.300"
+              <Box
+                mb="60px"
               >
-                {selectedCase?.title}
-              </Typography>
+                <Image
+                  src={selectedCase?.detailTitleImageUrl}
+                  alt="titleImageUrl"
+                  width={selectedCase?.detailTitleWidth}
+                  height={selectedCase?.detailTitleHeight}
+                />
+              </Box>
               <Typography
                 id="modal-modal-description" sx={{
                   color: 'var(--brown4, #594A39)',
@@ -231,7 +281,7 @@ const OldBuilding: React.FC = () => {
                   lineHeight: '190%',
                   letterSpacing: '4.16px'
                 }}>
-                {selectedCase?.description}
+                {selectedCase?.detailDescription}
               </Typography>
             </Box>
           </Box>

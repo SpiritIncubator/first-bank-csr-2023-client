@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import usePrevious from '@/app/hooks/usePrevious';
-
-import { DEFAULT_LANG, i18nInstance, LANGUAGE_TYPE } from '../i18n';
+import { LANGUAGE_TYPE } from '@/types';
+import { DEFAULT_LANG, i18nInstance } from '../i18n';
 
 const useFirstBankTranslation = () => {
 	const [currentLang, setCurrentLang] = useState(DEFAULT_LANG);
@@ -19,6 +19,13 @@ const useFirstBankTranslation = () => {
 			void i18nInstance.changeLanguage(currentLang);
 		}
 	}, [currentLang, prevLang]);
+
+	useEffect(() => {
+		const lang = localStorage.getItem('lang');
+		if (lang) {
+			setLang(lang as LANGUAGE_TYPE);
+		}
+	}, [setLang]);
 
 	return {
 		setLang,

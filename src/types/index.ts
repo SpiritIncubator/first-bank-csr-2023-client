@@ -23,3 +23,8 @@ declare module '@mui/material/styles' {
     ivory?: PaletteOptions['primary'];
   }
 }
+
+export enum LANGUAGE_TYPE {
+  EN = 'en',
+  ZH = 'zh',
+}
