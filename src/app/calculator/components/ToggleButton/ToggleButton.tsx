@@ -11,6 +11,7 @@ import useFirstBankTranslation from '@/app/_locales/hooks';
 const ToggleButton = () => {
 	const { setLang, lang } = useFirstBankTranslation();
 
+
 	function renderToggleButton(btnParams: LangBtnType) {
 		return <StyledTypography key={btnParams.key} isActive={btnParams.key === lang} onClick={() => setLang(btnParams.key)}>{ btnParams.text}</StyledTypography>
 	}

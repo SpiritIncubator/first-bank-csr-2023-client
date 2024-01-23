@@ -21,9 +21,9 @@ const useFirstBankTranslation = () => {
 	}, [currentLang, prevLang]);
 
 	useEffect(() => {
-		const lang = localStorage.getItem('lang');
+		const lang = localStorage.getItem('lang') as LANGUAGE_TYPE;
 		if (lang) {
-			setLang(lang as LANGUAGE_TYPE);
+			setLang(lang);
 		}
 	}, [setLang]);
 

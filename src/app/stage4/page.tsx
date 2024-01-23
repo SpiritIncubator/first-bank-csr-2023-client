@@ -126,7 +126,7 @@ export default function Stage4() {
     </Box>
     {/* //@todo: fix i18nButton size problem */}
     <Box position="fixed" right="200px" top="180px" >
-      <I18nButton width={270} height={140} />
+      <I18nButton size='large' />
     </Box>
   </Box >
 }

@@ -1,7 +1,7 @@
 /** @format */
 
 import type { LangBtnType } from './types';
-import { LANGUAGE_TYPE } from '@/app/_locales/i18n';
+import { LANGUAGE_TYPE } from '@/types';
 
 export const languageButtons: LangBtnType[] = [
 	{
