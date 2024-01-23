@@ -1,10 +1,14 @@
 'use client';
 
+import { useEffect } from 'react';
 import './globals.css'
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
+import { getStorage, setStorage } from '@/utils/localStorage';
+import isServer from '@/utils/isServer';
+import { LANGUAGE_TYPE } from '@/types';
 
-import { i18nInstance } from '@/app/_locales/i18n';
+import { DEFAULT_LANG, i18nInstance } from '@/app/_locales/i18n';
 
 import { Inter, Caveat, Noto_Sans_TC } from 'next/font/google'
 const notoSansTC = Noto_Sans_TC({
@@ -24,7 +28,21 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
-}) {
+  }) {
+  const isServerSide = isServer();
+
+  useEffect(() => {
+    if (!isServerSide) {
+      let currentLang = getStorage<LANGUAGE_TYPE>('lang');
+
+      if (!currentLang) {
+        currentLang = DEFAULT_LANG
+      }
+      setStorage('lang', currentLang);
+      i18nInstance.changeLanguage(currentLang)
+    }
+  }, [isServerSide]);
+  
   return (
     <html lang="en">
       <body className={notoSansTC.className} >

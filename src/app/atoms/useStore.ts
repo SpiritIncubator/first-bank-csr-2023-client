@@ -1,18 +1,28 @@
-import { create } from 'zustand';
-import { LANGUAGE_TYPE } from '@/app/_locales/i18n';
+import { create, StateCreator } from 'zustand';
+import {devtools, persist, createJSONStorage} from 'zustand/middleware';
+import { LANGUAGE_TYPE } from '@/types';
 
-interface IState {
-  language: LANGUAGE_TYPE;
+interface QuestionSlice {
 	questionAnswer: any[];
 	setQuestionAnswer: (questionAnswer: any) => void;
-	setLang: (lang: LANGUAGE_TYPE) => void;
 }
 
-const useStore = create<IState>()(set => ({
-  questionAnswer: [],
-  language: LANGUAGE_TYPE.EN,
+type SharedSlice = QuestionSlice;
+
+const createQuestionSlice: StateCreator<QuestionSlice, [], [], QuestionSlice> = (set) => ({
+	questionAnswer: [],
 	setQuestionAnswer: (questionAnswer: any) => set({ questionAnswer }),
-	setLang: (lang: LANGUAGE_TYPE) => set({ language: lang }),
-}));
+});
+
+const useStore = create<SharedSlice>()(
+	devtools(
+		persist(
+			(...context) => ({
+				...createQuestionSlice(...context),
+			}),
+			{ name: 'global', storage: createJSONStorage(() => localStorage) },
+		),
+	),
+);
 
 export default useStore;

@@ -1,6 +1,6 @@
 /** @format */
 
-import { LANGUAGE_TYPE } from '@/app/_locales/i18n';
+import { LANGUAGE_TYPE } from '@/types';
 
 export type LangBtnType = {
 	key: LANGUAGE_TYPE;

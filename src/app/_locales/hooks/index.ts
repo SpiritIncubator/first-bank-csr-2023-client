@@ -1,16 +1,35 @@
+'use client'
+
 import { useCallback, useEffect, useState } from 'react';
 
 import usePrevious from '@/app/hooks/usePrevious';
 import { LANGUAGE_TYPE } from '@/types';
-import { DEFAULT_LANG, i18nInstance } from '../i18n';
+import { getStorage, setStorage } from '@/utils/localStorage';
+import { i18nInstance } from '../i18n';
+
+function getBrowserLanguage() {
+	const browserLanguage = navigator.language.split('-')[0];
+	return browserLanguage;
+}
+
+function getLanguage() {	
+	const lang = getStorage<LANGUAGE_TYPE>('lang');
+	
+	if (lang) {
+		return lang
+	}
+
+	return getBrowserLanguage();
+}
 
 const useFirstBankTranslation = () => {
-	const [currentLang, setCurrentLang] = useState(DEFAULT_LANG);
+	const [currentLang, setCurrentLang] = useState(() => getLanguage());
 	const prevLang = usePrevious(currentLang);
 
-	const setLang = useCallback((lang: LANGUAGE_TYPE) => {
-		localStorage.setItem('lang', lang);
-		setCurrentLang(lang);
+	const setLang = useCallback((language: LANGUAGE_TYPE) => {
+		setStorage('lang', language);
+
+		setCurrentLang(language);
 	}, []);
 
 	useEffect(() => {
@@ -19,13 +38,6 @@ const useFirstBankTranslation = () => {
 			void i18nInstance.changeLanguage(currentLang);
 		}
 	}, [currentLang, prevLang]);
-
-	useEffect(() => {
-		const lang = localStorage.getItem('lang') as LANGUAGE_TYPE;
-		if (lang) {
-			setLang(lang);
-		}
-	}, [setLang]);
 
 	return {
 		setLang,
