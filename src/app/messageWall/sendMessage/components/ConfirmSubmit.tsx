@@ -47,7 +47,20 @@ export default function ConfirmSubmit({
           position: 'relative',
           wordBreak: 'break-word',
           color: colors.brown4,
-          boxShadow: '0px 10px 15px 0px rgba(89, 74, 57, 0.08)'
+          boxShadow: '0px 10px 15px 0px rgba(89, 74, 57, 0.08)',
+
+          '@supports not (aspect-ratio: 1 / 1)': {
+            '&::before': {
+              float: 'left',
+              paddingTop: '100%',
+              content: '""',
+            },
+            '&::after': {
+              display: 'block',
+              content: '""',
+              clear: 'both',
+            }
+          }
         }}>
           <Typography variant="h6" component="div" sx={{
             fontWeight: '700',
