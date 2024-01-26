@@ -49,7 +49,7 @@ const Page = () => {
       <FadeIn display="flex">
         <Image src={CardIntroBg} alt="card-intro" />
         <Box pl={16.125}>
-          <I18nButton width={270} height={140} buttonOptions={{ width: 100, height: 100, fontSize: 48, fontWeight: 900, lineHeight: 100 }} />
+          <I18nButton size="large" />
         </Box>
       </FadeIn>
       <Box mt={25}>

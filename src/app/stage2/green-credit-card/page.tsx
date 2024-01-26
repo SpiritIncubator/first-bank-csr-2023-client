@@ -15,8 +15,6 @@ import BackLeftActiveButton from '@/assets/back_left_active.svg';
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import ReleaseStatistic from './_components/ReleaseStatistics/ReleaseStatistic';
 import DemoCard from './_components/DemoCard/DemoCard';
-import { creditCardInfos } from './spec';
-
 
 const mockData = new Array(5).fill(0);
 

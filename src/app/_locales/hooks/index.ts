@@ -1,29 +1,34 @@
-'use client'
-
 import { useCallback, useEffect, useState } from 'react';
 
+import isServer from '@/utils/isServer';
 import usePrevious from '@/app/hooks/usePrevious';
 import { LANGUAGE_TYPE } from '@/types';
 import { getStorage, setStorage } from '@/utils/localStorage';
 import { i18nInstance } from '../i18n';
 
 function getBrowserLanguage() {
-	const browserLanguage = navigator.language.split('-')[0];
+	const browserLanguage = navigator.language.split('-')[0] as LANGUAGE_TYPE;
 	return browserLanguage;
 }
 
-function getLanguage() {	
+function getLanguage(): LANGUAGE_TYPE {
 	const lang = getStorage<LANGUAGE_TYPE>('lang');
-	
+
 	if (lang) {
-		return lang
+		return lang;
 	}
 
 	return getBrowserLanguage();
 }
 
 const useFirstBankTranslation = () => {
-	const [currentLang, setCurrentLang] = useState(() => getLanguage());
+	const [currentLang, setCurrentLang] = useState<LANGUAGE_TYPE>(() => {
+		if (isServer()) {
+			return LANGUAGE_TYPE.ZH;
+		}
+
+		return getLanguage();
+	});
 	const prevLang = usePrevious(currentLang);
 
 	const setLang = useCallback((language: LANGUAGE_TYPE) => {

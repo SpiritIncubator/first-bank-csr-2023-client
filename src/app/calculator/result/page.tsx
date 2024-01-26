@@ -22,6 +22,7 @@ import FullStarDescriptionIcon from '@/app/_assets/images/fullStarDescription.sv
 import ResultFunnyIcon from '@/app/_assets/images/resultFunny.svg';
 import DiviDer from '@/app/_assets/images/divider.svg'
 import Loading from '@/app/_assets/images/questionLoading.svg'
+import topic from '../assets/carbon.svg'
 import { answerList } from './spec';
 import { caveat } from '@/app/layout';
 
@@ -36,6 +37,7 @@ const ResultPage = () => {
     return acc + cur.score;
   }, 0);
   const hasAnsweredAllQuestions = questionAnswers.length === answerList.length;
+
   function renderAnswerList() {
     return answerList.map((answer, index) => {
       const questionNumber = index + 1;
@@ -86,10 +88,10 @@ const ResultPage = () => {
     <Box pt={4} px={3}>
       <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">
         <Typography fontSize={28} color="#7DBD36" fontWeight={900} className={caveat.className}>
-          {t('title')}
+          <Image src={topic} alt="topic" />
         </Typography>
         <Box display="flex" width="100%" height={90} bgcolor="#958B73" borderRadius={5} border="5px solid #F2cD90" alignItems="center" pl={2} mt={1}>
-          <Box flex={1}>
+          <Box mr={1} mt={1} ml={-1}>
             <Image src={AirHintIcon} alt="AirHintIcon" width={75} height={50} />
           </Box>
           <Box width={150} fontWeight={900} textAlign="right">

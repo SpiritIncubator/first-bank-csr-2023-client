@@ -12,7 +12,6 @@ import I18nButton from '@/app/_components/I18nButton/I18nButton';
 import CalculatorTitle from '@/app/_assets/images/calculator-entry.svg';
 
 import animationData from './assets/animation/bird_1-1_front.json';
-import ToggleButton from './components/ToggleButton/ToggleButton';
 import FadeIn from '../_components/Transitions/FadeIn';
 
 const MainPage = () => {
@@ -48,7 +47,7 @@ const MainPage = () => {
 					</Box>
 					<Box mb={4.5}>
 						<FadeIn delay={1}>
-							<I18nButton />
+							<I18nButton size="small" />
 						</FadeIn>
 					</Box>
 				</Box>

@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import { TypographyProps } from '@mui/material/Typography';
 
+import useMount from '@/app/hooks/useMount';
 import { StyledTypography } from './I18nButton.style';
 import type { LangBtnType } from './types';
 import { languageButtons } from './spec'
@@ -55,8 +56,9 @@ function getButtonOptions(size: 'small' | 'large'): ButtonOptionType {
 const ToggleButton = ({ size = 'small', extraStyle }: ToggleButtonProps) => {
   const { setLang, lang } = useFirstBankTranslation();
   const [buttonConfig, setButtonConfig] = useState<ButtonOptionType>(() => getButtonOptions(size));
+  const {isMounted} = useMount();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setButtonConfig(config => ({
       ...config,
       ...extraStyle
@@ -64,9 +66,10 @@ const ToggleButton = ({ size = 'small', extraStyle }: ToggleButtonProps) => {
   }, [extraStyle, setButtonConfig]);
 
   function renderToggleButton(btnParams: LangBtnType) {
+
     return <StyledTypography
       key={btnParams.key}
-      isActive={btnParams.key === lang}
+      $isActive={btnParams.key === lang}
       onClick={() => setLang(btnParams.key)}
       {...buttonConfig.buttonOption}
     >
@@ -83,7 +86,7 @@ const ToggleButton = ({ size = 'small', extraStyle }: ToggleButtonProps) => {
       alignItems="center"
       {...buttonConfig.groupOption}
     >
-      {languageButtons.map(renderToggleButton)}
+      {isMounted && languageButtons.map(renderToggleButton)}
     </Box>
   );
 };

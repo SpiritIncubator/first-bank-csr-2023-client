@@ -20,10 +20,10 @@ const Rating = ({rate}: RattingProp) => {
 
   function renderStarts(_: number, index: number) {
     if (index < rate) {
-      return <Image src={Star} alt="star" />
+      return <Image src={Star} alt="star" key={`star-${index}`} />
     }
 
-    return <Image src={EmptyStar} alt="nonStar" />
+    return <Image src={EmptyStar} alt="nonStar" key={`star-${index}`} />
   }
 
   return (
