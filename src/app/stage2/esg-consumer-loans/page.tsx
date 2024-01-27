@@ -193,7 +193,7 @@ const MainPage = () => {
             <Box display="flex" gap="40px" mb="64px">
               <Box
                 display="flex"
-                width="697px" height="87" position="relative"
+                width="1006px" height="87" position="relative"
               >
                 <Image
                   fill

@@ -67,19 +67,21 @@ const PageLayout: React.FC = () => {
 
       </FadeInHorizontal>
       <Box sx={{
-        width: '1700px',
-        height: '700px',
-        mb: '60px',
+        width: '100%',
+        mb: '100px',
       }}>
-        <FadeIn delay={0.5}>
+        <FadeIn delay={0.5} width="100%"  >
           <Box
-            sx={{
-              width: '1700px',
-              height: '700px',
-              bgcolor: 'grey.300',
-            }}
+            display="flex"
+            width='100%'
+            height='900px'
+            position="relative"
           >
-            {/* Third image */}
+            <Image
+              fill
+              src="/assets/greenConsumerLoan-chart.svg"
+              alt="greenConsumerLoan-chart"
+            />
           </Box>
         </FadeIn>
       </Box>

@@ -31,7 +31,7 @@ enum CASE_NAME {
 const CASE_DATA_ZH = [
   {
     name: CASE_NAME.CASE1,
-    imageUrl: '',
+    imageUrl: '/assets/oldBuilding-feature1-thumbnail.png',
     titleImageUrl: '/assets/oldBuilding-feature1-title-zh.svg',
     description: `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`,
     detailTitleImageUrl: '/assets/oldBuilding-feature1-inner-title-zh.svg',
@@ -43,7 +43,7 @@ const CASE_DATA_ZH = [
   },
   {
     name: CASE_NAME.CASE2,
-    imageUrl: '',
+    imageUrl: '/assets/oldBuilding-feature2-thumbnail.png',
     titleImageUrl: '/assets/oldBuilding-feature2-title-zh.svg',
     "description": `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`,
     detailTitleWidth: 1258,
@@ -53,7 +53,7 @@ const CASE_DATA_ZH = [
   },
   {
     name: CASE_NAME.CASE3,
-    imageUrl: '',
+    imageUrl: '/assets/oldBuilding-feature3-thumbnail.png',
     titleImageUrl: '/assets/oldBuilding-feature3-title-zh.svg',
     "description": `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`,
     detailTitleWidth: 1085,
@@ -170,21 +170,25 @@ const OldBuilding: React.FC = () => {
       <FadeIn delay={0.6}>
 
         <Box
-          sx={{
-            width: '1700px',
-            height: '700px',
-            bgcolor: 'grey.300',
-            mb: '120px',
-          }}
+          display="flex"
+          mb="120px"
+          width='1700px'
+          height='900px'
+          position="relative"
         >
-          {/* Third image */}
+          <Image
+            fill
+            src="/assets/oldBuilding-chart.svg"
+            alt="oldBuilding-chart"
+          />
         </Box>
       </FadeIn>
+
       <FadeIn delay={1} width="100%">
         {/* 3 column layout */}
         <Grid container spacing="20px" sx={{ width: '100%', }} justifyContent="center">
           {mappedCaseData.map((caseData, index) => {
-            const { titleImageUrl } = caseData;
+            const { imageUrl, titleImageUrl } = caseData;
             return (<Grid item
               onClick={handleOpenModal(caseData)}
               xs={12}
@@ -195,21 +199,20 @@ const OldBuilding: React.FC = () => {
               <Box
                 display="flex"
                 justifyContent="center"
-                width="100%"
+                width="440px"
+                height="375px"
+                position="relative"
+                mb="45px"
               >
-                <Paper
-                  elevation={0}
-                  sx={{
-                    bgcolor: 'lightgrey',
-                    height: '420px',
-                    width: '420px',
-                    mb: '40px',
-                  }} />
-
+                <Image
+                  fill
+                  src={imageUrl}
+                  alt="imageUrl"
+                />
               </Box>
               <Box
                 width="500px"
-                height="500px"
+                height="180px"
                 position="relative"
                 mb="80px">
                 <Image
