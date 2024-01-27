@@ -25,15 +25,16 @@ export default function ConfirmSubmit({
   return (
     <Box maxWidth="600px" sx={{
       margin: '0 auto',
+      paddingTop: "80px",
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      height: '100vh',
-
+      overflow: "scroll",
       p: 2
     }}>
-      <ZoomBounce trigger={readyToSubmit} width='100%'>
+
+      <ZoomBounce trigger={readyToSubmit} width='100%' display="flex" justifyContent="center">
         <Paper elevation={3} sx={{
           bgcolor: noteColor,
           padding: '24px 32px',
@@ -160,6 +161,6 @@ export default function ConfirmSubmit({
           />
         </Box>
       </FadeIn>
-    </Box >
+    </Box>
   )
 }

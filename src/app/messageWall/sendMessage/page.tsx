@@ -76,15 +76,13 @@ export default function SendMessage() {
       <>
         {readyToSubmit && <Box sx={{
           position: 'fixed',
-          top: 0,
           left: 0,
+          top: "0px",
           bgcolor: colors.ivory,
           width: '100%',
           height: '100%',
           zIndex: 1,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          overflow: 'scroll'
         }}>
           <ConfirmSubmit
             noteColor={noteColor}
