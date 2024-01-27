@@ -35,6 +35,7 @@ const CASE_DATA_ZH = [
     titleImageUrl: '/assets/oldBuilding-feature1-title-zh.svg',
     description: `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`,
     detailTitleImageUrl: '/assets/oldBuilding-feature1-inner-title-zh.svg',
+    detailImageUrl: '/assets/oldBuilding-feature1-inner-image.png',
     detailTitleWidth: 874,
     detailTitleHeight: 205,
     detailDescription: `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。
@@ -49,6 +50,7 @@ const CASE_DATA_ZH = [
     detailTitleWidth: 1258,
     detailTitleHeight: 205,
     detailTitleImageUrl: '/assets/oldBuilding-feature2-inner-title-zh.svg',
+    detailImageUrl: '/assets/oldBuilding-feature2-inner-image.png',
     detailDescription: `921大地震受災戶的「埔里中華商場」，在經過第一銀行都更團隊詳細說明都市更新整體融資架構及內容後，終於取得更新會及住戶認同，接受全盤風險考量的更新規劃。第一銀行繼「尚華仁愛大樓都市更新自建融資案」後，再次以提供100％的全額融資方式協助「埔里鎮中華商場都市更新自建」，重現埔里中華商場嶄新風貌。`
   },
   {
@@ -59,6 +61,7 @@ const CASE_DATA_ZH = [
     detailTitleWidth: 1085,
     detailTitleHeight: 332,
     detailTitleImageUrl: '/assets/oldBuilding-feature3-inner-title-zh.svg',
+    detailImageUrl: '/assets/oldBuilding-feature3-inner-image.png',
     detailDescription: `水源路四、五期整宅為當初臺北市政府為安置公共工程拆遷戶而興建的整建住宅，其屋齡都已超過50年，住戶卻都還住在裡面。
 
     更新前每戶不足10坪的居住環境、無停車位，生活空間狹小窳陋，更有漏水、治安、牆壁損毀及消防安全等嚴重問題而自願更新重建。該案原地主超過170人，人數眾多、土地產權複雜，更增添整合與融資難度。歷經近 12 個寒暑，第一銀行從整合、規劃、都更核定、融資核定到完工交屋，終於在2018年讓水源路四、五期整宅都更案原地主順利搬回新家。`
@@ -257,13 +260,17 @@ const OldBuilding: React.FC = () => {
             <Box sx={modalStyle}>
               <Box
                 sx={{
-                  width: '100%',
-                  height: '900px',
-                  bgcolor: 'grey.300',
+                  width: "1300px",
+                  height: "916px",
                   mb: '100px',
+                  position: 'relative'
                 }}
               >
-                {/* First Image*/}
+                <Image
+                  fill
+                  src={selectedCase?.detailImageUrl}
+                  alt="detailImageUrl"
+                />
               </Box>
               <Box
                 mb="60px"
@@ -282,7 +289,9 @@ const OldBuilding: React.FC = () => {
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: '190%',
-                  letterSpacing: '4.16px'
+                  letterSpacing: '4.16px',
+                  whiteSpace: 'pre-line'
+
                 }}>
                 {selectedCase?.detailDescription}
               </Typography>
