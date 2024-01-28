@@ -3,42 +3,34 @@
 export const answerList: Array<any> = [
 	{
 		imgSrc: '',
-		content:
-			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。自藝術之美延伸生態、歷文化相關創作、展演、娛樂者皆類。',
+		content: 'question.one.answer',
 	},
 	{
 		imgSrc: '',
-		content:
-			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。自藝術之美延伸生態、歷文化相關創作、展演、娛樂者皆類。',
+		content: 'question.two.answer',
 	},
 	{
 		imgSrc: '',
-		content:
-			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。自藝術之美延伸生態、歷文化相關創作、展演、娛樂者皆類。',
+		content: 'question.three.answer',
 	},
 	{
 		imgSrc: '',
-		content:
-			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。自藝術之美延伸生態、歷文化相關創作、展演、娛樂者皆類。',
+		content: 'question.four.answer',
 	},
 	{
 		imgSrc: '',
-		content:
-			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。自藝術之美延伸生態、歷文化相關創作、展演、娛樂者皆類。',
+		content: 'question.five.answer',
 	},
 	{
 		imgSrc: '',
-		content:
-			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。自藝術之美延伸生態、歷文化相關創作、展演、娛樂者皆類。',
+		content: 'question.six.answer',
 	},
 	{
 		imgSrc: '',
-		content:
-			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。自藝術之美延伸生態、歷文化相關創作、展演、娛樂者皆類。',
+		content: 'question.seven.answer',
 	},
 	{
 		imgSrc: '',
-		content:
-			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。自藝術之美延伸生態、歷文化相關創作、展演、娛樂者皆類。',
+		content: 'question.eight.answer',
 	},
 ];

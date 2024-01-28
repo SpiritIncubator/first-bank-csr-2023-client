@@ -28,6 +28,14 @@ import { caveat } from '@/app/layout';
 
 const LOADING_DELAY_TIME = 2000;
 
+
+function getStar(score: number) {
+  if (score > 10) return 3;
+  if (score > 5) return 2;
+
+  return 1;
+}
+
 const ResultPage = () => {
   const [delayLoading, setDelayLoading] = useState(true);
   const questionAnswers = useStore(state => state.questionAnswer);
@@ -36,6 +44,7 @@ const ResultPage = () => {
   const score = questionAnswers.reduce((acc, cur) => {
     return acc + cur.score;
   }, 0);
+  const numberOfStar = getStar(score);
   const hasAnsweredAllQuestions = questionAnswers.length === answerList.length;
 
   function renderAnswerList() {
@@ -56,7 +65,7 @@ const ResultPage = () => {
               </Box>
               <Box>
                 <Typography lineHeight={2} letterSpacing={1.2} color="#594A39">
-                  {answer.content}
+                  {t(answer.content)}
                 </Typography>
               </Box>
             </Box>
@@ -137,7 +146,7 @@ const ResultPage = () => {
             <Image src={FullStarDescriptionIcon} alt="description" />
           </Box>
           <Box mt={1.2} mb={2.5}>
-            <Rating rate={2} />
+            <Rating rate={numberOfStar} />
           </Box>
         </FadeIn>
         <FadeIn delay={1.5} >

@@ -10,6 +10,8 @@ import FadeIn from '@/app/_components/Transitions/FadeIn';
 import useStore from '@/app/atoms/useStore';
 import PrevIcon from '@/app/_assets/images/prevBtn.svg';
 import { caveat } from '@/app/layout';
+import {useTranslation} from '@/app/_locales/hooks/useTranslation'
+
 import { questionList } from './spec';
 import { StyledQuestionButton } from './style';
 
@@ -19,6 +21,7 @@ const headLine = ['A', 'B', 'C'];
 const QuestionsPage = () => {
   const router = useRouter();
   const { setQuestionAnswer } = useStore();
+  const {t} = useTranslation('common');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectAnswer] = useState<any[]>([]);
   const targetQuestion = questionList[currentQuestionIndex];
@@ -91,7 +94,7 @@ const QuestionsPage = () => {
           <Box width={160} height={160} bgcolor="#E9E3D8" mt={2.5}>
           </Box>
           <Box mt={4} lineHeight={2} fontWeight={700} fontSize={20} letterSpacing={1} color="#594A39">
-            {targetQuestion.description}
+            {t(targetQuestion.description)}
           </Box>
         </FadeIn>
       </Box>
@@ -102,7 +105,7 @@ const QuestionsPage = () => {
               <StyledQuestionButton onClick={() => updateSelectQuestion(index)}>
                 <Box width={36} height={36} bgcolor="#BBC318" color="#fff" borderRadius={100} textAlign="center" lineHeight={2.25} mr={1.75}>{headLine[index]}</Box>
                 <Box width={260}>
-                  <Typography lineHeight={2} fontSize={16} color="#594A39">{option.content}</Typography>
+                  <Typography lineHeight={2} fontSize={16} color="#594A39">{t(option.content)}</Typography>
                 </Box>
               </StyledQuestionButton>
             </FadeInHorizontal>

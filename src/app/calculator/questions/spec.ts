@@ -12,153 +12,145 @@ type LevelType = {
 export const questionList: Array<LevelType> = [
 	{
 		imgSrc: '',
-		description:
-			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
+		description: 'question.one.description',
 		options: [
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 10,
+				content: 'question.one.option.one',
+				score: 2,
 			},
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 20,
+				content: 'question.one.option.two',
+				score: 1,
 			},
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 30,
+				content: 'question.one.option.three',
+				score: 0,
 			},
 		],
 	},
 	{
 		imgSrc: '',
-		description:
-			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
+		description: 'question.two.description',
 		options: [
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 30,
+				content: 'question.two.option.one',
+				score: 0,
 			},
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 20,
+				content: 'question.two.option.two',
+				score: 2,
 			},
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 15,
+				content: 'question.two.option.three',
+				score: 1,
 			},
 		],
 	},
 	{
 		imgSrc: '',
-		description:
-			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
+		description: 'question.three.description',
 		options: [
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 12.3,
+				content: 'question.three.option.one',
+				score: 1,
 			},
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 44.3,
+				content: 'question.three.option.two',
+				score: 2,
 			},
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 14.4,
+				content: 'question.three.option.three',
+				score: 0,
 			},
 		],
 	},
 	{
 		imgSrc: '',
-		description:
-			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
+		description: 'question.four.description',
 		options: [
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 67.6,
+				content: 'question.four.option.one',
+				score: 1,
 			},
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 33,
+				content: 'question.four.option.two',
+				score: 2,
 			},
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 57,
+				content: 'question.four.option.three',
+				score: 0,
 			},
 		],
 	},
 	{
 		imgSrc: '',
-		description:
-			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
+		description: 'question.five.description',
 		options: [
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 54,
+				content: 'question.five.option.one',
+				score: 0,
 			},
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 66.6,
+				content: 'question.five.option.two',
+				score: 1,
 			},
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 77.7,
+				content: 'question.five.option.three',
+				score: 2,
 			},
 		],
 	},
 	{
 		imgSrc: '',
-		description:
-			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
+		description: 'question.six.description',
 		options: [
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 88.7,
+				content: 'question.six.option.one',
+				score: 2,
 			},
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 43,
+				content: 'question.six.option.two',
+				score: 0,
 			},
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 54.6,
+				content: 'question.six.option.three',
+				score: 1,
 			},
 		],
 	},
 	{
 		imgSrc: '',
-		description:
-			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
+		description: 'question.seven.description',
 		options: [
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 78,
+				content: 'question.seven.option.one',
+				score: 1,
 			},
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 87,
+				content: 'question.seven.option.two',
+				score: 2,
 			},
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 34,
+				content: 'question.seven.option.three',
+				score: 0,
 			},
 		],
 	},
 	{
 		imgSrc: '',
-		description:
-			'自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類相關創作、展演、娛樂者皆類。',
+		description: 'question.eight.description',
 		options: [
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 18,
+				content: 'question.eight.option.one',
+				score: 0,
 			},
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 86,
+				content: 'question.eight.option.two',
+				score: 1,
 			},
 			{
-				content: '自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆類。',
-				score: 34,
+				content: 'question.eight.option.three',
+				score: 2,
 			},
 		],
 	},
