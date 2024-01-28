@@ -89,12 +89,12 @@ export default function EsgLoanSection() {
               fontWeight={900}
             >
               {t('applyHouseHolds')}
-              {!isEN && <Box component="span" fontSize="42px">{t('houseHolds')}</Box>}
+              {!isEN && <Box component="span" fontSize="42px" fontWeight={500}>{t('houseHolds')}</Box>}
             </Typography>
             <Box sx={{
               color: '#B8C318',
               fontSize: '140px',
-              fontWeight: isEN ? 900 : 700,
+              fontWeight: 900,
               lineHeight: '160%',
               letterSpacing: '8.4px',
               marginTop: '-60px'
@@ -109,7 +109,7 @@ export default function EsgLoanSection() {
               gutterBottom
               lineHeight="102.6px"
               fontSize={isEN ? "38px" : "54px"}
-              fontWeight={isEN ? 700 : 900}
+              fontWeight={isEN ? 900 : 700}
             >
               {t('balance')}
               {isEN ? <Box component="span" sx={{
@@ -120,7 +120,7 @@ export default function EsgLoanSection() {
                 letterSpacing: "1px",
                 marginLeft: "10px"
               }}>{t('ntd')}</Box> :
-                <Box component="span" fontSize="42px">{t('billion')}</Box>}
+                <Box component="span" fontSize="42px" fontWeight={500}>{t('billion')}</Box>}
             </Typography>
             <Box sx={{
               color: '#B8C318',

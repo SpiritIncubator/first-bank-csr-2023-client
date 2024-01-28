@@ -91,12 +91,12 @@ export default function OldBuildingSection() {
                   } : {
                     lineHeight: "102.6px",
                     fontSize: "54px",
-                    fontWeight: 500
+                    fontWeight: 700
                   }}
                 >
                   {t('benefitedHouseholds')}
 
-                  {!isEN && <Box component="span" fontSize="42px">{t('houseHolds')}</Box>}
+                  {!isEN && <Box component="span" fontSize="42px" fontWeight={500}  >{t('houseHolds')}</Box>}
                 </Typography>
                 <Box sx={{
                   color: '#B8C318',
@@ -125,7 +125,7 @@ export default function OldBuildingSection() {
                     } : {
                       lineHeight: "102.6px",
                       fontSize: "54px",
-                      fontWeight: 500
+                      fontWeight: 700
                     }}          >
                     {t('independentUpdateType')}
 
@@ -137,7 +137,7 @@ export default function OldBuildingSection() {
                       letterSpacing: "1px",
                       marginLeft: "10px"
                     }}>{t('ntd')}</Box> :
-                      <Box component="span" fontSize="42px">{t('billion')}</Box>}
+                      <Box component="span" fontSize="42px" fontWeight={500}>{t('billion')}</Box>}
                   </Typography>
 
                   <Box sx={{
@@ -168,7 +168,7 @@ export default function OldBuildingSection() {
                         letterSpacing="2.24px"
                       >
                         {t('pieces')}
-                      </Box> : <Box component="span">
+                      </Box> : <Box component="span" fontWeight={500}>
                         {t('pieces')}
                       </Box>}
 
@@ -188,7 +188,7 @@ export default function OldBuildingSection() {
                     } : {
                       lineHeight: "102.6px",
                       fontSize: "54px",
-                      fontWeight: 500
+                      fontWeight: 700
                     }}
                   >
                     {t('builderIntegratedType')}
@@ -201,7 +201,7 @@ export default function OldBuildingSection() {
                       letterSpacing: "1px",
                       marginLeft: "10px"
                     }}>{t('ntd')}</Box> :
-                      <Box component="span" fontSize="42px">{t('billion')}</Box>}
+                      <Box component="span" fontWeight={500} fontSize="42px">{t('billion')}</Box>}
                   </Typography>
                   <Box sx={{
                     color: '#B8C318',
@@ -229,7 +229,7 @@ export default function OldBuildingSection() {
                         letterSpacing="2.24px"
                       >
                         {t('pieces')}
-                      </Box> : <Box component="span">
+                      </Box> : <Box component="span" fontWeight={500}>
                         {t('pieces')}
                       </Box>}
                     </Box>
