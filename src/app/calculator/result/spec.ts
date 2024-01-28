@@ -1,4 +1,18 @@
+import FullStarDescriptionIcon from '@/app/_assets/images/fullStarDescription.svg';
+import StarOne from '@/app/_assets/images/star-one.svg';
+import StarTwo from '@/app/_assets/images/star-two.svg';
 
+export const answerDescription = [
+	{
+		img: StarOne,
+	},
+	{
+		img: StarTwo,
+	},
+	{
+		img: FullStarDescriptionIcon,
+	},
+];
 
 export const answerList: Array<any> = [
 	{

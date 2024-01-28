@@ -23,7 +23,7 @@ import ResultFunnyIcon from '@/app/_assets/images/resultFunny.svg';
 import DiviDer from '@/app/_assets/images/divider.svg'
 import Loading from '@/app/_assets/images/questionLoading.svg'
 import topic from '../assets/carbon.svg'
-import { answerList } from './spec';
+import { answerList, answerDescription } from './spec';
 import { caveat } from '@/app/layout';
 
 const LOADING_DELAY_TIME = 2000;
@@ -45,6 +45,7 @@ const ResultPage = () => {
     return acc + cur.score;
   }, 0);
   const numberOfStar = getStar(score);
+  const description = answerDescription[numberOfStar - 1];
   const hasAnsweredAllQuestions = questionAnswers.length === answerList.length;
 
   function renderAnswerList() {
@@ -136,7 +137,7 @@ const ResultPage = () => {
             }
           }}
         >
-          <Image src={FullStarIcon} alt="visual" />
+          <Image src={description.img} alt="visual" />
         </motion.div>
       </Box>
       <Box display="flex" flexDirection="column" alignItems="center">

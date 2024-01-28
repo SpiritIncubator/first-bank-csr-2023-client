@@ -8,7 +8,8 @@ import useMount from '@/app/hooks/useMount';
 import { StyledTypography } from './I18nButton.style';
 import type { LangBtnType } from './types';
 import { languageButtons } from './spec'
-import useFirstBankTranslation from '@/app/_locales/hooks';
+// import useFirstBankTranslation from '@/app/_locales/hooks';
+import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 
 type ToggleButtonProps = {
   size: 'small' | 'large';
