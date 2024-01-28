@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import Lottie from 'lottie-react';
 
 import Rating from '@/app/_components/Rating/Rating';
 import useStore from '@/app/atoms/useStore';
@@ -13,16 +14,14 @@ import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import Button from '@/app/_components/Button/Button';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import FadeInOnView from '@/app/_components/Transitions/FadeInOnView';
+import StyleButton from '@/app/_components/Button/Button';
 
-import AirHintIcon from '@/app/_assets/images/airHint.svg';
-import FullStarIcon from '@/app/_assets/images/fullStar.svg';
-import SlashIcon from '@/app/_assets/images/slash.svg';
-import UnitIcon from '@/app/_assets/images/unit.svg';
-import FullStarDescriptionIcon from '@/app/_assets/images/fullStarDescription.svg';
+import animationData from '../assets/animation/bird_1-3_side_loop.json';
+import ResultPageTitle from '@/app/_assets/images/calculator-result.svg'
 import ResultFunnyIcon from '@/app/_assets/images/resultFunny.svg';
+import GoLook from '@/app/_assets/images/go-look.svg';
 import DiviDer from '@/app/_assets/images/divider.svg'
-import Loading from '@/app/_assets/images/questionLoading.svg'
-import topic from '../assets/carbon.svg'
+import Loading from '@/app/_assets/images/loading.svg'
 import { answerList, answerDescription } from './spec';
 import { caveat } from '@/app/layout';
 
@@ -87,42 +86,20 @@ const ResultPage = () => {
   }, []);
 
   if (delayLoading) {
-    return <Box width="100%" height="100%" display="flex" justifyContent="center" alignItems="center">
-      <FadeIn>
-        <Image src={Loading} alt="loading" />
+    return <Box height="100vh" display="flex" justifyContent="center" alignItems="center">
+      <FadeIn display='flex' flexDirection='column' position="relative" alignItems="center" marginTop="-100px">
+        <Lottie animationData={animationData} loop />
+        <Box position="absolute" bottom="10%">
+          <Image src={Loading} alt="loading" />
+        </Box>
       </FadeIn>
     </Box>
   }
 
   return (
-    <Box pt={4} px={3}>
-      <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">
-        <Typography fontSize={28} color="#7DBD36" fontWeight={900} className={caveat.className}>
-          <Image src={topic} alt="topic" />
-        </Typography>
-        <Box display="flex" width="100%" height={90} bgcolor="#958B73" borderRadius={5} border="5px solid #F2cD90" alignItems="center" pl={2} mt={1}>
-          <Box mr={1} mt={1} ml={-1}>
-            <Image src={AirHintIcon} alt="AirHintIcon" width={75} height={50} />
-          </Box>
-          <Box width={150} fontWeight={900} textAlign="right">
-            <Typography fontSize={45} color="#fff" letterSpacing={10}>
-              {Number(score).toFixed(1)}
-            </Typography>
-          </Box>
-          <Box width={84} height="100%" position="relative">
-            <Box height="100%" position="absolute" top={5} right={5}>
-              <Image src={SlashIcon} alt='slash' />
-            </Box>
-            <Box position="absolute" height="100%" top={30} right={40}>
-              <Image src={UnitIcon} alt="unit" />
-            </Box>
-          </Box>
-        </Box>
-        <Box display="flex" justifyContent="center" mt={1.2}>
-          <Typography letterSpacing={1} className={caveat.className}>
-            CO2排放量以kg計
-          </Typography>
-        </Box>
+    <Box pt={4} px={3} height="120vh">
+      <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" mt={3}>
+        <Image src={ResultPageTitle} alt="result-title" />
       </Box>
       <Box mt={5} display="flex" justifyContent="center">
         <motion.div
@@ -141,10 +118,9 @@ const ResultPage = () => {
         </motion.div>
       </Box>
       <Box display="flex" flexDirection="column" alignItems="center">
-        {/* style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} */}
         <FadeIn delay={1} display='flex' flexDirection='column' alignItems='center'>
           <Box>
-            <Image src={FullStarDescriptionIcon} alt="description" />
+            <Image src={description.title} alt="description" />
           </Box>
           <Box mt={1.2} mb={2.5}>
             <Rating rate={numberOfStar} />
@@ -153,19 +129,17 @@ const ResultPage = () => {
         <FadeIn delay={1.5} >
           <Box mb={10.5} maxWidth={342}>
             <Typography lineHeight={2} px={3} color="#594A39">
-              自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆為此類。
+              {t(description.description)}
             </Typography>
           </Box>
         </FadeIn>
       </Box>
-      {/* resolution area */}
       <Box display="flex" flexDirection="column" alignItems="center" pb={10}>
-        {/* style={{ display: ' flex', flexDirection: 'column', alignItems: 'center' }} */}
         <FadeIn delay={2} display='flex' flexDirection='column' alignItems='center'>
           <Box mb={2.5}>
             <Image src={DiviDer} alt="divider" />
           </Box>
-          <Typography component="span" fontSize={20} fontWeight={700} className={caveat.className}>
+          <Typography component="span" fontSize={20} fontWeight={700} className={caveat.className} letterSpacing={1}>
             題目解答
           </Typography>
         </FadeIn>
@@ -181,7 +155,11 @@ const ResultPage = () => {
               自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆為此類。
             </Typography>
           </Box>
-          <Button text='快去看看' styles={{ backgroundColor: '#BBC318', fontSize: 20, fontWeight: 900, padding: '12px 42px' }} />
+          <StyleButton component="a" target="_blank">
+            <Typography minHeight="42px" display="flex" alignItems="center">
+              <Image src={GoLook} alt="go-look" />
+            </Typography>
+          </StyleButton>
         </Box>
       </Box>
     </Box>

@@ -25,6 +25,8 @@ const QuestionsPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectAnswer] = useState<any[]>([]);
   const targetQuestion = questionList[currentQuestionIndex];
+  const currentQuestionInfo = selectedAnswer[currentQuestionIndex];
+  console.log(currentQuestionInfo, 'currentQuestionInfo')
 
   function jumpToPreviousQuestion() {
     setCurrentQuestionIndex(prevStep => prevStep === 0 ? prevStep : prevStep - 1);
@@ -72,9 +74,9 @@ const QuestionsPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentQuestionIndex, selectedAnswer]);
 
-
+  //  position="sticky" top={0} pb={6}
   return (
-    <Box width="100%" display="flex" flexDirection="column" alignItems="center" position="sticky" top={0} pb={6}>
+    <Box width="100%" display="flex" flexDirection="column" alignItems="center" height="120vh">
       <Box width="100%" px={2.5} py={3} display="flex" alignItems="center" justifyContent="flex-start" >
         <Box mr={1} display="flex" alignItems="center" style={{cursor: 'pointer'}}>
           <Image src={PrevIcon} alt="prev" onClick={checkNumberOfQuestion} />
@@ -89,11 +91,10 @@ const QuestionsPage = () => {
         </Box>
       </Box>
       <Box mb={5} width="85%" maxWidth={324}>
-        {/* style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'}} */}
         <FadeIn display='flex' justifyContent='center' flexDirection='column' alignItems='center'>
           <Box width={160} height={160} bgcolor="#E9E3D8" mt={2.5}>
           </Box>
-          <Box mt={4} lineHeight={2} fontWeight={700} fontSize={20} letterSpacing={1} color="#594A39" minHeight={114}>
+          <Box mt={4} lineHeight={2} fontWeight={700} fontSize={20} letterSpacing={2} color="#594A39" minHeight={76}>
             {t(targetQuestion.description)}
           </Box>
         </FadeIn>
@@ -101,11 +102,11 @@ const QuestionsPage = () => {
       <Box width="90%" maxWidth={396} display="flex" flexDirection="column" alignItems="center">
         {targetQuestion.options.map((option, index) => {
           return (
-            <FadeInHorizontal key={index} delay={index+1 * 0.3} direction='ltr' minHeight={104}>
-              <StyledQuestionButton onClick={() => updateSelectQuestion(index)}>
-                <Box width={36} height={36} bgcolor="#BBC318" color="#fff" borderRadius={100} textAlign="center" lineHeight={2.25} mr={1.75}>{headLine[index]}</Box>
+            <FadeInHorizontal key={index} delay={index+1 * 0.3} direction='rtl' minHeight={104}>
+              <StyledQuestionButton $isActive={index === currentQuestionInfo?.index} onClick={() => updateSelectQuestion(index)}>
+                <Box width={36} height={36} bgcolor="#BBC318" fontWeight={600} color="#fff" borderRadius={100} textAlign="center" lineHeight={2.2} mr={1.75}>{headLine[index]}</Box>
                 <Box width={260}>
-                  <Typography lineHeight={2} fontSize={16} color="#594A39">{t(option.content)}</Typography>
+                  <Typography lineHeight={2} fontSize={16} color="#594A39" letterSpacing={2}>{t(option.content)}</Typography>
                 </Box>
               </StyledQuestionButton>
             </FadeInHorizontal>

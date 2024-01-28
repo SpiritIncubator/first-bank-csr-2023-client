@@ -7,7 +7,8 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <Box margin="0 auto" maxWidth={500} height="100%">
+    //   maxWidth={500}
+    <Box>
       {children}
     </Box>
   )

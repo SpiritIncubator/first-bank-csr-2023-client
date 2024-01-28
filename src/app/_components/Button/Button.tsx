@@ -1,11 +1,13 @@
 'use client';
 
-import React, {CSSProperties} from 'react';
+import React, {CSSProperties, PropsWithChildren, ComponentProps} from 'react';
 import MuiButton, { ButtonOwnProps } from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import { BoxProps } from '@mui/material/Box';
 import Typography, {TypographyProps} from '@mui/material/Typography';
 import {styled} from '@mui/material/styles';
 
-const StyledButton = styled(MuiButton)`
+const StyledButton = styled(Box)`
 	padding: 12px 42px;
 	border-radius: 84px;
   background: #7DBD36;
@@ -16,21 +18,18 @@ const StyledButton = styled(MuiButton)`
 	}
 `;
 
-const StyledTypography = styled(Typography) <TypographyProps>`
-  letter-spacing: 5px;
-`;
+type CompositionProps = BoxProps & ComponentProps<'a'>;
 
 type ButtonProps = {
-	text: string;
 	styles?: CSSProperties;
 	buttonProperties?: ButtonOwnProps;
 	onClickHandler?: () => void;
-};
+} & CompositionProps;
 
-const Button = ({ text, styles, buttonProperties, onClickHandler }: ButtonProps) => {
+const Button = ({ styles, onClickHandler, children, component = 'div', ...rest }: PropsWithChildren<ButtonProps>) => {
 	return (
-		<StyledButton size="large" style={{ ...styles }} onClick={onClickHandler}>
-			<StyledTypography component="span" fontSize={20}>{text}</StyledTypography>
+		<StyledButton component={component} style={{ ...styles }} onClick={onClickHandler} {...rest}>
+			{children}
 		</StyledButton>
 	);
 };
