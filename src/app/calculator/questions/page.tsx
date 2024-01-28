@@ -93,7 +93,7 @@ const QuestionsPage = () => {
         <FadeIn display='flex' justifyContent='center' flexDirection='column' alignItems='center'>
           <Box width={160} height={160} bgcolor="#E9E3D8" mt={2.5}>
           </Box>
-          <Box mt={4} lineHeight={2} fontWeight={700} fontSize={20} letterSpacing={1} color="#594A39">
+          <Box mt={4} lineHeight={2} fontWeight={700} fontSize={20} letterSpacing={1} color="#594A39" minHeight={114}>
             {t(targetQuestion.description)}
           </Box>
         </FadeIn>
@@ -101,7 +101,7 @@ const QuestionsPage = () => {
       <Box width="90%" maxWidth={396} display="flex" flexDirection="column" alignItems="center">
         {targetQuestion.options.map((option, index) => {
           return (
-            <FadeInHorizontal key={index} delay={index+1 * 0.3} direction='ltr'>
+            <FadeInHorizontal key={index} delay={index+1 * 0.3} direction='ltr' minHeight={104}>
               <StyledQuestionButton onClick={() => updateSelectQuestion(index)}>
                 <Box width={36} height={36} bgcolor="#BBC318" color="#fff" borderRadius={100} textAlign="center" lineHeight={2.25} mr={1.75}>{headLine[index]}</Box>
                 <Box width={260}>

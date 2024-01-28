@@ -6,6 +6,7 @@ export const StyledQuestionButton = styled(Box)`
   align-items: center;
   background-color: #F9F8F3;
   max-width: 342px;
+  min-height: 104px;
   margin-bottom: 16px;
   padding: 20px 20px 20px 8px;
   border-radius: 8%;
