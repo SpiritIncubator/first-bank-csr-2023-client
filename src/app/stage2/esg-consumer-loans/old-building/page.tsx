@@ -18,7 +18,7 @@ import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import ZoomBounce from '@/app/_components/Transitions/ZoomBounce';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
-import useFirstBankTranslation from '@/app/_locales/hooks';
+import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 import { LANGUAGE_TYPE } from '@/types';
 
 enum CASE_NAME {
