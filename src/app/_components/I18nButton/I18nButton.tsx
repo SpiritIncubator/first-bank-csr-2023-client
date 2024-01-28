@@ -8,7 +8,6 @@ import useMount from '@/app/hooks/useMount';
 import { StyledTypography } from './I18nButton.style';
 import type { LangBtnType } from './types';
 import { languageButtons } from './spec'
-// import useFirstBankTranslation from '@/app/_locales/hooks';
 import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 
 type ToggleButtonProps = {
@@ -18,7 +17,7 @@ type ToggleButtonProps = {
 
 type ButtonOptionType = {
   buttonOption: TypographyProps;
-  groupOption: TypographyProps;  
+  groupOption: TypographyProps;
 }
 
 function getButtonOptions(size: 'small' | 'large'): ButtonOptionType {
@@ -57,7 +56,7 @@ function getButtonOptions(size: 'small' | 'large'): ButtonOptionType {
 const ToggleButton = ({ size = 'small', extraStyle }: ToggleButtonProps) => {
   const { setLang, lang } = useFirstBankTranslation();
   const [buttonConfig, setButtonConfig] = useState<ButtonOptionType>(() => getButtonOptions(size));
-  const {isMounted} = useMount();
+  const { isMounted } = useMount();
 
   useEffect(() => {
     setButtonConfig(config => ({

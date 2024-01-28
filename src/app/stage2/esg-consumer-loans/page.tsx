@@ -13,6 +13,7 @@ import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas';
 import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
 import FadeInVertical from '@/app/_components/Transitions/FadeInVertical';
+import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 // Create a theme to apply consistent styling
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -43,6 +44,8 @@ const theme = createTheme({
 
 const MainPage = () => {
   const { t } = useTranslation('stage2');
+  const { lang } = useFirstBankTranslation();
+
   return (
     <ThemeProvider theme={theme}>
       <Box overflow="scroll" width="100vw" height="100vh">
@@ -222,7 +225,7 @@ const MainPage = () => {
               letterSpacing="3.68px"
               mb="70px"
               maxWidth="1530px">
-              {t('oldBuildingDesc')}
+              {t('esgPage.oldBuildingDesc')}
             </Box>
 
             <Box mb="246px" gap="40px" display="flex" width="100%" justifyContent="space-between">
