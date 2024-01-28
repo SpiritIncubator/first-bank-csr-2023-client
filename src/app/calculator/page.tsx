@@ -34,7 +34,7 @@ const MainPage = () => {
 					</FadeIn>
 					<Box mb={7.5}>
 						<FadeIn delay={0.5}>
-							<StyleButton text="start" onClickHandler={redirectToQuestionsPage}>
+							<StyleButton onClickHandler={redirectToQuestionsPage}>
 								<Typography minHeight="42px" display="flex" alignItems="center"> 
 									<Image src={Start} alt="start" />
 								</Typography>

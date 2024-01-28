@@ -26,7 +26,6 @@ const QuestionsPage = () => {
   const [selectedAnswer, setSelectAnswer] = useState<any[]>([]);
   const targetQuestion = questionList[currentQuestionIndex];
   const currentQuestionInfo = selectedAnswer[currentQuestionIndex];
-  console.log(currentQuestionInfo, 'currentQuestionInfo')
 
   function jumpToPreviousQuestion() {
     setCurrentQuestionIndex(prevStep => prevStep === 0 ? prevStep : prevStep - 1);
