@@ -39,7 +39,7 @@ const PageLayout: React.FC = () => {
         <Box width="500px" height="500px" position="relative" mb="80px">
           <Image
             fill
-            src="/assets/greenConsumerLoan-Badges.svg"
+            src="/assets/stage2/greenConsumerLoan-Badges.svg"
             alt="greenConsumerLoan-Badges"
           />
         </Box>
@@ -51,7 +51,7 @@ const PageLayout: React.FC = () => {
         >
           <Image
             fill
-            src="/assets/greenConsumerLoan-title-zh.svg"
+            src="/assets/stage2/greenConsumerLoan-title-zh.svg"
             alt="greenConsumerLoan"
           />
         </Box>
@@ -79,7 +79,7 @@ const PageLayout: React.FC = () => {
           >
             <Image
               fill
-              src="/assets/greenConsumerLoan-chart.svg"
+              src="/assets/stage2/greenConsumerLoan-chart.svg"
               alt="greenConsumerLoan-chart"
             />
           </Box>

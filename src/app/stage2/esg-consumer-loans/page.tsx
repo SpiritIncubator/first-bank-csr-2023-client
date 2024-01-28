@@ -87,7 +87,7 @@ const MainPage = () => {
               >
                 <Image
                   fill
-                  src="/assets/greenConsumerLoan-title-zh.svg"
+                  src="/assets/stage2/greenConsumerLoan-title-zh.svg"
                   alt="greenConsumerLoan"
                 />
 
@@ -99,7 +99,7 @@ const MainPage = () => {
                 >
                   <Image
                     fill
-                    src="/assets/seeMore-zh.svg"
+                    src="/assets/stage2/seeMore-zh.svg"
                     alt="see more "
                   />
                 </Box>
@@ -123,7 +123,7 @@ const MainPage = () => {
                 <Link href='/stage2/esg-consumer-loans/loan'>
                   <Image
                     fill
-                    src="/assets/greenConsumerLoan-Badges.svg"
+                    src="/assets/stage2/greenConsumerLoan-Badges.svg"
                     alt="greenConsumerLoan-Badges"
                   />
                 </Link>
@@ -181,7 +181,7 @@ const MainPage = () => {
                 height="556px">
                 <Image
                   fill
-                  src="/assets/2022-score.svg"
+                  src="/assets/stage2/2022-score.svg"
                   alt="2022 score"
                 />
               </Box>
@@ -197,7 +197,7 @@ const MainPage = () => {
               >
                 <Image
                   fill
-                  src="/assets/oldBuilding-title-zh.svg"
+                  src="/assets/stage2/oldBuilding-title-zh.svg"
                   alt="oldBuilding"
                 />
 
@@ -209,14 +209,12 @@ const MainPage = () => {
                 >
                   <Image
                     fill
-                    src="/assets/seeMore-zh.svg"
+                    src="/assets/stage2/seeMore-zh.svg"
                     alt="see more "
                   />
                 </Box>
               </Link>
             </Box>
-
-
 
             <Box sx={{ width: '100%' }}
               fontSize="46px"
@@ -232,7 +230,7 @@ const MainPage = () => {
                 <Link href='/stage2/esg-consumer-loans/old-building'>
                   <Image
                     fill
-                    src="/assets/oldBuilding-icon.svg"
+                    src="/assets/stage2/oldBuilding-icon.svg"
                     alt="oldBuilding-icon"
                   />
                 </Link>
@@ -338,7 +336,7 @@ const MainPage = () => {
               <Box width="720px" height="395px" left="-400px" bottom="343px" position="absolute">
                 <Image
                   fill
-                  src="/assets/esg-consumer-loans-lionMessage.svg"
+                  src="/assets/stage2/esg-consumer-loans-lionMessage.svg"
                   alt="lion"
                 />
               </Box>
@@ -346,7 +344,7 @@ const MainPage = () => {
               <Box width="1000px" height="680px" position="absolute" left="0" bottom="0">
                 <Image
                   fill
-                  src="/assets/esg_lion.svg"
+                  src="/assets/stage2/esg_lion.svg"
                   alt="lion"
                 />
               </Box>
