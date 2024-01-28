@@ -9,13 +9,13 @@ import Container from '@mui/material/Container';
 import BackRightButton from '@/assets/back_right.svg';
 import BackRightActiveButton from '@/assets/back_right_active.svg';
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
-import formatNumberWithCommas from '@/utils/formatNumberWithCommas';
 import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
 import FadeInVertical from '@/app/_components/Transitions/FadeInVertical';
 import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import EsgLoanSection from './_components/EsgLoanSection';
 import OldBuildingSection from './_components/OldBuildingSection';
+import { LANGUAGE_TYPE } from '@/types';
 // Create a theme to apply consistent styling
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -46,6 +46,7 @@ const theme = createTheme({
 const MainPage = () => {
   const { t } = useTranslation('stage2');
   const { lang } = useFirstBankTranslation();
+  const isEN = lang === LANGUAGE_TYPE.EN;
 
   return (
     <ThemeProvider theme={theme}>
@@ -54,7 +55,6 @@ const MainPage = () => {
           disableGutters
           maxWidth={false}
           sx={{
-
             maxWidth: 2160,
             minHeight: 3840,
             display: 'flex',
@@ -74,15 +74,28 @@ const MainPage = () => {
             <Box width="1246px" height="154px" position="relative" mb="64px" >
               <Image
                 fill
-                src="/assets/esg-consumer-loans-title.svg"
+                src={`/assets/stage2/esg-consumer-loans-title-${lang}.svg`}
                 alt="esg-consumer-loans-title"
               />
             </Box>
 
-            <Box fontSize="52px" lineHeight="98.8px" mb="222px">
+            <Box
+              sx={isEN ? {
+                fontSize: '40px',
+                lineHeight: "64px",
+                maxWidth: '1764px',
+                fontWeight: 500,
+                letterSpacing: "1.6px"
+              } : {
+                fontSize: '52px',
+                lineHeight: "98.8px"
+              }}
+
+              mb="222px">
               {t('esgPage.esgLoanDesc')}
             </Box>
           </FadeInHorizontal>
+
 
           {/* // First Section */}
           <EsgLoanSection />
@@ -95,7 +108,7 @@ const MainPage = () => {
               <Box width="720px" height="395px" left="-400px" bottom="343px" position="absolute">
                 <Image
                   fill
-                  src="/assets/stage2/esg-consumer-loans-lionMessage.svg"
+                  src={`/assets/stage2/esg-consumer-loans-lionMessage-${lang}.svg`}
                   alt="lion"
                 />
               </Box>

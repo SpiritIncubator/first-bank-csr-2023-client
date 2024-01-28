@@ -8,23 +8,25 @@ import Typography from '@mui/material/Typography';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas';
 import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
+import { LANGUAGE_TYPE } from '@/types';
 import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
 
 
 export default function OldBuildingSection() {
   const { t } = useTranslation('stage2');
   const { lang } = useFirstBankTranslation();
+  const isEN = lang === LANGUAGE_TYPE.EN;
 
   return (
     <FadeInHorizontal direction='ltr' delay={0.5} >
       <Box display="flex" gap="40px" mb="64px">
         <Box
           display="flex"
-          width="1006px" height="87" position="relative"
+          width={isEN ? "1368px" : "1006px"} height="87" position="relative"
         >
           <Image
             fill
-            src="/assets/stage2/oldBuilding-title-zh.svg"
+            src={`/assets/stage2/oldBuilding-title-${lang}.svg`}
             alt="oldBuilding"
           />
 
@@ -36,19 +38,30 @@ export default function OldBuildingSection() {
           >
             <Image
               fill
-              src="/assets/stage2/seeMore-zh.svg"
+              src={`/assets/stage2/seeMore-${lang}.svg`}
               alt="see more "
             />
           </Box>
         </Link>
       </Box>
 
-      <Box sx={{ width: '100%' }}
-        fontSize="46px"
-        lineHeight="73.6px"
-        letterSpacing="3.68px"
-        mb="70px"
-        maxWidth="1530px">
+      <Box sx={isEN ? {
+        width: '100%',
+        mb: '70px',
+        fontSize: "40px",
+        fontWeight: 500,
+        lineHeight: "64px",
+        letterSpacing: "1.6px"
+      } : {
+        width: '100%',
+        fontSize: '46px',
+        lineHeight: '73.6px',
+        letterSpacing: '3.68px',
+        mb: '70px',
+        maxWidth: '1530px',
+      }}
+
+      >
         {t('esgPage.oldBuildingDesc')}
       </Box>
 
@@ -63,18 +76,27 @@ export default function OldBuildingSection() {
           </Link>
         </Box>
         <Box flex="2">
-          <Box display="flex" flexDirection="column">
-            <Box ml="100px">
+          <Box display="flex" flexDirection="column" width="100%">
+            <Box ml="90px">
               <Box>
                 <Typography
                   variant="h4"
                   component="div"
                   gutterBottom
-                  lineHeight="102.6px"
-                  fontSize="54px"
-                  fontWeight={500}
+                  sx={isEN ? {
+                    whiteSpace: "nowrap",
+                    fontWeight: 900,
+                    lineHeight: "72px",
+                    letterSpacing: "1.53px"
+                  } : {
+                    lineHeight: "102.6px",
+                    fontSize: "54px",
+                    fontWeight: 500
+                  }}
                 >
-                  {t('benefitedHouseholds')} <Box component="span" fontSize="42px">{t('houseHolds')}</Box>
+                  {t('benefitedHouseholds')}
+
+                  {!isEN && <Box component="span" fontSize="42px">{t('houseHolds')}</Box>}
                 </Typography>
                 <Box sx={{
                   color: '#B8C318',
@@ -95,30 +117,62 @@ export default function OldBuildingSection() {
                     variant="h4"
                     component="div"
                     gutterBottom
-                    lineHeight="102.6px"
-                    fontSize="54px"
-                    fontWeight={500}
-                  >
-                    {t('independentUpdateType')} <Box component="span" fontSize="42px">{t('billion')}</Box>
+                    sx={isEN ? {
+                      whiteSpace: "nowrap",
+                      fontWeight: 900,
+                      lineHeight: "72px",
+                      letterSpacing: "1.53px"
+                    } : {
+                      lineHeight: "102.6px",
+                      fontSize: "54px",
+                      fontWeight: 500
+                    }}          >
+                    {t('independentUpdateType')}
+
+                    {isEN ? <Box component="span" sx={{
+                      fontSize: "25px",
+                      fontStyle: "normal",
+                      fontWeight: 500,
+                      lineHeight: "190%",
+                      letterSpacing: "1px",
+                      marginLeft: "10px"
+                    }}>{t('ntd')}</Box> :
+                      <Box component="span" fontSize="42px">{t('billion')}</Box>}
                   </Typography>
+
                   <Box sx={{
                     color: '#B8C318',
                     fontSize: '100px',
                     fontWeight: 900,
                     lineHeight: '160%',
-                    letterSpacing: '6',
-                    marginTop: '-60px'
+                    letterSpacing: '6px',
+                    marginTop: isEN ? '-40px' : '-60px'
                   }}>
                     {
-                      formatNumberWithCommas(124)
+                      isEN ? "12.4B" : formatNumberWithCommas(124)
                     }
                     <Box
                       component="span"
-                      ml="20px"
+                      ml={isEN ? "0px" : "20px"}
                       fontSize="54px"
                       fontWeight="700"
                       letterSpacing='4.32px'
-                      color="#594A39"> /38{t('pieces')}</Box>
+                      color="#594A39">
+                      /38
+
+                      {isEN ? <Box
+                        component="span"
+                        fontSize="28px"
+                        fontWeight="500"
+                        lineHeight="190%"
+                        letterSpacing="2.24px"
+                      >
+                        {t('pieces')}
+                      </Box> : <Box component="span">
+                        {t('pieces')}
+                      </Box>}
+
+                    </Box>
                   </Box>
                 </Box>
                 <Box ml="60px">
@@ -126,29 +180,59 @@ export default function OldBuildingSection() {
                     variant="h4"
                     component="div"
                     gutterBottom
-                    lineHeight="102.6px"
-                    fontSize="54px"
-                    fontWeight={500}
+                    sx={isEN ? {
+                      whiteSpace: "nowrap",
+                      fontWeight: 900,
+                      lineHeight: "72px",
+                      letterSpacing: "1.53px"
+                    } : {
+                      lineHeight: "102.6px",
+                      fontSize: "54px",
+                      fontWeight: 500
+                    }}
                   >
-                    {t('builderIntegratedType')}  <Box component="span" fontSize="42px">{t('billion')}</Box>
+                    {t('builderIntegratedType')}
+
+                    {isEN ? <Box component="span" sx={{
+                      fontSize: "25px",
+                      fontStyle: "normal",
+                      fontWeight: 500,
+                      lineHeight: "190%",
+                      letterSpacing: "1px",
+                      marginLeft: "10px"
+                    }}>{t('ntd')}</Box> :
+                      <Box component="span" fontSize="42px">{t('billion')}</Box>}
                   </Typography>
                   <Box sx={{
                     color: '#B8C318',
                     fontSize: '100px',
                     fontWeight: 900,
                     lineHeight: '160%',
-                    letterSpacing: '6',
-                    marginTop: '-60px'
+                    letterSpacing: '6px',
+                    marginTop: isEN ? '-40px' : '-60px'
                   }}>
                     {
-                      formatNumberWithCommas(1351)
+                      isEN ? "135.1B" : formatNumberWithCommas(1351)
                     }
                     <Box component="span"
                       fontSize="54px"
-                      ml="20px"
+                      ml={isEN ? "0px" : "20px"}
                       fontWeight="700"
                       letterSpacing='4.32px'
-                      color="#594A39"> /165{t('pieces')}</Box>
+                      color="#594A39"> /165
+
+                      {isEN ? <Box
+                        component="span"
+                        fontSize="28px"
+                        fontWeight="500"
+                        lineHeight="190%"
+                        letterSpacing="2.24px"
+                      >
+                        {t('pieces')}
+                      </Box> : <Box component="span">
+                        {t('pieces')}
+                      </Box>}
+                    </Box>
                   </Box>
                 </Box>
               </Box>
