@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -24,6 +24,7 @@ const QuestionsPage = () => {
   const {t} = useTranslation('common');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectAnswer] = useState<any[]>([]);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const targetQuestion = questionList[currentQuestionIndex];
   const currentQuestionInfo = selectedAnswer[currentQuestionIndex];
 
@@ -73,9 +74,15 @@ const QuestionsPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentQuestionIndex, selectedAnswer]);
 
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTo(0, 0);
+    }
+  }, [currentQuestionIndex]);
+
   //  position="sticky" top={0} pb={6}
   return (
-    <Box width="100%" display="flex" flexDirection="column" alignItems="center" height="120vh">
+    <Box width="100%" display="flex" flexDirection="column" alignItems="center" height="120vh" ref={containerRef}>
       <Box width="100%" px={2.5} py={3} display="flex" alignItems="center" justifyContent="flex-start" >
         <Box mr={1} display="flex" alignItems="center" style={{cursor: 'pointer'}}>
           <Image src={PrevIcon} alt="prev" onClick={checkNumberOfQuestion} />
