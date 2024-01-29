@@ -45,7 +45,7 @@ const MainPage = () => {
 					<FadeIn marginBottom={50}>
 						<Image src={Homepage} alt="calculator" />
 						{isMounted && (
-							<Typography fontSize={lang === 'en' ? 14 : 16} letterSpacing={1} fontWeight={500} lineHeight={1.5} textAlign={lang === 'en' ? 'center' : 'start'}>
+							<Typography fontSize={lang === 'en' ? 14 : 16} letterSpacing={1} fontWeight={500} lineHeight={1.5} minHeight={63} textAlign={lang === 'en' ? 'center' : 'start'}>
 								{t('homepage.desc')}
 							</Typography>
 						)}
