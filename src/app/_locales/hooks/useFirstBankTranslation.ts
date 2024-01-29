@@ -35,9 +35,10 @@ const useFirstBankTranslation = () => {
   }, [currentLang, prevLang]);
 
   return {
-    setLang,
-    lang: currentLang,
-  };
+		setLang,
+		lang: currentLang,
+		getLanguage,
+	};
 };
 
 export default useFirstBankTranslation;

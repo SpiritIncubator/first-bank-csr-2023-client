@@ -10,7 +10,7 @@ import { LANGUAGE_TYPE } from '@/types';
 
 import { DEFAULT_LANG, i18nInstance } from '@/app/_locales/i18n';
 
-import { Inter, Caveat, Noto_Sans_TC } from 'next/font/google'
+import { Caveat, Noto_Sans_TC } from 'next/font/google'
 const notoSansTC = Noto_Sans_TC({
   subsets: ['latin'],
   weight: "variable"

@@ -9,14 +9,27 @@ import Lottie from 'lottie-react';
 import StyleButton from '@/app/_components/Button/Button';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import I18nButton from '@/app/_components/I18nButton/I18nButton';
-import CalculatorTitle from '@/app/_assets/images/calculator-entry.svg';
+import useFirstBankTranslation from '../_locales/hooks/useFirstBankTranslation';
 import Start from '@/app/_assets/images/start.svg';
 import animationData from './assets/animation/leo_2-8_thinking.json';
 import FadeIn from '../_components/Transitions/FadeIn';
+import Homepage from '@/app/_assets/images/homepage-desc.svg'
+import useMount from '@/app/hooks/useMount';
+import isServer from '@/utils/isServer';
 
 const MainPage = () => {
 	const router = useRouter();
 	const { t } = useTranslation('common');
+	const { getLanguage } = useFirstBankTranslation();
+	const { isMounted } = useMount();
+	const [lang, setLang] = React.useState('en');
+	
+	React.useEffect(() => {
+		if (isMounted) {
+			const language = getLanguage();
+			setLang(language);
+		}
+	});
 
 
 	function redirectToQuestionsPage() {
@@ -30,7 +43,12 @@ const MainPage = () => {
 			<Box display="flex" justifyContent="center" mt={2.5}>
 				<Box width="310px" display="flex" flexDirection="column" alignItems="center">
 					<FadeIn marginBottom={50}>
-						<Image src={CalculatorTitle} alt="calculator" />
+						<Image src={Homepage} alt="calculator" />
+						{isMounted && (
+							<Typography fontSize={lang === 'en' ? 14 : 16} letterSpacing={1} fontWeight={500} lineHeight={1.5} textAlign={lang === 'en' ? 'center' : 'start'}>
+								{t('homepage.desc')}
+							</Typography>
+						)}
 					</FadeIn>
 					<Box mb={7.5}>
 						<FadeIn delay={0.5}>

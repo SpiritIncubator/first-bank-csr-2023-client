@@ -7,17 +7,22 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
-
+import useMount from '@/app/hooks/useMount';
 import Rating from '@/app/_components/Rating/Rating';
 import useStore from '@/app/atoms/useStore';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
-import Button from '@/app/_components/Button/Button';
+import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import FadeInOnView from '@/app/_components/Transitions/FadeInOnView';
 import StyleButton from '@/app/_components/Button/Button';
 
+import BarZh from '@/app/_assets/images/bar-zh.svg';
+import BarEn from '@/app/_assets/images/bar-en.svg';
 import animationData from '../assets/animation/bird_1-3_side_loop.json';
-import ResultPageTitle from '@/app/_assets/images/calculator-result.svg'
+import resultDataOne from '../assets/animation/leo_2-1_shake_item.json';
+import resultDataTwo from '../assets/animation/leo_2-2_write_note.json';
+import resultDataThree from '../assets/animation/leo_2-3_bottle.json';
+import ResultPageTitle from '@/app/_assets/images/bar.svg'
 import ResultFunnyIcon from '@/app/_assets/images/resultFunny.svg';
 import GoLook from '@/app/_assets/images/go-look.svg';
 import DiviDer from '@/app/_assets/images/divider.svg'
@@ -35,11 +40,28 @@ function getStar(score: number) {
   return 1;
 }
 
+function getAnimationData(numberOfStar: number) {
+  if (numberOfStar === 1) return resultDataOne;
+  if (numberOfStar === 2) return resultDataTwo;
+  if (numberOfStar === 3) return resultDataThree;
+}
+
 const ResultPage = () => {
   const [delayLoading, setDelayLoading] = useState(true);
   const questionAnswers = useStore(state => state.questionAnswer);
-  const router = useRouter();
   const { t } = useTranslation('common');
+  const { getLanguage } = useFirstBankTranslation(); 
+
+  const { isMounted } = useMount();
+  const [lang, setLang] = React.useState('en');
+
+  React.useEffect(() => {
+    if (isMounted) {
+      const language = getLanguage();
+      setLang(language);
+    }
+  });
+
   const score = questionAnswers.reduce((acc, cur) => {
     return acc + cur.score;
   }, 0);
@@ -62,7 +84,6 @@ const ResultPage = () => {
               </Box>
               <Box mb={2.5}>
                 <Image src={answer.imgSrc} alt="result-img" />
-                {/* <Box width={100} height={100} bgcolor="#E9E3D8" /> */}
               </Box>
               <Box>
                 <Typography lineHeight={2} letterSpacing={1.2} color="#594A39">
@@ -100,7 +121,8 @@ const ResultPage = () => {
   return (
     <Box pt={4} px={3} height="120vh">
       <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" mt={3}>
-        <Image src={ResultPageTitle} alt="result-title" />
+        <Image src={lang === 'en' ? BarEn : BarZh} alt="bar-text" />
+        {lang === 'en' && <Image src={ResultPageTitle} alt="bar" />}
       </Box>
       <Box mt={5} display="flex" justifyContent="center">
         <motion.div
@@ -115,7 +137,7 @@ const ResultPage = () => {
             }
           }}
         >
-          <Image src={description.img} alt="visual" />
+          <Lottie animationData={getAnimationData(numberOfStar)} loop />
         </motion.div>
       </Box>
       <Box display="flex" flexDirection="column" alignItems="center">
