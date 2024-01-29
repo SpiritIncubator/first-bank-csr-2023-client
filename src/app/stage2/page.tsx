@@ -32,6 +32,9 @@ const StyledCommonButton = styled(Button)`
   color: #ffffff;
   font-size: 50px;
   letter-spacing: 20px;
+  &:active,&:focus,&:visited,&:hover{
+    background-color: #B8C318;
+  }
 `;
 
 const Page = () => {
