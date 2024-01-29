@@ -6,10 +6,8 @@ import {
   Box,
   Container,
   Typography,
-  Paper,
   Grid,
   Modal,
-  Fade
 } from '@mui/material';
 import BackRightButton from '@/assets/back_right.svg';
 import BackRightActiveButton from '@/assets/back_right_active.svg';
@@ -20,6 +18,8 @@ import ZoomBounce from '@/app/_components/Transitions/ZoomBounce';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 import { LANGUAGE_TYPE } from '@/types';
+import PreLoadImageHeader from './_components/PreLoadImageHeader';
+
 
 enum CASE_NAME {
   CASE1 = 'CASE1',
@@ -31,11 +31,10 @@ enum CASE_NAME {
 const CASE_DATA_ZH = [
   {
     name: CASE_NAME.CASE1,
-    imageUrl: '/assets/oldBuilding-feature1-thumbnail.png',
-    titleImageUrl: '/assets/oldBuilding-feature1-title-zh.svg',
-    description: `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`,
-    detailTitleImageUrl: '/assets/oldBuilding-feature1-inner-title-zh.svg',
-    detailImageUrl: '/assets/oldBuilding-feature1-inner-image.png',
+    imageUrl: '/assets/stage2/oldBuilding-feature1-thumbnail.png',
+    titleImageUrl: '/assets/stage2/oldBuilding-feature1-title-zh.svg',
+    detailTitleImageUrl: '/assets/stage2/oldBuilding-feature1-inner-title-zh.svg',
+    detailImageUrl: '/assets/stage2/oldBuilding-feature1-inner-image.png',
     detailTitleWidth: 874,
     detailTitleHeight: 205,
     detailDescription: `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。
@@ -44,24 +43,22 @@ const CASE_DATA_ZH = [
   },
   {
     name: CASE_NAME.CASE2,
-    imageUrl: '/assets/oldBuilding-feature2-thumbnail.png',
-    titleImageUrl: '/assets/oldBuilding-feature2-title-zh.svg',
-    "description": `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`,
+    imageUrl: '/assets/stage2/oldBuilding-feature2-thumbnail.png',
+    titleImageUrl: '/assets/stage2/oldBuilding-feature2-title-zh.svg',
     detailTitleWidth: 1258,
     detailTitleHeight: 205,
-    detailTitleImageUrl: '/assets/oldBuilding-feature2-inner-title-zh.svg',
-    detailImageUrl: '/assets/oldBuilding-feature2-inner-image.png',
+    detailTitleImageUrl: '/assets/stage2/oldBuilding-feature2-inner-title-zh.svg',
+    detailImageUrl: '/assets/stage2/oldBuilding-feature2-inner-image.png',
     detailDescription: `921大地震受災戶的「埔里中華商場」，在經過第一銀行都更團隊詳細說明都市更新整體融資架構及內容後，終於取得更新會及住戶認同，接受全盤風險考量的更新規劃。第一銀行繼「尚華仁愛大樓都市更新自建融資案」後，再次以提供100％的全額融資方式協助「埔里鎮中華商場都市更新自建」，重現埔里中華商場嶄新風貌。`
   },
   {
     name: CASE_NAME.CASE3,
-    imageUrl: '/assets/oldBuilding-feature3-thumbnail.png',
-    titleImageUrl: '/assets/oldBuilding-feature3-title-zh.svg',
-    "description": `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`,
+    imageUrl: '/assets/stage2/oldBuilding-feature3-thumbnail.png',
+    titleImageUrl: '/assets/stage2/oldBuilding-feature3-title-zh.svg',
     detailTitleWidth: 1085,
     detailTitleHeight: 332,
-    detailTitleImageUrl: '/assets/oldBuilding-feature3-inner-title-zh.svg',
-    detailImageUrl: '/assets/oldBuilding-feature3-inner-image.png',
+    detailTitleImageUrl: '/assets/stage2/oldBuilding-feature3-inner-title-zh.svg',
+    detailImageUrl: '/assets/stage2/oldBuilding-feature3-inner-image.png',
     detailDescription: `水源路四、五期整宅為當初臺北市政府為安置公共工程拆遷戶而興建的整建住宅，其屋齡都已超過50年，住戶卻都還住在裡面。
 
     更新前每戶不足10坪的居住環境、無停車位，生活空間狹小窳陋，更有漏水、治安、牆壁損毀及消防安全等嚴重問題而自願更新重建。該案原地主超過170人，人數眾多、土地產權複雜，更增添整合與融資難度。歷經近 12 個寒暑，第一銀行從整合、規劃、都更核定、融資核定到完工交屋，終於在2018年讓水源路四、五期整宅都更案原地主順利搬回新家。`
@@ -71,16 +68,36 @@ const CASE_DATA_ZH = [
 
 const CASE_DATA_EN = [
   {
-    imageUrl: '',
     name: CASE_NAME.CASE1,
-    titleImageUrl: '/assets/oldBuilding-feature1-title-zh.svg',
-    "description": `1999年921大地震，臺北市仁愛路跟光復南路口「尚華仁愛大樓」，其混凝土壓力測試達不到標準，由黃單被改貼為紅單，住戶只能決定重建。第一銀行陪同住戶一起走過三年半的整合過程，秉持善盡社會責任之理念，減輕受災戶的財務負擔，以在信託與融資的專業，加上東亞建築經理股份有限公司（第一銀行轉投資關係企業，下稱東亞建經）在營建、建築法規、都更法規的協助整合，突破傳統授信觀念，排除各項困難，為住戶量身定作融資架構，提供100％的融資額度協助重建。`,
-    detailTitleWidth: 874,
-    detailTitleHeight: 205,
-    detailImageUrl: "",
-    "detailTitleImageUrl": "",
-    "detailDescription": "",
+    imageUrl: '/assets/stage2/oldBuilding-feature1-thumbnail.png',
+    titleImageUrl: '/assets/stage2/oldBuilding-feature1-title-en.svg',
+    detailTitleImageUrl: '/assets/stage2/oldBuilding-feature1-inner-title-en.svg',
+    detailImageUrl: '/assets/stage2/oldBuilding-feature1-inner-image.png',
+    detailTitleWidth: 864,
+    detailTitleHeight: 228,
+    detailDescription: `After the 1999 921 earthquake, the "Shanghua Renai Building" in Taipei faced inadequate concrete pressure test results, leading to a change from a yellow to a red tag. Residents had to choose reconstruction. Over three and a half years, First Bank supported residents in the integration process, alleviating their financial burden. Utilizing expertise in trust and financing, along with assistance from East Asia Construction Management Co., Ltd., a subsidiary of First Bank, we provided 100% financing to tailor a reconstruction solution.`
   },
+  {
+    name: CASE_NAME.CASE2,
+    imageUrl: '/assets/stage2/oldBuilding-feature2-thumbnail.png',
+    titleImageUrl: '/assets/stage2/oldBuilding-feature2-title-en.svg',
+    detailTitleWidth: 1011,
+    detailTitleHeight: 243,
+    detailTitleImageUrl: '/assets/stage2/oldBuilding-feature2-inner-title-en.svg',
+    detailImageUrl: '/assets/stage2/oldBuilding-feature2-inner-image.png',
+    detailDescription: `After detailed explanations from the First Bank urban renewal team, the 921 earthquake-affected 'Puli Zhonghua Shopping Mall' secured approval from the renewal meeting and residents. Following the success of the 'Shanghua Renai Building Urban Renewal Self-Construction Financing Case,' First Bank once again provided 100% full financing to assist in the 'Puli Town Zhonghua Shopping Mall Urban Renewal Self-Construction,' bringing a fresh look to Puli Zhonghua Shopping Mall.`
+  },
+  {
+    name: CASE_NAME.CASE3,
+    imageUrl: '/assets/stage2/oldBuilding-feature3-thumbnail.png',
+    titleImageUrl: '/assets/stage2/oldBuilding-feature3-title-en.svg',
+    detailTitleWidth: 1076,
+    detailTitleHeight: 332,
+    detailTitleImageUrl: '/assets/stage2/oldBuilding-feature3-inner-title-en.svg',
+    detailImageUrl: '/assets/stage2/oldBuilding-feature3-inner-image.png',
+    detailDescription: `Water Source Road Phases Four and Five were initially constructed by the Taipei City Government to house residents displaced by public projects. With over 50 years of age, cramped living conditions, and various issues, residents voluntarily chose self-redevelopment. Despite the complexity of over 170 landowners and nearly 12 years of efforts, First Bank successfully facilitated the integration, planning, approval, financing, and completion processes, allowing the original landowners to move into their new homes in 2018.`
+
+  }
 ]
 
 
@@ -95,12 +112,27 @@ const modalStyle = {
   pb: "180px"
 };
 
+
+
 const OldBuilding: React.FC = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [selectedCase, setSelectedCase] = useState<any>(null);
   const router = useRouter();
   const { t } = useTranslation('stage2');
   const { lang } = useFirstBankTranslation()
+  const isEN = lang === LANGUAGE_TYPE.EN;
+
+  const textStyle = isEN ? {
+    fontSize: "40px",
+    fontWeight: 500,
+    lineHeight: "64px",
+    letterSpacing: "1.6px",
+  } : {
+    fontSize: "52px",
+    lineHeight: "98.8px",
+    fontWeight: 500,
+    letterSpacing: "4.16px"
+  }
   console.log('lang :', lang);
 
 
@@ -133,7 +165,7 @@ const OldBuilding: React.FC = () => {
         bgcolor: 'background.paper',
       }}
     >
-
+      <PreLoadImageHeader />
       <FadeInHorizontal direction="ltr"
         flexDirection='column'
         display='flex'
@@ -142,7 +174,7 @@ const OldBuilding: React.FC = () => {
         <Box width="500px" height="500px" position="relative" mb="80px">
           <Image
             fill
-            src="/assets/oldBuilding-icon.svg"
+            src="/assets/stage2/oldBuilding-icon.svg"
             alt="oldBuilding-icon"
           />
         </Box>
@@ -155,16 +187,15 @@ const OldBuilding: React.FC = () => {
         >
           <Image
             fill
-            src="/assets/oldBuilding-title-zh.svg"
+            src={`/assets/stage2/oldBuilding-title-${lang}.svg`}
             alt="oldBuilding-title-zh"
           />
         </Box>
 
         <Box
-          fontSize="52px"
-          lineHeight="98.8px"
           mb="60px"
-          width="1514px">
+          width="1514px"
+          {...textStyle}>
           {t('oldBuilding.desc')}
         </Box>
       </FadeInHorizontal>
@@ -182,7 +213,7 @@ const OldBuilding: React.FC = () => {
         >
           <Image
             fill
-            src="/assets/oldBuilding-chart.svg"
+            src={`/assets/stage2/oldBuilding-chart-${lang}.svg`}
             alt="oldBuilding-chart"
           />
         </Box>
@@ -215,8 +246,8 @@ const OldBuilding: React.FC = () => {
                 />
               </Box>
               <Box
-                width="500px"
-                height="180px"
+                width="440px"
+                height={isEN ? "248px" : "180px"}
                 position="relative"
                 mb="80px">
                 <Image
@@ -283,19 +314,14 @@ const OldBuilding: React.FC = () => {
                   height={selectedCase?.detailTitleHeight}
                 />
               </Box>
-              <Typography
+              <Box
                 id="modal-modal-description" sx={{
                   color: 'var(--brown4, #594A39)',
-                  fontSize: '52px',
-                  fontStyle: 'normal',
-                  fontWeight: 500,
-                  lineHeight: '190%',
-                  letterSpacing: '4.16px',
-                  whiteSpace: 'pre-line'
-
+                  whiteSpace: 'pre-line',
+                  ...textStyle
                 }}>
                 {selectedCase?.detailDescription}
-              </Typography>
+              </Box>
             </Box>
           </Box>
         </ZoomBounce>

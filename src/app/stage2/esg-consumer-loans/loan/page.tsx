@@ -5,8 +5,6 @@ import BackRightActiveButton from '@/assets/back_right_active.svg';
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import React from 'react';
 import Image from 'next/image';
-import { LANGUAGE_TYPE } from '@/types';
-import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import {
   Box,
   Container,
@@ -14,6 +12,8 @@ import {
 import BulletPointList from '@/components/LoanBulletPointList';
 import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
+import { LANGUAGE_TYPE } from '@/types';
+import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 
 
