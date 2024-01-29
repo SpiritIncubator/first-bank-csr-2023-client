@@ -5,14 +5,14 @@ import SuperStar from '@/app/_assets/images/result-superstar.svg';
 import Advanced from '@/app/_assets/images/result-advanced.svg';
 import Beginner from '@/app/_assets/images/result-beginner.svg';
 
-import QuestionOneImg from '../assets/question.one.img.svg';
-import QuestionTwoImg from '../assets/question.two.img.svg';
-import QuestionThreeImg from '../assets/question.three.img.svg';
-import QuestionFourImg from '../assets/question.four.img.svg';
-import QuestionFiveImg from '../assets/question.five.img.svg';
-import QuestionSixImg from '../assets/question.six.img.svg';
-import QuestionSevenImg from '../assets/question.seven.img.svg';
-import QuestionEightImg from '../assets/question.eight.img.svg';
+import QuestionOneImg from '../assets/result-one-img.svg';
+import QuestionTwoImg from '../assets/result-two-img.svg';
+import QuestionThreeImg from '../assets/result-three-img.svg';
+import QuestionFourImg from '../assets/result-four-img.svg';
+import QuestionFiveImg from '../assets/result-five-img.svg';
+import QuestionSixImg from '../assets/result-six-img.svg';
+import QuestionSevenImg from '../assets/result-seven-img.svg';
+import QuestionEightImg from '../assets/result-eight-img.svg';
 
 export const answerDescription = [
 	{

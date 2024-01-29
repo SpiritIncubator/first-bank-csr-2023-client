@@ -1,10 +1,9 @@
 'use client';
 
 import React, {CSSProperties, PropsWithChildren, ComponentProps} from 'react';
-import MuiButton, { ButtonOwnProps } from '@mui/material/Button';
+import { ButtonOwnProps } from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { BoxProps } from '@mui/material/Box';
-import Typography, {TypographyProps} from '@mui/material/Typography';
 import {styled} from '@mui/material/styles';
 
 const StyledButton = styled(Box)`
@@ -13,8 +12,8 @@ const StyledButton = styled(Box)`
   background: #7DBD36;
   color: #fff;
 
-	&.MuiButton-root:hover {
-		background-color: #B8C318;
+	&:active {
+		background: #B8C318;
 	}
 `;
 
@@ -28,7 +27,7 @@ type ButtonProps = {
 
 const Button = ({ styles, onClickHandler, children, component = 'div', ...rest }: PropsWithChildren<ButtonProps>) => {
 	return (
-		<StyledButton component={component} style={{ ...styles }} onClick={onClickHandler} {...rest}>
+		<StyledButton component={component} onClick={onClickHandler} {...rest}>
 			{children}
 		</StyledButton>
 	);
