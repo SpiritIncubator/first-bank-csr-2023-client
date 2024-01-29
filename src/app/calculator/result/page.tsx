@@ -61,6 +61,7 @@ const ResultPage = () => {
                 </Typography>
               </Box>
               <Box mb={2.5}>
+                {/* <Image src={answer.imgSrc} alt="result-img" /> */}
                 <Box width={100} height={100} bgcolor="#E9E3D8" />
               </Box>
               <Box>

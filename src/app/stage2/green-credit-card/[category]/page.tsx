@@ -68,7 +68,9 @@ const Page = ({ params }: PageProps) => {
       position="relative"
     >
       <Box display="flex" flexDirection="column" alignItems="center">
-        <Image src={imgSrc.titleImg} alt="title" /> 
+        <Box height={266} display="flex" alignItems="center">
+          <Image src={imgSrc.titleImg} alt="title" /> 
+        </Box>
         <Box mt={10}>
           <Image src={detail.src} alt="card" />
         </Box>
@@ -91,12 +93,12 @@ const Page = ({ params }: PageProps) => {
                 <Typography fontSize={30}>(張)</Typography>
               </Box>
               <Typography fontSize={160} fontWeight={900} color={categoryColor}>
-                <CountUp start={0} end={detail.circulationAmount} duration={3} />
+                <CountUp style={{letterSpacing: 10}} start={0} end={detail.circulationAmount} duration={3} />
               </Typography>
             </Box>
             <Box>
               <Typography fontSize={54} fontWeight={700}>累積提撥金額</Typography>
-              <Typography fontSize={120} fontWeight={900} color={categoryColor}>{new Intl.NumberFormat('en-IN').format(detail.accumulateAmount)}</Typography>
+              <Typography letterSpacing={10} fontSize={120} fontWeight={900} color={categoryColor}>{new Intl.NumberFormat('en').format(detail.accumulateAmount)}</Typography>
             </Box>
           </Box>
         </FadeIn>
@@ -114,7 +116,7 @@ const Page = ({ params }: PageProps) => {
         height="283px"
         position="absolute"
         left={0}
-        top="45%"
+        top={1678}
       />
     </Box>
   )

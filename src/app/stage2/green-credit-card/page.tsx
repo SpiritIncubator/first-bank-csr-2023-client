@@ -39,7 +39,7 @@ const CardOverview = () => {
         <FadeInHorizontal direction="rtl">
           <Image src={CardIntroIcon} alt="intro" />
         </FadeInHorizontal>
-        <FadeInHorizontal direction="rtl">          
+        <FadeInHorizontal direction="rtl">
           <Typography fontWeight={500} fontSize={52} mt={7.5} lineHeight={2} letterSpacing={1}>
             第一銀行持續透過依公益/綠色信用卡刷卡金額固定比率提撥之刷卡金推動環保及公益活動，並啟動「減碳標籤」認證專案。
           </Typography>
@@ -67,7 +67,7 @@ const CardOverview = () => {
         height="283px"
         position="absolute"
         left={0}
-        top="45%"
+        top={1678}
       />
     </IntroContainer>
   )

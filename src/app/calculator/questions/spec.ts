@@ -1,3 +1,12 @@
+import QuestionOneImg from '../assets/question.one.img.svg';
+import QuestionTwoImg from '../assets/question.two.img.svg';
+import QuestionThreeImg from '../assets/question.three.img.svg';
+import QuestionFourImg from '../assets/question.four.img.svg';
+import QuestionFiveImg from '../assets/question.five.img.svg';
+import QuestionSixImg from '../assets/question.six.img.svg';
+import QuestionSevenImg from '../assets/question.seven.img.svg';
+import QuestionEightImg from '../assets/question.eight.img.svg';
+
 type OptionType = {
 	content: string;
 	score: number;
@@ -11,7 +20,7 @@ type LevelType = {
 
 export const questionList: Array<LevelType> = [
 	{
-		imgSrc: '',
+		imgSrc: QuestionOneImg,
 		description: 'question.one.description',
 		options: [
 			{
@@ -29,7 +38,7 @@ export const questionList: Array<LevelType> = [
 		],
 	},
 	{
-		imgSrc: '',
+		imgSrc: QuestionTwoImg,
 		description: 'question.two.description',
 		options: [
 			{
@@ -47,7 +56,7 @@ export const questionList: Array<LevelType> = [
 		],
 	},
 	{
-		imgSrc: '',
+		imgSrc: QuestionThreeImg,
 		description: 'question.three.description',
 		options: [
 			{
@@ -65,7 +74,7 @@ export const questionList: Array<LevelType> = [
 		],
 	},
 	{
-		imgSrc: '',
+		imgSrc: QuestionFourImg,
 		description: 'question.four.description',
 		options: [
 			{
@@ -83,7 +92,7 @@ export const questionList: Array<LevelType> = [
 		],
 	},
 	{
-		imgSrc: '',
+		imgSrc: QuestionFiveImg,
 		description: 'question.five.description',
 		options: [
 			{
@@ -101,7 +110,7 @@ export const questionList: Array<LevelType> = [
 		],
 	},
 	{
-		imgSrc: '',
+		imgSrc: QuestionSixImg,
 		description: 'question.six.description',
 		options: [
 			{
@@ -119,7 +128,7 @@ export const questionList: Array<LevelType> = [
 		],
 	},
 	{
-		imgSrc: '',
+		imgSrc: QuestionSevenImg,
 		description: 'question.seven.description',
 		options: [
 			{
@@ -137,7 +146,7 @@ export const questionList: Array<LevelType> = [
 		],
 	},
 	{
-		imgSrc: '',
+		imgSrc: QuestionEightImg,
 		description: 'question.eight.description',
 		options: [
 			{

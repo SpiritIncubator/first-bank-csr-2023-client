@@ -19,13 +19,13 @@ const dataMapping = [
     img: CreditCardIcon
   },
   {
-    img: LeeCard
+    img: TyCard
   },
   {
     img: YIlanCard
   },
   {
-    img: TyCard
+    img: LeeCard
   },
   {
     img: WorldCard

@@ -5,6 +5,15 @@ import SuperStar from '@/app/_assets/images/result-superstar.svg';
 import Advanced from '@/app/_assets/images/result-advanced.svg';
 import Beginner from '@/app/_assets/images/result-beginner.svg';
 
+import QuestionOneImg from '../assets/question.one.img.svg';
+import QuestionTwoImg from '../assets/question.two.img.svg';
+import QuestionThreeImg from '../assets/question.three.img.svg';
+import QuestionFourImg from '../assets/question.four.img.svg';
+import QuestionFiveImg from '../assets/question.five.img.svg';
+import QuestionSixImg from '../assets/question.six.img.svg';
+import QuestionSevenImg from '../assets/question.seven.img.svg';
+import QuestionEightImg from '../assets/question.eight.img.svg';
+
 export const answerDescription = [
 	{
 		img: StarOne,
@@ -23,37 +32,42 @@ export const answerDescription = [
 	},
 ];
 
-export const answerList: Array<any> = [
+type AnswerType = {
+	imgSrc: any;
+	content: string;
+}
+
+export const answerList: Array<AnswerType> = [
 	{
-		imgSrc: '',
+		imgSrc: QuestionOneImg,
 		content: 'question.one.answer',
 	},
 	{
-		imgSrc: '',
+		imgSrc: QuestionTwoImg,
 		content: 'question.two.answer',
 	},
 	{
-		imgSrc: '',
+		imgSrc: QuestionThreeImg,
 		content: 'question.three.answer',
 	},
 	{
-		imgSrc: '',
+		imgSrc: QuestionFourImg,
 		content: 'question.four.answer',
 	},
 	{
-		imgSrc: '',
+		imgSrc: QuestionFiveImg,
 		content: 'question.five.answer',
 	},
 	{
-		imgSrc: '',
+		imgSrc: QuestionSixImg,
 		content: 'question.six.answer',
 	},
 	{
-		imgSrc: '',
+		imgSrc: QuestionSevenImg,
 		content: 'question.seven.answer',
 	},
 	{
-		imgSrc: '',
+		imgSrc: QuestionEightImg,
 		content: 'question.eight.answer',
 	},
 ];
