@@ -3,8 +3,14 @@
 import React from 'react';
 import { Box, Typography, List, ListItem } from '@mui/material';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
+import { LANGUAGE_TYPE } from '@/types';
+import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
+
+
+
 
 const CustomBullet = ({ number }: { number: string }) => {
+
   return (
     <Box
       sx={{
@@ -16,7 +22,7 @@ const CustomBullet = ({ number }: { number: string }) => {
         color: '#594A39',
         fontSize: '52px',
         fontWeight: 500,
-        lineHeight: '190%', // 98.8px
+        lineHeight: "98.8px",
         letterSpacing: '4.16px',
       }}
     >
@@ -25,7 +31,7 @@ const CustomBullet = ({ number }: { number: string }) => {
         sx={{
           fontSize: '52px',
           color: "white",
-          transform: "translate(-40%, -50%)"
+          transform: "translate(-45%, -52%)"
         }}>
         {number}
       </Box>
@@ -33,17 +39,28 @@ const CustomBullet = ({ number }: { number: string }) => {
   );
 };
 
-// Define the custom styles for the list items
-const listItemStyle = {
-  color: '#594A39',
-  fontSize: '52px',
-  fontWeight: 500,
-  lineHeight: '190%', // 98.8px
-  letterSpacing: '4.16px',
-};
+
 
 const BulletPointList: React.FC = () => {
   const { t } = useTranslation('stage2');
+  const { lang } = useFirstBankTranslation();
+  const isEN = lang === LANGUAGE_TYPE.EN;
+
+  const textStyle = isEN ? {
+    fontSize: "40px",
+    fontWeight: 500,
+    lineHeight: "64px",
+    letterSpacing: "1.6px",
+    maxWidth: "1514px",
+  } : {
+    fontSize: "52px",
+    lineHeight: "98.8px",
+    fontWeight: 500,
+    maxWidth: "1514px",
+    letterSpacing: "4.16px"
+  }
+
+
   return (
     <List sx={{ listStyle: 'none', padding: 0 }}>
       {[1, 2, 3, 4, 5].map((stringIndex, index) => (
@@ -51,7 +68,7 @@ const BulletPointList: React.FC = () => {
           <Box sx={{ mr: "32px" }}>
             <CustomBullet number={`${index + 1}`} />
           </Box>
-          <Typography maxWidth="1348px" sx={listItemStyle}>{t(`loan.feature.${stringIndex}`)}</Typography>
+          <Typography maxWidth="1348px" sx={textStyle}>{t(`loan.feature.${stringIndex}`)}</Typography>
         </ListItem>
       ))}
     </List>

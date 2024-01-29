@@ -1,3 +1,4 @@
+
 import { useCallback, useEffect, useState } from 'react';
 import isServer from '@/utils/isServer';
 import usePrevious from '@/app/hooks/usePrevious';
@@ -28,6 +29,9 @@ const useFirstBankTranslation = () => {
       // eslint-disable-next-line no-void
       void i18nInstance.changeLanguage(currentLang);
     }
+
+    console.log('getLanguage() :', getLanguage());
+    setCurrentLang(getLanguage())
   }, [currentLang, prevLang]);
 
   return {

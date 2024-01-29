@@ -16,12 +16,33 @@ import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 
+
+
+
 const PageLayout: React.FC = () => {
   const { t } = useTranslation('stage2');
   const { lang } = useFirstBankTranslation();
   const isEN = lang === LANGUAGE_TYPE.EN;
+
   console.log('isEN :', isEN);
   const router = useRouter();
+
+
+  const descriptionStyle = isEN ? {
+    mb: '70px',
+    fontSize: "40px",
+    fontWeight: 500,
+    lineHeight: "64px",
+    letterSpacing: "1.6px",
+    maxWidth: "1514px",
+  } : {
+    fontSize: "52px",
+    lineHeight: "98.8px",
+    mb: "60px",
+    maxWidth: "1514px",
+    letterSpacing: "4.16px"
+  }
+
   return (
     <Container
       disableGutters
@@ -56,17 +77,13 @@ const PageLayout: React.FC = () => {
         >
           <Image
             fill
-            src="/assets/stage2/greenConsumerLoan-title-zh.svg"
+            src={`/assets/stage2/greenConsumerLoan-title-${lang}.svg`}
             alt="greenConsumerLoan"
           />
         </Box>
 
         <Box
-          fontSize="52px"
-          lineHeight="98.8px"
-          mb="60px"
-          width="1514px"
-          letterSpacing="4.16px">
+          sx={descriptionStyle}>
           {t('loan.desc')}
         </Box>
 
@@ -84,7 +101,7 @@ const PageLayout: React.FC = () => {
           >
             <Image
               fill
-              src="/assets/stage2/greenConsumerLoan-chart.svg"
+              src={`/assets/stage2/greenConsumerLoan-chart-${lang}.svg`}
               alt="greenConsumerLoan-chart"
             />
           </Box>
