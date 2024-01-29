@@ -93,12 +93,12 @@ const Page = ({ params }: PageProps) => {
                 <Typography fontSize={30}>(張)</Typography>
               </Box>
               <Typography fontSize={160} fontWeight={900} color={categoryColor}>
-                <CountUp style={{letterSpacing: 10}} start={0} end={detail.circulationAmount} duration={3} />
+                <CountUp style={{letterSpacing: 20}} start={0} end={detail.circulationAmount} duration={3} />
               </Typography>
             </Box>
             <Box>
               <Typography fontSize={54} fontWeight={700}>累積提撥金額</Typography>
-              <Typography letterSpacing={10} fontSize={120} fontWeight={900} color={categoryColor}>{new Intl.NumberFormat('en').format(detail.accumulateAmount)}</Typography>
+              <Typography letterSpacing={15} fontSize={120} fontWeight={900} color={categoryColor}>{new Intl.NumberFormat('en').format(detail.accumulateAmount)}</Typography>
             </Box>
           </Box>
         </FadeIn>

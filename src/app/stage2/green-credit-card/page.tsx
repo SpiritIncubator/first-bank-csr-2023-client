@@ -13,6 +13,7 @@ import cardLionIcon from '@/app/stage2/assets/card-lion.svg';
 import BackLeftButton from '@/assets/back_left.svg';
 import BackLeftActiveButton from '@/assets/back_left_active.svg';
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
+import {useTranslation} from '@/app/_locales/hooks/useTranslation';
 import ReleaseStatistic from './_components/ReleaseStatistics/ReleaseStatistic';
 import DemoCard from './_components/DemoCard/DemoCard';
 
@@ -20,6 +21,7 @@ const mockData = new Array(5).fill(0);
 
 const CardOverview = () => {
   const router = useRouter();
+  const { t } = useTranslation('stage2');
 
   const redirectToDetail = useCallback((index: string) => () => {
     router.push(`/stage2/green-credit-card/${index}`);
