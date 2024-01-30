@@ -13,7 +13,7 @@ import FadeIn from '@/app/_components/Transitions/FadeIn';
 import BackLeftButton from '@/assets/back_left.svg';
 import BackLeftActiveButton from '@/assets/back_left_active.svg';
 import {useTranslation} from '@/app/_locales/hooks/useTranslation';
-
+import useStore from '@/app/atoms/useStore';
 
 import { creditCardInfos } from './spec';
 import SymbolWithYears from './assets/symbol-years.svg';
@@ -36,22 +36,13 @@ const Page = ({ params }: PageProps) => {
   const detail = creditCardInfos[Number(params.category) - 1];
   const isLastCard = Number(params.category) === creditCardInfos.length;
   const categoryColor = isLastCard ? 'rgba(238, 182, 144, 1)' : '#BBC318';
-  const { getLanguage } = useFirstBankTranslation();
+  const { language } = useStore();
   const { isMounted } = useMount();
-  const [lang, setLang] = React.useState('en');
-  const isEn = lang === 'en';
-  const imgSrc = isMounted ? detail.imgSrc[lang as 'en' | 'zh'] : { titleImg: '', cardNameImg: '', releaseDateImg: '', src: '' };
-  // const isLastCardWithEn = isLastCard && isEn && isMounted;
+  const isEn = language === 'en';
+  const imgSrc = isMounted ? detail.imgSrc[language as 'en' | 'zh'] : { titleImg: '', cardNameImg: '', releaseDateImg: '', src: '' };
   const symbolImg = isLastCard ?
     (isEn) ? LastSymbolWithYearsEn : LastSymbolWithYears
     : (isEn) ? SymbolWithYearsEn : SymbolWithYears;
-  
-  useEffect(() => {
-    if (isMounted) {
-      const language = getLanguage();
-      setLang(language);
-    }
-  });
 
   function renderCardDetail(description: string, index: number) {
     const isHeadRecord = index === 0;

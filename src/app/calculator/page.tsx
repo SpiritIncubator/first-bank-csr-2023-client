@@ -15,22 +15,13 @@ import animationData from './assets/animation/leo_2-8_thinking.json';
 import FadeIn from '../_components/Transitions/FadeIn';
 import Homepage from '@/app/_assets/images/homepage-desc.svg'
 import useMount from '@/app/hooks/useMount';
-import isServer from '@/utils/isServer';
+import useStore from '../atoms/useStore';
 
 const MainPage = () => {
 	const router = useRouter();
 	const { t } = useTranslation('common');
-	const { getLanguage } = useFirstBankTranslation();
-	const { isMounted } = useMount();
-	const [lang, setLang] = React.useState('en');
-	
-	React.useEffect(() => {
-		if (isMounted) {
-			const language = getLanguage();
-			setLang(language);
-		}
-	});
-
+	const { language } = useStore();
+	const isEn = language === 'en';
 
 	function redirectToQuestionsPage() {
 		router.push('/calculator/questions');
@@ -44,11 +35,9 @@ const MainPage = () => {
 				<Box width="310px" display="flex" flexDirection="column" alignItems="center">
 					<FadeIn marginBottom={50}>
 						<Image src={Homepage} alt="calculator" />
-						{isMounted && (
-							<Typography fontSize={lang === 'en' ? 14 : 16} letterSpacing={1} fontWeight={500} lineHeight={1.5} minHeight={63} textAlign={lang === 'en' ? 'center' : 'start'}>
+							<Typography fontSize={isEn ? 14 : 16} letterSpacing={1} fontWeight={500} lineHeight={1.5} minHeight={63} textAlign={isEn ? 'center' : 'start'}>
 								{t('homepage.desc')}
 							</Typography>
-						)}
 					</FadeIn>
 					<Box mb={7.5}>
 						<FadeIn delay={0.5}>

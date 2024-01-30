@@ -4,14 +4,11 @@ import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
-import useMount from '@/app/hooks/useMount';
 import Rating from '@/app/_components/Rating/Rating';
 import useStore from '@/app/atoms/useStore';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
-import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import FadeInOnView from '@/app/_components/Transitions/FadeInOnView';
 import StyleButton from '@/app/_components/Button/Button';
@@ -50,17 +47,7 @@ const ResultPage = () => {
   const [delayLoading, setDelayLoading] = useState(true);
   const questionAnswers = useStore(state => state.questionAnswer);
   const { t } = useTranslation('common');
-  const { getLanguage } = useFirstBankTranslation(); 
-
-  const { isMounted } = useMount();
-  const [lang, setLang] = React.useState('en');
-
-  React.useEffect(() => {
-    if (isMounted) {
-      const language = getLanguage();
-      setLang(language);
-    }
-  });
+  const { language } = useStore();
 
   const score = questionAnswers.reduce((acc, cur) => {
     return acc + cur.score;
@@ -121,8 +108,8 @@ const ResultPage = () => {
   return (
     <Box pt={4} px={3} height="120vh">
       <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" mt={3}>
-        <Image src={lang === 'en' ? BarEn : BarZh} alt="bar-text" />
-        {lang === 'en' && <Image src={ResultPageTitle} alt="bar" />}
+        <Image src={language === 'en' ? BarEn : BarZh} alt="bar-text" />
+        {language === 'en' && <Image src={ResultPageTitle} alt="bar" />}
       </Box>
       <Box mt={5} display="flex" justifyContent="center">
         <motion.div

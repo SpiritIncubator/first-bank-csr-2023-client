@@ -7,11 +7,21 @@ interface QuestionSlice {
 	setQuestionAnswer: (questionAnswer: any) => void;
 }
 
-type SharedSlice = QuestionSlice;
+interface LanguageSlice {
+	language: LANGUAGE_TYPE;
+	setLanguage: (language: LANGUAGE_TYPE) => void;
+}
+
+type SharedSlice = QuestionSlice & LanguageSlice;
 
 const createQuestionSlice: StateCreator<QuestionSlice, [], [], QuestionSlice> = (set) => ({
 	questionAnswer: [],
 	setQuestionAnswer: (questionAnswer: any) => set({ questionAnswer }),
+});
+
+const createLanguageSlice: StateCreator<SharedSlice, [], [], LanguageSlice> = set => ({
+	language: LANGUAGE_TYPE.ZH,
+	setLanguage: (language: LANGUAGE_TYPE) => set({ language }),
 });
 
 const useStore = create<SharedSlice>()(
@@ -19,6 +29,7 @@ const useStore = create<SharedSlice>()(
 		persist(
 			(...context) => ({
 				...createQuestionSlice(...context),
+				...createLanguageSlice(...context),
 			}),
 			{ name: 'global', storage: createJSONStorage(() => localStorage) },
 		),

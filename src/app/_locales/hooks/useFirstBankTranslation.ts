@@ -1,9 +1,11 @@
 
 import { useCallback, useEffect, useState } from 'react';
+
+import useStore from '@/app/atoms/useStore';
 import isServer from '@/utils/isServer';
 import usePrevious from '@/app/hooks/usePrevious';
 import { LANGUAGE_TYPE } from '@/types';
-import { setStorage } from '@/utils/localStorage';
+import { setStorage, getStorage } from '@/utils/localStorage';
 import { i18nInstance } from '../i18n';
 import { getLanguage } from './index';
 
@@ -16,6 +18,7 @@ const useFirstBankTranslation = () => {
 
     return getLanguage();
   });
+  const {setLanguage, language} = useStore();
   const prevLang = usePrevious(currentLang);
 
   const setLang = useCallback((language: LANGUAGE_TYPE) => {
@@ -25,18 +28,24 @@ const useFirstBankTranslation = () => {
   }, []);
 
   useEffect(() => {
-    if (prevLang !== currentLang) {
-      // eslint-disable-next-line no-void
-      void i18nInstance.changeLanguage(currentLang);
-    }
-
-    setCurrentLang(getLanguage())
-  }, [currentLang, prevLang]);
+		if (prevLang !== currentLang) {
+			// eslint-disable-next-line no-void
+			void i18nInstance.changeLanguage(currentLang);
+		}
+		setLanguage(currentLang);
+		setCurrentLang(getLanguage());
+  }, [currentLang, prevLang, setLanguage]);
+  
+  useEffect(() => {
+		const lang = getStorage<LANGUAGE_TYPE>('lang');
+		if (lang) {
+			setLanguage(lang);
+		}
+	}, [setLanguage]);
 
   return {
 		setLang,
 		lang: currentLang,
-		getLanguage,
 	};
 };
 

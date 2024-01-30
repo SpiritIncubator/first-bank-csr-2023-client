@@ -1,32 +1,20 @@
 'use client'
 
-import React, {useEffect} from 'react'
+import React from 'react'
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 import CountUp from 'react-countup';
-import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 
-import useMount from '@/app/hooks/useMount';
 import IntroBirdIcon from '@/app/stage2/assets/introBird.svg'
 import CalculateMoney from '@/app/stage2/assets/calculateMoney.svg';
 import CalculateMoneyEn from '@/app/stage2/assets/calculateMoneyEn.svg'
 import NumberOfCardImg from '@/app/stage2/assets/numberOfCard.svg';
 import NumberOfCardEnImg from '@/app/stage2/assets/numberOfCardEn.svg'
+import useStore from '@/app/atoms/useStore';
 
 const ReleaseStatistic = () => {
-  const { getLanguage } = useFirstBankTranslation();
-
-  const { isMounted } = useMount();
-  const [lang, setLang] = React.useState('en');
-  const isEn = lang === 'en';
-
-  useEffect(() => {
-    if (isMounted) {
-      const language = getLanguage();
-      setLang(language);
-    }
-  });
-
+  const { language } = useStore();
+  const isEn = language === 'en';
 
   return (
     <Box display="flex" flexDirection="column">
@@ -42,7 +30,7 @@ const ReleaseStatistic = () => {
         </Box>
       </Box>
       <Box mt={15} textAlign="center">
-        {isMounted && <Image src={isEn ? CalculateMoneyEn : CalculateMoney} alt="money" />}
+        <Image src={isEn ? CalculateMoneyEn : CalculateMoney} alt="money" />
       </Box>
     </Box>
   )

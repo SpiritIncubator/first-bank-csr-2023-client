@@ -23,25 +23,26 @@ import ReleaseStatistic from './_components/ReleaseStatistics/ReleaseStatistic';
 import DemoCard from './_components/DemoCard/DemoCard';
 import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 import useMount from '@/app/hooks/useMount';
+import useStore from '@/app/atoms/useStore';
 
 const mockData = new Array(5).fill(0);
 
 const CardOverview = () => {
   const router = useRouter();
   const { t } = useTranslation('stage2');
+  const { language } = useStore();
+  // const { getLanguage } = useFirstBankTranslation();
 
-  const { getLanguage } = useFirstBankTranslation();
+  // const { isMounted } = useMount();
+  // const [lang, setLang] = React.useState('en');
+  const isEn = language === 'en';
 
-  const { isMounted } = useMount();
-  const [lang, setLang] = React.useState('en');
-  const isEn = lang === 'en';
-
-  useEffect(() => {
-    if (isMounted) {
-      const language = getLanguage();
-      setLang(language);
-    }
-  });
+  // useEffect(() => {
+  //   if (isMounted) {
+  //     const language = getLanguage();
+  //     setLang(language);
+  //   }
+  // });
 
   const redirectToDetail = useCallback((index: string) => () => {
     router.push(`/stage2/green-credit-card/${index}`);
