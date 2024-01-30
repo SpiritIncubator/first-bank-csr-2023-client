@@ -1,11 +1,13 @@
 'use client'
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Box, Typography, List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
 import Image from 'next/image';
 import CountUp from 'react-countup';
 import { useRouter } from 'next/navigation';
+import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 
+import useMount from '@/app/hooks/useMount';
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import BackLeftButton from '@/assets/back_left.svg';
@@ -15,7 +17,9 @@ import {useTranslation} from '@/app/_locales/hooks/useTranslation';
 
 import { creditCardInfos } from './spec';
 import SymbolWithYears from './assets/symbol-years.svg';
+import SymbolWithYearsEn from './assets/symbol-en.svg'
 import LastSymbolWithYears from './assets/world-card-bird.svg';
+import LastSymbolWithYearsEn from './assets/last-symbol-en.svg'
 import ReleaseDate from './assets/world-release-date.svg';
 import Card from './assets/life-card-detail.svg';
 
@@ -32,8 +36,22 @@ const Page = ({ params }: PageProps) => {
   const detail = creditCardInfos[Number(params.category) - 1];
   const isLastCard = Number(params.category) === creditCardInfos.length;
   const categoryColor = isLastCard ? 'rgba(238, 182, 144, 1)' : '#BBC318';
-  const symbolImg = isLastCard ? LastSymbolWithYears : SymbolWithYears
-  const imgSrc = detail.imgSrc['zh'];
+  const { getLanguage } = useFirstBankTranslation();
+  const { isMounted } = useMount();
+  const [lang, setLang] = React.useState('en');
+  const isEn = lang === 'en';
+  const imgSrc = isMounted ? detail.imgSrc[lang as 'en' | 'zh'] : { titleImg: '', cardNameImg: '', releaseDateImg: '', src: '' };
+  // const isLastCardWithEn = isLastCard && isEn && isMounted;
+  const symbolImg = isLastCard ?
+    (isEn) ? LastSymbolWithYearsEn : LastSymbolWithYears
+    : (isEn) ? SymbolWithYearsEn : SymbolWithYears;
+  
+  useEffect(() => {
+    if (isMounted) {
+      const language = getLanguage();
+      setLang(language);
+    }
+  });
 
   function renderCardDetail(description: string, index: number) {
     const isHeadRecord = index === 0;
@@ -43,7 +61,7 @@ const Page = ({ params }: PageProps) => {
           <ListItemIcon sx={{ marginRight: 10 }}>
             <Typography width={70} height={70} borderRadius={35} bgcolor={categoryColor} />
           </ListItemIcon>
-          <ListItemText primaryTypographyProps={{ fontSize: 60, width: 1558, lineHeight: 2, letterSpacing: 6 }} primary={t(description)} />
+          <ListItemText primaryTypographyProps={{ fontSize: 60, width: 1558, lineHeight: isEn ? 1.5 : 2, letterSpacing: 6 }} primary={t(description)} />
         </ListItem>
       </FadeIn>
     )
@@ -67,39 +85,49 @@ const Page = ({ params }: PageProps) => {
       alignItems="center"
       position="relative"
     >
-      <Box display="flex" flexDirection="column" alignItems="center">
-        <Box height={266} display="flex" alignItems="center">
-          <Image src={imgSrc.titleImg} alt="title" /> 
+      {isMounted && (
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <Box height={266} display="flex" alignItems="center">
+            <Image src={imgSrc.titleImg} alt="title" /> 
+          </Box>
+          <Box mt={10}>
+            <Image src={detail.src} alt="card" />
+          </Box>
+          <Box mt={12.5}>
+            <Image src={imgSrc.cardNameImg} alt="card-name" />
+          </Box>
+          <Box mt={5.5}>
+            <Image src={imgSrc.releaseDateImg} alt="release-date" />
+          </Box>
+          <Box position="absolute" right={450} top={950}>
+            <Image src={detail.code} alt="link" />
+          </Box>
         </Box>
-        <Box mt={10}>
-          <Image src={detail.src} alt="card" />
-        </Box>
-        <Box mt={12.5}>
-          <Image src={imgSrc.cardNameImg} alt="card-name" />
-        </Box>
-        <Box mt={5.5}>
-          <Image src={imgSrc.releaseDateImg} alt="release-date" />
-        </Box>
-      </Box>
+      )}
       <Box height={624} width="100%" display="flex" mt={23}>
         <FadeIn delay={0.5} flex={1} display='flex'>
           <Box flex={1} textAlign="right" pr={16.25}>
-            <Image src={symbolImg} alt="years" />
+            {isMounted && <Image src={symbolImg} alt="years" />}
           </Box>
           <Box flex={1}>
             <Box>
-              <Box display="flex">
-                <Typography fontWeight={700} fontSize={54}>流通卡數</Typography>
-                <Typography fontSize={30}>(張)</Typography>
+              <Box display="flex" alignItems="flex-end">
+                <Typography fontWeight={700} fontSize={isEn ? 38 : 54} letterSpacing={2}>
+                  {t('card.detail.cards')}
+                </Typography>
+                {isMounted && !isEn && <Typography fontSize={42} mb={0.5}>(張)</Typography>}
               </Box>
               <Typography fontSize={160} fontWeight={900} color={categoryColor}>
                 <CountUp style={{letterSpacing: 20}} start={0} end={detail.circulationAmount} duration={3} />
               </Typography>
             </Box>
-            <Box>
-              <Typography fontSize={54} fontWeight={700}>累積提撥金額</Typography>
-              <Typography letterSpacing={15} fontSize={120} fontWeight={900} color={categoryColor}>{new Intl.NumberFormat('en').format(detail.accumulateAmount)}</Typography>
+            <Box display="flex" alignItems="flex-end">
+              <Typography fontSize={isEn ? 38 : 54} fontWeight={700} letterSpacing={2}>
+                {t('card.detail.accumulateAmount')}
+              </Typography>
+              <Typography ml={1} fontSize={isEn ? 38 : 42} mb={0.5}>{isEn ? '(NTD)' : '(元)'}</Typography>
             </Box>
+            <Typography letterSpacing={15} fontSize={120} fontWeight={900} color={categoryColor}>{new Intl.NumberFormat('en').format(detail.accumulateAmount)}</Typography>
           </Box>
         </FadeIn>
       </Box>

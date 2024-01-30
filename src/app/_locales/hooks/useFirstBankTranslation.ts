@@ -30,7 +30,6 @@ const useFirstBankTranslation = () => {
       void i18nInstance.changeLanguage(currentLang);
     }
 
-    console.log('getLanguage() :', getLanguage());
     setCurrentLang(getLanguage())
   }, [currentLang, prevLang]);
 
