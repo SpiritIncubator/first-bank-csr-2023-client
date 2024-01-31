@@ -1,11 +1,10 @@
 'use client'
 
-import React, {useEffect} from 'react'
+import React from 'react'
 import { Box, Button } from '@mui/material';
 import Image from 'next/image';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/navigation';
-import useFirstBankTranslation from '../_locales/hooks/useFirstBankTranslation';
 import I18nButton from '@/app/_components/I18nButton/I18nButton'
 import FadeIn from '../_components/Transitions/FadeIn';
 import CardIntroBg from './assets/card-intro.svg';
@@ -19,7 +18,6 @@ import RightCard from './assets/right-card.svg';
 import RightContent from './assets/right-content.svg'
 import RightContentEn from './assets/right-content-en.svg';
 import Lion from './assets/lion.svg';
-import useMount from '@/app/hooks/useMount';
 import useStore from '../atoms/useStore';
 
 import MoreIcon from './assets/more.svg';

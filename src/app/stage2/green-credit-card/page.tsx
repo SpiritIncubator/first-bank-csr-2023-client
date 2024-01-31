@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import Image from 'next/image';
 import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
@@ -9,7 +9,6 @@ import FadeInVertical from '@/app/_components/Transitions/FadeInVertical';
 import { IntroContainer } from './style';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
-import CardIntroIcon from '@/app/stage2/assets/card-intro.svg';
 import GreenCardPageImg from '../assets/green-card-page.svg'
 import cardLionIcon from '@/app/stage2/assets/card-lion.svg';
 import BackLeftButton from '@/assets/back_left.svg';
@@ -21,8 +20,6 @@ import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import {useTranslation} from '@/app/_locales/hooks/useTranslation';
 import ReleaseStatistic from './_components/ReleaseStatistics/ReleaseStatistic';
 import DemoCard from './_components/DemoCard/DemoCard';
-import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
-import useMount from '@/app/hooks/useMount';
 import useStore from '@/app/atoms/useStore';
 
 const mockData = new Array(5).fill(0);
@@ -31,18 +28,7 @@ const CardOverview = () => {
   const router = useRouter();
   const { t } = useTranslation('stage2');
   const { language } = useStore();
-  // const { getLanguage } = useFirstBankTranslation();
-
-  // const { isMounted } = useMount();
-  // const [lang, setLang] = React.useState('en');
   const isEn = language === 'en';
-
-  // useEffect(() => {
-  //   if (isMounted) {
-  //     const language = getLanguage();
-  //     setLang(language);
-  //   }
-  // });
 
   const redirectToDetail = useCallback((index: string) => () => {
     router.push(`/stage2/green-credit-card/${index}`);

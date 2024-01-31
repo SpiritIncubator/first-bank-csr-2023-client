@@ -1,11 +1,10 @@
 'use client'
 
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Box, Typography, List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
 import Image from 'next/image';
 import CountUp from 'react-countup';
 import { useRouter } from 'next/navigation';
-import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 
 import useMount from '@/app/hooks/useMount';
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
@@ -15,14 +14,11 @@ import BackLeftActiveButton from '@/assets/back_left_active.svg';
 import {useTranslation} from '@/app/_locales/hooks/useTranslation';
 import useStore from '@/app/atoms/useStore';
 
-import { creditCardInfos } from './spec';
+import { creditCardInfos, CreditCardInfoType } from './spec';
 import SymbolWithYears from './assets/symbol-years.svg';
 import SymbolWithYearsEn from './assets/symbol-en.svg'
 import LastSymbolWithYears from './assets/world-card-bird.svg';
 import LastSymbolWithYearsEn from './assets/last-symbol-en.svg'
-import ReleaseDate from './assets/world-release-date.svg';
-import Card from './assets/life-card-detail.svg';
-
 
 type PageProps = {
   params: {
@@ -39,7 +35,7 @@ const Page = ({ params }: PageProps) => {
   const { language } = useStore();
   const { isMounted } = useMount();
   const isEn = language === 'en';
-  const imgSrc = isMounted ? detail.imgSrc[language as 'en' | 'zh'] : { titleImg: '', cardNameImg: '', releaseDateImg: '', src: '' };
+  const imgSrc = isMounted ? detail.imgSrc[language] : { titleImg: '', cardNameImg: '', releaseDateImg: '', src: '' };
   const symbolImg = isLastCard ?
     (isEn) ? LastSymbolWithYearsEn : LastSymbolWithYears
     : (isEn) ? SymbolWithYearsEn : SymbolWithYears;

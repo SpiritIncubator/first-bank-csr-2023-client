@@ -30,7 +30,7 @@ import LeezenQrCode from './assets/leezen-qrcode.svg';
 
 type LanguageType = 'en' | 'zh';
 
-type CreditCardInfoType = {
+export type CreditCardInfoType = {
 	circulationAmount: number;
 	accumulateAmount: number;
 	descriptions: string[];

@@ -37,7 +37,7 @@ const DemoCard = ({ onRedirectToDetail, index }: DemoCardProps) => {
 
   return (
     <Box width={520} height={640} textAlign="center" onClick={onRedirectToDetail}>
-      <Image src={img} alt="credit-card" />
+      <Image src={img} alt="credit-card" priority={index === 0} />
     </Box>
   )
 }
