@@ -1,6 +1,6 @@
 'use client'
 
-import React,{useRef} from 'react';
+import React, {useCallback} from 'react';
 import Box from '@mui/material/Box';
 import Image from 'next/image';
 
@@ -16,8 +16,10 @@ const subtitle = '第一銀行逐年持續提升對綠色債券的投資比重�
 const Page = () => {
   const { containerRef, value, handleChangeBarOfValue } = useScrollBar({ loaded: true })
 
+  const DialogContent = useCallback(() => <Image src={DialogImg} alt="dialog" />, [])
+
   return (
-    <Box pt={16.75} pl={26.25} pr={20.375} position="relative" ref={containerRef} height={2160} overflow="scroll"> 
+    <Box pt={16.75} pl={26.25} pr={20.375} position="relative" ref={containerRef} minHeight={2160} overflow="scroll"> 
       <Box position="relative">
         <FadeIn>
           <Header subTitle={subtitle} />
@@ -25,11 +27,11 @@ const Page = () => {
         <FadeIn delay={0.3}>
           <Box ref={containerRef} width={2404} height={1200} bgcolor=" rgba(233, 227, 216, 1)" mt={15} />
         </FadeIn>
-        <Box position="fixed" top={200} right={0} height={600}>
+        <Box position="fixed" top={378} right={163} height={600}>
           <ScrollBar value={value} onHandleScrollBar={handleChangeBarOfValue} />
         </Box>
       </Box>
-      <NavBar dialogContent={() => <Image src={DialogImg} alt="dialog" />} />
+      <NavBar dialogContent={DialogContent} />
     </Box>
   )
 }

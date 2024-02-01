@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react';
+import React, { useCallback } from 'react';
 import Box from '@mui/material/Box';
 import Image from 'next/image';
 
@@ -17,8 +17,10 @@ const subtitle = '資金用途不限於特定目的。透過長期監控ESG指�
 const Page = () => {
   const { containerRef, value, handleChangeBarOfValue } = useScrollBar({ loaded: true })
 
+  const DialogContent = useCallback(() => <Image src={DialogImg} alt="dialog" />, [])
+
   return (
-    <Box px="210px" py="151px" mr="auto" mb="320px" position="relative" ref={containerRef} height={2160} overflow="scroll">
+    <Box px="210px" py="151px" mr="auto" pb="320px" position="relative" ref={containerRef} height={2160} overflow="auto">
       <Box maxWidth="2404px">
         <Box pt={16.75} pl={26.25} pr={20.375}>
           <Box position="relative">
@@ -32,7 +34,7 @@ const Page = () => {
           <Box position="fixed" top={200} right={183} height={600}>
             <ScrollBar value={value} onHandleScrollBar={handleChangeBarOfValue} />
           </Box>
-          <NavBar dialogContent={() => <Image src={DialogImg} alt="dialog" />} />
+          <NavBar dialogContent={DialogContent} />
         </Box>
       </Box>
     </Box>
