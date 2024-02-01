@@ -15,6 +15,7 @@ import FadeIn from '@/app/_components/Transitions/FadeIn';
 import { LANGUAGE_TYPE } from '@/types';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
+import colors from '@/constants/colors';
 
 
 
@@ -24,7 +25,6 @@ const PageLayout: React.FC = () => {
   const { lang } = useFirstBankTranslation();
   const isEN = lang === LANGUAGE_TYPE.EN;
 
-  console.log('isEN :', isEN);
   const router = useRouter();
 
 
@@ -54,7 +54,7 @@ const PageLayout: React.FC = () => {
         flexDirection: 'column',
         alignItems: 'center',
         p: '260px 230px',
-        bgcolor: 'background.paper',
+        bgcolor: colors.ivory,
       }}
     >
       <FadeInHorizontal direction="ltr"

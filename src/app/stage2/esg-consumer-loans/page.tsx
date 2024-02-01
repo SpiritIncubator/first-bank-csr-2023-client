@@ -16,6 +16,7 @@ import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import EsgLoanSection from './_components/EsgLoanSection';
 import OldBuildingSection from './_components/OldBuildingSection';
 import { LANGUAGE_TYPE } from '@/types';
+import colors from '@/constants/colors';
 // Create a theme to apply consistent styling
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -50,7 +51,7 @@ const MainPage = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box overflow="scroll" width="100vw" height="100vh">
+      <Box overflow="scroll" width="100vw" height="100vh" >
         <Container
           disableGutters
           maxWidth={false}
@@ -67,7 +68,7 @@ const MainPage = () => {
               sm: '50px', // padding for width 600px to 900px
               xs: '25px', // padding for width 0px to 600px
             },
-            bgcolor: 'background.paper',
+            bgcolor: colors.ivory,
           }}
         >
           <FadeInHorizontal direction='ltr' >

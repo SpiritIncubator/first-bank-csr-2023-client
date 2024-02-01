@@ -19,6 +19,7 @@ import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 import { LANGUAGE_TYPE } from '@/types';
 import PreLoadImageHeader from './_components/PreLoadImageHeader';
+import colors from '@/constants/colors';
 
 
 enum CASE_NAME {
@@ -106,7 +107,7 @@ const modalStyle = {
   minHeight: '2000px',
   borderRadius: "100px",
   overflow: 'hidden',
-  bgcolor: 'background.paper',
+  bgcolor: colors.ivory,
   boxShadow: 24,
   p: '140px',
   pb: "180px"
@@ -162,7 +163,7 @@ const OldBuilding: React.FC = () => {
         flexDirection: 'column',
         alignItems: 'center',
         p: '260px 230px',
-        bgcolor: 'background.paper',
+        bgcolor: colors.ivory,
       }}
     >
       <PreLoadImageHeader />
