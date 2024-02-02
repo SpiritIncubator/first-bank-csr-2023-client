@@ -23,7 +23,7 @@ const Page = () => {
     <Box px="210px" py="151px" mr="auto" pb="320px" position="relative" ref={containerRef} height={2160} overflow="auto">
       <Box maxWidth="2404px">
         <Box pt={16.75} pl={26.25} pr={20.375}>
-          <Box position="relative">
+          <Box position="relative">``
             <FadeIn>
               <Header subTitle={subtitle} />
             </FadeIn>
