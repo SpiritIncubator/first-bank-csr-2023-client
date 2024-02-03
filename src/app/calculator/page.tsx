@@ -9,12 +9,10 @@ import Lottie from 'lottie-react';
 import StyleButton from '@/app/_components/Button/Button';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import I18nButton from '@/app/_components/I18nButton/I18nButton';
-import useFirstBankTranslation from '../_locales/hooks/useFirstBankTranslation';
 import Start from '@/app/_assets/images/start.svg';
 import animationData from './assets/animation/leo_2-8_thinking.json';
 import FadeIn from '../_components/Transitions/FadeIn';
 import Homepage from '@/app/_assets/images/homepage-desc.svg'
-import useMount from '@/app/hooks/useMount';
 import useStore from '../atoms/useStore';
 
 const MainPage = () => {

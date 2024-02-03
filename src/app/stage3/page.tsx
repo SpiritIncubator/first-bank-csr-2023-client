@@ -28,17 +28,17 @@ const ConversationPage = () => {
   const videoDuration = getDuration() ?? 0;
   const isOverLimitation = videoDuration > 4;
 
-  console.log(snapshot, 'snapshot')
-
-  // if component is received message from backend, 
-  // trigger flag to truly value
   useEffect(() => {
-    if ('condition') {
-      setTimeout(() => {
-        setOptions(prevState => ({...prevState, animationData: progressingAnimation}))
-      }, 2000)
+    setTimeout(() => {
+      send({ type: 'START_TO_STEP2' });
+    }, 3000);
+  }, [send]);
+
+  useEffect(() => {
+    if (snapshot.matches('step2')) {
+      setOptions(prevState => ({...prevState, animationData: progressingAnimation}))
     }
-  }, []);
+  }, [snapshot]);
 
   useEffect(() => {
     // if step was reached to 2, and 

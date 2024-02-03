@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Box from '@mui/material/Box'
 
 import LionImage from '@/app/stage4/_assets/stage4-lion.svg';
-import { NavBarWrapper, NavLinkItem, buttonStyle } from './NavBar.style';
+import { NavBarWrapper, NavLinkItem } from './NavBar.style';
 import NavLink from './NavLink';
 import { useSearchParams } from 'next/navigation';
 import { navigationLinksConfig } from './spec';
@@ -55,14 +55,21 @@ const NavBar = ({ dialogContent: DialogContent }: NavBarProps) => {
 
     return (
       <NavLink href={params.path} key={params.path}>
-        <NavLinkItem fontSize={55} fontWeight={700} maxWidth={400} textAlign="center" px={3}>{params.label}</NavLinkItem>
+        <NavLinkItem
+          fontSize={55}
+          fontWeight={700}
+          maxWidth={400}
+          textAlign="center"
+          px={3}
+        >
+          {params.label}
+        </NavLinkItem>
       </NavLink>
     )
   }
 
   return (
     <Box position="fixed" bottom="0" left="0" width="100%">
-
       <FadeInVertical direction="up" width="100%">
         <NavBarWrapper>
           {navigationLinksConfig.map(renderLink)}
