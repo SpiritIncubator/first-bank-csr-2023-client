@@ -11,11 +11,11 @@ type MessageEventType<T> = {
 };
 
 type MessagePayload = {
-	message: any;
+	messageType: any;
 };
 
 type SubscriptionResponse = {
-	message: any;
+	messageType: any;
 };
 
 type SubscriptionType = {

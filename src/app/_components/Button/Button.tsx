@@ -1,17 +1,18 @@
 'use client';
 
-import React, {CSSProperties, PropsWithChildren, ComponentProps} from 'react';
+import React, { CSSProperties, PropsWithChildren, ComponentProps } from 'react';
 import { ButtonOwnProps } from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { BoxProps } from '@mui/material/Box';
-import {styled} from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 const StyledButton = styled(Box)`
 	padding: 12px 42px;
 	border-radius: 84px;
   background: #7DBD36;
   color: #fff;
-
+	cursor: pointer;
+	
 	&:active {
 		background: #B8C318;
 	}
