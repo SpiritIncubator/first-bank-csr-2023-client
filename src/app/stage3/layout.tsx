@@ -1,15 +1,25 @@
+'use client'
+
 import { ReactNode } from 'react';
 import Box from '@mui/material/Box';
+import { createActorContext } from '@xstate/react';
+
+import { conversationMachine } from './xstate/conversationMachine';
 
 type LayoutProps = {
   children: ReactNode;
 }
 
-const Layout = ({children}: LayoutProps) => {
+export const ConversationContext = createActorContext(conversationMachine);
+
+const Layout = ({ children }: LayoutProps) => {
+
   return (
-    <Box width={2560} height={1440}>
-      {children}
-    </Box>
+    <ConversationContext.Provider>
+      <Box width={2560} height={1440}>
+        {children}
+      </Box>
+    </ConversationContext.Provider>
   )
 }
 

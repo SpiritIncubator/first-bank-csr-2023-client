@@ -2,10 +2,10 @@
 
 import React, {useEffect, useState} from 'react';
 import Box from '@mui/material/Box';
-import {useMachine} from '@xstate/react';
+import { useRouter } from 'next/navigation';
 import {useLottie} from 'lottie-react';
 
-import { conversationMachine } from './xstate/conversationMachine';
+import { ConversationContext } from './layout';
 import initialAnimation from './animationData/full_3-1_loop.json';
 import progressingAnimation from './animationData/full_3-2_start.json';
 
@@ -18,7 +18,11 @@ type AnimationOptions = {
 const DEFAULT_SECOND = 4000;
 
 const ConversationPage = () => {
-  const [snapshot, send] = useMachine(conversationMachine);
+  const conversationState = ConversationContext.useSelector(state => state.value.root ?? {});
+  const stateAction = ConversationContext.useActorRef();
+  const router = useRouter();
+  const [outerStateKey] = Object.keys(conversationState) as Array<keyof typeof conversationState> ?? [];
+  const innerState = conversationState[outerStateKey];
   const [options, setOptions] = useState<AnimationOptions>({
     animationData: initialAnimation,
     loop: true,
@@ -30,29 +34,36 @@ const ConversationPage = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      send({ type: 'START_TO_STEP2' });
+      stateAction.send({ type: 'NEXT_TO_START_STAGE2' });
     }, 3000);
-  }, [send]);
+  }, [stateAction]);
 
   useEffect(() => {
-    if (snapshot.matches('step2')) {
+    if (innerState === 'stage2') {
       setOptions(prevState => ({...prevState, animationData: progressingAnimation}))
     }
-  }, [snapshot]);
+  }, [innerState]);
+
+  // useEffect(() => {
+  //   let timeoutId: NodeJS.Timeout;
+  //   if (innerState === 'stage2' && isOverLimitation) {
+  //     timeoutId = setTimeout(() => {
+  //     }, isOverLimitation ? DEFAULT_SECOND : videoDuration);
+  //   }
+
+  //   return () => {
+  //     clearTimeout(timeoutId);
+  //   }
+  // }, [isOverLimitation, videoDuration, innerState]);
 
   useEffect(() => {
-    // if step was reached to 2, and 
-    let timeoutId: NodeJS.Timeout;
-    if (snapshot.matches('step2') && isOverLimitation) {
-      timeoutId = setTimeout(() => {
-        // send('OVER_LIMITATION');        
-      }, isOverLimitation ? DEFAULT_SECOND : videoDuration);
+    if (innerState === 'stage2') {
+      setTimeout(() => {
+        stateAction.send({ type: 'NEXT_TO_SCENE1_INTRODUCTION' });
+        router.push('/stage3/scene1');
+      }, 10000);
     }
-
-    return () => {
-      clearTimeout(timeoutId);
-    }
-  }, [isOverLimitation, videoDuration, snapshot]);
+  }, [innerState, router, stateAction]);
 
   return (
     <Box width="100%" height="100%">
