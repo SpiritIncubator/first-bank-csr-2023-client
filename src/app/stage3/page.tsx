@@ -18,11 +18,9 @@ type AnimationOptions = {
 const DEFAULT_SECOND = 4000;
 
 const ConversationPage = () => {
-  const conversationState = ConversationContext.useSelector(state => state.value.root ?? {});
+  const currentPhaseInfo = ConversationContext.useSelector(state => state.context.phase);
   const stateAction = ConversationContext.useActorRef();
   const router = useRouter();
-  const [outerStateKey] = Object.keys(conversationState) as Array<keyof typeof conversationState> ?? [];
-  const innerState = conversationState[outerStateKey];
   const [options, setOptions] = useState<AnimationOptions>({
     animationData: initialAnimation,
     loop: true,
@@ -30,40 +28,35 @@ const ConversationPage = () => {
   })
   const { View, getDuration, } = useLottie(options);
   const videoDuration = getDuration() ?? 0;
-  const isOverLimitation = videoDuration > 4;
+
 
   useEffect(() => {
+    // received from socket event
     setTimeout(() => {
       stateAction.send({ type: 'NEXT_TO_START_STAGE2' });
     }, 3000);
   }, [stateAction]);
 
   useEffect(() => {
-    if (innerState === 'stage2') {
+    if (currentPhaseInfo.level === 0 && currentPhaseInfo.round === 2) {
       setOptions(prevState => ({...prevState, animationData: progressingAnimation}))
     }
-  }, [innerState]);
-
-  // useEffect(() => {
-  //   let timeoutId: NodeJS.Timeout;
-  //   if (innerState === 'stage2' && isOverLimitation) {
-  //     timeoutId = setTimeout(() => {
-  //     }, isOverLimitation ? DEFAULT_SECOND : videoDuration);
-  //   }
-
-  //   return () => {
-  //     clearTimeout(timeoutId);
-  //   }
-  // }, [isOverLimitation, videoDuration, innerState]);
+  }, [currentPhaseInfo.level, currentPhaseInfo.round]);
 
   useEffect(() => {
-    if (innerState === 'stage2') {
-      setTimeout(() => {
+      let timeoutId: NodeJS.Timeout;
+    if (currentPhaseInfo.round === 2 && currentPhaseInfo.level === 0) {
+      const isOverLimitation = videoDuration > 4;
+      const transformToMillisecond = videoDuration * 1000
+
+      timeoutId = setTimeout(() => {
         stateAction.send({ type: 'NEXT_TO_SCENE1_INTRODUCTION' });
         router.push('/stage3/scene1');
-      }, 10000);
+      }, isOverLimitation ? transformToMillisecond : DEFAULT_SECOND);
     }
-  }, [innerState, router, stateAction]);
+
+    return () => clearTimeout(timeoutId);
+  }, [router, stateAction, currentPhaseInfo.round, currentPhaseInfo.level, videoDuration]);
 
   return (
     <Box width="100%" height="100%">
