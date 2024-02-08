@@ -14,7 +14,15 @@ type TEvent =
 	| 'NEXT_TO_START_STAGE2'
 	| 'NEXT_TO_QUESTION2'
 	| 'NEXT_TO_QUESTION3'
-	| 'NEXT_TO_SCENE1_INTRODUCTION_PART_TWO';
+	| 'NEXT_TO_SCENE1_INTRODUCTION_PART_TWO'
+	| 'NEXT_TO_DIALOG_2'
+	| 'NEXT_TO_DIALOG_3'
+	| 'NEXT_TO_DIALOG_4'
+	| 'NEXT_TO_DIALOG_5'
+	| 'NEXT_TO_DIALOG_6'
+	| 'NEXT_TO_DIALOG_7'
+	| 'NEXT_TO_DIALOG_8';
+
 type EventType = Record<'type', TEvent>;
 type PhaseValueType = { level: LevelEnum; round: number };
 type ContextValue = {
@@ -95,43 +103,72 @@ export const conversationMachine = setup({
 					},
 				},
 				scene2: {
-					initial: 'question1',
+					initial: 'dialog1',
 					states: {
-						question1: {
-							on: {
-								NEXT_TO_QUESTION2: 'question2',
-							},
+						sceneIntroduction: {
+							initial: 'introDialog1',
+							states: {
+								introDialog1: {
+									on: {
+										NEXT_TO_DIALOG_2: 'introDialog2',
+									}
+								},
+								introDialog2: {
+									on: {
+										//@todo: redirect to dialog
+										// NEXT_TO_DIALOG_3: 'dialog3',
+									}
+								}
+							}
 						},
-						question2: {
+						dialog1: {
 							on: {
-								NEXT_TO_QUESTION3: 'question3',
-							},
+								NEXT_TO_DIALOG_2: 'dialog2',
+							}
 						},
-						question3: {},
-					},
-				},
-				scene3: {
-					initial: 'question1',
-					states: {
-						question1: {
+						dialog2: {
 							on: {
-								NEXT_TO_QUESTION2: 'question2',
-							},
+								NEXT_TO_DIALOG_3: 'dialog3',
+							}
 						},
-						question2: {
+						dialog3: {
 							on: {
-								NEXT_TO_QUESTION3: 'question3',
-							},
+								NEXT_TO_DIALOG_4: 'dialog4',
+							}
 						},
-						question3: {},
+						dialog4: {
+							on: {
+								NEXT_TO_DIALOG_5: 'dialog5',
+							}
+						},
+						dialog5: {
+							on: {
+								NEXT_TO_DIALOG_6: 'dialog6',
+							}
+						},
+						dialog6: {
+							on: {
+								NEXT_TO_DIALOG_7: 'dialog7',
+							}
+						},
+						dialog7: {
+							on: {
+								NEXT_TO_DIALOG_8: 'dialog8',
+							}
+						},
+						dialog8: {
+							on: {
+
+							}
+						}
 					},
 				},
 			},
 			on: {
 				NEXT_TO_SCENE1_INTRODUCTION: '.scene1',
 				NEXT_TO_SCENE2_INTRODUCTION: '.scene2',
-				NEXT_TO_SCENE3_INTRODUCTION: '.scene3',
 			},
 		},
 	},
-});
+},
+);
