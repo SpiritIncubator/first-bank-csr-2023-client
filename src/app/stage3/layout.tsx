@@ -16,7 +16,7 @@ const Layout = ({ children }: LayoutProps) => {
 
   return (
     <ConversationContext.Provider>
-      <Box width={2560} height={1440}>
+      <Box>
         {children}
       </Box>
     </ConversationContext.Provider>

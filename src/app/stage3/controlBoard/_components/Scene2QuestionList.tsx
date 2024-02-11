@@ -20,7 +20,7 @@ const QUEST_LIST = [
 ]
 
 
-export default function Scene1QuestionList() {
+export default function Scene2QuestionList() {
   const [answeredQuestionIndex, setAnsweredQuestionIndex] = useState<number[]>([]);
   console.log('answeredQuestionIndex :', answeredQuestionIndex);
   const onClickQuestion = (index: number) => () => {
