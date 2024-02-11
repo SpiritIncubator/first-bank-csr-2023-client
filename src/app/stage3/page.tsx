@@ -4,8 +4,9 @@ import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import { useRouter } from 'next/navigation';
 import { useLottie } from 'lottie-react';
-
+import { useSubscribe } from '../hooks/useSubscribe';
 import { ConversationContext } from './layout';
+import { SOCKET_EVENTS } from './constants';
 import initialAnimation from './animationData/full_3-1_loop.json';
 import progressingAnimation from './animationData/full_3-2_start.json';
 
@@ -18,6 +19,8 @@ type AnimationOptions = {
 const DEFAULT_SECOND = 4000;
 
 const ConversationPage = () => {
+  const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: 'stage3_controlBoard' });
+  const { receivedEvent } = registerRoomHelper();
   const currentPhaseInfo = ConversationContext.useSelector(state => state.context.phase);
   const stateAction = ConversationContext.useActorRef();
   const router = useRouter();
@@ -31,11 +34,12 @@ const ConversationPage = () => {
 
 
   useEffect(() => {
-    // received from socket event
-    setTimeout(() => {
-      stateAction.send({ type: 'NEXT_TO_START_STAGE2' });
-    }, 3000);
-  }, [stateAction]);
+    receivedEvent(({ messageType }) => {
+      if (messageType === SOCKET_EVENTS.START) {
+        stateAction.send({ type: 'NEXT_TO_START_STAGE2' });
+      }
+    })
+  }, [stateAction, receivedEvent]);
 
   useEffect(() => {
     if (currentPhaseInfo.level === 0 && currentPhaseInfo.round === 2) {
