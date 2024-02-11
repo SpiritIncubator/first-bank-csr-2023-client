@@ -6,7 +6,7 @@ import LookAtScreen from './_components/LookAtScreen';
 import { useSubscribe } from '@/app/hooks/useSubscribe';
 import Scene1QuestionList from './_components/Scene1QuestionList';
 import Scene2QuestionList from './_components/Scene2QuestionList';
-import Image from 'next/image';
+import { SOCKET_EVENTS } from '@/app/stage3/constants';
 import { STAGE3_ROOM } from '@/constants'
 
 enum STEPS {
@@ -17,12 +17,12 @@ enum STEPS {
 }
 
 export default function ControlBoard() {
-  const [currentStep, setCurrentStep] = useState(STEPS.SCENE2_QUESTION_LIST);
-  const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: 'stage3_controlBoard' });
+  const [currentStep, setCurrentStep] = useState(STEPS.START);
+  const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
   const { sendEvent } = registerRoomHelper();
 
   const onClickStart = () => {
-    sendEvent({ messageType: 'start' });
+    sendEvent({ messageType: SOCKET_EVENTS.START });
     setCurrentStep(STEPS.LOOK_AT_SCREEN);
     console.log('start')
   }

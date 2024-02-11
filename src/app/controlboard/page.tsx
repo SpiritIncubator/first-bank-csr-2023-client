@@ -6,19 +6,19 @@ import Button from '@mui/material/Button';
 import { useSubscribe } from '@/app/hooks/useSubscribe';
 
 type SubscribeType = {
-  message: 'L' | 'R';
+  messageType: 'L' | 'R';
 }
 
 const ControlBoard = () => {
-  const { registerRoomHelper } = useSubscribe<SubscribeType>({channel: 'subscribeChannel', room: 'controlBoard'});
+  const { registerRoomHelper } = useSubscribe<SubscribeType>({ channel: 'subscribeChannel', room: 'controlBoard' });
   const { sendEvent } = registerRoomHelper();
-  
+
   return (
     <Box>
       <h1>Control board</h1>
       <Box display="flex">
-        <Button onClick={() => sendEvent({message: 'L'})}>Left</Button>
-        <Button onClick={() => sendEvent({message: 'R'})}>Right</Button>
+        <Button onClick={() => sendEvent({ messageType: 'L' })}>Left</Button>
+        <Button onClick={() => sendEvent({ messageType: 'R' })}>Right</Button>
       </Box>
     </Box>
   )
