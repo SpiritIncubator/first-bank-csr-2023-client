@@ -1,9 +1,9 @@
 'use client';
 
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import { useRouter } from 'next/navigation';
-import {useLottie} from 'lottie-react';
+import { useLottie } from 'lottie-react';
 
 import { ConversationContext } from './layout';
 import initialAnimation from './animationData/full_3-1_loop.json';
@@ -39,12 +39,12 @@ const ConversationPage = () => {
 
   useEffect(() => {
     if (currentPhaseInfo.level === 0 && currentPhaseInfo.round === 2) {
-      setOptions(prevState => ({...prevState, animationData: progressingAnimation}))
+      setOptions(prevState => ({ ...prevState, animationData: progressingAnimation }))
     }
   }, [currentPhaseInfo.level, currentPhaseInfo.round]);
 
   useEffect(() => {
-      let timeoutId: NodeJS.Timeout;
+    let timeoutId: NodeJS.Timeout;
     if (currentPhaseInfo.round === 2 && currentPhaseInfo.level === 0) {
       const isOverLimitation = videoDuration > 4;
       const transformToMillisecond = videoDuration * 1000
@@ -59,7 +59,7 @@ const ConversationPage = () => {
   }, [router, stateAction, currentPhaseInfo.round, currentPhaseInfo.level, videoDuration]);
 
   return (
-    <Box width="100%" height="100%">
+    <Box width="100%" height="100%" maxWidth={2560} maxHeight={1440}>
       {View}
     </Box>
   )
