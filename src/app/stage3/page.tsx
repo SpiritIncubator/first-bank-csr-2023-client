@@ -50,8 +50,9 @@ const ConversationPage = () => {
       const transformToMillisecond = videoDuration * 1000
 
       timeoutId = setTimeout(() => {
-        stateAction.send({ type: 'NEXT_TO_SCENE1_INTRODUCTION' });
-        router.push('/stage3/scene1');
+        // TODO For testing scene2 animate operating behavior 
+        stateAction.send({ type: 'NEXT_TO_SCENE2_INTRODUCTION' });
+        router.push('/stage3/scene2');
       }, isOverLimitation ? transformToMillisecond : DEFAULT_SECOND);
     }
 

@@ -12,16 +12,19 @@ type TEvent =
 	| 'NEXT_TO_SCENE2_INTRODUCTION'
 	| 'NEXT_TO_SCENE3_INTRODUCTION'
 	| 'NEXT_TO_START_STAGE2'
+	| 'NEXT_TO_QUESTION1'
 	| 'NEXT_TO_QUESTION2'
 	| 'NEXT_TO_QUESTION3'
 	| 'NEXT_TO_SCENE1_INTRODUCTION_PART_TWO'
+	| 'NEXT_TO_DIALOG_1'
 	| 'NEXT_TO_DIALOG_2'
 	| 'NEXT_TO_DIALOG_3'
 	| 'NEXT_TO_DIALOG_4'
 	| 'NEXT_TO_DIALOG_5'
 	| 'NEXT_TO_DIALOG_6'
 	| 'NEXT_TO_DIALOG_7'
-	| 'NEXT_TO_DIALOG_8';
+	| 'NEXT_TO_DIALOG_8'
+	| 'NEXT_TO_SCENE2_DIALOG_1';
 
 type EventType = Record<'type', TEvent>;
 type PhaseValueType = { level: LevelEnum; round: number };
@@ -103,72 +106,73 @@ export const conversationMachine = setup({
 					},
 				},
 				scene2: {
-					initial: 'dialog1',
+					initial: 'sceneIntroduction',
 					states: {
 						sceneIntroduction: {
 							initial: 'introDialog1',
 							states: {
 								introDialog1: {
+									entry: [{ type: 'setCurrentPhase', params: { round: 0, level: 2 } }],
 									on: {
 										NEXT_TO_DIALOG_2: 'introDialog2',
-									}
+									},
 								},
 								introDialog2: {
+									entry: [{ type: 'setCurrentPhase', params: { round: 1, level: 2 } }],
 									on: {
 										//@todo: redirect to dialog
-										// NEXT_TO_DIALOG_3: 'dialog3',
-									}
-								}
-							}
+									},
+								},
+							},
 						},
 						dialog1: {
+							entry: [{ type: 'setCurrentPhase', params: { round: 2, level: 2 } }],
 							on: {
 								NEXT_TO_DIALOG_2: 'dialog2',
-							}
+							},
 						},
 						dialog2: {
+							entry: [{ type: 'setCurrentPhase', params: { round: 3, level: 2 } }],
 							on: {
 								NEXT_TO_DIALOG_3: 'dialog3',
-							}
+							},
 						},
 						dialog3: {
 							on: {
 								NEXT_TO_DIALOG_4: 'dialog4',
-							}
+							},
 						},
 						dialog4: {
 							on: {
 								NEXT_TO_DIALOG_5: 'dialog5',
-							}
+							},
 						},
 						dialog5: {
 							on: {
 								NEXT_TO_DIALOG_6: 'dialog6',
-							}
+							},
 						},
 						dialog6: {
 							on: {
 								NEXT_TO_DIALOG_7: 'dialog7',
-							}
+							},
 						},
 						dialog7: {
 							on: {
 								NEXT_TO_DIALOG_8: 'dialog8',
-							}
+							},
 						},
 						dialog8: {
-							on: {
-
-							}
-						}
+							on: {},
+						},
 					},
 				},
 			},
 			on: {
 				NEXT_TO_SCENE1_INTRODUCTION: '.scene1',
 				NEXT_TO_SCENE2_INTRODUCTION: '.scene2',
+				NEXT_TO_SCENE2_DIALOG_1: '.scene2.dialog1',
 			},
 		},
 	},
-},
-);
+});
