@@ -20,7 +20,7 @@ const DEFAULT_SECOND = 4000;
 
 const ConversationPage = () => {
   const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: 'stage3_controlBoard' });
-  const { receivedEvent } = registerRoomHelper();
+  const { receivedEvent, sendEvent } = registerRoomHelper();
   const currentPhaseInfo = ConversationContext.useSelector(state => state.context.phase);
   const stateAction = ConversationContext.useActorRef();
   const router = useRouter();
@@ -39,7 +39,7 @@ const ConversationPage = () => {
         stateAction.send({ type: 'NEXT_TO_START_STAGE2' });
       }
     })
-  }, [stateAction, receivedEvent]);
+  }, [stateAction, receivedEvent, sendEvent]);
 
   useEffect(() => {
     if (currentPhaseInfo.level === 0 && currentPhaseInfo.round === 2) {
@@ -57,11 +57,13 @@ const ConversationPage = () => {
         // TODO For testing scene2 animate operating behavior 
         stateAction.send({ type: 'NEXT_TO_SCENE2_INTRODUCTION' });
         router.push('/stage3/scene2');
+        // send ready event for control board
+        sendEvent({ messageType: SOCKET_EVENTS.READY_FOR_QUEST });
       }, isOverLimitation ? transformToMillisecond : DEFAULT_SECOND);
     }
 
     return () => clearTimeout(timeoutId);
-  }, [router, stateAction, currentPhaseInfo.round, currentPhaseInfo.level, videoDuration]);
+  }, [router, stateAction, currentPhaseInfo.round, currentPhaseInfo.level, videoDuration, sendEvent]);
 
   return (
     <Box width="100%" height="100%" maxWidth={2560} maxHeight={1440}>
