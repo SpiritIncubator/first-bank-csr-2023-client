@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box } from '@mui/material';
 import Start from './_components/Start';
 import LookAtScreen from './_components/LookAtScreen';
@@ -19,13 +19,20 @@ enum STEPS {
 export default function ControlBoard() {
   const [currentStep, setCurrentStep] = useState(STEPS.START);
   const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
-  const { sendEvent } = registerRoomHelper();
+  const { sendEvent, receivedEvent } = registerRoomHelper();
 
   const onClickStart = () => {
     sendEvent({ messageType: SOCKET_EVENTS.START });
     setCurrentStep(STEPS.LOOK_AT_SCREEN);
-    console.log('start')
   }
+
+  useEffect(() => {
+    receivedEvent(({ messageType }) => {
+      if (messageType === SOCKET_EVENTS.READY_FOR_QUEST) {
+        setCurrentStep(STEPS.SCENE2_QUESTION_LIST);
+      }
+    })
+  }, [receivedEvent])
 
   const screens = {
     [STEPS.START]: <Start onClickStart={onClickStart} />,
