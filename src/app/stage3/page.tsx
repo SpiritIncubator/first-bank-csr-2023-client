@@ -36,9 +36,10 @@ const ConversationPage = () => {
   useEffect(() => {
     receivedEvent(({ messageType }) => {
       if (messageType === SOCKET_EVENTS.START) {
-        stateAction.send({ type: 'NEXT_TO_START_STAGE2' });
+        // move position for testing
       }
     })
+    stateAction.send({ type: 'NEXT_TO_START_STAGE2' });
   }, [stateAction, receivedEvent, sendEvent]);
 
   useEffect(() => {
