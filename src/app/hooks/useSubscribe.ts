@@ -24,7 +24,7 @@ type SubscriptionType = {
 };
 
 export const useSubscribe = <
-	T extends MessagePayload,
+	T,
 	U extends SubscriptionResponse = any
 >({
 	channel,
