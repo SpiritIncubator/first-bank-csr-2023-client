@@ -89,7 +89,7 @@ const Question = () => {
 
     timer = setTimeout(() => {
       setImgLoaded(true);
-    }, 1000);
+    }, 1500);
 
     return () => {
       clearTimeout(timer);

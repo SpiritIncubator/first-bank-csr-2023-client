@@ -43,7 +43,7 @@ const Scene2Page = () => {
 
     timer = setTimeout(() => {
       setDelayLoaded(true);
-    }, 1000);
+    }, 1500);
   }, []);
 
   return (
