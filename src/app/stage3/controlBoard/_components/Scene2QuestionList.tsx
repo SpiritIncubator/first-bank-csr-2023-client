@@ -1,8 +1,10 @@
 import { Box } from '@mui/material';
 import Image from 'next/image';
 import { useState } from 'react'
+import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import Stage3ChooseOne from '@/app/stage3/assets/controlBoard/stage3_choose_one.svg';
 import QuestionButton from '@/app/stage3/assets/controlBoard/stage3_question_button.svg';
+import QuestionButtonActive from '@/app/stage3/assets/controlBoard/stage3_question_button_active.svg';
 
 const QUEST_LIST = [
   {
@@ -32,7 +34,7 @@ export default function Scene2QuestionList() {
     backgroundPosition: "center",
     pt: "205px"
   }}>
-    <Box mx="auto" mb="160px" position="relative" width="1854px" height="462px" textAlign="center">
+    <Box mx="auto" mb="120px" position="relative" width="1854px" height="462px" textAlign="center">
       <Image
         src={Stage3ChooseOne}
         alt="stage3_choose_one"
@@ -52,12 +54,13 @@ export default function Scene2QuestionList() {
             alignItems="center"
             onClick={onClickQuestion(index)}>
             <Box bgcolor={isAnswered ? "yellow" : "gray"} height="400px" minWidth="400px" mb="100px" />
-            <Image
+            <ImageButton
+              width="100%"
+              height="200px"
               src={QuestionButton}
-              alt="question button"
-              width="320"
-              height="100"
+              activeImageSrc={QuestionButtonActive}
             />
+
           </Box>
         })
       }
