@@ -24,10 +24,12 @@ type TEvent =
 	| 'NEXT_TO_DIALOG_6'
 	| 'NEXT_TO_DIALOG_7'
 	| 'NEXT_TO_DIALOG_8'
+	| 'NEXT_TO_DIALOG_9'
+	| 'NEXT_TO_DIALOG_10'
 	| 'NEXT_TO_SCENE2_DIALOG_1';
 
 type EventType = Record<'type', TEvent>;
-type PhaseValueType = { level: LevelEnum; round: number };
+export type PhaseValueType = { level: LevelEnum; round: number; question?: 'rainRecycle' | 'aquaonics' | 'solarPower' };
 type ContextValue = {
 	phase: PhaseValueType;
 }
@@ -37,10 +39,11 @@ export const conversationMachine = setup({
 		events: {} as EventType,
 	},
 	actions: {
-		setCurrentPhase: ({ context }, { round, level }: PhaseValueType) => {
+		setCurrentPhase: ({ context }, { round, level, question }: PhaseValueType) => {
 			context.phase = {
 				level,
 				round,
+				question,
 			};
 		},
 	},
@@ -158,51 +161,309 @@ export const conversationMachine = setup({
 								},
 							},
 						},
-						dialog1: {
-							entry: [{ type: 'setCurrentPhase', params: { round: 2, level: 2 } }],
-							on: {
-								NEXT_TO_DIALOG_2: 'dialog2',
+						rainRecycle: {
+							initial: 'dialog1',
+							states: {
+								dialog1: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 1, level: 2, question: 'rainRecycle' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_2: 'dialog2',
+									},
+								},
+								dialog2: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 2, level: 2, question: 'rainRecycle' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_3: 'dialog3',
+									},
+								},
+								dialog3: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 3, level: 2, question: 'rainRecycle' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_4: 'dialog4',
+									},
+								},
+								dialog4: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 4, level: 2, question: 'rainRecycle' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_5: 'dialog5',
+									},
+								},
+								dialog5: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 5, level: 2, question: 'rainRecycle' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_6: 'dialog6',
+									},
+								},
+								dialog6: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 6, level: 2, question: 'rainRecycle' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_7: 'dialog7',
+									},
+								},
+								dialog7: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 7, level: 2, question: 'rainRecycle' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_8: 'dialog8',
+									},
+								},
+								dialog8: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 8, level: 2, question: 'rainRecycle' },
+										},
+									],
+									on: {},
+								},
 							},
 						},
-						dialog2: {
-							entry: [{ type: 'setCurrentPhase', params: { round: 3, level: 2 } }],
-							on: {
-								NEXT_TO_DIALOG_3: 'dialog3',
+						solarPower: {
+							initial: 'dialog1',
+							states: {
+								dialog1: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 1, level: 2, question: 'solarPower' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_2: 'dialog2',
+									},
+								},
+								dialog2: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 2, level: 2, question: 'solarPower' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_3: 'dialog3',
+									},
+								},
+								dialog3: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 3, level: 2, question: 'solarPower' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_4: 'dialog4',
+									},
+								},
+								dialog4: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 4, level: 2, question: 'solarPower' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_5: 'dialog5',
+									},
+								},
+								dialog5: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 5, level: 2, question: 'solarPower' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_6: 'dialog6',
+									},
+								},
+								dialog6: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 6, level: 2, question: 'solarPower' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_7: 'dialog7',
+									},
+								},
+								dialog7: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 7, level: 2, question: 'solarPower' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_8: 'dialog8',
+									},
+								},
+								dialog8: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 8, level: 2, question: 'solarPower' },
+										},
+									],
+									on: {},
+								},
+								dialog9: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 9, level: 2, question: 'solarPower' },
+										},
+									],
+									on: {},
+								},
 							},
 						},
-						dialog3: {
-							entry: [{ type: 'setCurrentPhase', params: { round: 4, level: 2 } }],
-							on: {
-								NEXT_TO_DIALOG_4: 'dialog4',
+						aquaonics: {
+							initial: 'dialog1',
+							states: {
+								dialog1: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 1, level: 2, question: 'aquaonics' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_2: 'dialog2',
+									},
+								},
+								dialog2: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 2, level: 2, question: 'aquaonics' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_3: 'dialog3',
+									},
+								},
+								dialog3: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 3, level: 2, question: 'aquaonics' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_4: 'dialog4',
+									},
+								},
+								dialog4: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 4, level: 2, question: 'aquaonics' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_5: 'dialog5',
+									},
+								},
+								dialog5: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 5, level: 2, question: 'aquaonics' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_6: 'dialog6',
+									},
+								},
+								dialog6: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 6, level: 2, question: 'aquaonics' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_7: 'dialog7',
+									},
+								},
+								dialog7: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 7, level: 2, question: 'aquaonics' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_8: 'dialog8',
+									},
+								},
+								dialog8: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 8, level: 2, question: 'aquaonics' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_9: 'dialog9',
+									},
+								},
+								dialog9: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 9, level: 2, question: 'aquaonics' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_10: 'dialog10',
+									},
+								},
+								dialog10: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 10, level: 2, question: 'aquaonics' },
+										},
+									],
+									on: {},
+								},
 							},
-						},
-						dialog4: {
-							entry: [{ type: 'setCurrentPhase', params: { round: 5, level: 2 } }],
-							on: {
-								NEXT_TO_DIALOG_5: 'dialog5',
-							},
-						},
-						dialog5: {
-							entry: [{ type: 'setCurrentPhase', params: { round: 6, level: 2 } }],
-							on: {
-								NEXT_TO_DIALOG_6: 'dialog6',
-							},
-						},
-						dialog6: {
-							entry: [{ type: 'setCurrentPhase', params: { round: 7, level: 2 } }],
-							on: {
-								NEXT_TO_DIALOG_7: 'dialog7',
-							},
-						},
-						dialog7: {
-							entry: [{ type: 'setCurrentPhase', params: { round: 8, level: 2 } }],
-							on: {
-								NEXT_TO_DIALOG_8: 'dialog8',
-							},
-						},
-						dialog8: {
-							entry: [{ type: 'setCurrentPhase', params: { round: 9, level: 2 } }],
-							on: {},
 						},
 					},
 				},
@@ -210,7 +471,7 @@ export const conversationMachine = setup({
 			on: {
 				NEXT_TO_SCENE1_INTRODUCTION: '.scene1',
 				NEXT_TO_SCENE2_INTRODUCTION: '.scene2',
-				NEXT_TO_SCENE2_DIALOG_1: '.scene2.dialog1',
+				NEXT_TO_SCENE2_DIALOG_1: '.scene2.rainRecycle',
 			},
 		},
 	},
