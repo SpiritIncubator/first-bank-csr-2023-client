@@ -3,8 +3,12 @@ import Box from '@mui/material/Box';
 import Lottie from 'lottie-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useSubscribe } from '@/app/hooks/useSubscribe';
 
 import FadeIn from '@/app/_components/Transitions/FadeIn';
+import { STAGE3_ROOM } from '@/constants'
+import { SOCKET_EVENTS } from '@/app/stage3/constants';
+
 import { ConversationContext } from '../../layout'
 import lionAnimationData from '../../animationData/leo_2-11_normal_smile1.json';
 import Scene2BgImg from '../../assets/scene2-bg.svg';
@@ -19,6 +23,8 @@ const Scene2Page = () => {
   const action = ConversationContext.useActorRef();
   const isInitialDialog1 = currentPhaseInfo.round === 0 && currentPhaseInfo.level === 2;
   const [delayLoaded, setDelayLoaded] = useState(false);
+  const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
+  const { receivedEvent } = registerRoomHelper();
 
   useEffect(() => {
     // TODO will receive
@@ -29,14 +35,21 @@ const Scene2Page = () => {
     }
   }, [isInitialDialog1, action]);
   useEffect(() => {
-    // simulate the user client to next page button
-    // if (currentPhaseInfo.round === 1 && currentPhaseInfo.level === 2) {
-    //   setTimeout(() => {
-    //     action.send({ type: 'NEXT_TO_SCENE2_AQUAONICS' });
-    //     router.push('/stage3/scene2/question');
-    //   }, 4000);
-    // }
-  }, [currentPhaseInfo.round, currentPhaseInfo.level, action, router])
+
+    receivedEvent(({ messageType }) => {
+      if (messageType === SOCKET_EVENTS.RAIN_RECYCLE_START) {
+        action.send({ type: 'NEXT_TO_SCENE2_RAIN_RECYCLE' });
+      }
+      if (messageType === SOCKET_EVENTS.SOLAR_POWER_START) {
+        action.send({ type: 'NEXT_TO_SCENE2_SOLAR_POWER' });
+      }
+      if (messageType === SOCKET_EVENTS.AQUAPONICS_START) {
+        action.send({ type: 'NEXT_TO_SCENE2_AQUAONICS' });
+      }
+
+      router.push('/stage3/scene2/question');
+    })
+  }, [action, router, receivedEvent])
 
   useEffect(() => {
     let timer: NodeJS.Timeout;

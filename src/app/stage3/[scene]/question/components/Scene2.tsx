@@ -5,12 +5,15 @@ import Box from '@mui/material/Box';
 import NextImage from 'next/image';
 import Lottie from 'lottie-react';
 
+import { useSubscribe } from '@/app/hooks/useSubscribe';
 import type { PhaseValueType } from '@/app/stage3/xstate/conversationMachine';
 import {ConversationContext} from '@/app/stage3/layout';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import bg from '@/app/stage3/assets/scene2-bg-without-border.svg';
 import DialogBg from '@/app/stage3/assets/dialogBox.svg'
 import lionAnimationData from '@/app/stage3/animationData/leo_2-11_normal_smile1.json';
+import { STAGE3_ROOM } from '@/constants'
+import { SOCKET_EVENTS } from '@/app/stage3/constants';
 // rainRecycle
 import Dialog1Bg from '@/app/stage3/assets/rainRecycle/rainCycle-bg-1.svg';
 import Dialog1 from '@/app/stage3/assets/rainRecycle/dialog1.svg';
@@ -258,6 +261,14 @@ const Scene2Question = () => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const currentPhaseInfo = ConversationContext.useSelector(state => state.context.phase);
   const stateAction = ConversationContext.useActorRef();
+  const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
+  const { sendEvent, receivedEvent } = registerRoomHelper();
+
+  useEffect(() => {
+    receivedEvent(({ messageType }) => {
+    });
+  }, [receivedEvent]);
+
 
   useEffect(() => {
     setTimeout(() => {
