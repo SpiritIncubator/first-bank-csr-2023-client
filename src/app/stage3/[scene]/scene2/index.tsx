@@ -32,7 +32,7 @@ const Scene2Page = () => {
     // console.log(currentPhaseInfo, 'currentPhaseInfo')
     if (currentPhaseInfo.round === 1 && currentPhaseInfo.level === 2) {
       setTimeout(() => {
-        action.send({ type: 'NEXT_TO_SCENE2_DIALOG_1' });
+        action.send({ type: 'NEXT_TO_SCENE2_AQUAONICS' });
         router.push('/stage3/scene2/question');
       }, 4000);
     }
