@@ -6,7 +6,7 @@ import NextImage from 'next/image';
 import Lottie from 'lottie-react';
 
 import type { PhaseValueType } from '@/app/stage3/xstate/conversationMachine';
-import { ConversationContext } from '@/app/stage3/layout';
+import {ConversationContext} from '@/app/stage3/layout';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import bg from '@/app/stage3/assets/scene2-bg-without-border.svg';
 import DialogBg from '@/app/stage3/assets/dialogBox.svg'
@@ -254,7 +254,7 @@ const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
   };
 }
 
-const Scene1Question = () => {
+const Scene2Question = () => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const currentPhaseInfo = ConversationContext.useSelector(state => state.context.phase);
   const stateAction = ConversationContext.useActorRef();
@@ -334,4 +334,4 @@ const Scene1Question = () => {
 
 }
 
-export default Scene1Question;
+export default Scene2Question;

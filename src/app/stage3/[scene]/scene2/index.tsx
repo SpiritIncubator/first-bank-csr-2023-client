@@ -29,7 +29,6 @@ const Scene2Page = () => {
   }, [isInitialDialog1, action]);
   // simulate the user client to next page button
   useEffect(() => {
-    // console.log(currentPhaseInfo, 'currentPhaseInfo')
     if (currentPhaseInfo.round === 1 && currentPhaseInfo.level === 2) {
       setTimeout(() => {
         action.send({ type: 'NEXT_TO_SCENE2_AQUAONICS' });
