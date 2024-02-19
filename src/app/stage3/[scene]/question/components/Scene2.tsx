@@ -7,7 +7,7 @@ import Lottie, {useLottie} from 'lottie-react';
 
 import { useSubscribe } from '@/app/hooks/useSubscribe';
 import type { PhaseValueType } from '@/app/stage3/xstate/conversationMachine';
-import {ConversationContext} from '@/app/stage3/layout';
+import { ConversationContext } from '@/app/stage3/layout';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import bg from '@/app/stage3/assets/scene2-bg-without-border.svg';
 import DialogBg from '@/app/stage3/assets/dialogBox.svg'
