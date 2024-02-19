@@ -19,6 +19,7 @@ const Scene2Page = () => {
   const action = ConversationContext.useActorRef();
   const isInitialDialog1 = currentPhaseInfo.round === 0 && currentPhaseInfo.level === 2;
   const [delayLoaded, setDelayLoaded] = useState(false);
+
   useEffect(() => {
     // TODO will receive
     if (isInitialDialog1) {
