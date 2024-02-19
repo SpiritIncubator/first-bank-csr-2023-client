@@ -28,14 +28,14 @@ const Scene2Page = () => {
       }, 2000);
     }
   }, [isInitialDialog1, action]);
-  // simulate the user client to next page button
   useEffect(() => {
-    if (currentPhaseInfo.round === 1 && currentPhaseInfo.level === 2) {
-      setTimeout(() => {
-        action.send({ type: 'NEXT_TO_SCENE2_AQUAONICS' });
-        router.push('/stage3/scene2/question');
-      }, 4000);
-    }
+    // simulate the user client to next page button
+    // if (currentPhaseInfo.round === 1 && currentPhaseInfo.level === 2) {
+    //   setTimeout(() => {
+    //     action.send({ type: 'NEXT_TO_SCENE2_AQUAONICS' });
+    //     router.push('/stage3/scene2/question');
+    //   }, 4000);
+    // }
   }, [currentPhaseInfo.round, currentPhaseInfo.level, action, router])
 
   useEffect(() => {

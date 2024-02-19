@@ -19,7 +19,7 @@ enum STEPS {
 }
 
 export default function ControlBoard() {
-  const [currentStep, setCurrentStep] = useState(STEPS.ANSWER_ZONE);
+  const [currentStep, setCurrentStep] = useState(STEPS.START);
   const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
   const { sendEvent, receivedEvent } = registerRoomHelper();
 

@@ -1,9 +1,25 @@
 export const SOCKET_EVENTS = {
   START: 'start',
   READY_FOR_QUEST: 'readyForQuest',
-  QUEST_RAINWATER_QUIZ1_START: "questRainwater_quiz1_start",
-  QUEST_RAINWATER_QUIZ1_END: "questRainwater_quiz1_end"
+  // emit from control board 
+  RAIN_RECYCLE_START: 'rainRecycle:start',
+  RAIN_RECYCLE_END: 'rainRecycle:end',
+  AQUAPONICS_START: 'aquaponics:start',
+  AQUAPONICS_END: 'aquaponics:end',
+  CARBON_FOOTPRINT_START: 'carbonFootprint:start',
+  CARBON_FOOTPRINT_END: 'carbonFootprint:end',
+  DASHBOARD_START: 'dashboard:start',
+  DASHBOARD_END: 'dashboard:end',
+  GREEN_BUILDING_START: 'greenBuilding:start',
+  GREEN_BUILDING_END: 'greenBuilding:end',
+  SOLAR_POWER_START: 'solarPower:start',
+  SOLAR_POWER_END: 'solarPower:end',
+  // emit from screen
+  QUEST_RAINWATER_QUIZ1_START: "questRainwater_quiz1:start",
+  QUEST_RAINWATER_QUIZ1_END: "questRainwater_quiz1:end"
 }
+
+
 
 
 
