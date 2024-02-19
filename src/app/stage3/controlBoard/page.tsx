@@ -33,6 +33,11 @@ export default function ControlBoard() {
       if (messageType === SOCKET_EVENTS.READY_FOR_QUEST) {
         setCurrentStep(STEPS.SCENE2_QUESTION_LIST);
       }
+
+      if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ1_START) {
+        // @todo: get into answer zone 
+        console.log('SOCKET_EVENTS.QUEST_RAINWATER_QUIZ1_START :', SOCKET_EVENTS.QUEST_RAINWATER_QUIZ1_START);
+      }
     })
   }, [receivedEvent])
 
