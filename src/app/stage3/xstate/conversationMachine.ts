@@ -26,7 +26,9 @@ type TEvent =
 	| 'NEXT_TO_DIALOG_8'
 	| 'NEXT_TO_DIALOG_9'
 	| 'NEXT_TO_DIALOG_10'
-	| 'NEXT_TO_SCENE2_DIALOG_1';
+	| 'NEXT_TO_SCENE2_RAIN_RECYCLE'
+	| 'NEXT_TO_SCENE2_SOLAR_POWER'
+	| 'NEXT_TO_SCENE2_AQUAONICS';
 
 type EventType = Record<'type', TEvent>;
 export type PhaseValueType = { level: LevelEnum; round: number; question?: 'rainRecycle' | 'aquaonics' | 'solarPower' };
@@ -471,7 +473,9 @@ export const conversationMachine = setup({
 			on: {
 				NEXT_TO_SCENE1_INTRODUCTION: '.scene1',
 				NEXT_TO_SCENE2_INTRODUCTION: '.scene2',
-				NEXT_TO_SCENE2_DIALOG_1: '.scene2.rainRecycle',
+				NEXT_TO_SCENE2_RAIN_RECYCLE: '.scene2.rainRecycle',
+				NEXT_TO_SCENE2_SOLAR_POWER: '.scene2.solarPower',
+				NEXT_TO_SCENE2_AQUAONICS: '.scene2.aquaonics'
 			},
 		},
 	},
