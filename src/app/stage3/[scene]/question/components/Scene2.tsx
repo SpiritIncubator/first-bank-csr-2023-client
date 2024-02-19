@@ -265,9 +265,10 @@ const Scene2Question = () => {
   const { sendEvent, receivedEvent } = registerRoomHelper();
 
   useEffect(() => {
-    receivedEvent(({ messageType }) => {
-    });
-  }, [receivedEvent]);
+    if (currentPhaseInfo.question === 'rainRecycle') {
+      sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ1_START });
+    }
+  }, [receivedEvent, currentPhaseInfo.question, currentPhaseInfo.round, stateAction, sendEvent]);
 
 
   useEffect(() => {
