@@ -98,8 +98,6 @@ const QuestionsPage = () => {
       </Box>
       <Box mb={5} width="85%" maxWidth={324}>
         <FadeIn display='flex' justifyContent='center' flexDirection='column' alignItems='center'>
-          {/* <Box width={160} height={160} bgcolor="#E9E3D8" mt={2.5}>
-          </Box> */}
           <Image src={targetQuestion.imgSrc} alt="question-img" />
           <Box mt={4} lineHeight={2} fontWeight={700} fontSize={20} letterSpacing={2} color="#594A39" minHeight={76}>
             {t(targetQuestion.description)}

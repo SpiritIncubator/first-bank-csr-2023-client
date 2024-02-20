@@ -161,12 +161,12 @@ const ResultPage = () => {
             <Image src={ResultFunnyIcon} alt="result" />
           </Box>
           <Box my={3.75} px={3}>
-            <Typography lineHeight={2} color="#594A39" letterSpacing={1} maxWidth={310}>
-              自藝術之美延伸生態、歷史、文化相關創作、展演、娛樂者皆為此類。
+            <Typography lineHeight={2} color="#594A39" letterSpacing={2} maxWidth={310}>
+              {t('result.link')}
             </Typography>
           </Box>
           <StyleButton component="a" target="_blank">
-            <Typography minHeight="42px" display="flex" alignItems="center">
+            <Typography target="_blank" component="a" href="https://www.firstbank.com.tw/sites/fcb/touch/1565687619608" minHeight="42px" display="flex" alignItems="center">
               <Image src={GoLook} alt="go-look" />
             </Typography>
           </StyleButton>

@@ -1,4 +1,5 @@
 {
+    "homepage.desc": "Challenge: Can you successfully identify options with a low carbon footprint, accumulating the least carbon emissions?",
     "question.eight.answer": "A vegetarian diet has the lowest carbon footprint. All-you-can-eat buffets can lead to food waste and unnecessary carbon emissions.",
     "question.eight.description": "When arranging meals during a trip, what would you choose?",
     "question.eight.option.one": "Famous all-you-can-eat buffet",
@@ -39,9 +40,9 @@
     "question.two.option.one": "Molten chocolate ice cream",
     "question.two.option.three": "Light cheesecake",
     "question.two.option.two": "Seasonal fruit platter",
+    "result.link": "Apply for iLeo Digital Account and Go Paperless for Carbon Reduction!",
     "result.one.description": "Are you a beginner in carbon reduction? Glad you've started the journey! More participation means real change. Keep it up on the road to sustainability!",
     "result.three.description": "Impressive! Keep up the carbon reduction efforts and inspire others to build a healthier, sustainable future together!",
     "result.two.description": "Great! Your carbon reduction knowledge is commendable. Unleash your potential, embrace sustainability, and stay essential in this journey!",
-    "homepage.desc": "Challenge: Can you successfully identify options with a low carbon footprint, accumulating the least carbon emissions?",
     "title": "Carbon footprint"
 }
