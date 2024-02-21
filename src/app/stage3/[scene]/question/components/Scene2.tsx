@@ -343,7 +343,7 @@ const Scene2Question = () => {
   useEffect(() => {
     receivedEvent(({ messageType }) => {
       if (messageType === SOCKET_EVENTS.RAIN_RECYCLE_FINISH) {
-        setQuestionStatus({ ...questionStatus, rainCycle: true });
+        setQuestionStatus({ ...questionStatus, rainRecycle: true });
       }
 
       if (messageType === SOCKET_EVENTS.AQUAPONICS_FINISH) {
