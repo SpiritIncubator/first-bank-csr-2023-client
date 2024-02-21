@@ -168,7 +168,7 @@ const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
     }
   }
 
-  if (currentPhaseInfo.question === 'aquaonics') {
+  if (currentPhaseInfo.question === 'aquaponics') {
     if (currentPhaseInfo.round === 1) {
       return {
         dialog: AquaonicsDialog1,
@@ -304,7 +304,6 @@ const Scene2Question = () => {
   const animation = animationItemsByCategories[currentPhaseInfo.question][currentPhaseInfo.round];
   const [options, setOptions] = useState<AnimationOptions>({
     animationData: animation,
-    
     loop: true,
     autoplay: true,
   });
@@ -354,10 +353,13 @@ const Scene2Question = () => {
   // Jump to next dialog if control board send the end message
   useEffect(() => {
     let timerId: NodeJS.Timeout;
-    if (currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE && currentPhaseInfo.round === 2) {
-      timerId = setTimeout(() => {
-        stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
-      }, videoDuration);
+    // if (currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE && currentPhaseInfo.round === 2) {
+    //   timerId = setTimeout(() => {
+    //     stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
+    //   }, videoDuration);
+    // }
+    if (currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE) {
+
     }
 
     if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 2) {
