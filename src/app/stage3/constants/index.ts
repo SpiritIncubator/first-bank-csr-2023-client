@@ -1,7 +1,7 @@
 export const SOCKET_EVENTS = {
 	START: 'start',
 	READY_FOR_QUEST: 'readyForQuest',
-	// emit from control board
+	// quest event 
 	RAIN_RECYCLE_START: 'rainRecycle:start',
 	RAIN_RECYCLE_END: 'rainRecycle:end',
 	AQUAPONICS_START: 'aquaponics:start',
@@ -14,7 +14,7 @@ export const SOCKET_EVENTS = {
 	GREEN_BUILDING_END: 'greenBuilding:end',
 	SOLAR_POWER_START: 'solarPower:start',
 	SOLAR_POWER_END: 'solarPower:end',
-	// emit from screen
+	// quiz event
 	QUEST_RAINWATER_QUIZ1_START: 'questRainwater_quiz1:start',
 	QUEST_RAINWATER_QUIZ1_END: 'questRainwater_quiz1:end',
 
