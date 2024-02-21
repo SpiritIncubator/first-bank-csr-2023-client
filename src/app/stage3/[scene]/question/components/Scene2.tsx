@@ -353,40 +353,154 @@ const Scene2Question = () => {
   // Jump to next dialog if control board send the end message
   useEffect(() => {
     let timerId: NodeJS.Timeout;
-    // if (currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE && currentPhaseInfo.round === 2) {
-    //   timerId = setTimeout(() => {
-    //     stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
-    //   }, videoDuration);
-    // }
+
     if (currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE) {
-
+      if (currentPhaseInfo.round === 2) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
+        }, DELAY_TIME);
+      }
+      // animation
+      if (currentPhaseInfo.round === 3) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
+        }, videoDuration);
+      }
+      // animation
+      if (currentPhaseInfo.round === 4) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
+        }, videoDuration);
+      }
+      // animation
+      if (currentPhaseInfo.round === 5) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_6' });
+        }, videoDuration);
+      }
+      // animation
+      if (currentPhaseInfo.round === 6) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_7' });
+        }, videoDuration);
+      }
+      if (currentPhaseInfo.round === 7) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_8' });
+        }, videoDuration);
+      }
     }
 
-    if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 2) {
-      timerId = setTimeout(() => {
-        stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
-      }, videoDuration);
+    if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS) {
+      if (currentPhaseInfo.round === 2) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
+        }, DELAY_TIME);
+      }
+
+      // if (currentPhaseInfo.round === 3) {
+      //   timerId = setTimeout(() => {
+      //     stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
+      //   }, DELAY_TIME);
+      // }
+
+      if (currentPhaseInfo.round === 4) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
+        }, DELAY_TIME);
+      }
+
+      // animation
+      if (currentPhaseInfo.round === 5) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_6' });
+        }, videoDuration);
+      }
+
+      // animation
+      if (currentPhaseInfo.round === 6) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_7' });
+        }, videoDuration);
+      } 
+
+      if (currentPhaseInfo.round === 7) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_8' });
+        }, DELAY_TIME);
+      } 
+
+      // animation
+      if (currentPhaseInfo.round === 8) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_9' });
+        }, videoDuration);
+      }
+
+      //animation
+      if (currentPhaseInfo.round === 9) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_10' });
+        }, videoDuration);
+      }
+
+      // animation tenth
     }
 
-    if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 4) {
-      timerId = setTimeout(() => {
-        stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
-      }, videoDuration);
-    }
+    if (currentPhaseInfo.question === SCENE1SITUATION.SOLAR_POWER) {
+      if (currentPhaseInfo.round === 1) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
+        }, DELAY_TIME);
+      }
 
-    if (currentPhaseInfo.question === SCENE1SITUATION.SOLAR_POWER && currentPhaseInfo.round === 1) {
-      timerId = setTimeout(() => {
-        stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
-      }, videoDuration);
+      // if (currentPhaseInfo.round === 2) {
+      //   timerId = setTimeout(() => {
+      //     stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
+      //   }, DELAY_TIME);
+      // }
+      // animation
+      if (currentPhaseInfo.round === 3) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
+        }, videoDuration);
+      } 
+
+      if (currentPhaseInfo.round === 4) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
+        }, DELAY_TIME);
+      }
+
+      if (currentPhaseInfo.round === 5) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_6' });
+        }, DELAY_TIME);
+      }
+      // animation
+      if (currentPhaseInfo.round === 6) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_7' });
+        }, videoDuration);
+      }
+
+      if (currentPhaseInfo.round === 7) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_8' });
+        }, DELAY_TIME);
+      }
+
+      if (currentPhaseInfo.round === 8) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_9' });
+        }, DELAY_TIME);
+      }
     }
 
     return () => {
       if (timerId) clearTimeout(timerId);
     }
   }, [stateAction, currentPhaseInfo.round, currentPhaseInfo.question, videoDuration]);
-
-
-
 
   // To avoid page has phenomenon of freshing
   useEffect(() => {
@@ -400,6 +514,23 @@ const Scene2Question = () => {
       clearTimeout(timer);
     }
   }, []);
+
+  // here we go
+  useEffect(() => {
+    receivedEvent(({ messageType }) => {
+      if (messageType === SOCKET_EVENTS.SOLAR_POWER_START) {
+        stateAction.send({ type: 'NEXT_TO_SCENE2_SOLAR_POWER' });
+      }
+
+      if (messageType === SOCKET_EVENTS.AQUAPONICS_START) {
+        stateAction.send({ type: 'NEXT_TO_SCENE2_AQUAONICS' });
+      }
+
+      if (messageType === SOCKET_EVENTS.RAIN_RECYCLE_START) {
+        stateAction.send({ type: 'NEXT_TO_SCENE2_RAIN_RECYCLE' });
+      }
+    });
+  }, [receivedEvent, stateAction]);
 
   const phaseParams = getCurrentPhaseImg(currentPhaseInfo);
 
