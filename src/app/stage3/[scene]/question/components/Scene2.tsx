@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import NextImage from 'next/image';
-import Lottie from 'lottie-react';
+import Lottie, {useLottie} from 'lottie-react';
 
 import { useSubscribe } from '@/app/hooks/useSubscribe';
 import type { PhaseValueType } from '@/app/stage3/xstate/conversationMachine';
@@ -73,6 +73,44 @@ type PhaseType = {
   dialog: any;
   bg?: any;
   animation?: any;
+}
+
+type AnimationOptions = {
+  animationData: any;
+  loop: boolean;
+  autoplay: boolean;
+};
+
+enum SCENE1SITUATION {
+  RAIN_RECYCLE = 'rainRecycle',
+  AQUAPONICS = 'aquaponics',
+  SOLAR_POWER = 'solarPower',
+}
+
+const DELAY_TIME = 4000;
+
+const animationItemsByCategories: Record<Partial<PhaseValueType['question']>, any> = {
+  rainRecycle: {
+    3: Dialog3Animation,
+    4: Dialog4Animation,
+    5: Dialog5Animation,
+    6: Dialog6Animation
+  },
+  aquaponics: {
+    5: AquaonicsDialog5Animation,
+    6: AquaonicsDialog6Animation,
+    8: AquaonicsDialog8Animation,
+    9: AquaonicsDialog9Animation,
+    10: AquaonicsDialog10Animation,
+  },
+  solarPower: {
+    3: SolarPowerDialog3Animation,
+    6: SolarPowerDialog6Animation
+  },
+  greenBuilding: {},
+  dashboard: {},
+  carbonFootprint: {},
+  initial: {}
 }
 
 const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
@@ -263,114 +301,92 @@ const Scene2Question = () => {
   const stateAction = ConversationContext.useActorRef();
   const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
   const { sendEvent, receivedEvent } = registerRoomHelper();
+  const animation = animationItemsByCategories[currentPhaseInfo.question][currentPhaseInfo.round];
+  const [options, setOptions] = useState<AnimationOptions>({
+    animationData: animation,
+    
+    loop: true,
+    autoplay: true,
+  });
+  const { View, getDuration, } = useLottie(options, { width: 2560 });
+  const videoDurationWithSecond = getDuration() ?? 0;
+  const videoDuration = videoDurationWithSecond >= 4 ? videoDurationWithSecond * 1000 : DELAY_TIME;
 
   useEffect(() => {
-    if (currentPhaseInfo.question === 'rainRecycle' && currentPhaseInfo.round === 1) {
+    if (currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE && currentPhaseInfo.round === 1) {
       sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ1_START });
     }
 
-    if (currentPhaseInfo.question === 'aquaonics' && currentPhaseInfo.round === 2) {
-      sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ2_START });
+    if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 1) {
+      sendEvent({ messageType: SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_START });
     }
 
-    if (currentPhaseInfo.question === 'solarPower' && currentPhaseInfo.round === 3) {
-      sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ3_START });
+    if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 3) {
+      sendEvent({ messageType: SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ3_START });
     }
 
-    if (currentPhaseInfo.question === 'rainRecycle' && currentPhaseInfo.round === 4) {
-      sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ4_START });
-    }
-
-    if (currentPhaseInfo.question === 'aquaonics' && currentPhaseInfo.round === 5) {
-      sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ5_START });
-    }
-
-    if (currentPhaseInfo.question === 'solarPower' && currentPhaseInfo.round === 6) {
-      sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ6_START });
-    }
-
-    if (currentPhaseInfo.question === 'rainRecycle' && currentPhaseInfo.round === 7) {
-      sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ7_START });
-    }
-
-    if (currentPhaseInfo.question === 'aquaonics' && currentPhaseInfo.round === 8) {
-      sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ8_START });
+    if (currentPhaseInfo.question === SCENE1SITUATION.SOLAR_POWER && currentPhaseInfo.round === 2) {
+      sendEvent({ messageType: SOCKET_EVENTS.QUEST_SOLOARPOWER_QUIZE2_START });
     }
   }, [receivedEvent, currentPhaseInfo.question, currentPhaseInfo.round, stateAction, sendEvent]);
 
+  // received socket from control board
   useEffect(() => {
     receivedEvent(({ messageType }) => {
       if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ1_END) {
         stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
       }
 
-      if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ2_END) {
-        stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
+      if (messageType === SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_END) {
+        stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
       }
 
-      if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ3_END) {
+      if (messageType === SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ3_END) {
         stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
       }
 
-      if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ4_END) {
-        stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
+      if (messageType === SOCKET_EVENTS.QUEST_SOLOARPOWER_QUIZE2_END) {
+        stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
       }
-
-      if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ5_END) {
-        stateAction.send({ type: 'NEXT_TO_DIALOG_6' });
-      }
-
-      if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ6_END) {
-        stateAction.send({ type: 'NEXT_TO_DIALOG_7' });
-      }
-      
-      if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ7_END) {
-        stateAction.send({ type: 'NEXT_TO_DIALOG_8' });
-      }
-
-      if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ8_END) {
-        // TODO
-        // stateAction.send({ type: 'NEXT_TO_DIALOG_9' });
-      }
-
-
-      // if (messageType === SOCKET_EVENTS) {
-      //   stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
-      // }
     });
   }, [receivedEvent, stateAction])
 
-
+  // Jump to next dialog if control board send the end message
   useEffect(() => {
-    setTimeout(() => {
-      stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
-    }, 5000);
+    let timerId: NodeJS.Timeout;
+    if (currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE && currentPhaseInfo.round === 2) {
+      timerId = setTimeout(() => {
+        stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
+      }, videoDuration);
+    }
 
-    setTimeout(() => {
-      stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
-    }, 7000);
+    if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 2) {
+      timerId = setTimeout(() => {
+        stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
+      }, videoDuration);
+    }
 
-    setTimeout(() => {
-      stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
-    }, 9000);
+    if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 4) {
+      timerId = setTimeout(() => {
+        stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
+      }, videoDuration);
+    }
 
-    setTimeout(() => {
-      stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
-    }, 11000);
+    if (currentPhaseInfo.question === SCENE1SITUATION.SOLAR_POWER && currentPhaseInfo.round === 1) {
+      timerId = setTimeout(() => {
+        stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
+      }, videoDuration);
+    }
 
-    setTimeout(() => {
-      stateAction.send({ type: 'NEXT_TO_DIALOG_6' });
-    }, 13000);
+    return () => {
+      if (timerId) clearTimeout(timerId);
+    }
+  }, [stateAction, currentPhaseInfo.round, currentPhaseInfo.question, videoDuration]);
 
-    setTimeout(() => {
-      stateAction.send({ type: 'NEXT_TO_DIALOG_7' });
-    }, 15000);
 
-    setTimeout(() => {
-      stateAction.send({ type: 'NEXT_TO_DIALOG_8' });
-    }, 17000);
-  }, [stateAction]);
 
+
+  // To avoid page has phenomenon of freshing
   useEffect(() => {
     let timer: NodeJS.Timeout;
 
@@ -393,9 +409,7 @@ const Scene2Question = () => {
       {imgLoaded && (
         <FadeIn>
           <Box sx={{ transform: "translateX(-50%)" }} position="absolute" top={0} left="50%">
-            {phaseParams.animation && (
-              <Lottie style={{ width: 2560 }} animationData={phaseParams.animation} loop />
-            )}
+            {phaseParams.animation && {View}}
             {phaseParams.bg && (
               <NextImage width={2560} src={phaseParams.bg} alt="Dialog1Bubble" priority={false} />
             )}

@@ -39,7 +39,7 @@ type EventType = Record<'type', TEvent>;
 export type PhaseValueType = {
 	level: LevelEnum;
 	round: number;
-	question?: 'rainRecycle' | 'aquaonics' | 'solarPower' | 'dashboard' | 'greenBuilding' | 'carbonFootprint'  | 'initial';
+	question: 'rainRecycle' | 'aquaponics' | 'solarPower' | 'dashboard' | 'greenBuilding' | 'carbonFootprint'  | 'initial';
 };
 type ContextValue = {
 	phase: PhaseValueType;
@@ -67,6 +67,7 @@ export const conversationMachine = setup({
 		phase: {
 			level: 0,
 			round: 1,
+			question: 'initial',
 		},
 	},
 	states: {
@@ -77,13 +78,23 @@ export const conversationMachine = setup({
 					initial: 'stage1',
 					states: {
 						stage1: {
-							entry: [{ type: 'setCurrentPhase', params: { round: 1, level: LevelEnum.START } }],
+							entry: [
+								{
+									type: 'setCurrentPhase',
+									params: { round: 1, level: LevelEnum.START, question: 'initial' },
+								},
+							],
 							on: {
 								NEXT_TO_START_STAGE2: 'stage2',
 							},
 						},
 						stage2: {
-							entry: [{ type: 'setCurrentPhase', params: { round: 2, level: LevelEnum.START } }],
+							entry: [
+								{
+									type: 'setCurrentPhase',
+									params: { round: 2, level: LevelEnum.START, question: 'initial' },
+								},
+							],
 						},
 					},
 				},
@@ -94,103 +105,115 @@ export const conversationMachine = setup({
 							initial: 'introDialog1',
 							states: {
 								introDialog1: {
-									entry: [{ type: 'setCurrentPhase', params: { round: 0, level: 1 } }],
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 0, level: 1, question: 'initial' },
+										},
+									],
 									on: {
 										NEXT_TO_SCENE1_INTRODUCTION_PART_TWO: 'introDialog2',
 									},
 								},
 								introDialog2: {
-									entry: [{ type: 'setCurrentPhase', params: { round: 1, level: 1 } }],
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 1, level: 1, question: 'initial' },
+										},
+									],
 								},
 							},
 						},
 						dashboard: {
 							initial: 'dialog1',
-							dialog1: {
-								entry: [
-									{
-										type: 'setCurrentPhase',
-										params: { round: 1, level: 1, question: 'dashboard' },
+							states: {
+								dialog1: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 1, level: 1, question: 'dashboard' },
+										},
+									],
+									on: {
+										NEXT_TO_QUESTION2: 'dialog2',
 									},
-								],
-								on: {
-									NEXT_TO_QUESTION2: 'dialog2',
 								},
-							},
-							dialog2: {
-								entry: [
-									{
-										type: 'setCurrentPhase',
-										params: { round: 2, level: 1, question: 'dashboard' },
+								dialog2: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 2, level: 1, question: 'dashboard' },
+										},
+									],
+									on: {
+										NEXT_TO_QUESTION3: 'dialog3',
 									},
-								],
-								on: {
-									NEXT_TO_QUESTION3: 'dialog3',
 								},
-							},
-							dialog3: {
-								entry: [
-									{
-										type: 'setCurrentPhase',
-										params: { round: 3, level: 1, question: 'dashboard' },
+								dialog3: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 3, level: 1, question: 'dashboard' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_4: 'dialog4',
 									},
-								],
-								on: {
-									NEXT_TO_DIALOG_4: 'dialog4',
 								},
-							},
-							dialog4: {
-								entry: [
-									{
-										type: 'setCurrentPhase',
-										params: { round: 4, level: 1, question: 'dashboard' },
+								dialog4: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 4, level: 1, question: 'dashboard' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_5: 'dialog5',
 									},
-								],
-								on: {
-									NEXT_TO_DIALOG_5: 'dialog5',
 								},
-							},
-							dialog5: {
-								entry: [
-									{
-										type: 'setCurrentPhase',
-										params: { round: 5, level: 1, question: 'dashboard' },
+								dialog5: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 5, level: 1, question: 'dashboard' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_6: 'dialog6',
 									},
-								],
-								on: {
-									NEXT_TO_DIALOG_6: 'dialog6',
 								},
-							},
-							dialog6: {
-								entry: [
-									{
-										type: 'setCurrentPhase',
-										params: { round: 6, level: 1, question: 'dashboard' },
+								dialog6: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 6, level: 1, question: 'dashboard' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_7: 'dialog7',
 									},
-								],
-								on: {
-									NEXT_TO_DIALOG_7: 'dialog7',
 								},
-							},
-							dialog7: {
-								entry: [
-									{
-										type: 'setCurrentPhase',
-										params: { round: 7, level: 1, question: 'dashboard' },
+								dialog7: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 7, level: 1, question: 'dashboard' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_8: 'dialog8',
 									},
-								],
-								on: {
-									NEXT_TO_DIALOG_8: 'dialog8',
 								},
-							},
-							dialog8: {
-								entry: [
-									{
-										type: 'setCurrentPhase',
-										params: { round: 8, level: 1, question: 'dashboard' },
-									},
-								],
-								on: {},
+								dialog8: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 8, level: 1, question: 'dashboard' },
+										},
+									],
+									on: {},
+								},
 							},
 						},
 						greenBuilding: {
@@ -603,7 +626,7 @@ export const conversationMachine = setup({
 									entry: [
 										{
 											type: 'setCurrentPhase',
-											params: { round: 1, level: 2, question: 'aquaonics' },
+											params: { round: 1, level: 2, question: 'aquaponics' },
 										},
 									],
 									on: {
@@ -614,7 +637,7 @@ export const conversationMachine = setup({
 									entry: [
 										{
 											type: 'setCurrentPhase',
-											params: { round: 2, level: 2, question: 'aquaonics' },
+											params: { round: 2, level: 2, question: 'aquaponics' },
 										},
 									],
 									on: {
@@ -625,7 +648,7 @@ export const conversationMachine = setup({
 									entry: [
 										{
 											type: 'setCurrentPhase',
-											params: { round: 3, level: 2, question: 'aquaonics' },
+											params: { round: 3, level: 2, question: 'aquaponics' },
 										},
 									],
 									on: {
@@ -636,7 +659,7 @@ export const conversationMachine = setup({
 									entry: [
 										{
 											type: 'setCurrentPhase',
-											params: { round: 4, level: 2, question: 'aquaonics' },
+											params: { round: 4, level: 2, question: 'aquaponics' },
 										},
 									],
 									on: {
@@ -647,7 +670,7 @@ export const conversationMachine = setup({
 									entry: [
 										{
 											type: 'setCurrentPhase',
-											params: { round: 5, level: 2, question: 'aquaonics' },
+											params: { round: 5, level: 2, question: 'aquaponics' },
 										},
 									],
 									on: {
@@ -658,7 +681,7 @@ export const conversationMachine = setup({
 									entry: [
 										{
 											type: 'setCurrentPhase',
-											params: { round: 6, level: 2, question: 'aquaonics' },
+											params: { round: 6, level: 2, question: 'aquaponics' },
 										},
 									],
 									on: {
@@ -669,7 +692,7 @@ export const conversationMachine = setup({
 									entry: [
 										{
 											type: 'setCurrentPhase',
-											params: { round: 7, level: 2, question: 'aquaonics' },
+											params: { round: 7, level: 2, question: 'aquaponics' },
 										},
 									],
 									on: {
@@ -680,7 +703,7 @@ export const conversationMachine = setup({
 									entry: [
 										{
 											type: 'setCurrentPhase',
-											params: { round: 8, level: 2, question: 'aquaonics' },
+											params: { round: 8, level: 2, question: 'aquaponics' },
 										},
 									],
 									on: {
@@ -691,7 +714,7 @@ export const conversationMachine = setup({
 									entry: [
 										{
 											type: 'setCurrentPhase',
-											params: { round: 9, level: 2, question: 'aquaonics' },
+											params: { round: 9, level: 2, question: 'aquaponics' },
 										},
 									],
 									on: {
@@ -702,7 +725,7 @@ export const conversationMachine = setup({
 									entry: [
 										{
 											type: 'setCurrentPhase',
-											params: { round: 10, level: 2, question: 'aquaonics' },
+											params: { round: 10, level: 2, question: 'aquaponics' },
 										},
 									],
 									on: {},

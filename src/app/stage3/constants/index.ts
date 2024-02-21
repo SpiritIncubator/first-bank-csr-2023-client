@@ -17,21 +17,16 @@ export const SOCKET_EVENTS = {
 	// emit from screen
 	QUEST_RAINWATER_QUIZ1_START: 'questRainwater_quiz1:start',
 	QUEST_RAINWATER_QUIZ1_END: 'questRainwater_quiz1:end',
-	QUEST_RAINWATER_QUIZ2_START: 'questRainwater_quiz2:start',
-	QUEST_RAINWATER_QUIZ2_END: 'questRainwater_quiz2:end',
-	QUEST_RAINWATER_QUIZ3_START: 'questRainwater_quiz3:start',
-	QUEST_RAINWATER_QUIZ3_END: 'questRainwater_quiz3:end',
-	QUEST_RAINWATER_QUIZ4_START: 'questRainwater_quiz4:start',
-	QUEST_RAINWATER_QUIZ4_END: 'questRainwater_quiz4:end',
-	QUEST_RAINWATER_QUIZ5_START: 'questRainwater_quiz5:start',
-	QUEST_RAINWATER_QUIZ5_END: 'questRainwater_quiz5:end',
-	QUEST_RAINWATER_QUIZ6_START: 'questRainwater_quiz6:start',
-	QUEST_RAINWATER_QUIZ6_END: 'questRainwater_quiz6:end',
-	QUEST_RAINWATER_QUIZ7_START: 'questRainwater_quiz7:start',
-  QUEST_RAINWATER_QUIZ7_END: 'questRainwater_quiz7:end',
-  QUEST_RAINWATER_QUIZ8_START: 'questRainwater_quiz8:start',
-	QUEST_RAINWATER_QUIZ8_END: 'questRainwater_quiz8:end'
+
+	QUEST_AQUAPONICS_QUIZ1_START: 'questionAquaponics_quiz1:start',
+	QUEST_AQUAPONICS_QUIZ1_END: 'questionAquaponics_quiz1:end',
+	QUEST_AQUAPONICS_QUIZ3_START: 'questionAquaponics_quiz3:start',
+	QUEST_AQUAPONICS_QUIZ3_END: 'questionAquaponics_quiz3:end',
+
+	QUEST_SOLOARPOWER_QUIZE2_START: 'questionSolarPower_quiz2:start',
+	QUEST_SOLOARPOWER_QUIZE2_END: 'questionSolarPower_quiz2:end',
 };
+
 
 export enum QuestNames {
 	RAIN_RECYCLE = 'rainRecycle',
