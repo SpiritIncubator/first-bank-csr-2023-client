@@ -1,7 +1,7 @@
 export const SOCKET_EVENTS = {
 	START: 'start',
 	READY_FOR_QUEST: 'readyForQuest',
-	// emit from control board
+	// quest event 
 	RAIN_RECYCLE_START: 'rainRecycle:start',
 	RAIN_RECYCLE_END: 'rainRecycle:end',
 	RAIN_RECYCLE_FINISH: 'rainRecycle:finish',
