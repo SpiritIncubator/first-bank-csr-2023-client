@@ -336,9 +336,25 @@ const Scene2Question = () => {
     }
 
     if (currentPhaseInfo.question === SCENE1SITUATION.SOLAR_POWER && currentPhaseInfo.round === 8) {
-      sendEvent({ messageType: SOCKET_EVENTS.SOLOARPOWER_END });
+      sendEvent({ messageType: SOCKET_EVENTS.SOLAR_POWER_END });
     }
-  }, [currentPhaseInfo.question, currentPhaseInfo.round, sendEvent])
+  }, [currentPhaseInfo.question, currentPhaseInfo.round, sendEvent]);
+
+  useEffect(() => {
+    receivedEvent(({ messageType }) => {
+      if (messageType === SOCKET_EVENTS.RAIN_RECYCLE_FINISH) {
+        setQuestionStatus({ ...questionStatus, rainCycle: true });
+      }
+
+      if (messageType === SOCKET_EVENTS.AQUAPONICS_FINISH) {
+        setQuestionStatus({ ...questionStatus, aquaponics: true });
+      }
+
+      if (messageType === SOCKET_EVENTS.SOLAR_POWER_FINISH) {
+        setQuestionStatus({ ...questionStatus, solarPower: true });
+      }
+    });
+  }, [questionStatus, receivedEvent, setQuestionStatus]);
 
   useEffect(() => {
     if (currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE && currentPhaseInfo.round === 1) {
