@@ -265,10 +265,80 @@ const Scene2Question = () => {
   const { sendEvent, receivedEvent } = registerRoomHelper();
 
   useEffect(() => {
-    if (currentPhaseInfo.question === 'rainRecycle') {
+    if (currentPhaseInfo.question === 'rainRecycle' && currentPhaseInfo.round === 1) {
       sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ1_START });
     }
+
+    if (currentPhaseInfo.question === 'aquaonics' && currentPhaseInfo.round === 2) {
+      sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ2_START });
+    }
+
+    if (currentPhaseInfo.question === 'solarPower' && currentPhaseInfo.round === 3) {
+      sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ3_START });
+    }
+
+    if (currentPhaseInfo.question === 'rainRecycle' && currentPhaseInfo.round === 4) {
+      sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ4_START });
+    }
+
+    if (currentPhaseInfo.question === 'aquaonics' && currentPhaseInfo.round === 5) {
+      sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ5_START });
+    }
+
+    if (currentPhaseInfo.question === 'solarPower' && currentPhaseInfo.round === 6) {
+      sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ6_START });
+    }
+
+    if (currentPhaseInfo.question === 'rainRecycle' && currentPhaseInfo.round === 7) {
+      sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ7_START });
+    }
+
+    if (currentPhaseInfo.question === 'aquaonics' && currentPhaseInfo.round === 8) {
+      sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINWATER_QUIZ8_START });
+    }
   }, [receivedEvent, currentPhaseInfo.question, currentPhaseInfo.round, stateAction, sendEvent]);
+
+  useEffect(() => {
+    receivedEvent(({ messageType }) => {
+      if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ1_END) {
+        stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
+      }
+
+      if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ2_END) {
+        stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
+      }
+
+      if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ3_END) {
+        stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
+      }
+
+      if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ4_END) {
+        stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
+      }
+
+      if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ5_END) {
+        stateAction.send({ type: 'NEXT_TO_DIALOG_6' });
+      }
+
+      if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ6_END) {
+        stateAction.send({ type: 'NEXT_TO_DIALOG_7' });
+      }
+      
+      if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ7_END) {
+        stateAction.send({ type: 'NEXT_TO_DIALOG_8' });
+      }
+
+      if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ8_END) {
+        // TODO
+        // stateAction.send({ type: 'NEXT_TO_DIALOG_9' });
+      }
+
+
+      // if (messageType === SOCKET_EVENTS) {
+      //   stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
+      // }
+    });
+  }, [receivedEvent, stateAction])
 
 
   useEffect(() => {

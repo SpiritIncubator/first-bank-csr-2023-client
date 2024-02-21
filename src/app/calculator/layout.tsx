@@ -7,7 +7,7 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <Box bgcolor="rgba(253, 253, 251, 1)">
+    <Box bgcolor="#FDFDFB">
       {children}
     </Box>
   )

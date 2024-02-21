@@ -28,7 +28,12 @@ type TEvent =
 	| 'NEXT_TO_DIALOG_10'
 	| 'NEXT_TO_SCENE2_RAIN_RECYCLE'
 	| 'NEXT_TO_SCENE2_SOLAR_POWER'
-	| 'NEXT_TO_SCENE2_AQUAONICS';
+	| 'NEXT_TO_SCENE2_AQUAONICS'
+	| 'NEXT_TO_SCENE1_DASHBOARD'
+	| 'NEXT_TO_SCENE1_GREEN_BUILDING'
+	| 'NEXT_TO_SCENE1_CARBON_FOOTPRINT'
+	| 'REDIRECT_TO_SCENE1_START'
+	| 'REDIRECT_TO_SCENE2_START';
 
 type EventType = Record<'type', TEvent>;
 export type PhaseValueType = {
@@ -102,54 +107,274 @@ export const conversationMachine = setup({
 						dashboard: {
 							initial: 'dialog1',
 							dialog1: {
-								entry: [{ type: 'setCurrentPhase', params: { round: 1, level: 1, question: 'dashboard' } }],
+								entry: [
+									{
+										type: 'setCurrentPhase',
+										params: { round: 1, level: 1, question: 'dashboard' },
+									},
+								],
 								on: {
 									NEXT_TO_QUESTION2: 'dialog2',
 								},
 							},
 							dialog2: {
-								entry: [{ type: 'setCurrentPhase', params: { round: 2, level: 1, question: 'dashboard' } }],
+								entry: [
+									{
+										type: 'setCurrentPhase',
+										params: { round: 2, level: 1, question: 'dashboard' },
+									},
+								],
 								on: {
 									NEXT_TO_QUESTION3: 'dialog3',
 								},
 							},
 							dialog3: {
-								entry: [{ type: 'setCurrentPhase', params: { round: 3, level: 1, question: 'dashboard' } }],
+								entry: [
+									{
+										type: 'setCurrentPhase',
+										params: { round: 3, level: 1, question: 'dashboard' },
+									},
+								],
 								on: {
 									NEXT_TO_DIALOG_4: 'dialog4',
 								},
 							},
 							dialog4: {
-								entry: [{ type: 'setCurrentPhase', params: { round: 4, level: 1, question: 'dashboard' } }],
+								entry: [
+									{
+										type: 'setCurrentPhase',
+										params: { round: 4, level: 1, question: 'dashboard' },
+									},
+								],
 								on: {
 									NEXT_TO_DIALOG_5: 'dialog5',
 								},
 							},
 							dialog5: {
-								entry: [{ type: 'setCurrentPhase', params: { round: 5, level: 1, question: 'dashboard' } }],
+								entry: [
+									{
+										type: 'setCurrentPhase',
+										params: { round: 5, level: 1, question: 'dashboard' },
+									},
+								],
 								on: {
 									NEXT_TO_DIALOG_6: 'dialog6',
 								},
 							},
 							dialog6: {
-								entry: [{ type: 'setCurrentPhase', params: { round: 6, level: 1, question: 'dashboard' } }],
+								entry: [
+									{
+										type: 'setCurrentPhase',
+										params: { round: 6, level: 1, question: 'dashboard' },
+									},
+								],
 								on: {
 									NEXT_TO_DIALOG_7: 'dialog7',
 								},
 							},
 							dialog7: {
-								entry: [{ type: 'setCurrentPhase', params: { round: 7, level: 1, question: 'dashboard' } }],
+								entry: [
+									{
+										type: 'setCurrentPhase',
+										params: { round: 7, level: 1, question: 'dashboard' },
+									},
+								],
 								on: {
 									NEXT_TO_DIALOG_8: 'dialog8',
 								},
 							},
 							dialog8: {
-								entry: [{ type: 'setCurrentPhase', params: { round: 8, level: 1, question: 'dashboard' } }],
+								entry: [
+									{
+										type: 'setCurrentPhase',
+										params: { round: 8, level: 1, question: 'dashboard' },
+									},
+								],
 								on: {},
 							},
 						},
-						greenBuilding: {},
-						carbonFootprint: {},
+						greenBuilding: {
+							initial: 'dialog1',
+							states: {
+								dialog1: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 1, level: 1, question: 'greenBuilding' },
+										},
+									],
+									on: {
+										NEXT_TO_QUESTION2: 'dialog2',
+									},
+								},
+								dialog2: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 2, level: 1, question: 'greenBuilding' },
+										},
+									],
+									on: {
+										NEXT_TO_QUESTION3: 'dialog3',
+									},
+								},
+								dialog3: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 3, level: 1, question: 'greenBuilding' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_4: 'dialog4',
+									},
+								},
+								dialog4: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 4, level: 1, question: 'greenBuilding' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_5: 'dialog5',
+									},
+								},
+								dialog5: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 5, level: 1, question: 'greenBuilding' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_6: 'dialog6',
+									},
+								},
+								dialog6: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 6, level: 1, question: 'greenBuilding' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_7: 'dialog7',
+									},
+								},
+								dialog7: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 7, level: 1, question: 'greenBuilding' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_8: 'dialog8',
+									},
+								},
+								dialog8: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 8, level: 1, question: 'greenBuilding' },
+										},
+									],
+									on: {},
+								},
+							},
+						},
+						carbonFootprint: {
+							initial: 'dialog1',
+							states: {
+								dialog1: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 1, level: 1, question: 'carbonFootprint' },
+										},
+									],
+									on: {
+										NEXT_TO_QUESTION2: 'dialog2',
+									},
+								},
+								dialog2: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 2, level: 1, question: 'carbonFootprint' },
+										},
+									],
+									on: {
+										NEXT_TO_QUESTION3: 'dialog3',
+									},
+								},
+								dialog3: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 3, level: 1, question: 'carbonFootprint' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_4: 'dialog4',
+									},
+								},
+								dialog4: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 4, level: 1, question: 'carbonFootprint' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_5: 'dialog5',
+									},
+								},
+								dialog5: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 5, level: 1, question: 'carbonFootprint' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_6: 'dialog6',
+									},
+								},
+								dialog6: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 6, level: 1, question: 'carbonFootprint' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_7: 'dialog7',
+									},
+								},
+								dialog7: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 7, level: 1, question: 'carbonFootprint' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_8: 'dialog8',
+									},
+								},
+								dialog8: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 8, level: 1, question: 'carbonFootprint' },
+										},
+									],
+									on: {},
+								},
+							},
+						},
 					},
 				},
 				scene2: {
@@ -159,15 +384,24 @@ export const conversationMachine = setup({
 							initial: 'introDialog1',
 							states: {
 								introDialog1: {
-									entry: [{ type: 'setCurrentPhase', params: { round: 1, level: 2, question: 'initial' } }],
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 1, level: 2, question: 'initial' },
+										},
+									],
 									on: {
 										NEXT_TO_DIALOG_2: 'introDialog2',
 									},
 								},
 								introDialog2: {
-									entry: [{ type: 'setCurrentPhase', params: { round: 2, level: 2, question: 'initial' } }],
-									on: {
-									},
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 2, level: 2, question: 'initial' },
+										},
+									],
+									on: {},
 								},
 							},
 						},
@@ -481,9 +715,14 @@ export const conversationMachine = setup({
 			on: {
 				NEXT_TO_SCENE1_INTRODUCTION: '.scene1',
 				NEXT_TO_SCENE2_INTRODUCTION: '.scene2',
+				NEXT_TO_SCENE1_DASHBOARD: '.scene1.dashboard',
+				NEXT_TO_SCENE1_GREEN_BUILDING: '.scene1.greenBuilding',
+				NEXT_TO_SCENE1_CARBON_FOOTPRINT: '.scene1.carbonFootprint',
 				NEXT_TO_SCENE2_RAIN_RECYCLE: '.scene2.rainRecycle',
 				NEXT_TO_SCENE2_SOLAR_POWER: '.scene2.solarPower',
 				NEXT_TO_SCENE2_AQUAONICS: '.scene2.aquaonics',
+				REDIRECT_TO_SCENE1_START: '.scene1.sceneIntroduction',
+				REDIRECT_TO_SCENE2_START: '.scene2.sceneIntroduction',
 			},
 		},
 	},
