@@ -18,12 +18,13 @@ export const ControlBoardContext = createContext<{
   setQuestStatus: Dispatch<ControlBoardQuestStatus>
 }>({
   questStatus: {
-    SCENE1: false,
-    SCENE2: false,
     currentQuiz: '',
+    SCENE2: false,
     [QuestNames.RAIN_RECYCLE]: false,
     [QuestNames.AQUAPONICS]: false,
     [QuestNames.CARBON_FOOTPRINT]: false,
+
+    SCENE1: false,
     [QuestNames.DASHBOARD]: false,
     [QuestNames.GREEN_BUILDING]: false,
     [QuestNames.SOLAR_POWER]: false,

@@ -22,6 +22,7 @@ const Layout = ({ children }: LayoutProps) => {
 		[QuestNames.CARBON_FOOTPRINT]: false,
 		[QuestNames.DASHBOARD]: false,
 		[QuestNames.GREEN_BUILDING]: false,
+
 		[QuestNames.RAIN_RECYCLE]: false,
 		[QuestNames.AQUAPONICS]: false,
 		[QuestNames.SOLAR_POWER]: false,
