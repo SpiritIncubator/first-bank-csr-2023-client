@@ -4,6 +4,7 @@ import Lottie from 'lottie-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useSubscribe } from '@/app/hooks/useSubscribe';
+import {useQuestion} from '@/app/stage3/layout';
 
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import { STAGE3_ROOM } from '@/constants'
@@ -17,6 +18,10 @@ import DialogBg from '../../assets/dialogBox.svg'
 import Fake1Img from '../../assets/fake1.svg';
 import Fake2Img from '../../assets/fake2.svg';
 
+import rainCycleResolvedImg from '../../assets/question-rainRecycle.svg';
+import solarPowerResolvedImg from '../../assets/question-solarPower.svg';
+import aquaponicsResolvedImg from '../../assets/question-aquaponics.svg';
+
 const Scene2Page = () => {
   const router = useRouter();
   const currentPhaseInfo = ConversationContext.useSelector(state => state.context.phase);
@@ -25,6 +30,7 @@ const Scene2Page = () => {
   const [delayLoaded, setDelayLoaded] = useState(false);
   const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
   const { receivedEvent } = registerRoomHelper();
+  const {questionStatus} = useQuestion();
 
   useEffect(() => {
     // TODO will receive
@@ -64,13 +70,13 @@ const Scene2Page = () => {
       {delayLoaded && (
         <FadeIn>
           <Box position="absolute" top={370} left={250}>
-            <Image src={UnResolvedQuestion} alt="unresolved-question" />
+            <Image src={questionStatus.solarPower ? solarPowerResolvedImg : UnResolvedQuestion} alt="unresolved-question" />
           </Box>
           <Box position="absolute" top={800} left={570}>
-            <Image src={UnResolvedQuestion} alt="unresolved-question" />
+            <Image src={questionStatus.rainRecycle ? rainCycleResolvedImg : UnResolvedQuestion} alt="unresolved-question" />
           </Box>
           <Box position="absolute" top={625} right={800}>
-            <Image src={UnResolvedQuestion} alt="unresolved-question" />
+            <Image src={questionStatus.aquaponics ? aquaponicsResolvedImg : UnResolvedQuestion} alt="unresolved-question" />
           </Box>
           <Box position="absolute" top={0} left={0}>
             <Image src={DialogBg} alt="dialog" />

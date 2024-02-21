@@ -4,8 +4,10 @@ export const SOCKET_EVENTS = {
 	// emit from control board
 	RAIN_RECYCLE_START: 'rainRecycle:start',
 	RAIN_RECYCLE_END: 'rainRecycle:end',
+	RAIN_RECYCLE_FINISH: 'rainRecycle:finish',
 	AQUAPONICS_START: 'aquaponics:start',
 	AQUAPONICS_END: 'aquaponics:end',
+	AQUAPONICS_FINISH: 'aquaponics:finish',
 	CARBON_FOOTPRINT_START: 'carbonFootprint:start',
 	CARBON_FOOTPRINT_END: 'carbonFootprint:end',
 	DASHBOARD_START: 'dashboard:start',
@@ -14,6 +16,7 @@ export const SOCKET_EVENTS = {
 	GREEN_BUILDING_END: 'greenBuilding:end',
 	SOLAR_POWER_START: 'solarPower:start',
 	SOLAR_POWER_END: 'solarPower:end',
+	SOLAR_POWER_FINISH: 'solarPower:finish',
 	// emit from screen
 	QUEST_RAINWATER_QUIZ1_START: 'questRainwater_quiz1:start',
 	QUEST_RAINWATER_QUIZ1_END: 'questRainwater_quiz1:end',

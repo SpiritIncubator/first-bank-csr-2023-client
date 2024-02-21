@@ -14,6 +14,7 @@ import DialogBg from '@/app/stage3/assets/dialogBox.svg'
 import lionAnimationData from '@/app/stage3/animationData/leo_2-11_normal_smile1.json';
 import { STAGE3_ROOM } from '@/constants'
 import { SOCKET_EVENTS } from '@/app/stage3/constants';
+import { useQuestion } from '@/app/stage3/layout';
 // rainRecycle
 import Dialog1Bg from '@/app/stage3/assets/rainRecycle/rainCycle-bg-1.svg';
 import Dialog1 from '@/app/stage3/assets/rainRecycle/dialog1.svg';
@@ -313,11 +314,31 @@ const Scene2Question = () => {
   const { View, getDuration, } = useLottie(options, { width: 2560 });
   const videoDurationWithSecond = getDuration() ?? 0;
   const videoDuration = videoDurationWithSecond >= 4 ? videoDurationWithSecond * 1000 : DELAY_TIME;
+  const {questionStatus, setQuestionStatus} = useQuestion();
+  // const [questionStatus, setQuestionStatus] = useState({
+  //   rainCycle: false,
+  //   aquaponics: false,
+  //   solarPower: false,
+  // });
 
   // MARKER: useEffect whether animation is changed or not to update the animation
   useEffect(() => {
     setOptions(prevState => ({...prevState, animationData: animation}))
   }, [animation]);
+
+  useEffect(() => {
+    if (currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE && currentPhaseInfo.round === 9) {
+      sendEvent({ messageType: SOCKET_EVENTS.RAIN_RECYCLE_END });
+    }
+
+    if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 10) {
+      sendEvent({ messageType: SOCKET_EVENTS.AQUAPONICS_END });
+    }
+
+    if (currentPhaseInfo.question === SCENE1SITUATION.SOLAR_POWER && currentPhaseInfo.round === 8) {
+      sendEvent({ messageType: SOCKET_EVENTS.SOLOARPOWER_END });
+    }
+  }, [currentPhaseInfo.question, currentPhaseInfo.round, sendEvent])
 
   useEffect(() => {
     if (currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE && currentPhaseInfo.round === 1) {
