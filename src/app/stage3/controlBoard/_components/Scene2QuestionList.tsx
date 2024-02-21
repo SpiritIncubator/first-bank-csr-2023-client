@@ -18,6 +18,8 @@ import SolarPowerOpen from '@/app/stage3/assets/controlBoard/stage3_question_sol
 import AquaponicsOpenButton from '@/app/stage3/assets/controlBoard/aquaponics.svg';
 import RainWaterRecycleOpenButton from '@/app/stage3/assets/controlBoard/rainwater_recycle.svg';
 import SolarPowerOpenButton from '@/app/stage3/assets/controlBoard/solar_power.svg';
+import SolveButton from '@/app/stage3/assets/controlBoard/stage3_successfully_solve.svg';
+import SolveButtonActive from '@/app/stage3/assets/controlBoard/stage3_successfully_solve_active.svg';
 // import DashBoardClose from '@/app/stage3/assets/controlBoard/stage3_question_dashboard_close.svg';
 // import CarbonFootprintClose from '@/app/stage3/assets/controlBoard/stage3_question_carbonFootprint_close.svg';
 // import greenBuildingClose from '@/app/stage3/assets/controlBoard/stage3_question_greenBuilding_close.svg';
@@ -51,12 +53,18 @@ export default function Scene2QuestionList() {
 	const { sendEvent } = registerRoomHelper();
 
 	const { questStatus } = useContext(ControlBoardContext);
+	const allQuestFinished =
+		questStatus[QuestNames.AQUAPONICS] &&
+		questStatus[QuestNames.SOLAR_POWER] &&
+		questStatus[QuestNames.RAIN_RECYCLE];
+
 	console.log('questStatus :', questStatus);
 	const [answeredQuestionIndex, setAnsweredQuestionIndex] = useState<number[]>([]);
 	const onClickQuestion = (name: QuestNames) => () => {
 		console.log('name :', name);
 		sendEvent({ messageType: `${name}:start` });
 	};
+	const onSuccessfullySolved = () => {};
 
 	return (
 		<Box
@@ -118,6 +126,24 @@ export default function Scene2QuestionList() {
 						</Box>
 					);
 				})}
+			</Box>
+			<Box>
+				{allQuestFinished && (
+					<Box
+						position="relative"
+						height="207px"
+						width="670px"
+						mx="auto"
+						mt="150px"
+						onClick={onSuccessfullySolved}>
+						<ImageButton
+							width="100%"
+							height="200px"
+							src={SolveButton}
+							activeImageSrc={SolveButtonActive}
+						/>
+					</Box>
+				)}
 			</Box>
 		</Box>
 	);
