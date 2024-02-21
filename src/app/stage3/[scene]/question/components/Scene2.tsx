@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import Box from '@mui/material/Box';
 import NextImage from 'next/image';
 import Lottie, {useLottie} from 'lottie-react';
@@ -301,7 +301,10 @@ const Scene2Question = () => {
   const stateAction = ConversationContext.useActorRef();
   const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
   const { sendEvent, receivedEvent } = registerRoomHelper();
-  const animation = animationItemsByCategories[currentPhaseInfo.question][currentPhaseInfo.round];
+  const animation = useMemo(() => {
+    return animationItemsByCategories[currentPhaseInfo.question][currentPhaseInfo.round];
+  }, [currentPhaseInfo.question, currentPhaseInfo.round]);
+  // const animation = animationItemsByCategories[currentPhaseInfo.question][currentPhaseInfo.round];
   const [options, setOptions] = useState<AnimationOptions>({
     animationData: animation,
     loop: true,
@@ -310,6 +313,11 @@ const Scene2Question = () => {
   const { View, getDuration, } = useLottie(options, { width: 2560 });
   const videoDurationWithSecond = getDuration() ?? 0;
   const videoDuration = videoDurationWithSecond >= 4 ? videoDurationWithSecond * 1000 : DELAY_TIME;
+
+  // MARKER: useEffect whether animation is changed or not to update the animation
+  useEffect(() => {
+    setOptions(prevState => ({...prevState, animationData: animation}))
+  }, [animation]);
 
   useEffect(() => {
     if (currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE && currentPhaseInfo.round === 1) {
