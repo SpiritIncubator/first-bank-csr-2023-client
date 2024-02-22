@@ -26,9 +26,9 @@ enum STEPS {
 }
 
 export default function ControlBoard() {
-	const [currentStep, setCurrentStep] = useState(STEPS.START);
+	const [currentStep, setCurrentStep] = useState(STEPS.FINAL);
 	const [currentQuizStartEvent, setCurrentQuizStartEvent] = useState('');
-	const [currentQuestEndEvent, setCurrentQuestEndEvent] = useState('');
+	const [currentQuestEndEvent, setCurrentQuestEndEvent] = useState(SOCKET_EVENTS.RAIN_RECYCLE_END);
 	const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
 	const { sendEvent, receivedEvent } = registerRoomHelper();
 
