@@ -92,10 +92,12 @@ const DELAY_TIME = 4000;
 
 const animationItemsByCategories: Record<Partial<PhaseValueType['question']>, any> = {
 	rainRecycle: {
-		3: Dialog3Animation,
-		4: Dialog4Animation,
-		5: Dialog5Animation,
-		6: Dialog6Animation,
+		// 3: Dialog3Animation,
+		4: Dialog3Animation,
+		5: Dialog4Animation,
+    6: Dialog5Animation,
+    7: Dialog4Animation,
+    8: Dialog6Animation,
 	},
 	aquaponics: {
 		5: AquaonicsDialog5Animation,
@@ -105,8 +107,11 @@ const animationItemsByCategories: Record<Partial<PhaseValueType['question']>, an
 		10: AquaonicsDialog10Animation,
 	},
 	solarPower: {
-		3: SolarPowerDialog3Animation,
-		6: SolarPowerDialog6Animation,
+    3: SolarPowerDialog3Animation,
+    4: SolarPowerDialog3Animation,
+    6: SolarPowerDialog6Animation,
+    7: SolarPowerDialog6Animation,
+    8: SolarPowerDialog6Animation,
 	},
 	greenBuilding: {},
 	dashboard: {},
@@ -131,7 +136,7 @@ const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
 		if (currentPhaseInfo.round === 3) {
 			return {
 				dialog: Dialog3,
-				animation: Dialog3Animation,
+        bg: Dialog2Bg,
 			};
 		}
 		if (currentPhaseInfo.round === 4) {
@@ -284,347 +289,326 @@ const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
 				dialog: SolarPowerDialog8,
 				animation: SolarPowerDialog6Animation,
 			};
-    }
-    
-    if (currentPhaseInfo.round === 6) {
-      return {
-        dialog: SolarPowerDialog6,
-        bg: SolarPowerBg5,
-      };
-    }
-  
-    if (currentPhaseInfo.round === 7) {
-      return {
-        dialog: SolarPowerDialog7,
-        animation: SolarPowerDialog6Animation,
-      };
-    }
-  
-    if (currentPhaseInfo.round === 8) {
-      return {
-        dialog: SolarPowerDialog8,
-        animation: SolarPowerDialog6Animation,
-      };
-    }
+		}
 	}
-  return {} as PhaseType;
-}
+	return {} as PhaseType;
+};
 
 const Scene2Question = () => {
-  const [imgLoaded, setImgLoaded] = useState(false);
-  const currentPhaseInfo = ConversationContext.useSelector(state => state.context.phase);
-  const stateAction = ConversationContext.useActorRef();
-  const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
-  const { sendEvent, receivedEvent } = registerRoomHelper();
-  const animation = useMemo(() => {
-    return animationItemsByCategories[currentPhaseInfo.question][currentPhaseInfo.round];
+	const [imgLoaded, setImgLoaded] = useState(false);
+	const currentPhaseInfo = ConversationContext.useSelector(state => state.context.phase);
+	const stateAction = ConversationContext.useActorRef();
+	const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
+	const { sendEvent, receivedEvent } = registerRoomHelper();
+	const animation = useMemo(() => {
+		return animationItemsByCategories[currentPhaseInfo.question][currentPhaseInfo.round];
   }, [currentPhaseInfo.question, currentPhaseInfo.round]);
-  const [options, setOptions] = useState<AnimationOptions>({
-    animationData: animation,
-    loop: true,
-    autoplay: true,
-  });
-  const { View, getDuration } = useLottie(options, { width: 2560 });
-  const videoDurationWithSecond = getDuration() ?? 0;
-  const videoDuration = videoDurationWithSecond >= 4 ? videoDurationWithSecond * 1000 : DELAY_TIME;
-  const { questionStatus, setQuestionStatus } = useQuestion();
-  // const [questionStatus, setQuestionStatus] = useState({
-  //   rainCycle: false,
-  //   aquaponics: false,
-  //   solarPower: false,
-  // });
 
-  // MARKER: useEffect whether animation is changed or not to update the animation
-  useEffect(() => {
-    setOptions(prevState => ({ ...prevState, animationData: animation }));
-  }, [animation]);
+	const [options, setOptions] = useState<AnimationOptions>({
+		animationData: animation,
+		loop: true,
+		autoplay: true,
+	});
+	const { View, getDuration } = useLottie(options, { width: 2560 });
+	const videoDurationWithSecond = getDuration() ?? 0;
+	const videoDuration = videoDurationWithSecond >= 4 ? videoDurationWithSecond * 1000 : DELAY_TIME;
+	const { questionStatus, setQuestionStatus } = useQuestion();
 
-  useEffect(() => {
-    if (
-      currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE &&
-      currentPhaseInfo.round === 9
-    ) {
-      sendEvent({ messageType: SOCKET_EVENTS.RAIN_RECYCLE_END });
-    }
+	// MARKER: useEffect whether animation is changed or not to update the animation
+	useEffect(() => {
+		setOptions(prevState => ({ ...prevState, animationData: animation }));
+	}, [animation]);
 
-    if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 10) {
-      sendEvent({ messageType: SOCKET_EVENTS.AQUAPONICS_END });
-    }
+	useEffect(() => {
+		if (
+			currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE &&
+			currentPhaseInfo.round === 9
+		) {
+			sendEvent({ messageType: SOCKET_EVENTS.RAIN_RECYCLE_END });
+		}
 
-    if (currentPhaseInfo.question === SCENE1SITUATION.SOLAR_POWER && currentPhaseInfo.round === 8) {
-      sendEvent({ messageType: SOCKET_EVENTS.SOLAR_POWER_END });
-    }
-  }, [currentPhaseInfo.question, currentPhaseInfo.round, sendEvent]);
+		if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 10) {
+			sendEvent({ messageType: SOCKET_EVENTS.AQUAPONICS_END });
+		}
 
-  useEffect(() => {
-    receivedEvent(({ messageType }) => {
-      if (messageType === SOCKET_EVENTS.RAIN_RECYCLE_FINISH) {
-        setQuestionStatus({ ...questionStatus, rainRecycle: true });
-      }
+		if (currentPhaseInfo.question === SCENE1SITUATION.SOLAR_POWER && currentPhaseInfo.round === 8) {
+			sendEvent({ messageType: SOCKET_EVENTS.SOLAR_POWER_END });
+		}
+	}, [currentPhaseInfo.question, currentPhaseInfo.round, sendEvent]);
 
-      if (messageType === SOCKET_EVENTS.AQUAPONICS_FINISH) {
-        setQuestionStatus({ ...questionStatus, aquaponics: true });
-      }
+	useEffect(() => {
+		receivedEvent(({ messageType }) => {
+			if (messageType === SOCKET_EVENTS.RAIN_RECYCLE_FINISH) {
+				setQuestionStatus({ ...questionStatus, rainRecycle: true });
+			}
 
-      if (messageType === SOCKET_EVENTS.SOLAR_POWER_FINISH) {
-        setQuestionStatus({ ...questionStatus, solarPower: true });
-      }
-    });
-  }, [questionStatus, receivedEvent, setQuestionStatus]);
+			if (messageType === SOCKET_EVENTS.AQUAPONICS_FINISH) {
+				setQuestionStatus({ ...questionStatus, aquaponics: true });
+			}
 
-  useEffect(() => {
-    if (
-      currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE &&
-      currentPhaseInfo.round === 1
-    ) {
-      sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINRECYCLE_QUIZ1_START });
-    }
+			if (messageType === SOCKET_EVENTS.SOLAR_POWER_FINISH) {
+				setQuestionStatus({ ...questionStatus, solarPower: true });
+			}
+		});
+	}, [questionStatus, receivedEvent, setQuestionStatus]);
 
-    if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 1) {
-      sendEvent({ messageType: SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_START });
-    }
+	useEffect(() => {
+		if (
+			currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE &&
+			currentPhaseInfo.round === 1
+		) {
+			sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINRECYCLE_QUIZ1_START });
+		}
 
-    // if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 3) {
-    //   sendEvent({ messageType: SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ3_START });
-    // }
+		if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 1) {
+			sendEvent({ messageType: SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_START });
+		}
 
-    if (currentPhaseInfo.question === SCENE1SITUATION.SOLAR_POWER && currentPhaseInfo.round === 2) {
-      sendEvent({ messageType: SOCKET_EVENTS.QUEST_SOLOARPOWER_QUIZ2_START });
-    }
-  }, [receivedEvent, currentPhaseInfo.question, currentPhaseInfo.round, stateAction, sendEvent]);
+		// if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 3) {
+		//   sendEvent({ messageType: SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ3_START });
+		// }
 
-  // received socket from control board
-  useEffect(() => {
-    receivedEvent(({ messageType }) => {
-      if (messageType === SOCKET_EVENTS.QUEST_RAINRECYCLE_QUIZ1_END) {
-        stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
-      }
+		if (currentPhaseInfo.question === SCENE1SITUATION.SOLAR_POWER && currentPhaseInfo.round === 2) {
+			sendEvent({ messageType: SOCKET_EVENTS.QUEST_SOLOARPOWER_QUIZ2_START });
+		}
+	}, [receivedEvent, currentPhaseInfo.question, currentPhaseInfo.round, stateAction, sendEvent]);
+	console.log('currentPhaseInfo :', currentPhaseInfo);
+	// received socket from control board
+	useEffect(() => {
+		receivedEvent(({ messageType }) => {
+			if (messageType === SOCKET_EVENTS.QUEST_RAINRECYCLE_QUIZ1_END) {
+				stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
+			}
 
-      if (messageType === SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_END) {
-        stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
-      }
+			if (messageType === SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_END) {
+				console.log('next to dialog 2');
+				stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
+			}
 
-      // if (messageType === SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ3_END) {
-      //   stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
-      // }
+			// if (messageType === SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ3_END) {
+			//   stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
+			// }
 
-      if (messageType === SOCKET_EVENTS.QUEST_SOLOARPOWER_QUIZ2_END) {
-        stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
-      }
-    });
-  }, [receivedEvent, stateAction]);
+			if (messageType === SOCKET_EVENTS.QUEST_SOLOARPOWER_QUIZ2_END) {
+				stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
+			}
+		});
+	}, [receivedEvent, stateAction]);
 
-  // Jump to next dialog if control board send the end message
-  useEffect(() => {
-    let timerId: NodeJS.Timeout;
+	// Jump to next dialog if control board send the end message
+	useEffect(() => {
+		let timerId: NodeJS.Timeout;
 
-    if (currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE) {
-      if (currentPhaseInfo.round === 2) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
-        }, DELAY_TIME);
-      }
-      // animation
-      if (currentPhaseInfo.round === 3) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
-        }, videoDuration);
-      }
-      // animation
-      if (currentPhaseInfo.round === 4) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
-        }, videoDuration);
-      }
-      // animation
-      if (currentPhaseInfo.round === 5) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_6' });
-        }, videoDuration);
-      }
-      // animation
-      if (currentPhaseInfo.round === 6) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_7' });
-        }, videoDuration);
-      }
-      if (currentPhaseInfo.round === 7) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_8' });
-        }, videoDuration);
-      }
-    }
+		if (currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE) {
+			if (currentPhaseInfo.round === 2) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
+				}, DELAY_TIME);
+			}
+			// animation
+			if (currentPhaseInfo.round === 3) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
+				}, videoDuration);
+			}
+			// animation
+			if (currentPhaseInfo.round === 4) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
+				}, videoDuration);
+			}
+			// animation
+			if (currentPhaseInfo.round === 5) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_6' });
+				}, videoDuration);
+			}
+			// animation
+			if (currentPhaseInfo.round === 6) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_7' });
+				}, videoDuration);
+			}
+			if (currentPhaseInfo.round === 7) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_8' });
+				}, videoDuration);
+			}
+		}
 
-    if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS) {
-      if (currentPhaseInfo.round === 2) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
-        }, DELAY_TIME);
-      }
+		if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS) {
+			if (currentPhaseInfo.round === 2) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
+				}, DELAY_TIME);
+			}
 
-      if (currentPhaseInfo.round === 3) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
-        }, DELAY_TIME);
-      }
+			if (currentPhaseInfo.round === 3) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
+				}, DELAY_TIME);
+			}
 
-      if (currentPhaseInfo.round === 4) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
-        }, DELAY_TIME);
-      }
+			if (currentPhaseInfo.round === 4) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
+				}, DELAY_TIME);
+			}
 
-      // animation
-      if (currentPhaseInfo.round === 5) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_6' });
-        }, videoDuration);
-      }
+			// animation
+			if (currentPhaseInfo.round === 5) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_6' });
+				}, videoDuration);
+			}
 
-      // animation
-      if (currentPhaseInfo.round === 6) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_7' });
-        }, videoDuration);
-      }
+			// animation
+			if (currentPhaseInfo.round === 6) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_7' });
+				}, videoDuration);
+			}
 
-      if (currentPhaseInfo.round === 7) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_8' });
-        }, DELAY_TIME);
-      }
+			if (currentPhaseInfo.round === 7) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_8' });
+				}, DELAY_TIME);
+			}
 
-      // animation
-      if (currentPhaseInfo.round === 8) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_9' });
-        }, videoDuration);
-      }
+			// animation
+			if (currentPhaseInfo.round === 8) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_9' });
+				}, videoDuration);
+			}
 
-      //animation
-      if (currentPhaseInfo.round === 9) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_10' });
-        }, videoDuration);
-      }
+			//animation
+			if (currentPhaseInfo.round === 9) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_10' });
+				}, videoDuration);
+			}
 
-      // animation tenth
-    }
+			// animation tenth
+		}
 
-    if (currentPhaseInfo.question === SCENE1SITUATION.SOLAR_POWER) {
-      if (currentPhaseInfo.round === 1) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
-        }, DELAY_TIME);
-      }
+		if (currentPhaseInfo.question === SCENE1SITUATION.SOLAR_POWER) {
+			if (currentPhaseInfo.round === 1) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
+				}, DELAY_TIME);
+			}
 
-      // if (currentPhaseInfo.round === 2) {
-      //   timerId = setTimeout(() => {
-      //     stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
-      //   }, DELAY_TIME);
-      // }
-      // animation
-      if (currentPhaseInfo.round === 3) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
-        }, videoDuration);
-      }
+			// if (currentPhaseInfo.round === 2) {
+			//   timerId = setTimeout(() => {
+			//     stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
+			//   }, DELAY_TIME);
+			// }
+			// animation
+			if (currentPhaseInfo.round === 3) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
+				}, videoDuration);
+			}
 
-      if (currentPhaseInfo.round === 4) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
-        }, DELAY_TIME);
-      }
+			if (currentPhaseInfo.round === 4) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
+				}, DELAY_TIME);
+			}
 
-      if (currentPhaseInfo.round === 5) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_6' });
-        }, DELAY_TIME);
-      }
-      // animation
-      if (currentPhaseInfo.round === 6) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_7' });
-        }, videoDuration);
-      }
+			if (currentPhaseInfo.round === 5) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_6' });
+				}, DELAY_TIME);
+			}
+			// animation
+			if (currentPhaseInfo.round === 6) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_7' });
+				}, videoDuration);
+			}
 
-      if (currentPhaseInfo.round === 7) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_8' });
-        }, DELAY_TIME);
-      }
+			if (currentPhaseInfo.round === 7) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_8' });
+				}, DELAY_TIME);
+			}
 
-      if (currentPhaseInfo.round === 8) {
-        timerId = setTimeout(() => {
-          stateAction.send({ type: 'NEXT_TO_DIALOG_9' });
-        }, DELAY_TIME);
-      }
-    }
+			if (currentPhaseInfo.round === 8) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_9' });
+				}, DELAY_TIME);
+			}
+		}
 
-    return () => {
-      if (timerId) clearTimeout(timerId);
-    };
-  }, [stateAction, currentPhaseInfo.round, currentPhaseInfo.question, videoDuration]);
+		return () => {
+			if (timerId) clearTimeout(timerId);
+		};
+	}, [stateAction, currentPhaseInfo.round, currentPhaseInfo.question, videoDuration]);
 
-  // To avoid page has phenomenon of freshing
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
+	// To avoid page has phenomenon of freshing
+	useEffect(() => {
+		let timer: NodeJS.Timeout;
 
-    timer = setTimeout(() => {
-      setImgLoaded(true);
-    }, 1500);
+		timer = setTimeout(() => {
+			setImgLoaded(true);
+		}, 1500);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
+		return () => {
+			clearTimeout(timer);
+		};
+	}, []);
 
-  // here we go
-  useEffect(() => {
-    receivedEvent(({ messageType }) => {
-      console.log('messageType_scene2 :', messageType);
-      if (messageType === SOCKET_EVENTS.SOLAR_POWER_START) {
-        stateAction.send({ type: 'NEXT_TO_SCENE2_SOLAR_POWER' });
-      }
+	// here we go
+	useEffect(() => {
+		receivedEvent(({ messageType }) => {
+			console.log('messageType_scene2 :', messageType);
+			if (messageType === SOCKET_EVENTS.SOLAR_POWER_START) {
+				stateAction.send({ type: 'NEXT_TO_SCENE2_SOLAR_POWER' });
+			}
 
-      if (messageType === SOCKET_EVENTS.AQUAPONICS_START) {
-        stateAction.send({ type: 'NEXT_TO_SCENE2_AQUAONICS' });
-      }
+			if (messageType === SOCKET_EVENTS.AQUAPONICS_START) {
+				stateAction.send({ type: 'NEXT_TO_SCENE2_AQUAONICS' });
+			}
 
-      if (messageType === SOCKET_EVENTS.RAIN_RECYCLE_START) {
-        stateAction.send({ type: 'NEXT_TO_SCENE2_RAIN_RECYCLE' });
-      }
-    });
-  }, [receivedEvent, stateAction]);
+			if (messageType === SOCKET_EVENTS.RAIN_RECYCLE_START) {
+				stateAction.send({ type: 'NEXT_TO_SCENE2_RAIN_RECYCLE' });
+			}
+		});
+	}, [receivedEvent, stateAction]);
 
-  const phaseParams = getCurrentPhaseImg(currentPhaseInfo);
+	const phaseParams = getCurrentPhaseImg(currentPhaseInfo);
 
-  return (
-    <Box position="relative" display="flex" justifyContent="center">
-      <FadeIn>
-        <NextImage src={bg} alt="Unresolved Question" priority={true} />
-      </FadeIn>
-      {imgLoaded && (
-        <FadeIn>
-          <Box sx={{ transform: "translateX(-50%)" }} position="absolute" top={0} left="50%">
-            {phaseParams?.animation && { View }}
-            {phaseParams?.bg && (
-              <NextImage width={2560} src={phaseParams.bg} alt="Dialog1Bubble" priority={false} />
-            )}
-          </Box>
-          <Box position="absolute" top={0} left={0}>
-            <NextImage src={DialogBg} alt="dialog" priority={false} />
-            <Box position="absolute" bottom={0}>
-              <NextImage src={phaseParams.dialog} alt="dialog1" />
-            </Box>
-          </Box>
-          <Box position="absolute" right={0} bottom={-100}>
-            <Lottie style={{ transform: 'scale(1.5)' }} animationData={lionAnimationData} loop />
-          </Box>
-        </FadeIn>
-      )}
-    </Box>
-  )
-}
+	return (
+		<Box position="relative" display="flex" justifyContent="center">
+			<FadeIn>
+				<NextImage src={bg} alt="Unresolved Question" priority={true} />
+			</FadeIn>
+			<FadeIn>
+				<Box
+					sx={{ transform: 'translateX(-50%)' }}
+					position="absolute"
+					top={0}
+					left="50%"
+					zIndex={999}>
+					{View}
+					{phaseParams?.bg && (
+						<NextImage width={2560} src={phaseParams.bg} alt="Dialog1Bubble" priority={false} />
+					)}
+				</Box>
+				<Box position="absolute" top={0} left={0}>
+					<NextImage src={DialogBg} alt="dialog" priority={false} />
+					<Box position="absolute" bottom={0}>
+						<NextImage src={phaseParams?.dialog} alt="dialog1" />
+					</Box>
+				</Box>
+				<Box position="absolute" right={0} bottom={-100} zIndex={999}>
+					<Lottie style={{ transform: 'scale(1.3)' }} animationData={lionAnimationData} loop />
+				</Box>
+			</FadeIn>
+		</Box>
+	);
+};
 
-export default Scene2Question
+export default Scene2Question;
