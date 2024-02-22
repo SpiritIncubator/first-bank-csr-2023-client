@@ -16,7 +16,7 @@ const ScenePage = () => {
   const conversationState = ConversationContext.useSelector(state => state.value.root ?? {});
   const params = useParams<Record<'scene', keyof typeof conversationState>>()
   const { scene } = params;
-
+  console.log(scene, 'scene outer')
   return (
     <Box position="relative" width="100%" height="100%">
       {scene === 'scene1' && <Scene1Page />}

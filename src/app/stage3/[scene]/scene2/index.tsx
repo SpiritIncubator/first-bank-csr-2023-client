@@ -40,8 +40,8 @@ const Scene2Page = () => {
       }, 2000);
     }
   }, [isInitialDialog1, action]);
-  useEffect(() => {
 
+  useEffect(() => {
     receivedEvent(({ messageType }) => {
       if (messageType === SOCKET_EVENTS.RAIN_RECYCLE_START) {
         action.send({ type: 'NEXT_TO_SCENE2_RAIN_RECYCLE' });
@@ -89,7 +89,7 @@ const Scene2Page = () => {
           </Box>
         </FadeIn>
       )}
-      <FadeIn>/
+      <FadeIn>
         <Image src={Scene2BgImg} alt="scene2" priority />
       </FadeIn>
     </Box>
