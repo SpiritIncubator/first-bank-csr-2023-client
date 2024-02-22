@@ -97,14 +97,14 @@ const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
 
     if (currentPhaseInfo.round === 9) {
       return {
-        dialog: carbonFootprintDialog8,
+        dialog: carbonFootprintDialog9,
         bg: carbonFootprintBubble6
       }
     }
 
     if (currentPhaseInfo.round === 10) {
       return {
-        dialog: carbonFootprintDialog9,
+        dialog: carbonFootprintDialog10,
         bg: carbonFootprintBubble6
       }
     }
