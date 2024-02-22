@@ -19,7 +19,7 @@ import Fake1Img from '../../assets/fake1.svg';
 import Fake2Img from '../../assets/fake2.svg';
 
 import rainCycleResolvedImg from '../../assets/question-rainRecycle.svg';
-import solarPowerResolvedImg from '../../assets/question-solarPower.svg';
+import solarPowerResolvedImg from '../../assets/question-solarpower.svg';
 import aquaponicsResolvedImg from '../../assets/question-aquaponics.svg';
 
 const Scene2Page = () => {
