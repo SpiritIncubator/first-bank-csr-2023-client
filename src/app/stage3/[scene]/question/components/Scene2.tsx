@@ -582,10 +582,10 @@ const Scene2Question = () => {
 
 	return (
 		<Box position="relative" display="flex" justifyContent="center">
-			<FadeIn>
+			<FadeIn delay={1}>
 				<NextImage src={bg} alt="Unresolved Question" priority={true} />
 			</FadeIn>
-			<FadeIn>
+			<FadeIn delay={1.5}>
 				<Box
 					sx={{ transform: 'translateX(-50%)' }}
 					position="absolute"
@@ -604,7 +604,7 @@ const Scene2Question = () => {
 					</Box>
 				</Box>
 				<Box position="absolute" right={0} bottom={-100} zIndex={999}>
-					<Lottie style={{ transform: 'scale(1.3)' }} animationData={lionAnimationData} loop />
+					<Lottie style={{ transform: 'scale(1.35)' }} animationData={lionAnimationData} loop />
 				</Box>
 			</FadeIn>
 		</Box>
