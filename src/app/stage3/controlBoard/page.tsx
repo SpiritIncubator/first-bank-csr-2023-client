@@ -7,7 +7,11 @@ import { useSubscribe } from '@/app/hooks/useSubscribe';
 import Scene1QuestionList from './_components/Scene1QuestionList';
 import Scene2QuestionList from './_components/Scene2QuestionList';
 import AnswerZone from './_components/AnswerZone';
-import { SOCKET_EVENTS } from '@/app/stage3/constants';
+import {
+	SOCKET_EVENTS,
+	quizEventAnswerMapping,
+	QuizEventAnswerMapping,
+} from '@/app/stage3/constants';
 import { STAGE3_ROOM } from '@/constants';
 
 enum STEPS {
@@ -19,7 +23,8 @@ enum STEPS {
 }
 
 export default function ControlBoard() {
-	const [currentStep, setCurrentStep] = useState(STEPS.ANSWER_ZONE);
+	const [currentStep, setCurrentStep] = useState(STEPS.START);
+	const [currentQuizEvent, setCurrentQuizEvent] = useState('');
 	const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
 	const { sendEvent, receivedEvent } = registerRoomHelper();
 
@@ -28,19 +33,29 @@ export default function ControlBoard() {
 		setCurrentStep(STEPS.LOOK_AT_SCREEN);
 	};
 
+	const onAnswerFinish = () => {
+		// todo: add pending state
+		setCurrentStep(STEPS.SCENE2_QUESTION_LIST);
+	};
+
+	// const clearCurrentQuizEvent = () => {
+	// 	setCurrentQuizEvent('');
+	// };
+
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
 			if (messageType === SOCKET_EVENTS.READY_FOR_QUEST) {
 				setCurrentStep(STEPS.SCENE2_QUESTION_LIST);
 			}
 
-			if (messageType === SOCKET_EVENTS.QUEST_RAINWATER_QUIZ1_START) {
-				// @todo: get into answer zone
-				console.log(
-					'SOCKET_EVENTS.QUEST_RAINWATER_QUIZ1_START :',
-					SOCKET_EVENTS.QUEST_RAINWATER_QUIZ1_START,
-				);
+			if (
+				messageType === SOCKET_EVENTS.QUEST_RAINRECYCLE_QUIZ1_START ||
+				messageType === SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_START ||
+				messageType === SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ3_START ||
+				messageType === SOCKET_EVENTS.QUEST_SOLOARPOWER_QUIZ2_START
+			) {
 				setCurrentStep(STEPS.ANSWER_ZONE);
+				setCurrentQuizEvent(messageType);
 			}
 		});
 	}, [receivedEvent]);
@@ -49,7 +64,9 @@ export default function ControlBoard() {
 		[STEPS.START]: <Start onClickStart={onClickStart} />,
 		[STEPS.LOOK_AT_SCREEN]: <LookAtScreen />,
 		[STEPS.SCENE2_QUESTION_LIST]: <Scene2QuestionList />,
-		[STEPS.ANSWER_ZONE]: <AnswerZone />,
+		[STEPS.ANSWER_ZONE]: (
+			<AnswerZone currentQuizEvent={currentQuizEvent} onFinish={onAnswerFinish} />
+		),
 	};
 	return (
 		<Box boxSizing="border-box" width="2732px" height="2048px" position="relative">

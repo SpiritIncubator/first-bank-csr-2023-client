@@ -9,12 +9,12 @@ import Stage3ChooseOne from '@/app/stage3/assets/controlBoard/stage3_choose_one.
 import QuestionButton from '@/app/stage3/assets/controlBoard/stage3_question_button.svg';
 import { ControlBoardContext } from '@/app/stage3/context/ControlBoardContext';
 import QuestionButtonActive from '@/app/stage3/assets/controlBoard/stage3_question_button_active.svg';
-import RainCycleClose from '@/app/stage3/assets/controlBoard/stage3_question_rainRecycle_close.svg';
 import RainCycleOpen from '@/app/stage3/assets/controlBoard/stage3_question_rainRecycle_open.svg';
-import AquaponicsClose from '@/app/stage3/assets/controlBoard/stage3_question_aquaponics_close.svg';
 import AquaponicsOpen from '@/app/stage3/assets/controlBoard/stage3_question_aquaponics_open.svg';
-import SolarPowerClose from '@/app/stage3/assets/controlBoard/stage3_question_solarPower_close.svg';
 import SolarPowerOpen from '@/app/stage3/assets/controlBoard/stage3_question_solarPower_open.svg';
+import RainCycleClose from '@/app/stage3/assets/controlBoard/stage3_question_rainRecycle_close.svg';
+import AquaponicsClose from '@/app/stage3/assets/controlBoard/stage3_question_aquaponics_close.svg';
+import SolarPowerClose from '@/app/stage3/assets/controlBoard/stage3_question_solarPower_close.svg';
 import AquaponicsOpenButton from '@/app/stage3/assets/controlBoard/aquaponics.svg';
 import RainWaterRecycleOpenButton from '@/app/stage3/assets/controlBoard/rainwater_recycle.svg';
 import SolarPowerOpenButton from '@/app/stage3/assets/controlBoard/solar_power.svg';
@@ -64,7 +64,9 @@ export default function Scene2QuestionList() {
 		console.log('name :', name);
 		sendEvent({ messageType: `${name}:start` });
 	};
-	const onSuccessfullySolved = () => {};
+	const onSuccessfullySolved = () => {
+		//@todo: send further event and go back to the main screen
+	};
 
 	return (
 		<Box
