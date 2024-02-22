@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useEffect, useState, preload } from 'react';
+import React, { useEffect, useState } from 'react';
+import { preload } from 'react-dom';
 import Box from '@mui/material/Box';
 import { useRouter } from 'next/navigation';
 import { useLottie } from 'lottie-react';
