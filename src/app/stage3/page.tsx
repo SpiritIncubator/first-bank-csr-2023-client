@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, preload } from 'react';
 import Box from '@mui/material/Box';
 import { useRouter } from 'next/navigation';
 import { useLottie } from 'lottie-react';
@@ -17,6 +17,8 @@ type AnimationOptions = {
 };
 
 const DEFAULT_SECOND = 4000;
+
+preload('./assets/scene2-bg-without-border.svg', {as: 'image'});
 
 const ConversationPage = () => {
 	const { registerRoomHelper } = useSubscribe({
