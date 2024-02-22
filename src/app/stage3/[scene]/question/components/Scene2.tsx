@@ -319,7 +319,6 @@ const Scene2Question = () => {
   const animation = useMemo(() => {
     return animationItemsByCategories[currentPhaseInfo.question][currentPhaseInfo.round];
   }, [currentPhaseInfo.question, currentPhaseInfo.round]);
-  // const animation = animationItemsByCategories[currentPhaseInfo.question][currentPhaseInfo.round];
   const [options, setOptions] = useState<AnimationOptions>({
     animationData: animation,
     loop: true,
@@ -385,9 +384,9 @@ const Scene2Question = () => {
       sendEvent({ messageType: SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_START });
     }
 
-    if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 3) {
-      sendEvent({ messageType: SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ3_START });
-    }
+    // if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 3) {
+    //   sendEvent({ messageType: SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ3_START });
+    // }
 
     if (currentPhaseInfo.question === SCENE1SITUATION.SOLAR_POWER && currentPhaseInfo.round === 2) {
       sendEvent({ messageType: SOCKET_EVENTS.QUEST_SOLOARPOWER_QUIZ2_START });
