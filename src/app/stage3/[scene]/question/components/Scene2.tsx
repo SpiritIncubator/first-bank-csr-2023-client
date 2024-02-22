@@ -287,11 +287,38 @@ const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
 		}
 	}
 
+<<<<<<< HEAD
 	return {
 		dialog: Dialog1,
 		bg: Dialog1Bg,
 	};
 };
+=======
+    if (currentPhaseInfo.round === 6) {
+      return {
+        dialog: SolarPowerDialog6,
+        bg: SolarPowerBg5,
+      };
+    }
+
+    if (currentPhaseInfo.round === 7) {
+      return {
+        dialog: SolarPowerDialog7,
+        animation: SolarPowerDialog6Animation,
+      };
+    }
+
+    if (currentPhaseInfo.round === 8) {
+      return {
+        dialog: SolarPowerDialog8,
+        animation: SolarPowerDialog6Animation,
+      };
+    }
+  }
+
+  return {} as PhaseType;
+}
+>>>>>>> d587fa8 (fix: adjust picture path)
 
 const Scene2Question = () => {
 	const [imgLoaded, setImgLoaded] = useState(false);
@@ -583,32 +610,31 @@ const Scene2Question = () => {
 
 	const phaseParams = getCurrentPhaseImg(currentPhaseInfo);
 
-	return (
-		<Box position="relative" display="flex" justifyContent="center">
-			<FadeIn>
-				<NextImage src={bg} alt="Unresolved Question" priority={true} />
-			</FadeIn>
-			{imgLoaded && (
-				<FadeIn>
-					<Box sx={{ transform: 'translateX(-50%)' }} position="absolute" top={0} left="50%">
-						{phaseParams.animation && { View }}
-						{phaseParams.bg && (
-							<NextImage width={2560} src={phaseParams.bg} alt="Dialog1Bubble" priority={false} />
-						)}
-					</Box>
-					<Box position="absolute" top={0} left={0}>
-						<NextImage src={DialogBg} alt="dialog" priority={false} />
-						<Box position="absolute" bottom={0}>
-							<NextImage src={phaseParams.dialog} alt="dialog1" />
-						</Box>
-					</Box>
-					<Box position="absolute" right={0} bottom={-100}>
-						<Lottie style={{ transform: 'scale(1.5)' }} animationData={lionAnimationData} loop />
-					</Box>
-				</FadeIn>
-			)}
-		</Box>
-	);
-};
+  return (
+    <Box position="relative" display="flex" justifyContent="center">
+      <FadeIn>
+        <NextImage src={bg} alt="Unresolved Question" priority={true} />
+      </FadeIn>
+      {imgLoaded && (
+        <FadeIn>
+          <Box sx={{ transform: "translateX(-50%)" }} position="absolute" top={0} left="50%">
+            {phaseParams?.animation && {View}}
+            {phaseParams?.bg && (
+              <NextImage width={2560} src={phaseParams.bg} alt="Dialog1Bubble" priority={false} />
+            )}
+          </Box>
+          <Box position="absolute" top={0} left={0}>
+            <NextImage src={DialogBg} alt="dialog" priority={false} />
+            <Box position="absolute" bottom={0}>
+              <NextImage src={phaseParams.dialog} alt="dialog1" />
+            </Box>
+          </Box>
+          <Box position="absolute" right={0} bottom={-100}>
+            <Lottie style={{ transform: 'scale(1.5)' }} animationData={lionAnimationData} loop />
+          </Box>
+        </FadeIn>
+      )}
+    </Box>
+  )
 
-export default Scene2Question;
+export default Scene2Question
