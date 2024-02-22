@@ -404,9 +404,9 @@ const Scene2Question = () => {
         stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
       }
 
-      if (messageType === SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ3_END) {
-        stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
-      }
+      // if (messageType === SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ3_END) {
+      //   stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
+      // }
 
       if (messageType === SOCKET_EVENTS.QUEST_SOLOARPOWER_QUIZ2_END) {
         stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
@@ -462,11 +462,11 @@ const Scene2Question = () => {
         }, DELAY_TIME);
       }
 
-      // if (currentPhaseInfo.round === 3) {
-      //   timerId = setTimeout(() => {
-      //     stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
-      //   }, DELAY_TIME);
-      // }
+      if (currentPhaseInfo.round === 3) {
+        timerId = setTimeout(() => {
+          stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
+        }, DELAY_TIME);
+      }
 
       if (currentPhaseInfo.round === 4) {
         timerId = setTimeout(() => {
