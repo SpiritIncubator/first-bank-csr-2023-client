@@ -88,7 +88,7 @@ export default function ControlBoard() {
 		[STEPS.FINAL]: <QuestFinalPage currentQuestEndEvent={currentQuestEndEvent} />,
 	};
 	return (
-		<Box boxSizing="border-box" width="2732px" height="2048px" position="relative">
+		<Box boxSizing="border-box" width="1366px" height="1024px" position="relative">
 			{screens[currentStep]}
 		</Box>
 	);
