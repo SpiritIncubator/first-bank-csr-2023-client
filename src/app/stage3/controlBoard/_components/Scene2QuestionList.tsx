@@ -102,7 +102,7 @@ export default function Scene2QuestionList() {
 				gap="180px"
 				height="100%">
 				{QUEST_LIST.map((question, index) => {
-					const isAnswered: boolean = questStatus[question.name];
+					const isAnswered = questStatus[question.name];
 					return (
 						<Box
 							display="flex"
