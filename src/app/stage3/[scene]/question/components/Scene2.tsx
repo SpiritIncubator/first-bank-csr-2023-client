@@ -82,7 +82,7 @@ type AnimationOptions = {
 	autoplay: boolean;
 };
 
-enum SCENE1SITUATION {
+enum SCENE2SITUATION {
 	RAIN_RECYCLE = 'rainRecycle',
 	AQUAPONICS = 'aquaponics',
 	SOLAR_POWER = 'solarPower',
@@ -90,7 +90,7 @@ enum SCENE1SITUATION {
 
 const DELAY_TIME = 4000;
 
-const animationItemsByCategories: Record<Partial<PhaseValueType['question']>, any> = {
+export const animationItemsByCategories: Record<Partial<PhaseValueType['question']>, any> = {
 	rainRecycle: {
 		// 3: Dialog3Animation,
 		4: Dialog3Animation,
@@ -295,7 +295,6 @@ const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
 };
 
 const Scene2Question = () => {
-	const [imgLoaded, setImgLoaded] = useState(false);
 	const currentPhaseInfo = ConversationContext.useSelector(state => state.context.phase);
 	const stateAction = ConversationContext.useActorRef();
 	const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
@@ -321,17 +320,17 @@ const Scene2Question = () => {
 
 	useEffect(() => {
 		if (
-			currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE &&
+			currentPhaseInfo.question === SCENE2SITUATION.RAIN_RECYCLE &&
 			currentPhaseInfo.round === 9
 		) {
 			sendEvent({ messageType: SOCKET_EVENTS.RAIN_RECYCLE_END });
 		}
 
-		if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 10) {
+		if (currentPhaseInfo.question === SCENE2SITUATION.AQUAPONICS && currentPhaseInfo.round === 10) {
 			sendEvent({ messageType: SOCKET_EVENTS.AQUAPONICS_END });
 		}
 
-		if (currentPhaseInfo.question === SCENE1SITUATION.SOLAR_POWER && currentPhaseInfo.round === 8) {
+		if (currentPhaseInfo.question === SCENE2SITUATION.SOLAR_POWER && currentPhaseInfo.round === 8) {
 			sendEvent({ messageType: SOCKET_EVENTS.SOLAR_POWER_END });
 		}
 	}, [currentPhaseInfo.question, currentPhaseInfo.round, sendEvent]);
@@ -354,13 +353,13 @@ const Scene2Question = () => {
 
 	useEffect(() => {
 		if (
-			currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE &&
+			currentPhaseInfo.question === SCENE2SITUATION.RAIN_RECYCLE &&
 			currentPhaseInfo.round === 1
 		) {
 			sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINRECYCLE_QUIZ1_START });
 		}
 
-		if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 1) {
+		if (currentPhaseInfo.question === SCENE2SITUATION.AQUAPONICS && currentPhaseInfo.round === 1) {
 			sendEvent({ messageType: SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_START });
 		}
 
@@ -368,11 +367,11 @@ const Scene2Question = () => {
 		//   sendEvent({ messageType: SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ3_START });
 		// }
 
-		if (currentPhaseInfo.question === SCENE1SITUATION.SOLAR_POWER && currentPhaseInfo.round === 2) {
+		if (currentPhaseInfo.question === SCENE2SITUATION.SOLAR_POWER && currentPhaseInfo.round === 2) {
 			sendEvent({ messageType: SOCKET_EVENTS.QUEST_SOLOARPOWER_QUIZ2_START });
 		}
 	}, [receivedEvent, currentPhaseInfo.question, currentPhaseInfo.round, stateAction, sendEvent]);
-	console.log('currentPhaseInfo :', currentPhaseInfo);
+
 	// received socket from control board
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
@@ -381,7 +380,6 @@ const Scene2Question = () => {
 			}
 
 			if (messageType === SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_END) {
-				console.log('next to dialog 2');
 				stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
 			}
 
@@ -399,7 +397,7 @@ const Scene2Question = () => {
 	useEffect(() => {
 		let timerId: NodeJS.Timeout;
 
-		if (currentPhaseInfo.question === SCENE1SITUATION.RAIN_RECYCLE) {
+		if (currentPhaseInfo.question === SCENE2SITUATION.RAIN_RECYCLE) {
 			if (currentPhaseInfo.round === 2) {
 				timerId = setTimeout(() => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
@@ -436,7 +434,7 @@ const Scene2Question = () => {
 			}
 		}
 
-		if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS) {
+		if (currentPhaseInfo.question === SCENE2SITUATION.AQUAPONICS) {
 			if (currentPhaseInfo.round === 2) {
 				timerId = setTimeout(() => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
@@ -492,7 +490,7 @@ const Scene2Question = () => {
 			// animation tenth
 		}
 
-		if (currentPhaseInfo.question === SCENE1SITUATION.SOLAR_POWER) {
+		if (currentPhaseInfo.question === SCENE2SITUATION.SOLAR_POWER) {
 			if (currentPhaseInfo.round === 1) {
 				timerId = setTimeout(() => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
@@ -547,23 +545,9 @@ const Scene2Question = () => {
 		};
 	}, [stateAction, currentPhaseInfo.round, currentPhaseInfo.question, videoDuration]);
 
-	// To avoid page has phenomenon of freshing
-	useEffect(() => {
-		let timer: NodeJS.Timeout;
-
-		timer = setTimeout(() => {
-			setImgLoaded(true);
-		}, 1500);
-
-		return () => {
-			clearTimeout(timer);
-		};
-	}, []);
-
 	// here we go
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
-			console.log('messageType_scene2 :', messageType);
 			if (messageType === SOCKET_EVENTS.SOLAR_POWER_START) {
 				stateAction.send({ type: 'NEXT_TO_SCENE2_SOLAR_POWER' });
 			}

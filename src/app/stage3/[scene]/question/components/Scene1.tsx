@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import Box from '@mui/material/Box';
 import NextImage from 'next/image';
-import Lottie from 'lottie-react';
+import Lottie, { useLottie } from 'lottie-react';
 
 import type { PhaseValueType } from '@/app/stage3/xstate/conversationMachine';
 import { ConversationContext } from '@/app/stage3/layout';
@@ -11,6 +11,10 @@ import FadeIn from '@/app/_components/Transitions/FadeIn';
 import bg from '@/app/stage3/assets/scene2-bg-without-border.svg';
 import DialogBg from '@/app/stage3/assets/dialogBox.svg';
 import lionAnimationData from '@/app/stage3/animationData/leo_2-11_normal_smile1.json';
+import { STAGE3_ROOM } from '@/constants';
+import { SOCKET_EVENTS } from '@/app/stage3/constants';
+import { useQuestion } from '@/app/stage3/layout';
+import { useSubscribe } from '@/app/hooks/useSubscribe';
 
 // carbonFootprint
 import carbonFootprintDialog1 from '@/app/stage3/assets/carbonFootprint/carbonFooterprint-dialog1.svg';
@@ -31,10 +35,71 @@ import carbonFootprintBubble4 from '@/app/stage3/assets/carbonFootprint/carbonFo
 import carbonFootprintBubble5 from '@/app/stage3/assets/carbonFootprint/carbonFoorprint-bubble5.svg';
 import carbonFootprintBubble6 from '@/app/stage3/assets/carbonFootprint/carbonFoorprint-bubble6.svg';
 
+// dashboard
+import dashboardDialog1 from '@/app/stage3/assets/dashboard/dashboard-dialog1.svg';
+import dashboardDialog2 from '@/app/stage3/assets/dashboard/dashboard-dialog2.svg';
+import dashboardDialog3 from '@/app/stage3/assets/dashboard/dashboard-dialog3.svg';
+import dashboardDialog4 from '@/app/stage3/assets/dashboard/dashboard-dialog4.svg';
+import dashboardDialog5 from '@/app/stage3/assets/dashboard/dashboard-dialog5.svg';
+import dashboardDialog6 from '@/app/stage3/assets/dashboard/dashboard-dialog6.svg';
+import dashboardDialog7 from '@/app/stage3/assets/dashboard/dashboard-dialog7.svg';
+import dashboardDialog8 from '@/app/stage3/assets/dashboard/dashboard-dialog8.svg';
+import dashboardDialog9 from '@/app/stage3/assets/dashboard/dashboard-dialog9.svg';
+
+import dashboardDialog1Bubble from '@/app/stage3/assets/dashboard/dashboard-bubble1.svg';
+import dashboardDialog2Bubble from '@/app/stage3/assets/dashboard/dashboard-bubble2.svg';
+import dashboardDialog3BubbleAnimation from '@/app/stage3/animationData/dashboard/dashboard-bubble3.json';
+import dashboardDialog4Bubble from '@/app/stage3/assets/dashboard/dashboard-bubble4.svg';
+import dashboardDialog5Bubble from '@/app/stage3/assets/dashboard/dashboard-bubble5.svg';
+import dashboardDialog6BubbleAnimation from '@/app/stage3/animationData/dashboard/dashboard-bubble6.json';
+
+// greenBuilding
+import greenBuildingDialog1 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog1.svg';
+import greenBuildingDialog2 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog2.svg';
+import greenBuildingDialog3 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog3.svg';
+import greenBuildingDialog4 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog4.svg';
+import greenBuildingDialog5 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog5.svg';
+import greenBuildingDialog6 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog6.svg';
+import greenBuildingDialog7 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog7.svg';
+import greenBuildingDialog8 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog8.svg';
+import greenBuildingDialog9 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog9.svg';
+import greenBuildingDialog10 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog10.svg';
+
+import greenBuildingBubble1Animation from '@/app/stage3/animationData/greenBuilding/greenBuilding-bubble1.json';
+import greenBuildingBubble2 from '@/app/stage3/assets/greenBuilding/greenBuilding-bubble2.svg';
+import greenBuildingBubble3 from '@/app/stage3/assets/greenBuilding/greenBuilding-bubble3.svg';
+import greenBuildingBubble4 from '@/app/stage3/assets/greenBuilding/greenBuilding-bubble4.svg';
+import greenBuildingBubble5Animation from '@/app/stage3/animationData/greenBuilding/greenBuilding-bubble5.json';
+import greenBuildingBubble6Animation from '@/app/stage3/animationData/greenBuilding/greenBuilding-bubble6.json';
+
 type PhaseType = {
 	dialog: any;
 	bg?: any;
 	animation?: any;
+};
+
+type AnimationOptions = {
+	animationData: any;
+	loop: boolean;
+	autoplay: boolean;
+};
+
+enum SCENE1SITUATION {
+	GREEN_BUILDING = 'greenBuilding',
+	DASHBOARD = 'dashboard',
+	CARBON_FOOTPRINT = 'carbonFootprint',
+}
+
+const DELAY_TIME = 4000;
+
+export const animationItemsByCategories: Record<Partial<PhaseValueType['question']>, any> = {
+	rainRecycle: {},
+	aquaponics: {},
+	solarPower: {},
+	greenBuilding: {},
+	dashboard: {},
+	carbonFootprint: {},
+	initial: {},
 };
 
 const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
@@ -110,37 +175,254 @@ const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
 		}
 	}
 
+	if (currentPhaseInfo.question === 'dashboard') {
+		if (currentPhaseInfo.round === 1) {
+			return {
+				dialog: dashboardDialog1,
+				bg: dashboardDialog1Bubble,
+			};
+		}
+
+		if (currentPhaseInfo.round === 2) {
+			return {
+				dialog: dashboardDialog2,
+				bg: dashboardDialog1Bubble,
+			};
+		}
+
+		if (currentPhaseInfo.round === 3) {
+			return {
+				dialog: dashboardDialog3,
+				bg: dashboardDialog2Bubble,
+			};
+		}
+
+		if (currentPhaseInfo.round === 4) {
+			return {
+				dialog: dashboardDialog4,
+				animation: dashboardDialog3BubbleAnimation,
+			};
+		}
+
+		if (currentPhaseInfo.round === 5) {
+			return {
+				dialog: dashboardDialog5,
+				animation: dashboardDialog3BubbleAnimation,
+			};
+		}
+
+		if (currentPhaseInfo.round === 6) {
+			return {
+				dialog: dashboardDialog6,
+				bg: dashboardDialog4Bubble,
+			};
+		}
+
+		if (currentPhaseInfo.round === 7) {
+			return {
+				dialog: dashboardDialog7,
+				bg: dashboardDialog5Bubble,
+			};
+		}
+
+		if (currentPhaseInfo.round === 8) {
+			return {
+				dialog: dashboardDialog8,
+				animation: dashboardDialog6BubbleAnimation,
+			};
+		}
+
+		if (currentPhaseInfo.round === 9) {
+			return {
+				dialog: dashboardDialog9,
+				animation: dashboardDialog6BubbleAnimation,
+			};
+		}
+	}
+
+	if (currentPhaseInfo.question === 'greenBuilding') {
+		if (currentPhaseInfo.round === 1) {
+			return {
+				dialog: greenBuildingDialog1,
+				animation: greenBuildingBubble1Animation,
+			};
+		}
+
+		if (currentPhaseInfo.round === 2) {
+			return {
+				dialog: greenBuildingDialog2,
+				animation: greenBuildingBubble1Animation,
+			};
+		}
+
+		if (currentPhaseInfo.round === 3) {
+			return {
+				dialog: greenBuildingDialog3,
+				bg: greenBuildingBubble2,
+			};
+		}
+
+		if (currentPhaseInfo.round === 4) {
+			return {
+				dialog: greenBuildingDialog4,
+				bg: greenBuildingBubble3,
+			};
+		}
+
+		if (currentPhaseInfo.round === 5) {
+			return {
+				dialog: greenBuildingDialog5,
+				bg: greenBuildingBubble3,
+			};
+		}
+
+		if (currentPhaseInfo.round === 6) {
+			return {
+				dialog: greenBuildingDialog6,
+				bg: greenBuildingBubble4,
+			};
+		}
+
+		if (currentPhaseInfo.round === 7) {
+			return {
+				dialog: greenBuildingDialog7,
+				animation: greenBuildingBubble5Animation,
+			};
+		}
+
+		if (currentPhaseInfo.round === 8) {
+			return {
+				dialog: greenBuildingDialog8,
+				animation: greenBuildingBubble6Animation,
+			};
+		}
+
+		if (currentPhaseInfo.round === 9) {
+			return {
+				dialog: greenBuildingDialog9,
+				animation: greenBuildingBubble6Animation,
+			};
+		}
+	}
+
 	return {} as PhaseType;
 };
 
 const Scene1Question = () => {
-	const [imgLoaded, setImgLoaded] = useState(false);
 	const currentPhaseInfo = ConversationContext.useSelector(state => state.context.phase);
 	const stateAction = ConversationContext.useActorRef();
+	const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
+	const { sendEvent, receivedEvent } = registerRoomHelper();
+	const animation = useMemo(() => {
+		return animationItemsByCategories[currentPhaseInfo.question][currentPhaseInfo.round];
+	}, [currentPhaseInfo.question, currentPhaseInfo.round]);
+	const [options, setOptions] = useState<AnimationOptions>({
+		animationData: animation,
+		loop: true,
+		autoplay: true,
+	});
+	const { View, getDuration } = useLottie(options, { width: 2560 });
+	const videoDurationWithSecond = getDuration() ?? 0;
+	const videoDuration = videoDurationWithSecond >= 4 ? videoDurationWithSecond * 1000 : DELAY_TIME;
+	const { questionStatus, setQuestionStatus } = useQuestion();
+
+	useEffect(() => {
+		setOptions(prevState => ({...prevState, animationData: animation}));
+	}, [animation]);
+
+	// question group is ended
+	useEffect(() => {
+		if (currentPhaseInfo.question === SCENE1SITUATION.DASHBOARD && currentPhaseInfo.round === 9) {
+			sendEvent({ messageType: SOCKET_EVENTS.DASHBOARD_END });
+		}
+
+		if (currentPhaseInfo.question === SCENE1SITUATION.GREEN_BUILDING && currentPhaseInfo.round === 10) {
+			sendEvent({ messageType: SOCKET_EVENTS.GREEN_BUILDING_END });
+		}
+
+		if (currentPhaseInfo.question === SCENE1SITUATION.CARBON_FOOTPRINT && currentPhaseInfo.round === 10) {
+			sendEvent({ messageType: SOCKET_EVENTS.CARBON_FOOTPRINT_END });
+		}
+	}, [currentPhaseInfo.question, currentPhaseInfo.round, questionStatus, sendEvent]);
+
+	useEffect(() => {
+		receivedEvent(({ messageType }) => {
+			if (messageType === SOCKET_EVENTS.DASHBOARD_FINISH) {
+				setQuestionStatus({...questionStatus, dashboard: true})
+			}
+
+			if (messageType === SOCKET_EVENTS.GREEN_BUILDING_FINISH) {
+				setQuestionStatus({...questionStatus, greenBuilding: true})
+			}
+
+			if (messageType === SOCKET_EVENTS.CARBON_FOOTPRINT_FINISH) {
+				setQuestionStatus({...questionStatus, carbonFootprint: true})
+			}
+		})
+	}, [currentPhaseInfo, questionStatus, receivedEvent, setQuestionStatus])
+
+	useEffect(() => {
+		if (currentPhaseInfo.question === SCENE1SITUATION.GREEN_BUILDING) { }
+		if (currentPhaseInfo.question === SCENE1SITUATION.DASHBOARD) { }
+		if (currentPhaseInfo.question === SCENE1SITUATION.CARBON_FOOTPRINT) { }
+	}, [currentPhaseInfo.question]);
+
+	useEffect(() => {
+		receivedEvent(({ messageType }) => {});
+	}, [receivedEvent]);
+
+	useEffect(() => {
+		let timerId: NodeJS.Timeout;
+
+		if (currentPhaseInfo.question === SCENE1SITUATION.GREEN_BUILDING) { }
+		if (currentPhaseInfo.question === SCENE1SITUATION.DASHBOARD) { }
+		if (currentPhaseInfo.question === SCENE1SITUATION.CARBON_FOOTPRINT) { }
+
+		return () => {
+			if (timerId) clearTimeout(timerId);
+		}
+	}, [currentPhaseInfo.question]);
+
+	// redirect to next question
+	useEffect(() => {
+		receivedEvent(({ messageType }) => {
+			if (messageType === SOCKET_EVENTS.DASHBOARD_START) {
+				stateAction.send({ type: 'NEXT_TO_SCENE1_DASHBOARD' });
+			}
+
+			if (messageType === SOCKET_EVENTS.GREEN_BUILDING_START) {
+				stateAction.send({ type: 'NEXT_TO_SCENE1_GREEN_BUILDING' });
+			}
+
+			if (messageType === SOCKET_EVENTS.CARBON_FOOTPRINT_START) {
+				stateAction.send({ type: 'NEXT_TO_SCENE1_CARBON_FOOTPRINT' });
+			}
+		});
+	}, [receivedEvent, stateAction]);
+
+
 	const phaseParams = getCurrentPhaseImg(currentPhaseInfo);
 
 	return (
 		<Box position="relative" display="flex" justifyContent="center">
-			<FadeIn delay={1}>
+			<FadeIn delay={0.5}>
 				<NextImage src={bg} alt="Unresolved Question" priority={true} />
 			</FadeIn>
 			<FadeIn delay={1.5}>
 				<Box sx={{ transform: 'translateX(-50%)' }} position="absolute" top={0} left="50%">
-					{/* {phaseParams.animation && (
-              <Lottie style={{ width: 2560 }} animationData={phaseParams.animation} loop />
-            )}
-            {phaseParams.bg && (
-              <NextImage width={2560} src={phaseParams.bg} alt="Dialog1Bubble" priority={false} />
-            )} */}
+					{View}
+					{phaseParams?.bg && (
+						<NextImage width={2560} src={phaseParams.bg} alt="Dialog1Bubble" priority={false} />
+					)}
 				</Box>
 				<Box position="absolute" top={0} left={0}>
 					<NextImage src={DialogBg} alt="dialog" priority={false} />
 					<Box position="absolute" bottom={0}>
-						{/* <NextImage src={phaseParams.dialog} alt="dialog1" /> */}
+						<NextImage src={phaseParams?.dialog} alt="dialog1" />
 					</Box>
 				</Box>
 				<Box position="absolute" right={0} bottom={-100}>
-					<Lottie style={{ transform: 'scale(1.5)' }} animationData={lionAnimationData} loop />
+					<Lottie style={{ transform: 'scale(1.35)' }} animationData={lionAnimationData} loop />
 				</Box>
 			</FadeIn>
 		</Box>
