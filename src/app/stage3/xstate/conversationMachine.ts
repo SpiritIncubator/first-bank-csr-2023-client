@@ -430,15 +430,15 @@ export const conversationMachine = setup({
 									on: {
 										NEXT_TO_DIALOG_10: 'dialog10',
 									},
-									dialog10: {
-										entry: [
-											{
-												type: 'setCurrentPhase',
-												params: { round: 10, level: 1, question: 'carbonFootprint' },
-											},
-										],
-										on: {},
-									},
+								},
+								dialog10: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 10, level: 1, question: 'carbonFootprint' },
+										},
+									],
+									on: {},
 								},
 							},
 						},
