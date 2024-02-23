@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useSubscribe } from '@/app/hooks/useSubscribe';
@@ -20,6 +20,8 @@ import RainWaterRecycleOpenButton from '@/app/stage3/assets/controlBoard/rainwat
 import SolarPowerOpenButton from '@/app/stage3/assets/controlBoard/solar_power.svg';
 import SolveButton from '@/app/stage3/assets/controlBoard/stage3_successfully_solve.svg';
 import SolveButtonActive from '@/app/stage3/assets/controlBoard/stage3_successfully_solve_active.svg';
+import { ControlBoardQuestStatus } from '@/app/stage3/context/ControlBoardContext';
+import { Scene } from '@/app/stage3/controlBoard/constants';
 // import DashBoardClose from '@/app/stage3/assets/controlBoard/stage3_question_dashboard_close.svg';
 // import CarbonFootprintClose from '@/app/stage3/assets/controlBoard/stage3_question_carbonFootprint_close.svg';
 // import greenBuildingClose from '@/app/stage3/assets/controlBoard/stage3_question_greenBuilding_close.svg';
@@ -67,6 +69,14 @@ export default function Scene2QuestionList() {
 			currentQuest: name,
 		});
 	};
+
+	useEffect(() => {
+		setQuestStatus(prev => ({
+			...prev,
+			currentScene: Scene.Scene2,
+		}));
+	}, [setQuestStatus]);
+
 	const onSuccessfullySolved = () => {
 		setQuestStatus({
 			...questStatus,

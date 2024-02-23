@@ -1,5 +1,5 @@
 import { Scene, QuestNames } from '@/app/stage3/controlBoard/constants';
-import { Dispatch, createContext } from 'react';
+import { SetStateAction, Dispatch, createContext } from 'react';
 
 
 
@@ -15,7 +15,7 @@ export type ControlBoardQuestStatus = {
 
 export const ControlBoardContext = createContext<{
   questStatus: ControlBoardQuestStatus,
-  setQuestStatus: Dispatch<ControlBoardQuestStatus>
+  setQuestStatus: Dispatch<SetStateAction<ControlBoardQuestStatus>>
 }>({
   questStatus: {
     currentQuest: '',
