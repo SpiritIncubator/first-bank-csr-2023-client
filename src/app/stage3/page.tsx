@@ -82,7 +82,7 @@ const ConversationPage = () => {
 	]);
 
 	return (
-		<Box width="100%" height="100%" maxWidth={2560} maxHeight={1440}>
+		<Box width="100%" height="100%" maxWidth={2560} maxHeight={1440} overflow="hidden">
 			{View}
 		</Box>
 	);
