@@ -212,6 +212,17 @@ export const conversationMachine = setup({
 											params: { round: 8, level: 1, question: 'dashboard' },
 										},
 									],
+									on: {
+										NEXT_TO_DIALOG_9: 'dialog9',
+									},
+								},
+								dialog9: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 9, level: 1, question: 'dashboard' },
+										},
+									],
 									on: {},
 								},
 							},
@@ -227,7 +238,7 @@ export const conversationMachine = setup({
 										},
 									],
 									on: {
-										NEXT_TO_QUESTION2: 'dialog2',
+										NEXT_TO_DIALOG_2: 'dialog2',
 									},
 								},
 								dialog2: {
@@ -238,7 +249,7 @@ export const conversationMachine = setup({
 										},
 									],
 									on: {
-										NEXT_TO_QUESTION3: 'dialog3',
+										NEXT_TO_DIALOG_3: 'dialog3',
 									},
 								},
 								dialog3: {
@@ -297,6 +308,17 @@ export const conversationMachine = setup({
 									},
 								},
 								dialog8: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 8, level: 1, question: 'greenBuilding' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_9: 'dialog9',
+									},
+								},
+								dialog9: {
 									entry: [
 										{
 											type: 'setCurrentPhase',
@@ -394,7 +416,29 @@ export const conversationMachine = setup({
 											params: { round: 8, level: 1, question: 'carbonFootprint' },
 										},
 									],
-									on: {},
+									on: {
+										NEXT_TO_DIALOG_9: 'dialog9',
+									},
+								},
+								dialog9: {
+									entry: [
+										{
+											type: 'setCurrentPhase',
+											params: { round: 9, level: 1, question: 'carbonFootprint' },
+										},
+									],
+									on: {
+										NEXT_TO_DIALOG_10: 'dialog10',
+									},
+									dialog10: {
+										entry: [
+											{
+												type: 'setCurrentPhase',
+												params: { round: 10, level: 1, question: 'carbonFootprint' },
+											},
+										],
+										on: {},
+									},
 								},
 							},
 						},

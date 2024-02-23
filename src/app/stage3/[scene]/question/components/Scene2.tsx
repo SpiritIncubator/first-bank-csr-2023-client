@@ -4,6 +4,7 @@ import { useEffect, useState, useMemo } from 'react';
 import Box from '@mui/material/Box';
 import NextImage from 'next/image';
 import Lottie, { useLottie } from 'lottie-react';
+import { useRouter } from 'next/navigation';
 
 import { useSubscribe } from '@/app/hooks/useSubscribe';
 import type { PhaseValueType } from '@/app/stage3/xstate/conversationMachine';
@@ -312,6 +313,7 @@ const Scene2Question = () => {
 	const videoDurationWithSecond = getDuration() ?? 0;
 	const videoDuration = videoDurationWithSecond >= 4 ? videoDurationWithSecond * 1000 : DELAY_TIME;
 	const { questionStatus, setQuestionStatus } = useQuestion();
+	const router = useRouter();
 
 	// MARKER: useEffect whether animation is changed or not to update the animation
 	useEffect(() => {
@@ -339,6 +341,7 @@ const Scene2Question = () => {
 		receivedEvent(({ messageType }) => {
 			if (messageType === SOCKET_EVENTS.RAIN_RECYCLE_FINISH) {
 				setQuestionStatus({ ...questionStatus, rainRecycle: true });
+				
 			}
 
 			if (messageType === SOCKET_EVENTS.AQUAPONICS_FINISH) {
@@ -348,8 +351,10 @@ const Scene2Question = () => {
 			if (messageType === SOCKET_EVENTS.SOLAR_POWER_FINISH) {
 				setQuestionStatus({ ...questionStatus, solarPower: true });
 			}
+
+			router.push('/stage3/scene2');
 		});
-	}, [questionStatus, receivedEvent, setQuestionStatus]);
+	}, [questionStatus, receivedEvent, router, setQuestionStatus]);
 
 	useEffect(() => {
 		if (
@@ -562,11 +567,27 @@ const Scene2Question = () => {
 		});
 	}, [receivedEvent, stateAction]);
 
+	useEffect(() => {
+		receivedEvent(({ messageType }) => {
+			if (messageType === SOCKET_EVENTS.SOLAR_POWER_RESTART) {
+				stateAction.send({ type: 'NEXT_TO_SCENE2_SOLAR_POWER' });
+			}
+			if (messageType === SOCKET_EVENTS.AQUAPONICS_RESTART) {
+				stateAction.send({ type: 'NEXT_TO_SCENE2_AQUAONICS' });
+			}
+			if (messageType === SOCKET_EVENTS.RAIN_RECYCLE_RESTART) {
+				stateAction.send({ type: 'NEXT_TO_SCENE2_RAIN_RECYCLE' });
+			}
+		});
+	}, [receivedEvent, stateAction]);
+
+
+
 	const phaseParams = getCurrentPhaseImg(currentPhaseInfo);
 
 	return (
 		<Box position="relative" display="flex" justifyContent="center">
-			<FadeIn delay={1}>
+			<FadeIn delay={0.5}>
 				<NextImage src={bg} alt="Unresolved Question" priority={true} />
 			</FadeIn>
 			<FadeIn delay={1.5}>
