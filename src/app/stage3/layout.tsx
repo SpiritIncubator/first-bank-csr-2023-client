@@ -5,8 +5,8 @@ import Box from '@mui/material/Box';
 import { createActorContext } from '@xstate/react';
 import { ControlBoardContext } from './context/ControlBoardContext';
 import { conversationMachine } from './xstate/conversationMachine';
-import { QuestNames } from './constants';
 import { ControlBoardQuestStatus } from './context/ControlBoardContext';
+import { Scene, QuestNames } from '@/app/stage3/controlBoard/constants';
 
 type LayoutProps = {
 	children: ReactNode;
@@ -41,7 +41,8 @@ const Layout = ({ children }: LayoutProps) => {
 	const [questStatus, setQuestStatus] = useState<ControlBoardQuestStatus>({
 		SCENE1: false,
 		SCENE2: false,
-		currentQuiz: '',
+		currentScene: Scene.Scene1,
+		currentQuest: '',
 		[QuestNames.RAIN_RECYCLE]: false,
 		[QuestNames.AQUAPONICS]: false,
 		[QuestNames.CARBON_FOOTPRINT]: false,

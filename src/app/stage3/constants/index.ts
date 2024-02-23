@@ -105,11 +105,3 @@ export const quizEventAnswerMapping: QuizEventAnswerMapping = {
 
 
 
-export enum QuestNames {
-	RAIN_RECYCLE = 'rainRecycle',
-	AQUAPONICS = 'aquaponics',
-	CARBON_FOOTPRINT = 'carbonFootprint',
-	DASHBOARD = 'dashboard',
-	GREEN_BUILDING = 'greenBuilding',
-	SOLAR_POWER = 'solarPower',
-}

@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Box } from '@mui/material';
 import SuccessfullySolvedOne from '@/app/stage3/assets/controlBoard/stage3_lion_successfully_solve_one.svg';
 import Image from 'next/image';
@@ -7,6 +8,7 @@ import iSeeImageActive from '@/app/stage3/assets/controlBoard/stage3_i_see_activ
 import RestartQuest from '@/app/stage3/assets/controlBoard/stage3_restart_quest.svg';
 import { useSubscribe } from '@/app/hooks/useSubscribe';
 import { STAGE3_ROOM } from '@/constants';
+import { ControlBoardContext } from '@/app/stage3/context/ControlBoardContext';
 
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
 
@@ -32,13 +34,19 @@ const restartEventFinishMapping = {
 };
 
 export default function QuestFinalPage({ currentQuestEndEvent }: { currentQuestEndEvent: string }) {
-	console.log('currentQuestEndEvent :', currentQuestEndEvent);
+	const { questStatus, setQuestStatus } = useContext(ControlBoardContext);
 
 	const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
 	const { sendEvent } = registerRoomHelper();
 
 	const onClickISee = () => {
 		sendEvent({ messageType: endEventFinishMapping[currentQuestEndEvent] });
+		// console.log('currentQuestEndEvent :', currentQuestEndEvent);
+		// console.log('questStatus :', questStatus);
+		setQuestStatus({
+			...questStatus,
+			[currentQuestEndEvent]: true,
+		});
 	};
 	const onClickRestart = () => {
 		sendEvent({ messageType: restartEventFinishMapping[currentQuestEndEvent] });

@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import Start from './_components/Start';
 import LookAtScreen from './_components/LookAtScreen';
@@ -8,12 +8,14 @@ import Scene1QuestionList from './_components/Scene1QuestionList';
 import Scene2QuestionList from './_components/Scene2QuestionList';
 import QuestFinalPage from './_components/QuestFinalPage';
 import AnswerZone from './_components/AnswerZone';
+import { ControlBoardContext } from '@/app/stage3/context/ControlBoardContext';
+
 import {
 	SOCKET_EVENTS,
 	quizEventAnswerMapping,
 	QuizEventAnswerMapping,
 } from '@/app/stage3/constants';
-import { QuestNames } from '@/app/stage3/constants';
+import { QuestNames } from '@/app/stage3/controlBoard/constants';
 import { STAGE3_ROOM } from '@/constants';
 
 enum STEPS {
@@ -26,6 +28,7 @@ enum STEPS {
 }
 
 export default function ControlBoard() {
+	const { questStatus, setQuestStatus } = useContext(ControlBoardContext);
 	const [currentStep, setCurrentStep] = useState(STEPS.START);
 	const [currentQuizStartEvent, setCurrentQuizStartEvent] = useState('');
 	const [currentQuestEndEvent, setCurrentQuestEndEvent] = useState('');

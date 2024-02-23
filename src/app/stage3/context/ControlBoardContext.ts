@@ -1,16 +1,16 @@
-
-import { QuestNames } from '../constants/index';
+import { Scene, QuestNames } from '@/app/stage3/controlBoard/constants';
 import { Dispatch, createContext } from 'react';
 
 
 
 type QuestFinished = {
-  [key in QuestNames]: boolean;
+  [key in QuestNames]?: boolean;
 }
 export type ControlBoardQuestStatus = {
   SCENE1: boolean;
   SCENE2: boolean;
-  currentQuiz: string
+  currentQuest: string;
+  currentScene: Scene;
 } & QuestFinished
 
 export const ControlBoardContext = createContext<{
@@ -18,7 +18,8 @@ export const ControlBoardContext = createContext<{
   setQuestStatus: Dispatch<ControlBoardQuestStatus>
 }>({
   questStatus: {
-    currentQuiz: '',
+    currentQuest: '',
+    currentScene: Scene.Scene1,
     SCENE2: false,
     [QuestNames.RAIN_RECYCLE]: false,
     [QuestNames.AQUAPONICS]: false,

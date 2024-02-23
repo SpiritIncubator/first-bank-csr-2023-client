@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useSubscribe } from '@/app/hooks/useSubscribe';
-import { QuestNames } from '@/app/stage3/constants';
+import { QuestNames } from '@/app/stage3/controlBoard/constants';
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import Stage3ChooseOne from '@/app/stage3/assets/controlBoard/stage3_choose_one.svg';
 import QuestionButton from '@/app/stage3/assets/controlBoard/stage3_question_button.svg';
@@ -52,20 +52,26 @@ export default function Scene2QuestionList() {
 	});
 	const { sendEvent } = registerRoomHelper();
 
-	const { questStatus } = useContext(ControlBoardContext);
+	const { questStatus, setQuestStatus } = useContext(ControlBoardContext);
 	const allQuestFinished =
 		questStatus[QuestNames.AQUAPONICS] &&
 		questStatus[QuestNames.SOLAR_POWER] &&
 		questStatus[QuestNames.RAIN_RECYCLE];
 
 	console.log('questStatus :', questStatus);
-	const [answeredQuestionIndex, setAnsweredQuestionIndex] = useState<number[]>([]);
 	const onClickQuestion = (name: QuestNames) => () => {
 		console.log('name :', name);
 		sendEvent({ messageType: `${name}:start` });
+		setQuestStatus({
+			...questStatus,
+			currentQuest: name,
+		});
 	};
 	const onSuccessfullySolved = () => {
-		//@todo: send further event and go back to the main screen
+		setQuestStatus({
+			...questStatus,
+			SCENE2: true,
+		});
 	};
 
 	return (

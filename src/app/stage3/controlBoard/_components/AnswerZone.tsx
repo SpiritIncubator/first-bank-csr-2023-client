@@ -4,7 +4,6 @@ import Image from 'next/image';
 import CLICK_BUTTON_BELOW from '@/app/stage3/assets/controlBoard/stage3_click_button_below.svg';
 import {
 	quizEventAnswerMapping,
-	QuestNames,
 	QuizEventAnswerMapping,
 	SOCKET_EVENTS,
 } from '@/app/stage3/constants';
