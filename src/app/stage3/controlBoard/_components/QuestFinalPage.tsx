@@ -25,6 +25,11 @@ const endEventFinishMapping = {
 	[SOCKET_EVENTS.AQUAPONICS_END]: SOCKET_EVENTS.AQUAPONICS_FINISH,
 	[SOCKET_EVENTS.SOLAR_POWER_END]: SOCKET_EVENTS.SOLAR_POWER_FINISH,
 };
+const restartEventFinishMapping = {
+	[SOCKET_EVENTS.RAIN_RECYCLE_END]: SOCKET_EVENTS.RAIN_RECYCLE_RESTART,
+	[SOCKET_EVENTS.AQUAPONICS_END]: SOCKET_EVENTS.AQUAPONICS_RESTART,
+	[SOCKET_EVENTS.SOLAR_POWER_END]: SOCKET_EVENTS.SOLAR_POWER_RESTART,
+};
 
 export default function QuestFinalPage({ currentQuestEndEvent }: { currentQuestEndEvent: string }) {
 	console.log('currentQuestEndEvent :', currentQuestEndEvent);
@@ -35,7 +40,9 @@ export default function QuestFinalPage({ currentQuestEndEvent }: { currentQuestE
 	const onClickISee = () => {
 		sendEvent({ messageType: endEventFinishMapping[currentQuestEndEvent] });
 	};
-	const onClickRestart = () => {};
+	const onClickRestart = () => {
+		sendEvent({ messageType: restartEventFinishMapping[currentQuestEndEvent] });
+	};
 	return (
 		<Box
 			width="2732px"
