@@ -30,7 +30,7 @@ import carbonFootprintDialog10 from '@/app/stage3/assets/carbonFootprint/carbonF
 
 import carbonFootprintBubble1 from '@/app/stage3/assets/carbonFootprint/carbonFoorprint-bubble1.svg';
 import carbonFootprintBubble2Animation from '@/app/stage3/animationData/carbonFootprint/carbonFoorprint-bubble2.json';
-import carbonFootprintBubble3 from '@/app/stage3/assets/carbonFootprint/carbonFoorprint-bubble3.png';
+import carbonFootprintBubble3 from '@/app/stage3/assets/carbonFootprint/carbonFoorprint-bubble3.svg';
 import carbonFootprintBubble4 from '@/app/stage3/assets/carbonFootprint/carbonFoorprint-bubble4.svg';
 import carbonFootprintBubble5 from '@/app/stage3/assets/carbonFootprint/carbonFoorprint-bubble5.svg';
 import carbonFootprintBubble6 from '@/app/stage3/assets/carbonFootprint/carbonFoorprint-bubble6.svg';
@@ -57,7 +57,7 @@ import dashboardDialog6BubbleAnimation from '@/app/stage3/animationData/dashboar
 import greenBuildingDialog1 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog1.svg';
 import greenBuildingDialog2 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog2.svg';
 import greenBuildingDialog3 from '@/app/stage3/assets/greenBuilding/greenBuilding-bubble3.png';
-import greenBuildingDialog4 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog4.png';
+import greenBuildingDialog4 from '@/app/stage3/assets/greenBuilding/greenBuilding-bubble4.png';
 import greenBuildingDialog5 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog5.svg';
 import greenBuildingDialog6 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog6.svg';
 import greenBuildingDialog7 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog7.svg';
@@ -67,8 +67,8 @@ import greenBuildingDialog10 from '@/app/stage3/assets/greenBuilding/greenBuildi
 
 import greenBuildingBubble1Animation from '@/app/stage3/animationData/greenBuilding/greenBuilding-bubble1.json';
 import greenBuildingBubble2 from '@/app/stage3/assets/greenBuilding/greenBuilding-bubble2.svg';
-import greenBuildingBubble3 from '@/app/stage3/assets/greenBuilding/greenBuilding-bubble3.svg';
-import greenBuildingBubble4 from '@/app/stage3/assets/greenBuilding/greenBuilding-bubble4.svg';
+import greenBuildingBubble3 from '@/app/stage3/assets/greenBuilding/greenBuilding-bubble3.png';
+import greenBuildingBubble4 from '@/app/stage3/assets/greenBuilding/greenBuilding-bubble4.png';
 import greenBuildingBubble5Animation from '@/app/stage3/animationData/greenBuilding/greenBuilding-bubble5.json';
 import greenBuildingBubble6Animation from '@/app/stage3/animationData/greenBuilding/greenBuilding-bubble6.json';
 
