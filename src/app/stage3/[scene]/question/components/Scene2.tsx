@@ -341,18 +341,18 @@ const Scene2Question = () => {
 		receivedEvent(({ messageType }) => {
 			if (messageType === SOCKET_EVENTS.RAIN_RECYCLE_FINISH) {
 				setQuestionStatus({ ...questionStatus, rainRecycle: true });
-				
+				router.push('/stage3/scene2');
 			}
 
 			if (messageType === SOCKET_EVENTS.AQUAPONICS_FINISH) {
 				setQuestionStatus({ ...questionStatus, aquaponics: true });
+				router.push('/stage3/scene2');
 			}
 
 			if (messageType === SOCKET_EVENTS.SOLAR_POWER_FINISH) {
 				setQuestionStatus({ ...questionStatus, solarPower: true });
+				router.push('/stage3/scene2');
 			}
-
-			router.push('/stage3/scene2');
 		});
 	}, [questionStatus, receivedEvent, router, setQuestionStatus]);
 
@@ -363,7 +363,7 @@ const Scene2Question = () => {
 		) {
 			sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINRECYCLE_QUIZ1_START });
 		}
-
+		console.log(currentPhaseInfo, 'currentPhaseInfo')
 		if (currentPhaseInfo.question === SCENE2SITUATION.AQUAPONICS && currentPhaseInfo.round === 1) {
 			sendEvent({ messageType: SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_START });
 		}
@@ -569,6 +569,7 @@ const Scene2Question = () => {
 
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
+			console.log(messageType, 'messageType')
 			if (messageType === SOCKET_EVENTS.SOLAR_POWER_RESTART) {
 				stateAction.send({ type: 'NEXT_TO_SCENE2_SOLAR_POWER' });
 			}
