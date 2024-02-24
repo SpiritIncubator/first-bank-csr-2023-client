@@ -9,6 +9,7 @@ import RestartQuest from '@/app/stage3/assets/controlBoard/stage3_restart_quest.
 import { useSubscribe } from '@/app/hooks/useSubscribe';
 import { STAGE3_ROOM } from '@/constants';
 import { ControlBoardContext } from '@/app/stage3/context/ControlBoardContext';
+import { MAX_WIDTH, MAX_HEIGHT } from '@/app/stage3/controlBoard/constants';
 
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
 
@@ -33,7 +34,13 @@ const restartEventFinishMapping = {
 	[SOCKET_EVENTS.SOLAR_POWER_END]: SOCKET_EVENTS.SOLAR_POWER_RESTART,
 };
 
-export default function QuestFinalPage({ currentQuestEndEvent }: { currentQuestEndEvent: string }) {
+export default function QuestFinalPage({
+	currentQuestEndEvent,
+	onFinish,
+}: {
+	currentQuestEndEvent: string;
+	onFinish?: () => void;
+}) {
 	const { questStatus, setQuestStatus } = useContext(ControlBoardContext);
 
 	const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
@@ -45,16 +52,17 @@ export default function QuestFinalPage({ currentQuestEndEvent }: { currentQuestE
 		// console.log('questStatus :', questStatus);
 		setQuestStatus({
 			...questStatus,
-			[currentQuestEndEvent]: true,
+			[currentQuestEndEvent.split(':')[0]]: true,
 		});
+		onFinish && onFinish();
 	};
 	const onClickRestart = () => {
 		sendEvent({ messageType: restartEventFinishMapping[currentQuestEndEvent] });
 	};
 	return (
 		<Box
-			width="2732px"
-			minHeight="2048px"
+			width={`${MAX_WIDTH}px`}
+			minHeight={`${MAX_HEIGHT}px`}
 			sx={{
 				backgroundImage: 'url(/assets/stage3/background.svg)',
 				backgroundSize: 'cover',

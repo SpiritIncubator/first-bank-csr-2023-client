@@ -3,6 +3,7 @@ import { useContext, useEffect } from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useSubscribe } from '@/app/hooks/useSubscribe';
+import { MAX_WIDTH, MAX_HEIGHT } from '@/app/stage3/controlBoard/constants';
 import { QuestNames } from '@/app/stage3/controlBoard/constants';
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import Stage3ChooseOne from '@/app/stage3/assets/controlBoard/stage3_choose_one.svg';
@@ -86,8 +87,8 @@ export default function Scene2QuestionList() {
 
 	return (
 		<Box
-			width="2732px"
-			minHeight="2048px"
+			width={`${MAX_WIDTH}px`}
+			minHeight={`${MAX_HEIGHT}px`}
 			sx={{
 				backgroundImage: 'url(/assets/stage3/background.svg)',
 				backgroundSize: 'cover',

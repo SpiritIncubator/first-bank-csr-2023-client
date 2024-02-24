@@ -12,6 +12,7 @@ import { useSubscribe } from '@/app/hooks/useSubscribe';
 import { STAGE3_ROOM } from '@/constants';
 import CrossImage from '@/app/stage3/assets/controlBoard/stage3_cross.svg';
 import CircleImage from '@/app/stage3/assets/controlBoard/stage3_circle.svg';
+import { MAX_WIDTH, MAX_HEIGHT } from '@/app/stage3/controlBoard/constants';
 
 enum Answer {
 	Right = 0,
@@ -66,8 +67,8 @@ export default function AnswerZone({
 
 	return (
 		<Box
-			width="2732px"
-			minHeight="2048px"
+			width={`${MAX_WIDTH}px`}
+			minHeight={`${MAX_HEIGHT}px`}
 			sx={{
 				backgroundImage: 'url(/assets/stage3/background.svg)',
 				backgroundSize: 'cover',
@@ -111,6 +112,9 @@ export default function AnswerZone({
 					left="0"
 					right="0"
 					bottom="0"
+					// 200vw/vh is a workaround because of  transform scale
+					width="200vw"
+					height="200vh"
 					display="flex"
 					justifyContent="center"
 					alignItems="center"

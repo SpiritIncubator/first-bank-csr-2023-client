@@ -19,7 +19,7 @@ type AnimationOptions = {
 
 const DEFAULT_SECOND = 4000;
 
-preload('./assets/scene2-bg-without-border.svg', {as: 'image'});
+// preload('./assets/scene2-bg-without-border.svg', {as: 'image'});
 
 const ConversationPage = () => {
 	const { registerRoomHelper } = useSubscribe({

@@ -1,6 +1,7 @@
 'use client';
 
 import { ReactNode, useState, createContext, useContext } from 'react';
+import Head from 'next/head';
 import Box from '@mui/material/Box';
 import { createActorContext } from '@xstate/react';
 import { ControlBoardContext } from './context/ControlBoardContext';
@@ -63,6 +64,9 @@ const Layout = ({ children }: LayoutProps) => {
 		<QuestionContext.Provider value={{ questionStatus, setQuestionStatus }}>
 			<ControlBoardContext.Provider value={{ questStatus, setQuestStatus }}>
 				<ConversationContext.Provider>
+					<Head>
+						<link rel="preload" href="./assets/scene2-bg-without-border.svg" as="image" />
+					</Head>
 					<Box>{children}</Box>
 				</ConversationContext.Provider>
 			</ControlBoardContext.Provider>

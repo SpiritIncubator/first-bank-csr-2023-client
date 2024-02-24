@@ -11,3 +11,7 @@ export enum QuestNames {
   GREEN_BUILDING = 'greenBuilding',
   SOLAR_POWER = 'solarPower',
 }
+
+
+export const MAX_WIDTH = 2732;
+export const MAX_HEIGHT = 2048;
