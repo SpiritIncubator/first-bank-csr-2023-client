@@ -43,6 +43,7 @@ import SolarPowerQuiz1Answer2Active from '@/app/stage3/assets/controlBoard/answe
 
 export const SOCKET_EVENTS = {
 	START: 'start',
+	RESTART: 'restart',
 	READY_FOR_QUEST: 'readyForQuest',
 	// quest event 
 	RAIN_RECYCLE_RESTART: 'rainRecycle:restart',
@@ -70,6 +71,18 @@ export const SOCKET_EVENTS = {
 	SOLAR_POWER_END: 'solarPower:end',
 	SOLAR_POWER_FINISH: 'solarPower:finish',
 	// emit from screen
+	//scene1
+	QUEST_GREENBUILDING_QUIZ1_START: 'questGreenBuilding_quiz1:start',
+	QUEST_GREENBUILDING_QUIZ1_END: 'questGreenBuilding_quiz1:end',
+	QUEST_GREENBUILDING_QUIZ4_START: 'questGreenBuilding_quiz4:start',
+	QUEST_GREENBUILDING_QUIZ4_END: 'questGreenBuilding_quiz4:end',
+
+	QUEST_CARBONFOOTPRINT_QUIZ1_START: 'questCarbonFootprint_quiz1:start',
+	QUEST_CARBONFOOTPRINT_QUIZ1_END: 'questCarbonFootprint_quiz1:end',
+
+	QUEST_DASHBOARD_QUIZ2_START: 'questDashboard_quiz2:start',
+	QUEST_DASHBOARD_QUIZ2_END: 'questDashboard_quiz2:end',
+	// scene2 
 	QUEST_RAINRECYCLE_QUIZ1_START: 'questRainRecycle_quiz1:start',
 	QUEST_RAINRECYCLE_QUIZ1_END: 'questRainRecycle_quiz1:end',
 
