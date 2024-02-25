@@ -136,7 +136,7 @@ export const quizEventAnswerMapping: QuizEventAnswerMapping = {
 		mainImage: GreenBuildingOpen,
 	},
 	[SOCKET_EVENTS.QUEST_CARBONFOOTPRINT_QUIZ1_START]: {
-		answer: 0,
+		answer: 1,
 		finishEvent: SOCKET_EVENTS.QUEST_CARBONFOOTPRINT_QUIZ1_END,
 		optionLeftImage: CarbonFootprintQuiz1Answer1,
 		optionLeftImageActive: CarbonFootprintQuiz1Answer1Active,
