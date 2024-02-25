@@ -52,6 +52,7 @@ export const SOCKET_EVENTS = {
 	START: 'start',
 	RESTART: 'restart',
 	READY_FOR_QUEST: 'readyForQuest',
+	GO_TO_SCENE2: 'goToScene2',
 	// quest event 
 	RAIN_RECYCLE_RESTART: 'rainRecycle:restart',
 	RAIN_RECYCLE_START: 'rainRecycle:start',

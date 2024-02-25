@@ -48,7 +48,7 @@ const QUEST_LIST = [
 	},
 ];
 
-export default function Scene2QuestionList() {
+export default function Scene2QuestionList({ finishQuest }: { finishQuest?: () => void }) {
 	const { registerRoomHelper } = useSubscribe({
 		channel: 'subscribeChannel',
 		room: 'stage3_controlBoard',
@@ -79,6 +79,7 @@ export default function Scene2QuestionList() {
 	}, [setQuestStatus]);
 
 	const onSuccessfullySolved = () => {
+		finishQuest?.();
 		setQuestStatus({
 			...questStatus,
 			SCENE2: true,

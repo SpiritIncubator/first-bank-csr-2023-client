@@ -22,7 +22,7 @@ import { STAGE3_ROOM } from '@/constants';
 enum STEPS {
 	START = 'START',
 	LOOK_AT_SCREEN = 'LOOK_AT_SCREEN',
-	// SCENE1_QUESTION_LIST = "SCENE1_QUESTION_LIST",
+	SCENE1_QUESTION_LIST = 'SCENE1_QUESTION_LIST',
 	SCENE2_QUESTION_LIST = 'SCENE2_QUESTION_LIST',
 	ANSWER_ZONE = 'ANSWER_ZONE',
 	FINAL = 'FINAL',
@@ -52,7 +52,7 @@ export default function ControlBoard() {
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
 			if (messageType === SOCKET_EVENTS.READY_FOR_QUEST) {
-				setCurrentStep(STEPS.SCENE2_QUESTION_LIST);
+				setCurrentStep(STEPS.SCENE1_QUESTION_LIST);
 			}
 
 			if (
@@ -65,6 +65,7 @@ export default function ControlBoard() {
 				setCurrentQuizStartEvent(messageType);
 			}
 
+			console.log('messageType :', messageType);
 			if (
 				messageType === `${QuestNames.RAIN_RECYCLE}:end` ||
 				messageType === `${QuestNames.AQUAPONICS}:end` ||
@@ -84,14 +85,23 @@ export default function ControlBoard() {
 		if (questStatus.currentScene === Scene.Scene2) {
 			setCurrentStep(STEPS.SCENE2_QUESTION_LIST);
 		} else if (questStatus.currentScene === Scene.Scene1) {
-			// setCurrentStep(STEPS.SCENE1_QUESTION_LIST);
+			setCurrentStep(STEPS.SCENE1_QUESTION_LIST);
 		}
+	};
+
+	const onFinishAllScene1Quest = () => {
+		sendEvent({ messageType: SOCKET_EVENTS.GO_TO_SCENE2 });
+	};
+
+	const onFinishScene2Quest = () => {
+		sendEvent({ messageType: SOCKET_EVENTS.RESTART });
 	};
 
 	const screens = {
 		[STEPS.START]: <Start onClickStart={onClickStart} />,
 		[STEPS.LOOK_AT_SCREEN]: <LookAtScreen />,
-		[STEPS.SCENE2_QUESTION_LIST]: <Scene2QuestionList />,
+		[STEPS.SCENE1_QUESTION_LIST]: <Scene1QuestionList finishQuest={onFinishAllScene1Quest} />,
+		[STEPS.SCENE2_QUESTION_LIST]: <Scene2QuestionList finishQuest={onFinishScene2Quest} />,
 		[STEPS.ANSWER_ZONE]: (
 			<AnswerZone currentQuizEvent={currentQuizStartEvent} onFinish={onAnswerFinish} />
 		),
