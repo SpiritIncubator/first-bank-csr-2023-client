@@ -96,9 +96,9 @@ export const animationItemsByCategories: Record<Partial<PhaseValueType['question
 		// 3: Dialog3Animation,
 		4: Dialog3Animation,
 		5: Dialog4Animation,
-    6: Dialog5Animation,
-    7: Dialog4Animation,
-    8: Dialog6Animation,
+		6: Dialog5Animation,
+		7: Dialog4Animation,
+		8: Dialog6Animation,
 	},
 	aquaponics: {
 		5: AquaonicsDialog5Animation,
@@ -108,11 +108,11 @@ export const animationItemsByCategories: Record<Partial<PhaseValueType['question
 		10: AquaonicsDialog10Animation,
 	},
 	solarPower: {
-    3: SolarPowerDialog3Animation,
-    4: SolarPowerDialog3Animation,
-    6: SolarPowerDialog6Animation,
-    7: SolarPowerDialog6Animation,
-    8: SolarPowerDialog6Animation,
+		3: SolarPowerDialog3Animation,
+		4: SolarPowerDialog3Animation,
+		6: SolarPowerDialog6Animation,
+		7: SolarPowerDialog6Animation,
+		8: SolarPowerDialog6Animation,
 	},
 	greenBuilding: {},
 	dashboard: {},
@@ -137,7 +137,7 @@ const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
 		if (currentPhaseInfo.round === 3) {
 			return {
 				dialog: Dialog3,
-        bg: Dialog2Bg,
+				bg: Dialog2Bg,
 			};
 		}
 		if (currentPhaseInfo.round === 4) {
@@ -302,7 +302,7 @@ const Scene2Question = () => {
 	const { sendEvent, receivedEvent } = registerRoomHelper();
 	const animation = useMemo(() => {
 		return animationItemsByCategories[currentPhaseInfo.question][currentPhaseInfo.round];
-  }, [currentPhaseInfo.question, currentPhaseInfo.round]);
+	}, [currentPhaseInfo.question, currentPhaseInfo.round]);
 
 	const [options, setOptions] = useState<AnimationOptions>({
 		animationData: animation,
@@ -323,20 +323,21 @@ const Scene2Question = () => {
 	useEffect(() => {
 		if (
 			currentPhaseInfo.question === SCENE2SITUATION.RAIN_RECYCLE &&
-			currentPhaseInfo.round === 9
+			currentPhaseInfo.round === 9 && !questionStatus.rainRecycle
 		) {
 			sendEvent({ messageType: SOCKET_EVENTS.RAIN_RECYCLE_END });
 		}
 
-		if (currentPhaseInfo.question === SCENE2SITUATION.AQUAPONICS && currentPhaseInfo.round === 10) {
+		if (currentPhaseInfo.question === SCENE2SITUATION.AQUAPONICS && currentPhaseInfo.round === 10 && !questionStatus.aquaponics) {
 			sendEvent({ messageType: SOCKET_EVENTS.AQUAPONICS_END });
 		}
 
-		if (currentPhaseInfo.question === SCENE2SITUATION.SOLAR_POWER && currentPhaseInfo.round === 8) {
+		if (currentPhaseInfo.question === SCENE2SITUATION.SOLAR_POWER && currentPhaseInfo.round === 8 && !questionStatus.solarPower) {
 			sendEvent({ messageType: SOCKET_EVENTS.SOLAR_POWER_END });
 		}
 	}, [currentPhaseInfo.question, currentPhaseInfo.round, sendEvent]);
 
+	// In part of question is finished
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
 			if (messageType === SOCKET_EVENTS.RAIN_RECYCLE_FINISH) {
@@ -363,7 +364,7 @@ const Scene2Question = () => {
 		) {
 			sendEvent({ messageType: SOCKET_EVENTS.QUEST_RAINRECYCLE_QUIZ1_START });
 		}
-		console.log(currentPhaseInfo, 'currentPhaseInfo')
+
 		if (currentPhaseInfo.question === SCENE2SITUATION.AQUAPONICS && currentPhaseInfo.round === 1) {
 			sendEvent({ messageType: SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_START });
 		}
@@ -569,7 +570,7 @@ const Scene2Question = () => {
 
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
-			console.log(messageType, 'messageType')
+			console.log(messageType, 'messageType');
 			if (messageType === SOCKET_EVENTS.SOLAR_POWER_RESTART) {
 				stateAction.send({ type: 'NEXT_TO_SCENE2_SOLAR_POWER' });
 			}
@@ -581,8 +582,6 @@ const Scene2Question = () => {
 			}
 		});
 	}, [receivedEvent, stateAction]);
-
-
 
 	const phaseParams = getCurrentPhaseImg(currentPhaseInfo);
 

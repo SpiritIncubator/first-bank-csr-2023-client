@@ -4,6 +4,7 @@ import { useEffect, useState, useMemo } from 'react';
 import Box from '@mui/material/Box';
 import NextImage from 'next/image';
 import Lottie, { useLottie } from 'lottie-react';
+import { useRouter } from 'next/navigation';
 
 import type { PhaseValueType } from '@/app/stage3/xstate/conversationMachine';
 import { ConversationContext } from '@/app/stage3/layout';
@@ -96,9 +97,23 @@ export const animationItemsByCategories: Record<Partial<PhaseValueType['question
 	rainRecycle: {},
 	aquaponics: {},
 	solarPower: {},
-	greenBuilding: {},
-	dashboard: {},
-	carbonFootprint: {},
+	greenBuilding: {
+		1: greenBuildingBubble1Animation,
+		2: greenBuildingBubble1Animation,
+		7: greenBuildingBubble5Animation,
+		8: greenBuildingBubble5Animation,
+		9: greenBuildingBubble6Animation,
+		10: greenBuildingBubble6Animation,
+	},
+	dashboard: {
+		4: dashboardDialog3BubbleAnimation,
+		5: dashboardDialog3BubbleAnimation,
+		8: dashboardDialog6BubbleAnimation,
+		9: dashboardDialog6BubbleAnimation,
+	},
+	carbonFootprint: {
+		2: carbonFootprintBubble2Animation,
+	},
 	initial: {},
 };
 
@@ -325,6 +340,7 @@ const Scene1Question = () => {
 	const videoDurationWithSecond = getDuration() ?? 0;
 	const videoDuration = videoDurationWithSecond >= 4 ? videoDurationWithSecond * 1000 : DELAY_TIME;
 	const { questionStatus, setQuestionStatus } = useQuestion();
+	const router = useRouter();
 
 	useEffect(() => {
 		setOptions(prevState => ({...prevState, animationData: animation}));
@@ -345,27 +361,46 @@ const Scene1Question = () => {
 		}
 	}, [currentPhaseInfo.question, currentPhaseInfo.round, questionStatus, sendEvent]);
 
+	// In part of question is finished
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
 			if (messageType === SOCKET_EVENTS.DASHBOARD_FINISH) {
-				setQuestionStatus({...questionStatus, dashboard: true})
+				setQuestionStatus({ ...questionStatus, dashboard: true })
+				router.push('/stage3/scene1');
 			}
 
 			if (messageType === SOCKET_EVENTS.GREEN_BUILDING_FINISH) {
-				setQuestionStatus({...questionStatus, greenBuilding: true})
+				setQuestionStatus({ ...questionStatus, greenBuilding: true })
+				router.push('/stage3/scene1');
 			}
 
 			if (messageType === SOCKET_EVENTS.CARBON_FOOTPRINT_FINISH) {
-				setQuestionStatus({...questionStatus, carbonFootprint: true})
+				setQuestionStatus({ ...questionStatus, carbonFootprint: true })
+				router.push('/stage3/scene1');
 			}
 		})
-	}, [currentPhaseInfo, questionStatus, receivedEvent, setQuestionStatus])
+	}, [currentPhaseInfo, questionStatus, receivedEvent, router, setQuestionStatus])
 
 	useEffect(() => {
-		if (currentPhaseInfo.question === SCENE1SITUATION.GREEN_BUILDING) { }
-		if (currentPhaseInfo.question === SCENE1SITUATION.DASHBOARD) { }
-		if (currentPhaseInfo.question === SCENE1SITUATION.CARBON_FOOTPRINT) { }
-	}, [currentPhaseInfo.question]);
+		if (currentPhaseInfo.question === SCENE1SITUATION.GREEN_BUILDING) {
+			if (currentPhaseInfo.round === 1) {
+				sendEvent({ messageType: SOCKET_EVENTS.QUEST_GREENBUILDING_QUIZ1_START });
+			}
+			if (currentPhaseInfo.round === 4) {
+				sendEvent({ messageType: SOCKET_EVENTS.QUEST_GREENBUILDING_QUIZ4_START });
+			}
+		}
+		if (currentPhaseInfo.question === SCENE1SITUATION.DASHBOARD) {
+			if (currentPhaseInfo.round === 2) {
+				sendEvent({ messageType: SOCKET_EVENTS.QUEST_DASHBOARD_QUIZ2_START });
+			}
+		}
+		if (currentPhaseInfo.question === SCENE1SITUATION.CARBON_FOOTPRINT) {
+			if (currentPhaseInfo.round === 1) {
+				sendEvent({ messageType: SOCKET_EVENTS.QUEST_CARBONFOOTPRINT_QUIZ1_START });
+			}
+		}
+	}, [currentPhaseInfo.question, currentPhaseInfo.round, sendEvent]);
 
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {});
