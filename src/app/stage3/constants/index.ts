@@ -7,20 +7,27 @@ import DashboardOpen from '@/app/stage3/assets/controlBoard/stage3_question_dash
 
 
 // scene1
-import RainRecycleQuiz2Answer1 from '@/app/stage3/assets/controlBoard/answer/stage3_rainRecycle_quiz2_answer1.svg';
-import RainRecycleQuiz2Answer1Active from '@/app/stage3/assets/controlBoard/answer/stage3_rainRecycle_quiz2_answer1_active.svg';
-import RainRecycleQuiz2Answer2 from '@/app/stage3/assets/controlBoard/answer/stage3_rainRecycle_quiz2_answer2.svg';
-import RainRecycleQuiz2Answer2Active from '@/app/stage3/assets/controlBoard/answer/stage3_rainRecycle_quiz2_answer2_active.svg';
+import GreenBuildingQuiz1Answer1 from '@/app/stage3/assets/controlBoard/answer/stage3_greenBuilding_quiz1_answer1.svg';
+import GreenBuildingQuiz1Answer1Active from '@/app/stage3/assets/controlBoard/answer/stage3_greenBuilding_quiz1_answer1_active.svg';
+import GreenBuildingQuiz1Answer2 from '@/app/stage3/assets/controlBoard/answer/stage3_greenBuilding_quiz1_answer2.svg';
+import GreenBuildingQuiz1Answer2Active from '@/app/stage3/assets/controlBoard/answer/stage3_greenBuilding_quiz1_answer2_active.svg';
 
-import AquaponicsQuiz2Answer1 from '@/app/stage3/assets/controlBoard/answer/stage3_aquaponics_quiz2_answer1.svg';
-import AquaponicsQuiz2Answer1Active from '@/app/stage3/assets/controlBoard/answer/stage3_aquaponics_quiz2_answer1_active.svg';
-import AquaponicsQuiz2Answer2 from '@/app/stage3/assets/controlBoard/answer/stage3_aquaponics_quiz2_answer2.svg';
-import AquaponicsQuiz2Answer2Active from '@/app/stage3/assets/controlBoard/answer/stage3_aquaponics_quiz2_answer2_active.svg';
+import GreenBuildingQuiz4Answer1 from '@/app/stage3/assets/controlBoard/answer/stage3_greenBuilding_quiz4_answer1.svg';
+import GreenBuildingQuiz4Answer1Active from '@/app/stage3/assets/controlBoard/answer/stage3_greenBuilding_quiz4_answer1_active.svg';
+import GreenBuildingQuiz4Answer2 from '@/app/stage3/assets/controlBoard/answer/stage3_greenBuilding_quiz4_answer2.svg';
+import GreenBuildingQuiz4Answer2Active from '@/app/stage3/assets/controlBoard/answer/stage3_greenBuilding_quiz4_answer2_active.svg';
 
-import SolarPowerQuiz2Answer1 from '@/app/stage3/assets/controlBoard/answer/stage3_solarPower_quiz2_answer1.svg';
-import SolarPowerQuiz2Answer1Active from '@/app/stage3/assets/controlBoard/answer/stage3_solarPower_quiz2_answer1_active.svg';
-import SolarPowerQuiz2Answer2 from '@/app/stage3/assets/controlBoard/answer/stage3_solarPower_quiz2_answer2.svg';
-import SolarPowerQuiz2Answer2Active from '@/app/stage3/assets/controlBoard/answer/stage3_solarPower_quiz2_answer2_active.svg';
+import CarbonFootprintQuiz1Answer1 from '@/app/stage3/assets/controlBoard/answer/stage3_carbonFootprint_quiz1_answer1.svg';
+import CarbonFootprintQuiz1Answer1Active from '@/app/stage3/assets/controlBoard/answer/stage3_carbonFootprint_quiz1_answer1_active.svg';
+import CarbonFootprintQuiz1Answer2 from '@/app/stage3/assets/controlBoard/answer/stage3_carbonFootprint_quiz1_answer2.svg';
+import CarbonFootprintQuiz1Answer2Active from '@/app/stage3/assets/controlBoard/answer/stage3_carbonFootprint_quiz1_answer2_active.svg';
+
+import DashboardQuiz2Answer1 from '@/app/stage3/assets/controlBoard/answer/stage3_dashboard_quiz2_answer1.svg';
+import DashboardQuiz2Answer1Active from '@/app/stage3/assets/controlBoard/answer/stage3_dashboard_quiz2_answer1_active.svg';
+import DashboardQuiz2Answer2 from '@/app/stage3/assets/controlBoard/answer/stage3_dashboard_quiz2_answer2.svg';
+import DashboardQuiz2Answer2Active from '@/app/stage3/assets/controlBoard/answer/stage3_dashboard_quiz2_answer2_active.svg';
+
+
 
 // scene2
 import RainRecycleQuiz1Answer1 from '@/app/stage3/assets/controlBoard/answer/stage3_rainRecycle_quiz1_answer1.svg';
@@ -108,6 +115,44 @@ export type QuizEventAnswerMapping = {
 	};
 };
 export const quizEventAnswerMapping: QuizEventAnswerMapping = {
+	// scene1 
+	[SOCKET_EVENTS.QUEST_GREENBUILDING_QUIZ1_START]: {
+		answer: 0,
+		finishEvent: SOCKET_EVENTS.QUEST_GREENBUILDING_QUIZ1_END,
+		optionLeftImage: GreenBuildingQuiz1Answer1,
+		optionLeftImageActive: GreenBuildingQuiz1Answer1Active,
+		optionRightImage: GreenBuildingQuiz1Answer2,
+		optionRightImageActive: GreenBuildingQuiz1Answer2Active,
+		mainImage: GreenBuildingOpen,
+	},
+	[SOCKET_EVENTS.QUEST_GREENBUILDING_QUIZ4_START]: {
+		answer: 0,
+		finishEvent: SOCKET_EVENTS.QUEST_GREENBUILDING_QUIZ4_END,
+		optionLeftImage: GreenBuildingQuiz4Answer1,
+		optionLeftImageActive: GreenBuildingQuiz4Answer1Active,
+		optionRightImage: GreenBuildingQuiz4Answer2,
+		optionRightImageActive: GreenBuildingQuiz4Answer2Active,
+		mainImage: GreenBuildingOpen,
+	},
+	[SOCKET_EVENTS.QUEST_CARBONFOOTPRINT_QUIZ1_START]: {
+		answer: 0,
+		finishEvent: SOCKET_EVENTS.QUEST_CARBONFOOTPRINT_QUIZ1_END,
+		optionLeftImage: CarbonFootprintQuiz1Answer1,
+		optionLeftImageActive: CarbonFootprintQuiz1Answer1Active,
+		optionRightImage: CarbonFootprintQuiz1Answer2,
+		optionRightImageActive: CarbonFootprintQuiz1Answer2Active,
+		mainImage: CarbonFootprintOpen,
+	},
+	[SOCKET_EVENTS.QUEST_DASHBOARD_QUIZ2_START]: {
+		answer: 0,
+		finishEvent: SOCKET_EVENTS.QUEST_DASHBOARD_QUIZ2_END,
+		optionLeftImage: DashboardQuiz2Answer1,
+		optionLeftImageActive: DashboardQuiz2Answer1Active,
+		optionRightImage: DashboardQuiz2Answer2,
+		optionRightImageActive: DashboardQuiz2Answer2Active,
+		mainImage: DashboardOpen,
+	},
+	// scene2 
 	[SOCKET_EVENTS.QUEST_RAINRECYCLE_QUIZ1_START]: {
 		answer: 0,
 		finishEvent: SOCKET_EVENTS.QUEST_RAINRECYCLE_QUIZ1_END,
@@ -135,6 +180,8 @@ export const quizEventAnswerMapping: QuizEventAnswerMapping = {
 		optionRightImageActive: SolarPowerQuiz1Answer2Active,
 		mainImage: SolarPowerOpen,
 	},
+
+
 };
 
 
