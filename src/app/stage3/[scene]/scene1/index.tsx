@@ -16,6 +16,8 @@ import { useQuestion } from '@/app/stage3/layout';
 import dashboardResolvedImg from '../../assets/question-dashboard.svg';
 import greenBuildingResolvedImg from '../../assets/question-greenBuilding.svg';
 import carbonFootprintResolvedImg from '../../assets/question-carbonFootprint.svg';
+import Scene1Introduction1 from '../../assets/scene1-introduction1.svg';
+import Scene1Introduction2 from '../../assets/scene1-introduction2.svg';
 
 const DELAY_SECONDS = 4000
 
@@ -29,10 +31,9 @@ const Scene1Page = () => {
   const { questionStatus } = useQuestion();
   const isScene1InitialPhase = currentPhaseInfo.level === 1 && currentPhaseInfo.question === 'initial';
   const isInitialDialog1 = currentPhaseInfo.round === 0 && isScene1InitialPhase;
-  // const isDialog2 = currentPhaseInfo.round === 1 && isScene1InitialPhase;
+  const isDialog2 = currentPhaseInfo.round === 1 && isScene1InitialPhase;
 
   useEffect(() => {
-    // TODO will receive
     if (isInitialDialog1) {
       setTimeout(() => {
         action.send({ type: 'NEXT_TO_SCENE1_INTRODUCTION_PART_TWO' });
@@ -64,6 +65,10 @@ const Scene1Page = () => {
     timer = setTimeout(() => {
       setDelayLoaded(true);
     }, 1500);
+
+    return () => {
+      clearTimeout(timer);
+    }
   }, []);
 
   return (
@@ -83,8 +88,7 @@ const Scene1Page = () => {
             <Image src={DialogBg} alt="dialog" />
           </Box>
           <Box sx={{ transform: 'translateX(-50%)' }} position="absolute" bottom={0} left="50%">
-            {/* TODO lose dialog image */}
-            {/* <Image src={Fake2Img} alt="fake1" /> */}
+            <Image src={isDialog2 ? Scene1Introduction2 : Scene1Introduction1} alt="dialog" />
           </Box>
         </FadeIn>
       )}

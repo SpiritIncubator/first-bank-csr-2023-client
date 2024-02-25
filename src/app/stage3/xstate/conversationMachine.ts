@@ -790,6 +790,8 @@ export const conversationMachine = setup({
 				NEXT_TO_SCENE2_AQUAONICS: '.scene2.aquaonics',
 				REDIRECT_TO_SCENE1_START: '.scene1.sceneIntroduction',
 				REDIRECT_TO_SCENE2_START: '.scene2.sceneIntroduction',
+				RESTART_SCENE1: '.scene1.sceneIntroduction.introDialog2',
+				RESTART_SCENE2: '.scene2.sceneIntroduction.introDialog2',
 			},
 		},
 	},
