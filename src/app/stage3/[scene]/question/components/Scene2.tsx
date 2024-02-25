@@ -511,11 +511,6 @@ const Scene2Question = () => {
 				}, DELAY_TIME);
 			}
 
-			// if (currentPhaseInfo.round === 2) {
-			//   timerId = setTimeout(() => {
-			//     stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
-			//   }, DELAY_TIME);
-			// }
 			// animation
 			if (currentPhaseInfo.round === 3) {
 				timerId = setTimeout(() => {
