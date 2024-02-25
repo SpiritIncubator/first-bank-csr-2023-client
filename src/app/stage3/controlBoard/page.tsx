@@ -41,10 +41,6 @@ export default function ControlBoard() {
 		setCurrentStep(STEPS.LOOK_AT_SCREEN);
 	};
 
-	const onAnswerFinish = () => {
-		setCurrentStep(STEPS.LOOK_AT_SCREEN);
-	};
-
 	// const clearCurrentQuizEvent = () => {
 	// 	setCurrentQuizEvent('');
 	// };
@@ -86,7 +82,15 @@ export default function ControlBoard() {
 		});
 	}, [receivedEvent]);
 
-	const onQuestFinish = () => {
+	const onAnswerFinish = () => {
+		setCurrentStep(STEPS.LOOK_AT_SCREEN);
+	};
+
+	const onChooseQuest = () => {
+		setCurrentStep(STEPS.LOOK_AT_SCREEN);
+	};
+
+	const onSingleQuestFinish = () => {
 		console.log('questStatus.currentScene', questStatus.currentScene);
 		if (questStatus.currentScene === Scene.Scene2) {
 			setCurrentStep(STEPS.SCENE2_QUESTION_LIST);
@@ -106,13 +110,17 @@ export default function ControlBoard() {
 	const screens = {
 		[STEPS.START]: <Start onClickStart={onClickStart} />,
 		[STEPS.LOOK_AT_SCREEN]: <LookAtScreen />,
-		[STEPS.SCENE1_QUESTION_LIST]: <Scene1QuestionList finishQuest={onFinishAllScene1Quest} />,
-		[STEPS.SCENE2_QUESTION_LIST]: <Scene2QuestionList finishQuest={onFinishScene2Quest} />,
+		[STEPS.SCENE1_QUESTION_LIST]: (
+			<Scene1QuestionList finishQuest={onFinishAllScene1Quest} onChoose={onChooseQuest} />
+		),
+		[STEPS.SCENE2_QUESTION_LIST]: (
+			<Scene2QuestionList finishQuest={onFinishScene2Quest} onChoose={onChooseQuest} />
+		),
 		[STEPS.ANSWER_ZONE]: (
 			<AnswerZone currentQuizEvent={currentQuizStartEvent} onFinish={onAnswerFinish} />
 		),
 		[STEPS.FINAL]: (
-			<QuestFinalPage onFinish={onQuestFinish} currentQuestEndEvent={currentQuestEndEvent} />
+			<QuestFinalPage onFinish={onSingleQuestFinish} currentQuestEndEvent={currentQuestEndEvent} />
 		),
 	};
 	return (

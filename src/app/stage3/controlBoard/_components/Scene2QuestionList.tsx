@@ -48,7 +48,13 @@ const QUEST_LIST = [
 	},
 ];
 
-export default function Scene2QuestionList({ finishQuest }: { finishQuest?: () => void }) {
+export default function Scene2QuestionList({
+	finishQuest,
+	onChoose,
+}: {
+	finishQuest?: () => void;
+	onChoose?: () => void;
+}) {
 	const { registerRoomHelper } = useSubscribe({
 		channel: 'subscribeChannel',
 		room: 'stage3_controlBoard',
@@ -63,7 +69,7 @@ export default function Scene2QuestionList({ finishQuest }: { finishQuest?: () =
 
 	console.log('questStatus :', questStatus);
 	const onClickQuestion = (name: QuestNames) => () => {
-		console.log('name :', name);
+		onChoose?.();
 		sendEvent({ messageType: `${name}:start` });
 		setQuestStatus({
 			...questStatus,
