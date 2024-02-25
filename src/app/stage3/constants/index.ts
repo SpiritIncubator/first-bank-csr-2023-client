@@ -1,7 +1,28 @@
 import RainCycleOpen from '@/app/stage3/assets/controlBoard/stage3_question_rainRecycle_open.svg';
 import AquaponicsOpen from '@/app/stage3/assets/controlBoard/stage3_question_aquaponics_open.svg';
 import SolarPowerOpen from '@/app/stage3/assets/controlBoard/stage3_question_solarPower_open.svg';
+import GreenBuildingOpen from '@/app/stage3/assets/controlBoard/stage3_question_greenBuilding_open.svg';
+import CarbonFootprintOpen from '@/app/stage3/assets/controlBoard/stage3_question_carbonFootprint_open.svg';
+import DashboardOpen from '@/app/stage3/assets/controlBoard/stage3_question_dashboard_open.svg';
 
+
+// scene1
+import RainRecycleQuiz2Answer1 from '@/app/stage3/assets/controlBoard/answer/stage3_rainRecycle_quiz2_answer1.svg';
+import RainRecycleQuiz2Answer1Active from '@/app/stage3/assets/controlBoard/answer/stage3_rainRecycle_quiz2_answer1_active.svg';
+import RainRecycleQuiz2Answer2 from '@/app/stage3/assets/controlBoard/answer/stage3_rainRecycle_quiz2_answer2.svg';
+import RainRecycleQuiz2Answer2Active from '@/app/stage3/assets/controlBoard/answer/stage3_rainRecycle_quiz2_answer2_active.svg';
+
+import AquaponicsQuiz2Answer1 from '@/app/stage3/assets/controlBoard/answer/stage3_aquaponics_quiz2_answer1.svg';
+import AquaponicsQuiz2Answer1Active from '@/app/stage3/assets/controlBoard/answer/stage3_aquaponics_quiz2_answer1_active.svg';
+import AquaponicsQuiz2Answer2 from '@/app/stage3/assets/controlBoard/answer/stage3_aquaponics_quiz2_answer2.svg';
+import AquaponicsQuiz2Answer2Active from '@/app/stage3/assets/controlBoard/answer/stage3_aquaponics_quiz2_answer2_active.svg';
+
+import SolarPowerQuiz2Answer1 from '@/app/stage3/assets/controlBoard/answer/stage3_solarPower_quiz2_answer1.svg';
+import SolarPowerQuiz2Answer1Active from '@/app/stage3/assets/controlBoard/answer/stage3_solarPower_quiz2_answer1_active.svg';
+import SolarPowerQuiz2Answer2 from '@/app/stage3/assets/controlBoard/answer/stage3_solarPower_quiz2_answer2.svg';
+import SolarPowerQuiz2Answer2Active from '@/app/stage3/assets/controlBoard/answer/stage3_solarPower_quiz2_answer2_active.svg';
+
+// scene2
 import RainRecycleQuiz1Answer1 from '@/app/stage3/assets/controlBoard/answer/stage3_rainRecycle_quiz1_answer1.svg';
 import RainRecycleQuiz1Answer1Active from '@/app/stage3/assets/controlBoard/answer/stage3_rainRecycle_quiz1_answer1_active.svg';
 import RainRecycleQuiz1Answer2 from '@/app/stage3/assets/controlBoard/answer/stage3_rainRecycle_quiz1_answer2.svg';
