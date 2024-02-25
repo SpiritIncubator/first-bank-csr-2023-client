@@ -56,6 +56,12 @@ export default function ControlBoard() {
 			}
 
 			if (
+				// scene1
+				messageType === SOCKET_EVENTS.QUEST_GREENBUILDING_QUIZ1_START ||
+				messageType === SOCKET_EVENTS.QUEST_GREENBUILDING_QUIZ4_START ||
+				messageType === SOCKET_EVENTS.QUEST_CARBONFOOTPRINT_QUIZ1_START ||
+				messageType === SOCKET_EVENTS.QUEST_DASHBOARD_QUIZ2_START ||
+				// scene2
 				messageType === SOCKET_EVENTS.QUEST_RAINRECYCLE_QUIZ1_START ||
 				messageType === SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_START ||
 				messageType === SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ3_START ||
