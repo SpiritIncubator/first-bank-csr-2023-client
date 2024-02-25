@@ -348,15 +348,15 @@ const Scene1Question = () => {
 
 	// question group is ended
 	useEffect(() => {
-		if (currentPhaseInfo.question === SCENE1SITUATION.DASHBOARD && currentPhaseInfo.round === 9) {
+		if (currentPhaseInfo.question === SCENE1SITUATION.DASHBOARD && currentPhaseInfo.round === 9 && !questionStatus.dashboard) {
 			sendEvent({ messageType: SOCKET_EVENTS.DASHBOARD_END });
 		}
 
-		if (currentPhaseInfo.question === SCENE1SITUATION.GREEN_BUILDING && currentPhaseInfo.round === 10) {
+		if (currentPhaseInfo.question === SCENE1SITUATION.GREEN_BUILDING && currentPhaseInfo.round === 10 && !questionStatus.greenBuilding) {
 			sendEvent({ messageType: SOCKET_EVENTS.GREEN_BUILDING_END });
 		}
 
-		if (currentPhaseInfo.question === SCENE1SITUATION.CARBON_FOOTPRINT && currentPhaseInfo.round === 10) {
+		if (currentPhaseInfo.question === SCENE1SITUATION.CARBON_FOOTPRINT && currentPhaseInfo.round === 10 && !questionStatus.carbonFootprint) {
 			sendEvent({ messageType: SOCKET_EVENTS.CARBON_FOOTPRINT_END });
 		}
 	}, [currentPhaseInfo.question, currentPhaseInfo.round, questionStatus, sendEvent]);
@@ -403,8 +403,24 @@ const Scene1Question = () => {
 	}, [currentPhaseInfo.question, currentPhaseInfo.round, sendEvent]);
 
 	useEffect(() => {
-		receivedEvent(({ messageType }) => {});
-	}, [receivedEvent]);
+		receivedEvent(({ messageType }) => {
+			if (messageType === SOCKET_EVENTS.QUEST_GREENBUILDING_QUIZ1_END) {
+				stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
+			}
+
+			if (messageType === SOCKET_EVENTS.QUEST_GREENBUILDING_QUIZ4_END) {
+				stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
+			}
+
+			if (messageType === SOCKET_EVENTS.QUEST_DASHBOARD_QUIZ2_END) {
+				stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
+			}
+
+			if (messageType === SOCKET_EVENTS.QUEST_CARBONFOOTPRINT_QUIZ1_END) {
+				stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
+			}
+		});
+	}, [receivedEvent, stateAction]);
 
 	useEffect(() => {
 		let timerId: NodeJS.Timeout;

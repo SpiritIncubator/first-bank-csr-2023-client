@@ -323,19 +323,19 @@ const Scene2Question = () => {
 	useEffect(() => {
 		if (
 			currentPhaseInfo.question === SCENE2SITUATION.RAIN_RECYCLE &&
-			currentPhaseInfo.round === 9 && !questionStatus.rainRecycle
+			currentPhaseInfo.round === 8
 		) {
 			sendEvent({ messageType: SOCKET_EVENTS.RAIN_RECYCLE_END });
 		}
 
-		if (currentPhaseInfo.question === SCENE2SITUATION.AQUAPONICS && currentPhaseInfo.round === 10 && !questionStatus.aquaponics) {
+		if (currentPhaseInfo.question === SCENE2SITUATION.AQUAPONICS && currentPhaseInfo.round === 10) {
 			sendEvent({ messageType: SOCKET_EVENTS.AQUAPONICS_END });
 		}
 
-		if (currentPhaseInfo.question === SCENE2SITUATION.SOLAR_POWER && currentPhaseInfo.round === 8 && !questionStatus.solarPower) {
+		if (currentPhaseInfo.question === SCENE2SITUATION.SOLAR_POWER && currentPhaseInfo.round === 8 ) {
 			sendEvent({ messageType: SOCKET_EVENTS.SOLAR_POWER_END });
 		}
-	}, [currentPhaseInfo.question, currentPhaseInfo.round, sendEvent]);
+	}, [currentPhaseInfo.question, currentPhaseInfo.round, questionStatus.aquaponics, questionStatus.rainRecycle, questionStatus.solarPower, sendEvent]);
 
 	// In part of question is finished
 	useEffect(() => {
@@ -388,10 +388,6 @@ const Scene2Question = () => {
 			if (messageType === SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_END) {
 				stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
 			}
-
-			// if (messageType === SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ3_END) {
-			//   stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
-			// }
 
 			if (messageType === SOCKET_EVENTS.QUEST_SOLOARPOWER_QUIZ2_END) {
 				stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
@@ -582,6 +578,8 @@ const Scene2Question = () => {
 			}
 		});
 	}, [receivedEvent, stateAction]);
+
+	// useEffect(() => {}, []);
 
 	const phaseParams = getCurrentPhaseImg(currentPhaseInfo);
 
