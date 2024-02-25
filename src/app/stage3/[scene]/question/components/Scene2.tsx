@@ -601,7 +601,9 @@ const Scene2Question = () => {
 					left="50%"
 					zIndex={999}>
 					{phaseParams?.video && (
-						<video src={phaseParams?.video} type="video/webm" />
+						<video controls>
+							<source src={phaseParams?.video} type="video/webm" />
+						</video>
 					)}
 					{View}
 					{phaseParams?.bg && (
