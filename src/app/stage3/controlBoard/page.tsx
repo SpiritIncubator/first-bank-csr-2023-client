@@ -8,6 +8,7 @@ import Scene1QuestionList from './_components/Scene1QuestionList';
 import Scene2QuestionList from './_components/Scene2QuestionList';
 import QuestFinalPage from './_components/QuestFinalPage';
 import AnswerZone from './_components/AnswerZone';
+import { Scene } from './constants';
 import { ControlBoardContext } from '@/app/stage3/context/ControlBoardContext';
 
 import {
@@ -78,6 +79,15 @@ export default function ControlBoard() {
 		});
 	}, [receivedEvent]);
 
+	const onQuestFinish = () => {
+		console.log('questStatus.currentScene', questStatus.currentScene);
+		if (questStatus.currentScene === Scene.Scene2) {
+			setCurrentStep(STEPS.SCENE2_QUESTION_LIST);
+		} else if (questStatus.currentScene === Scene.Scene1) {
+			// setCurrentStep(STEPS.SCENE1_QUESTION_LIST);
+		}
+	};
+
 	const screens = {
 		[STEPS.START]: <Start onClickStart={onClickStart} />,
 		[STEPS.LOOK_AT_SCREEN]: <LookAtScreen />,
@@ -85,7 +95,9 @@ export default function ControlBoard() {
 		[STEPS.ANSWER_ZONE]: (
 			<AnswerZone currentQuizEvent={currentQuizStartEvent} onFinish={onAnswerFinish} />
 		),
-		[STEPS.FINAL]: <QuestFinalPage currentQuestEndEvent={currentQuestEndEvent} />,
+		[STEPS.FINAL]: (
+			<QuestFinalPage onFinish={onQuestFinish} currentQuestEndEvent={currentQuestEndEvent} />
+		),
 	};
 	return (
 		<Box
