@@ -323,19 +323,35 @@ const Scene2Question = () => {
 	useEffect(() => {
 		if (
 			currentPhaseInfo.question === SCENE2SITUATION.RAIN_RECYCLE &&
-			currentPhaseInfo.round === 8
+			currentPhaseInfo.round === 8 &&
+			!questionStatus.rainRecycle
 		) {
 			sendEvent({ messageType: SOCKET_EVENTS.RAIN_RECYCLE_END });
 		}
 
-		if (currentPhaseInfo.question === SCENE2SITUATION.AQUAPONICS && currentPhaseInfo.round === 10) {
+		if (
+			currentPhaseInfo.question === SCENE2SITUATION.AQUAPONICS &&
+			currentPhaseInfo.round === 10 &&
+			!questionStatus.aquaponics
+		) {
 			sendEvent({ messageType: SOCKET_EVENTS.AQUAPONICS_END });
 		}
 
-		if (currentPhaseInfo.question === SCENE2SITUATION.SOLAR_POWER && currentPhaseInfo.round === 8 ) {
+		if (
+			currentPhaseInfo.question === SCENE2SITUATION.SOLAR_POWER &&
+			currentPhaseInfo.round === 8 &&
+			!questionStatus.solarPower
+		) {
 			sendEvent({ messageType: SOCKET_EVENTS.SOLAR_POWER_END });
 		}
-	}, [currentPhaseInfo.question, currentPhaseInfo.round, questionStatus.aquaponics, questionStatus.rainRecycle, questionStatus.solarPower, sendEvent]);
+	}, [
+		currentPhaseInfo.question,
+		currentPhaseInfo.round,
+		questionStatus.aquaponics,
+		questionStatus.rainRecycle,
+		questionStatus.solarPower,
+		sendEvent,
+	]);
 
 	// In part of question is finished
 	useEffect(() => {

@@ -43,6 +43,15 @@ const Scene1Page = () => {
 
   useEffect(() => {
     receivedEvent(({ messageType }) => {
+      if (messageType === SOCKET_EVENTS) {
+        action.send({ type: 'GO_TO_SCENE2_START' });
+        router.push('/stage3/scene2');
+      }
+    });
+  })
+
+  useEffect(() => {
+    receivedEvent(({ messageType }) => {
       if (messageType === SOCKET_EVENTS.DASHBOARD_START) {
         action.send({ type: 'NEXT_TO_SCENE1_DASHBOARD' });
       }
