@@ -1,6 +1,7 @@
 'use client';
 import { useContext, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
+import { motion, AnimatePresence } from 'framer-motion';
 import Start from './_components/Start';
 import LookAtScreen from './_components/LookAtScreen';
 import { useSubscribe } from '@/app/hooks/useSubscribe';
@@ -133,7 +134,16 @@ export default function ControlBoard() {
 				transform: 'scale(0.5)',
 				transformOrigin: 'top left',
 			}}>
-			{screens[currentStep]}
+			<AnimatePresence>
+				<motion.div
+					key={currentStep} // Important for AnimatePresence to detect changes
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+					transition={{ duration: 0.5 }}>
+					{screens[currentStep]}
+				</motion.div>
+			</AnimatePresence>
 		</Box>
 	);
 }
