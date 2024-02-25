@@ -428,26 +428,17 @@ const Scene1Question = () => {
 		// MARK: - if I have to refactor 
 		// that and I will extra code block as function to reuse it
 		if (currentPhaseInfo.question === SCENE1SITUATION.GREEN_BUILDING) {
-			// if (currentPhaseInfo.round === 1) {
-			// 	timerId = setTimeout(() => {
-			// 		stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
-			// 	}, videoDuration);
-			// }
+			// animation
 			if (currentPhaseInfo.round === 2) {
 				timerId = setTimeout(() => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
-				}, DELAY_TIME);
+				}, videoDuration);
 			}
 			if (currentPhaseInfo.round === 3) {
 				timerId = setTimeout(() => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
 				}, DELAY_TIME);
 			}
-			// if (currentPhaseInfo.round === 4) {
-			// 	timerId = setTimeout(() => {
-			// 		stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
-			// 	}, DELAY_TIME);
-			// }
 			if (currentPhaseInfo.round === 5) {
 				timerId = setTimeout(() => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_6' });
@@ -458,16 +449,23 @@ const Scene1Question = () => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_7' });
 				}, DELAY_TIME);
 			}
+			// animation
 			if (currentPhaseInfo.round === 7) {
 				timerId = setTimeout(() => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_8' });
-				}, DELAY_TIME);
+				}, videoDuration);
 			}
-
+			// animation
 			if (currentPhaseInfo.round === 8) {
 				timerId = setTimeout(() => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_9' });
-				}, DELAY_TIME);
+				}, videoDuration);
+			}
+			// animation
+			if (currentPhaseInfo.round === 9) {
+				timerId = setTimeout(() => {
+					stateAction.send({ type: 'NEXT_TO_DIALOG_10' });
+				}, videoDuration);
 			}
 		}
 		if (currentPhaseInfo.question === SCENE1SITUATION.DASHBOARD) {
@@ -477,28 +475,22 @@ const Scene1Question = () => {
 				}, DELAY_TIME);
 			}
 
-			// if (currentPhaseInfo.round === 2) {
-			// 	timerId = setTimeout(() => {
-			// 		stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
-			// 	}, videoDuration);
-			// }
-
 			if (currentPhaseInfo.round === 3) {
 				timerId = setTimeout(() => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_4' });
 				}, DELAY_TIME);
 			}
-
+			// animation
 			if (currentPhaseInfo.round === 4) {
 				timerId = setTimeout(() => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
-				}, DELAY_TIME);
+				}, videoDuration);
 			}
-
+			// animation
 			if (currentPhaseInfo.round === 5) {
 				timerId = setTimeout(() => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_6' });
-				}, DELAY_TIME);
+				}, videoDuration);
 			}
 
 			if (currentPhaseInfo.round === 6) {
@@ -512,24 +504,19 @@ const Scene1Question = () => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_8' });
 				}, DELAY_TIME);
 			}
-
+			// animation
 			if (currentPhaseInfo.round === 8) {
 				timerId = setTimeout(() => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_9' });
-				}, DELAY_TIME);
+				}, videoDuration);
 			}
 		}
 		if (currentPhaseInfo.question === SCENE1SITUATION.CARBON_FOOTPRINT) {
-			// if (currentPhaseInfo.round === 1) {
-			// 	timerId = setTimeout(() => {
-			// 		stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
-			// 	}, videoDuration);
-			// }
-
+			// animation
 			if (currentPhaseInfo.round === 2) {
 				timerId = setTimeout(() => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
-				}, DELAY_TIME);
+				}, videoDuration);
 			}
 
 			if (currentPhaseInfo.round === 3) {
@@ -580,7 +567,7 @@ const Scene1Question = () => {
 		}
 	}, [currentPhaseInfo.question, currentPhaseInfo.round, stateAction, videoDuration]);
 
-	// redirect to next question
+	// here we go
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
 			if (messageType === SOCKET_EVENTS.DASHBOARD_START) {
@@ -596,6 +583,22 @@ const Scene1Question = () => {
 			}
 		});
 	}, [receivedEvent, stateAction]);
+
+	useEffect(() => {
+		receivedEvent(({messageType}) => {
+			if (messageType === SOCKET_EVENTS.DASHBOARD_RESTART) {
+				stateAction.send({ type: 'NEXT_TO_SCENE1_DASHBOARD' });
+			}
+
+			if (messageType === SOCKET_EVENTS.GREEN_BUILDING_RESTART) {
+				stateAction.send({ type: 'NEXT_TO_SCENE1_GREEN_BUILDING' });
+			}
+
+			if (messageType === SOCKET_EVENTS.CARBON_FOOTPRINT_RESTART) {
+				stateAction.send({ type: 'NEXT_TO_SCENE1_CARBON_FOOTPRINT' });
+			}
+		})
+	}, []);
 
 
 	const phaseParams = getCurrentPhaseImg(currentPhaseInfo);

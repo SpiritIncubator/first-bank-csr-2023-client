@@ -16,6 +16,7 @@ type TEvent =
 	| 'NEXT_TO_QUESTION2'
 	| 'NEXT_TO_QUESTION3'
 	| 'NEXT_TO_SCENE1_INTRODUCTION_PART_TWO'
+	| 'NEXT_TO_SCENE2_INTRODUCTION_PART_TWO'
 	| 'NEXT_TO_DIALOG_1'
 	| 'NEXT_TO_DIALOG_2'
 	| 'NEXT_TO_DIALOG_3'
@@ -458,7 +459,7 @@ export const conversationMachine = setup({
 										},
 									],
 									on: {
-										NEXT_TO_DIALOG_2: 'introDialog2',
+										NEXT_TO_SCENE2_INTRODUCTION_PART_TWO: 'introDialog2',
 									},
 								},
 								introDialog2: {

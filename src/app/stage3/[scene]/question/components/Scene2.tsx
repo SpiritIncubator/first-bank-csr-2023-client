@@ -369,10 +369,6 @@ const Scene2Question = () => {
 			sendEvent({ messageType: SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_START });
 		}
 
-		// if (currentPhaseInfo.question === SCENE1SITUATION.AQUAPONICS && currentPhaseInfo.round === 3) {
-		//   sendEvent({ messageType: SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ3_START });
-		// }
-
 		if (currentPhaseInfo.question === SCENE2SITUATION.SOLAR_POWER && currentPhaseInfo.round === 2) {
 			sendEvent({ messageType: SOCKET_EVENTS.QUEST_SOLOARPOWER_QUIZ2_START });
 		}
@@ -566,7 +562,6 @@ const Scene2Question = () => {
 
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
-			console.log(messageType, 'messageType');
 			if (messageType === SOCKET_EVENTS.SOLAR_POWER_RESTART) {
 				stateAction.send({ type: 'NEXT_TO_SCENE2_SOLAR_POWER' });
 			}
@@ -578,8 +573,6 @@ const Scene2Question = () => {
 			}
 		});
 	}, [receivedEvent, stateAction]);
-
-	// useEffect(() => {}, []);
 
 	const phaseParams = getCurrentPhaseImg(currentPhaseInfo);
 

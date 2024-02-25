@@ -15,29 +15,36 @@ import lionAnimationData from '../../animationData/leo_2-11_normal_smile1.json';
 import Scene2BgImg from '../../assets/scene2-bg.svg';
 import UnResolvedQuestion from '../../assets/unResolvedQuestion.svg'
 import DialogBg from '../../assets/dialogBox.svg'
-import Fake1Img from '../../assets/fake1.svg';
-import Fake2Img from '../../assets/fake2.svg';
+
+// import Fake1Img from '../../assets/fake1.svg';
+// import Fake2Img from '../../assets/fake2.svg';
 
 import rainCycleResolvedImg from '../../assets/question-rainRecycle.svg';
 import solarPowerResolvedImg from '../../assets/question-solarpower.svg';
 import aquaponicsResolvedImg from '../../assets/question-aquaponics.svg';
+import Scene2Introduction1 from '../../assets/scene2-introduction1.svg';
+import Scene2Introduction2 from '../../assets/scene2-introduction2.svg';
+
+const DELAY_SECONDS = 4000
 
 const Scene2Page = () => {
   const router = useRouter();
   const currentPhaseInfo = ConversationContext.useSelector(state => state.context.phase);
   const action = ConversationContext.useActorRef();
-  const isInitialDialog1 = currentPhaseInfo.round === 0 && currentPhaseInfo.level === 2;
   const [delayLoaded, setDelayLoaded] = useState(false);
   const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
   const { receivedEvent } = registerRoomHelper();
-  const {questionStatus} = useQuestion();
+  const { questionStatus } = useQuestion();
+  const isScene2InitialPhase = currentPhaseInfo.level === 2 && currentPhaseInfo.question === 'initial';
+  const isInitialDialog1 = currentPhaseInfo.round === 0 && isScene2InitialPhase;
+  const isDialog2 = currentPhaseInfo.round === 1 && isScene2InitialPhase;
 
   useEffect(() => {
     // TODO will receive
     if (isInitialDialog1) {
       setTimeout(() => {
-        action.send({ type: 'NEXT_TO_DIALOG_2' });
-      }, 2000);
+        action.send({ type: 'NEXT_TO_SCENE2_INTRODUCTION_PART_TWO' });
+      }, DELAY_SECONDS);
     }
   }, [isInitialDialog1, action]);
 
@@ -85,7 +92,7 @@ const Scene2Page = () => {
             <Lottie animationData={lionAnimationData} loop />
           </Box>
           <Box sx={{ transform: 'translateX(-50%)' }} position="absolute" bottom={0} left="50%">
-            <Image src={isInitialDialog1 ? Fake1Img : Fake2Img} alt="fake1" />
+            <Image src={isDialog2 ? Scene2Introduction2 : Scene2Introduction1} alt="fake1" />
           </Box>
         </FadeIn>
       )}
