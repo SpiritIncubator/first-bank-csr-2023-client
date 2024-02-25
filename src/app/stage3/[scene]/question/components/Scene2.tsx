@@ -75,6 +75,7 @@ type PhaseType = {
 	dialog: any;
 	bg?: any;
 	animation?: any;
+	video?: any
 };
 
 type AnimationOptions = {
@@ -176,7 +177,7 @@ const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
 		if (currentPhaseInfo.round === 1) {
 			return {
 				dialog: AquaonicsDialog1,
-				bg: AquaonicsBg1,
+				video: '/aquaponics-video.webm',
 			};
 		}
 		if (currentPhaseInfo.round === 2) {
@@ -599,6 +600,9 @@ const Scene2Question = () => {
 					top={0}
 					left="50%"
 					zIndex={999}>
+					{phaseParams?.video && (
+						<video src={phaseParams?.video} type="video/webm" />
+					)}
 					{View}
 					{phaseParams?.bg && (
 						<NextImage width={2560} src={phaseParams.bg} alt="Dialog1Bubble" priority={false} />

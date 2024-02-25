@@ -9,7 +9,6 @@ import { useRouter } from 'next/navigation';
 import type { PhaseValueType } from '@/app/stage3/xstate/conversationMachine';
 import { ConversationContext } from '@/app/stage3/layout';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
-// import bg from '@/app/stage3/assets/scene2-bg-without-border.svg';
 import bg from '@/app/stage3/assets/scene1-background.svg'
 import DialogBg from '@/app/stage3/assets/dialogBox.svg';
 import lionAnimationData from '@/app/stage3/animationData/leo_2-11_normal_smile1.json';
