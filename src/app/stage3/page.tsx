@@ -63,7 +63,7 @@ const ConversationPage = () => {
 				() => {
 					// TODO For testing scene2 animate operating behavior
 					stateAction.send({ type: 'NEXT_TO_SCENE2_INTRODUCTION' });
-					router.push('/stage3/scene2');
+					router.push('/stage3/scene1');
 					// send ready event for control board
 					sendEvent({ messageType: SOCKET_EVENTS.READY_FOR_QUEST });
 				},
