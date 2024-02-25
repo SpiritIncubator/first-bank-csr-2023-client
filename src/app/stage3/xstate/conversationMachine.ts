@@ -33,8 +33,8 @@ type TEvent =
 	| 'NEXT_TO_SCENE1_DASHBOARD'
 	| 'NEXT_TO_SCENE1_GREEN_BUILDING'
 	| 'NEXT_TO_SCENE1_CARBON_FOOTPRINT'
-	| 'REDIRECT_TO_SCENE1_START'
-	| 'REDIRECT_TO_SCENE2_START';
+	| 'GO_TO_SCENE1_START'
+	| 'GO_TO_SCENE2_START';
 
 type EventType = Record<'type', TEvent>;
 export type PhaseValueType = {
@@ -789,8 +789,8 @@ export const conversationMachine = setup({
 				NEXT_TO_SCENE2_RAIN_RECYCLE: '.scene2.rainRecycle',
 				NEXT_TO_SCENE2_SOLAR_POWER: '.scene2.solarPower',
 				NEXT_TO_SCENE2_AQUAONICS: '.scene2.aquaonics',
-				REDIRECT_TO_SCENE1_START: '.scene1.sceneIntroduction',
-				REDIRECT_TO_SCENE2_START: '.scene2.sceneIntroduction',
+				GO_TO_SCENE1_START: '.scene1.sceneIntroduction',
+				GO_TO_SCENE2_START: '.scene2.sceneIntroduction',
 				RESTART_SCENE1: '.scene1.sceneIntroduction.introDialog2',
 				RESTART_SCENE2: '.scene2.sceneIntroduction.introDialog2',
 			},
