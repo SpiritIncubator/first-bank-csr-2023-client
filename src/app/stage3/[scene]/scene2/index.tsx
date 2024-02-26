@@ -33,7 +33,7 @@ const Scene2Page = () => {
   const action = ConversationContext.useActorRef();
   const [delayLoaded, setDelayLoaded] = useState(false);
   const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
-  const { receivedEvent } = registerRoomHelper();
+  const { receivedEvent, sendEvent } = registerRoomHelper();
   const { questionStatus } = useQuestion();
   const isScene2InitialPhase = currentPhaseInfo.level === 2 && currentPhaseInfo.question === 'initial';
   const isInitialDialog1 = currentPhaseInfo.round === 0 && isScene2InitialPhase;
@@ -45,13 +45,14 @@ const Scene2Page = () => {
     if (isInitialDialog1) {
       timer = setTimeout(() => {
         action.send({ type: 'NEXT_TO_SCENE2_INTRODUCTION_PART_TWO' });
+        sendEvent({ messageType: SOCKET_EVENTS.READY_FOR_QUEST });
       }, DELAY_SECONDS);
     }
 
     return () => {
       clearTimeout(timer);
     }
-  }, [isInitialDialog1, action]);
+  }, [isInitialDialog1, action, sendEvent]);
 
   useEffect(() => {
     receivedEvent(({ messageType }) => {
