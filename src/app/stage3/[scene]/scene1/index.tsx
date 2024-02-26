@@ -28,7 +28,7 @@ const Scene1Page = () => {
   const action = ConversationContext.useActorRef();
   const [delayLoaded, setDelayLoaded] = useState(false);
   const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
-  const { receivedEvent } = registerRoomHelper();
+  const { receivedEvent, sendEvent } = registerRoomHelper();
   const { questionStatus } = useQuestion();
   const stateAction = ConversationContext.useActorRef();
   const isScene1InitialPhase = currentPhaseInfo.level === 1 && currentPhaseInfo.question === 'initial';
@@ -39,7 +39,7 @@ const Scene1Page = () => {
     if (isDialog2) {
       return Scene1Introduction2;
     }
-   
+
     if (isInitialDialog1) {
       return Scene1Introduction1;
     }
@@ -52,9 +52,10 @@ const Scene1Page = () => {
     if (isInitialDialog1) {
       setTimeout(() => {
         action.send({ type: 'NEXT_TO_SCENE1_INTRODUCTION_PART_TWO' });
+        sendEvent({ messageType: SOCKET_EVENTS.SCENE1_READY_FOR_QUEST });
       }, DELAY_SECONDS);
     }
-  }, [isInitialDialog1, action]);
+  }, [isInitialDialog1, action, sendEvent]);
 
   useEffect(() => {
     receivedEvent(({ messageType }) => {
@@ -128,9 +129,11 @@ const Scene1Page = () => {
       <FadeIn>
         <Image src={Scene1Bg} alt="scene1" priority />
       </FadeIn>
-      <Box position="absolute" right={0} bottom={-100} zIndex={999}>
-        <Lottie style={{ transform: 'scale(1.35)' }} animationData={lionAnimationData} loop />
-      </Box>
+      <FadeIn>
+        <Box position="absolute" right={0} bottom={-100} zIndex={999}>
+          <Lottie style={{ transform: 'scale(1.35)' }} animationData={lionAnimationData} loop />
+        </Box>
+      </FadeIn>
     </Box>
   )
 }
