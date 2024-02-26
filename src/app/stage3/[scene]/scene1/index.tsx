@@ -105,7 +105,7 @@ const Scene1Page = () => {
   }, [receivedEvent, router, stateAction]);
 
   return (
-    <Box>
+    <Box position="relative">
       {delayLoaded && (
         <FadeIn>
           <Box position="absolute" top={250} left={650}>
