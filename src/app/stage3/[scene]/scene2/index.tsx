@@ -45,7 +45,7 @@ const Scene2Page = () => {
     if (isInitialDialog1) {
       timer = setTimeout(() => {
         action.send({ type: 'NEXT_TO_SCENE2_INTRODUCTION_PART_TWO' });
-        sendEvent({ messageType: SOCKET_EVENTS.READY_FOR_QUEST });
+        sendEvent({ messageType: SOCKET_EVENTS.SCENE1_READY_FOR_QUEST });
       }, DELAY_SECONDS);
     }
 

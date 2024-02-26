@@ -52,7 +52,7 @@ const Scene1Page = () => {
     if (isInitialDialog1) {
       setTimeout(() => {
         action.send({ type: 'NEXT_TO_SCENE1_INTRODUCTION_PART_TWO' });
-        sendEvent({ messageType: SOCKET_EVENTS.READY_FOR_QUEST });
+        sendEvent({ messageType: SOCKET_EVENTS.SCENE1_READY_FOR_QUEST });
       }, DELAY_SECONDS);
     }
   }, [isInitialDialog1, action, sendEvent]);
@@ -129,9 +129,11 @@ const Scene1Page = () => {
       <FadeIn>
         <Image src={Scene1Bg} alt="scene1" priority />
       </FadeIn>
-      <Box position="absolute" right={0} bottom={-100} zIndex={999}>
-        <Lottie style={{ transform: 'scale(1.35)' }} animationData={lionAnimationData} loop />
-      </Box>
+      <FadeIn>
+        <Box position="absolute" right={0} bottom={-100} zIndex={999}>
+          <Lottie style={{ transform: 'scale(1.35)' }} animationData={lionAnimationData} loop />
+        </Box>
+      </FadeIn>
     </Box>
   )
 }
