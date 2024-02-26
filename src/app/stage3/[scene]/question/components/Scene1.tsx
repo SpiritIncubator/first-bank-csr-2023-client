@@ -16,6 +16,7 @@ import { STAGE3_ROOM } from '@/constants';
 import { SOCKET_EVENTS } from '@/app/stage3/constants';
 import { useQuestion } from '@/app/stage3/layout';
 import { useSubscribe } from '@/app/hooks/useSubscribe';
+import FadeInImage from '@/app/_components/Transitions/FadeInImage';
 
 // carbonFootprint
 import carbonFootprintDialog1 from '@/app/stage3/assets/carbonFootprint/carbonFooterprint-dialog1.svg';
@@ -57,8 +58,8 @@ import dashboardDialog6BubbleAnimation from '@/app/stage3/animationData/dashboar
 // greenBuilding
 import greenBuildingDialog1 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog1.svg';
 import greenBuildingDialog2 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog2.svg';
-import greenBuildingDialog3 from '@/app/stage3/assets/greenBuilding/greenBuilding-bubble3.png';
-import greenBuildingDialog4 from '@/app/stage3/assets/greenBuilding/greenBuilding-bubble4.png';
+import greenBuildingDialog3 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog3.svg';
+import greenBuildingDialog4 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog4.svg';
 import greenBuildingDialog5 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog5.svg';
 import greenBuildingDialog6 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog6.svg';
 import greenBuildingDialog7 from '@/app/stage3/assets/greenBuilding/greenBuilding-dialog7.svg';
@@ -318,6 +319,13 @@ const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
 				animation: greenBuildingBubble6Animation,
 			};
 		}
+
+		if (currentPhaseInfo.round === 10) {
+			return {
+				dialog: greenBuildingDialog10,
+				animation: greenBuildingBubble6Animation,
+			};
+		}
 	}
 
 	return {} as PhaseType;
@@ -411,12 +419,13 @@ const Scene1Question = () => {
 			if (messageType === SOCKET_EVENTS.QUEST_GREENBUILDING_QUIZ4_END) {
 				stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
 			}
-
+			console.log(messageType, 'messageTypemessageType')
 			if (messageType === SOCKET_EVENTS.QUEST_DASHBOARD_QUIZ2_END) {
 				stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
 			}
 
 			if (messageType === SOCKET_EVENTS.QUEST_CARBONFOOTPRINT_QUIZ1_END) {
+				console.log(123)
 				stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
 			}
 		});
@@ -453,6 +462,7 @@ const Scene1Question = () => {
 			if (currentPhaseInfo.round === 7) {
 				timerId = setTimeout(() => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_8' });
+					console.log('go to 8')
 				}, videoDuration);
 			}
 			// animation
@@ -598,16 +608,15 @@ const Scene1Question = () => {
 				stateAction.send({ type: 'NEXT_TO_SCENE1_CARBON_FOOTPRINT' });
 			}
 		})
-	}, []);
+	}, [receivedEvent, stateAction]);
 
 
 	const phaseParams = getCurrentPhaseImg(currentPhaseInfo);
 
 	return (
 		<Box position="relative" display="flex" justifyContent="center">
-			<FadeIn delay={0.5}>
-				<NextImage src={bg} alt="Unresolved Question" priority={true} />
-			</FadeIn>
+			{/* <FadeInImage src={bg} alt="Unresolved Question" priority={true} /> */}
+			<NextImage src={bg} alt="Unresolved Question" priority={true} />
 			<FadeIn delay={1.5}>
 				<Box sx={{ transform: 'translateX(-50%)' }} position="absolute" top={0} left="50%">
 					{View}
