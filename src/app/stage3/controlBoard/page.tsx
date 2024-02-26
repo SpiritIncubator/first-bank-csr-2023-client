@@ -102,9 +102,10 @@ export default function ControlBoard() {
 
 	const onFinishAllScene1Quest = () => {
 		sendEvent({ messageType: SOCKET_EVENTS.GO_TO_SCENE2 });
+		setCurrentStep(STEPS.SCENE2_QUESTION_LIST);
 	};
 
-	const onFinishScene2Quest = () => {
+	const onFinishAllScene2Quest = () => {
 		sendEvent({ messageType: SOCKET_EVENTS.RESTART });
 	};
 
@@ -115,7 +116,7 @@ export default function ControlBoard() {
 			<Scene1QuestionList finishQuest={onFinishAllScene1Quest} onChoose={onChooseQuest} />
 		),
 		[STEPS.SCENE2_QUESTION_LIST]: (
-			<Scene2QuestionList finishQuest={onFinishScene2Quest} onChoose={onChooseQuest} />
+			<Scene2QuestionList finishQuest={onFinishAllScene2Quest} onChoose={onChooseQuest} />
 		),
 		[STEPS.ANSWER_ZONE]: (
 			<AnswerZone currentQuizEvent={currentQuizStartEvent} onFinish={onAnswerFinish} />
