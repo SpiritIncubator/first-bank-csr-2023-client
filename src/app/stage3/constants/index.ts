@@ -48,7 +48,8 @@ import SolarPowerQuiz1Answer2Active from '@/app/stage3/assets/controlBoard/answe
 export const SOCKET_EVENTS = {
 	START: 'start',
 	RESTART: 'restart',
-	READY_FOR_QUEST: 'readyForQuest',
+	SCENE1_READY_FOR_QUEST: 'scene1ReadyForQuest',
+	SCENE2_READY_FOR_QUEST: 'scene2ReadyForQuest',
 	GO_TO_SCENE2: 'goToScene2',
 	// quest event 
 	RAIN_RECYCLE_RESTART: 'rainRecycle:restart',

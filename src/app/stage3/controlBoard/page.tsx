@@ -48,7 +48,7 @@ export default function ControlBoard() {
 
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
-			if (messageType === SOCKET_EVENTS.READY_FOR_QUEST) {
+			if (messageType === SOCKET_EVENTS.SCENE1_READY_FOR_QUEST) {
 				setCurrentStep(STEPS.SCENE1_QUESTION_LIST);
 			}
 

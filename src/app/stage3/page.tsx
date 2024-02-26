@@ -65,7 +65,7 @@ const ConversationPage = () => {
 					stateAction.send({ type: 'NEXT_TO_SCENE1_INTRODUCTION' });
 					router.push('/stage3/scene1');
 					// send ready event for control board
-					sendEvent({ messageType: SOCKET_EVENTS.READY_FOR_QUEST });
+					sendEvent({ messageType: SOCKET_EVENTS.SCENE1_READY_FOR_QUEST });
 				},
 				isOverLimitation ? transformToMillisecond : DEFAULT_SECOND,
 			);
