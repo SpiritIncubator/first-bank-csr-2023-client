@@ -40,11 +40,16 @@ const Scene2Page = () => {
   const isDialog2 = currentPhaseInfo.round === 1 && isScene2InitialPhase;
 
   useEffect(() => {
-    // TODO will receive
+    let timer: NodeJS.Timeout;
+
     if (isInitialDialog1) {
-      setTimeout(() => {
+      timer = setTimeout(() => {
         action.send({ type: 'NEXT_TO_SCENE2_INTRODUCTION_PART_TWO' });
       }, DELAY_SECONDS);
+    }
+
+    return () => {
+      clearTimeout(timer);
     }
   }, [isInitialDialog1, action]);
 
