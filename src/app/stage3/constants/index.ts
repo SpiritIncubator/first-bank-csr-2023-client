@@ -45,9 +45,6 @@ import SolarPowerQuiz1Answer1Active from '@/app/stage3/assets/controlBoard/answe
 import SolarPowerQuiz1Answer2 from '@/app/stage3/assets/controlBoard/answer/stage3_solarPower_quiz1_answer2.svg';
 import SolarPowerQuiz1Answer2Active from '@/app/stage3/assets/controlBoard/answer/stage3_solarPower_quiz1_answer2_active.svg';
 
-
-
-
 export const SOCKET_EVENTS = {
 	START: 'start',
 	RESTART: 'restart',

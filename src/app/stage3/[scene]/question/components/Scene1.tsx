@@ -433,7 +433,6 @@ const Scene1Question = () => {
 
 	useEffect(() => {
 		let timerId: NodeJS.Timeout;
-
 		// MARK: - if I have to refactor 
 		// that and I will extra code block as function to reuse it
 		if (currentPhaseInfo.question === SCENE1SITUATION.GREEN_BUILDING) {
@@ -577,6 +576,15 @@ const Scene1Question = () => {
 		}
 	}, [currentPhaseInfo.question, currentPhaseInfo.round, stateAction, videoDuration]);
 
+	// next to scene2
+	useEffect(() => {
+		receivedEvent(({ messageType }) => {
+			if (messageType === SOCKET_EVENTS.GO_TO_SCENE2) {
+				stateAction.send({ type: 'NEXT_TO_SCENE2_INTRODUCTION' });
+				router.push('/stage3/scene2');
+			}
+		});
+	}, [receivedEvent, router, stateAction]);
 	// here we go
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
