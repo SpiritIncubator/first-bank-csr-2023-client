@@ -16,22 +16,34 @@ import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import RainCycleOpen from '@/app/stage3/assets/controlBoard/stage3_question_rainRecycle_open.svg';
 import AquaponicsOpen from '@/app/stage3/assets/controlBoard/stage3_question_aquaponics_open.svg';
 import SolarPowerOpen from '@/app/stage3/assets/controlBoard/stage3_question_solarPower_open.svg';
+import GreenBuildingOpen from '@/app/stage3/assets/controlBoard/stage3_question_greenBuilding_open.svg';
+import CarbonFootprintOpen from '@/app/stage3/assets/controlBoard/stage3_question_carbonFootprint_open.svg';
+import DashboardOpen from '@/app/stage3/assets/controlBoard/stage3_question_dashboard_open.svg';
 
 const endEventImageMapping = {
 	[SOCKET_EVENTS.RAIN_RECYCLE_END]: RainCycleOpen,
 	[SOCKET_EVENTS.AQUAPONICS_END]: AquaponicsOpen,
 	[SOCKET_EVENTS.SOLAR_POWER_END]: SolarPowerOpen,
+	[SOCKET_EVENTS.GREEN_BUILDING_END]: GreenBuildingOpen,
+	[SOCKET_EVENTS.CARBON_FOOTPRINT_END]: CarbonFootprintOpen,
+	[SOCKET_EVENTS.DASHBOARD_END]: DashboardOpen,
 };
 
 const endEventFinishMapping = {
 	[SOCKET_EVENTS.RAIN_RECYCLE_END]: SOCKET_EVENTS.RAIN_RECYCLE_FINISH,
 	[SOCKET_EVENTS.AQUAPONICS_END]: SOCKET_EVENTS.AQUAPONICS_FINISH,
 	[SOCKET_EVENTS.SOLAR_POWER_END]: SOCKET_EVENTS.SOLAR_POWER_FINISH,
+	[SOCKET_EVENTS.GREEN_BUILDING_END]: SOCKET_EVENTS.GREEN_BUILDING_FINISH,
+	[SOCKET_EVENTS.CARBON_FOOTPRINT_END]: SOCKET_EVENTS.CARBON_FOOTPRINT_FINISH,
+	[SOCKET_EVENTS.DASHBOARD_END]: SOCKET_EVENTS.DASHBOARD_FINISH,
 };
 const restartEventFinishMapping = {
 	[SOCKET_EVENTS.RAIN_RECYCLE_END]: SOCKET_EVENTS.RAIN_RECYCLE_RESTART,
 	[SOCKET_EVENTS.AQUAPONICS_END]: SOCKET_EVENTS.AQUAPONICS_RESTART,
 	[SOCKET_EVENTS.SOLAR_POWER_END]: SOCKET_EVENTS.SOLAR_POWER_RESTART,
+	[SOCKET_EVENTS.GREEN_BUILDING_END]: SOCKET_EVENTS.GREEN_BUILDING_RESTART,
+	[SOCKET_EVENTS.CARBON_FOOTPRINT_END]: SOCKET_EVENTS.CARBON_FOOTPRINT_RESTART,
+	[SOCKET_EVENTS.DASHBOARD_END]: SOCKET_EVENTS.DASHBOARD_RESTART,
 };
 
 export default function QuestFinalPage({
