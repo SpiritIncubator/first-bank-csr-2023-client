@@ -10,6 +10,7 @@ import Scene2QuestionList from './_components/Scene2QuestionList';
 import QuestFinalPage from './_components/QuestFinalPage';
 import AnswerZone from './_components/AnswerZone';
 import { Scene } from './constants';
+import useSoundEffect from '@/app/stage3/hooks/useSoundEffects';
 import { ControlBoardContext } from '@/app/stage3/context/ControlBoardContext';
 
 import {
@@ -36,10 +37,12 @@ export default function ControlBoard() {
 	const [currentQuestEndEvent, setCurrentQuestEndEvent] = useState('');
 	const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
 	const { sendEvent, receivedEvent } = registerRoomHelper();
+	const { playStartGameOnce } = useSoundEffect();
 
 	const onClickStart = () => {
 		sendEvent({ messageType: SOCKET_EVENTS.START });
 		setCurrentStep(STEPS.LOOK_AT_SCREEN);
+		playStartGameOnce();
 	};
 
 	// const clearCurrentQuizEvent = () => {
@@ -50,6 +53,9 @@ export default function ControlBoard() {
 		receivedEvent(({ messageType }) => {
 			if (messageType === SOCKET_EVENTS.SCENE1_READY_FOR_QUEST) {
 				setCurrentStep(STEPS.SCENE1_QUESTION_LIST);
+			}
+			if (messageType === SOCKET_EVENTS.SCENE2_READY_FOR_QUEST) {
+				setCurrentStep(STEPS.SCENE2_QUESTION_LIST);
 			}
 
 			if (
