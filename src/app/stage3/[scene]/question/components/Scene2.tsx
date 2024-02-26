@@ -10,7 +10,6 @@ import { useSubscribe } from '@/app/hooks/useSubscribe';
 import type { PhaseValueType } from '@/app/stage3/xstate/conversationMachine';
 import { ConversationContext } from '@/app/stage3/layout';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
-import FadeInImage from '@/app/_components/Transitions/FadeInImage';
 import bg from '@/app/stage3/assets/scene2-bg-without-border.svg';
 import DialogBg from '@/app/stage3/assets/dialogBox.svg';
 import lionAnimationData from '@/app/stage3/animationData/leo_2-11_normal_smile1.json';
@@ -608,7 +607,9 @@ const Scene2Question = () => {
 
 	return (
 		<Box position="relative" display="flex" justifyContent="center">
-			<FadeInImage src={bg} alt="Unresolved Question" priority={true} />
+			<FadeIn delay={0.5}>
+				<NextImage src={bg} alt="Unresolved Question" />
+			</FadeIn>
 			<FadeIn delay={0.5}>
 				<Box
 					sx={{ transform: 'translateX(-50%)' }}
