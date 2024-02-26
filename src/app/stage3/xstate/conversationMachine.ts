@@ -466,7 +466,7 @@ export const conversationMachine = setup({
 									entry: [
 										{
 											type: 'setCurrentPhase',
-											params: { round: 1, level: 2, question: 'initial' },
+											params: { round: 0, level: 2, question: 'initial' },
 										},
 									],
 									on: {
@@ -477,7 +477,7 @@ export const conversationMachine = setup({
 									entry: [
 										{
 											type: 'setCurrentPhase',
-											params: { round: 2, level: 2, question: 'initial' },
+											params: { round: 1, level: 2, question: 'initial' },
 										},
 									],
 									on: {},

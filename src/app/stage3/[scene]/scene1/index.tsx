@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box'
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-
+import Lottie from 'lottie-react';
 import { SOCKET_EVENTS } from '@/app/stage3/constants';
 import { useSubscribe } from '@/app/hooks/useSubscribe';
 import { STAGE3_ROOM } from '@/constants'
@@ -18,6 +18,7 @@ import greenBuildingResolvedImg from '../../assets/question-greenBuilding.svg';
 import carbonFootprintResolvedImg from '../../assets/question-carbonFootprint.svg';
 import Scene1Introduction1 from '../../assets/scene1-introduction1.svg';
 import Scene1Introduction2 from '../../assets/scene1-introduction2.svg';
+import lionAnimationData from '@/app/stage3/animationData/leo_2-11_normal_smile1.json';
 
 const DELAY_SECONDS = 4000
 
@@ -33,6 +34,19 @@ const Scene1Page = () => {
   const isScene1InitialPhase = currentPhaseInfo.level === 1 && currentPhaseInfo.question === 'initial';
   const isInitialDialog1 = currentPhaseInfo.round === 0 && isScene1InitialPhase;
   const isDialog2 = currentPhaseInfo.round === 1 && isScene1InitialPhase;
+  
+  function getDialogImage() {
+    if (isDialog2) {
+      return Scene1Introduction2;
+    }
+   
+    if (isInitialDialog1) {
+      return Scene1Introduction1;
+    }
+  
+    return Scene1Introduction2;
+  }
+
 
   useEffect(() => {
     if (isInitialDialog1) {
@@ -91,7 +105,7 @@ const Scene1Page = () => {
   }, [receivedEvent, router, stateAction]);
 
   return (
-    <Box>
+    <Box position="relative">
       {delayLoaded && (
         <FadeIn>
           <Box position="absolute" top={250} left={650}>
@@ -107,13 +121,16 @@ const Scene1Page = () => {
             <Image src={DialogBg} alt="dialog" />
           </Box>
           <Box sx={{ transform: 'translateX(-50%)' }} position="absolute" bottom={0} left="50%">
-            <Image src={isDialog2 ? Scene1Introduction2 : Scene1Introduction1} alt="dialog" />
+            <Image src={getDialogImage()} alt="dialog" />
           </Box>
         </FadeIn>
       )}
       <FadeIn>
         <Image src={Scene1Bg} alt="scene1" priority />
       </FadeIn>
+      <Box position="absolute" right={0} bottom={-100} zIndex={999}>
+        <Lottie style={{ transform: 'scale(1.35)' }} animationData={lionAnimationData} loop />
+      </Box>
     </Box>
   )
 }
