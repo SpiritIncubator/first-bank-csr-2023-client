@@ -38,20 +38,34 @@ const ConversationPage = () => {
 	const { View, getDuration } = useLottie(options);
 	const videoDuration = getDuration() ?? 0;
 
-	useEffect(() => {
-		receivedEvent(({ messageType }) => {
-			if (messageType === SOCKET_EVENTS.START) {
-				// move position for testing
-				stateAction.send({ type: 'NEXT_TO_START_STAGE2' });
-			}
-		});
-	}, [stateAction, receivedEvent, sendEvent]);
+	// useEffect(() => {
+	// 	receivedEvent(({ messageType }) => {
+	// 		if (messageType === SOCKET_EVENTS.START) {
+	// 			// move position for testing
+	// 			stateAction.send({ type: 'NEXT_TO_START_STAGE2' });
+	// 		}
+	// 	});
+	// }, [stateAction, receivedEvent, sendEvent]);
 
 	useEffect(() => {
 		if (currentPhaseInfo.level === 0 && currentPhaseInfo.round === 2) {
 			setOptions(prevState => ({ ...prevState, animationData: progressingAnimation }));
 		}
 	}, [currentPhaseInfo.level, currentPhaseInfo.round]);
+
+	useEffect(() => {
+		let timer: NodeJS.Timeout;
+
+		if (currentPhaseInfo.level === 0 && currentPhaseInfo.round === 1) {
+			timer = setTimeout(() => {
+				stateAction.send({ type: 'NEXT_TO_START_STAGE2' });
+			}, 4000);
+		}
+
+		return () => {
+			clearTimeout(timer);
+		}
+	});
 
 	useEffect(() => {
 		let timeoutId: NodeJS.Timeout;

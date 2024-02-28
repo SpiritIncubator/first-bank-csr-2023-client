@@ -309,7 +309,7 @@ const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
 		if (currentPhaseInfo.round === 8) {
 			return {
 				dialog: greenBuildingDialog8,
-				animation: greenBuildingBubble6Animation,
+				animation: greenBuildingBubble5Animation,
 			};
 		}
 
@@ -419,13 +419,12 @@ const Scene1Question = () => {
 			if (messageType === SOCKET_EVENTS.QUEST_GREENBUILDING_QUIZ4_END) {
 				stateAction.send({ type: 'NEXT_TO_DIALOG_5' });
 			}
-			console.log(messageType, 'messageTypemessageType')
+
 			if (messageType === SOCKET_EVENTS.QUEST_DASHBOARD_QUIZ2_END) {
 				stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
 			}
 
 			if (messageType === SOCKET_EVENTS.QUEST_CARBONFOOTPRINT_QUIZ1_END) {
-				console.log(123)
 				stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
 			}
 		});
@@ -461,7 +460,6 @@ const Scene1Question = () => {
 			if (currentPhaseInfo.round === 7) {
 				timerId = setTimeout(() => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_8' });
-					console.log('go to 8')
 				}, videoDuration);
 			}
 			// animation
@@ -474,7 +472,7 @@ const Scene1Question = () => {
 			if (currentPhaseInfo.round === 9) {
 				timerId = setTimeout(() => {
 					stateAction.send({ type: 'NEXT_TO_DIALOG_10' });
-				}, videoDuration);
+				}, DELAY_TIME);
 			}
 		}
 		if (currentPhaseInfo.question === SCENE1SITUATION.DASHBOARD) {
@@ -574,7 +572,7 @@ const Scene1Question = () => {
 		return () => {
 			if (timerId) clearTimeout(timerId);
 		}
-	}, [currentPhaseInfo.question, currentPhaseInfo.round, stateAction, videoDuration]);
+	}, [currentPhaseInfo.question, currentPhaseInfo.round, stateAction, videoDuration, animation]);
 
 	// next to scene2
 	useEffect(() => {
