@@ -8,7 +8,7 @@ import LionImage from '@/app/stage4/_assets/stage4-lion.svg';
 import { NavBarWrapper, NavLinkItem } from './NavBar.style';
 import NavLink from './NavLink';
 import { useSearchParams } from 'next/navigation';
-import { navigationLinksConfig } from './spec';
+import { navigationLinksConfigEN,navigationLinksConfigZH } from './spec';
 import { LinkType } from './types';
 import HomeImageButton from './assets/stage4_nav_home.svg'
 import HomeImageActiveButton from './assets/stage4_nav_home_active.svg'
@@ -17,6 +17,8 @@ import ZoomBounce from '@/app/_components/Transitions/ZoomBounce';
 import FadeInVertical from '@/app/_components/Transitions/FadeInVertical';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import useTriggerDialogAnimation from '../../hooks/useTriggerDialogAnimation';
+import { useTranslation } from '@/app/_locales/hooks/useTranslation';
+import { LANGUAGE_TYPE } from '@/types';
 
 
 const customPath = ['/stage4']
@@ -27,9 +29,12 @@ type NavBarProps = {
 
 const NavBar = ({ dialogContent: DialogContent }: NavBarProps) => {
   const searchParams = useSearchParams();
+  const { i18n } = useTranslation();
+  const isEN = i18n.language === LANGUAGE_TYPE.EN;
   const disableDialogAnimation = searchParams.get('disableDialogAnimation');
 
-
+  const navigationLinksConfig = isEN ? navigationLinksConfigEN : navigationLinksConfigZH;
+  
   const { triggerAnimation } = useTriggerDialogAnimation({
     disabled: Boolean(disableDialogAnimation),
     delay: 100,
@@ -52,7 +57,8 @@ const NavBar = ({ dialogContent: DialogContent }: NavBarProps) => {
 
   function renderLink(params: LinkType) {
     if (customPath.includes(params.path)) return getHomePageButton(params);
-
+  
+    
     return (
       <NavLink href={params.path} key={params.path}>
         <NavLinkItem
