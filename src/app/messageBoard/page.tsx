@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Box from '@mui/material/Box';
 import styled from '@mui/material/styles/styled';
@@ -24,9 +24,25 @@ const StyledBox = styled(Box)`
 `;
 
 const Page = () => {
+	const [currentAnimation, setCurrentAnimation] = useState<any>(LionWriteAnimation);
+	const [isInitialLoad, setIsInitialLoad] = useState(true);
 	const { messages, loaded } = useMessageBoard();
-	console.log('messages :', messages);
+	const messageLength = useRef(messages.length);
+
 	const { containerRef, value, handleChangeBarOfValue } = useScrollBar({ loaded });
+
+	useEffect(() => {
+		if (isInitialLoad) {
+			setIsInitialLoad(false);
+		} else if (messages.length > messageLength.current) {
+			setCurrentAnimation(LionBirdIn);
+		}
+		messageLength.current = messages.length;
+	}, [messages.length, isInitialLoad]);
+
+	const handleAnimationComplete = () => {
+		setCurrentAnimation(LionWriteAnimation);
+	};
 
 	return (
 		<Box
@@ -36,8 +52,16 @@ const Page = () => {
 			px={23.75}
 			pt={15}
 			bgcolor={colors.ivory}>
-			<Lottie animationData={LionBirdIn} style={{ width: '100%', height: 'auto' }} />
-			<Box mt={9}>
+			<Box width={1539} height={1000} overflow="hidden" position="relative">
+				<Box position="absolute" top="50%" left="50%" sx={{ transform: 'translate(-50%, -50%)' }}>
+					<Lottie
+						animationData={currentAnimation}
+						style={{ width: '1739px', height: 'auto' }}
+						onLoopComplete={handleAnimationComplete}
+					/>
+				</Box>
+			</Box>
+			<Box mt={9} mb="60px">
 				<Image src={title} alt="title" />
 			</Box>
 			<Box position="relative" width="100%">
@@ -46,6 +70,7 @@ const Page = () => {
 					flexWrap="wrap"
 					gap={7.5}
 					mt={5}
+					pb="100px"
 					maxHeight={2240}
 					overflow="auto"
 					ref={containerRef}>

@@ -9,7 +9,7 @@ export type MessageCardType = {
 }
 
 const url = 'https://firstcommercialbank-9ac085739969.herokuapp.com/api/v1/messageBoard/messages';
-const mock_url = 'http://localhost:3030/api/v1/messageBoard/messages';
+// const mock_url = 'http://localhost:3030/api/v1/messageBoard/messages';
 
 const useMessageBoard = () => {
   const [messages, setMessages] = useState<MessageCardType[]>([]);
@@ -18,22 +18,22 @@ const useMessageBoard = () => {
   useEffect(() => {
     const fetchMessages = () => {
       fetch(url)
-				.then(res => res.json())
-				.then(data => {
-					const sortedKeepTopMessages = data
-						.filter((message: MessageCardType) => !!message.keepTop)
-						.sort((a: MessageCardType, b: MessageCardType) => {
-							return a.keepTop === b.keepTop ? 0 : a.keepTop ? -1 : 1;
-						});
+        .then(res => res.json())
+        .then(data => {
+          const sortedKeepTopMessages = data
+            .filter((message: MessageCardType) => !!message.keepTop)
+            .sort((a: MessageCardType, b: MessageCardType) => {
+              return a.keepTop === b.keepTop ? 0 : a.keepTop ? -1 : 1;
+            });
 
-					const nonKeepTopMessages = data.filter((message: MessageCardType) => !message.keepTop);
-					const sortedNonKeepTopMessages = nonKeepTopMessages.reverse();
-					setMessages([...sortedKeepTopMessages, ...sortedNonKeepTopMessages]);
-					setLoaded(true);
-				})
-				.catch(error => {
-					console.error('Error fetching messages:', error);
-				});
+          const nonKeepTopMessages = data.filter((message: MessageCardType) => !message.keepTop);
+          const sortedNonKeepTopMessages = nonKeepTopMessages.reverse();
+          setMessages([...sortedKeepTopMessages, ...sortedNonKeepTopMessages]);
+          setLoaded(true);
+        })
+        .catch(error => {
+          console.error('Error fetching messages:', error);
+        });
     };
 
     fetchMessages();
