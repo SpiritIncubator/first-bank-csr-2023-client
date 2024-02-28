@@ -44,7 +44,7 @@ export default function ConfirmModal({ open, onClose, onConfirm, message }: {
         }
       }}
     >
-      <ZoomBounce trigger={open} width="100%" display="flex">
+      <ZoomBounce trigger={open} width="100%" display="flex" justifyContent="center">
         <Box sx={modalBodyStyle}>
           <Box
             sx={{
