@@ -43,11 +43,11 @@ export default function SendMessage() {
 			return;
 		}
 		if (message.length < 10) {
-			setErrorMessage('請輸入最少十個字');
+			setErrorMessage('請輸入最少10個字');
 			return;
 		}
 		if (message.length > 50) {
-			setErrorMessage('請輸入最多五十個字');
+			setErrorMessage('請輸入最多50個字');
 			return;
 		}
 		setReadyToSubmit(true);
@@ -234,6 +234,7 @@ export default function SendMessage() {
 									placeholder="請寫下你會如何在生活中實踐永續，或是今天的觀展心得吧！       （字數限制50字）"
 									className="textarea-base"
 									rows={4}
+									maxLength={50}
 									onChange={e => setMessage(e.target.value)}
 								/>
 								<Box
@@ -246,6 +247,7 @@ export default function SendMessage() {
 										marginBottom: '10px',
 										marginTop: '30px',
 										display: 'flex',
+										justifyContent: 'center',
 									}}>
 									<Image
 										width="107"
@@ -287,7 +289,7 @@ export default function SendMessage() {
 						</FadeInOnView>
 
 						{errorMessage && (
-							<ErrorModal message={errorMessage} open={!!errorMessage} onConfirm={onConfirmError} />
+						<ErrorModal message={errorMessage} open={!!errorMessage} onConfirm={onConfirmError} />
 						)}
 					</Container>
 				</>
