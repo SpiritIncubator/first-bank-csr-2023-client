@@ -31,7 +31,7 @@ export default function Page1() {
 
   const MemorizedImage = useCallback(() => {
     return <Image src={isEN ? Stage4ScrollEN:Stage4ScrollZH } alt="dialog" />
-  }, []);
+  }, [isEN]);
 
   return (
     <Box px="210px" py="132px" mr="auto" mb="320px" position="relative" ref={containerRef} height={2160} overflow="scroll">
@@ -56,6 +56,9 @@ export default function Page1() {
           
       </Box>
       <NavBar dialogContent={MemorizedImage} />
+      <Box position="fixed" right={163} top={378} height={600}>
+        <ScrollBar value={value} onHandleScrollBar={handleChangeBarOfValue} />
+      </Box>
     </Box >
   )
 }
