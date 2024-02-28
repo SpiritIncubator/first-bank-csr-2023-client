@@ -131,7 +131,7 @@ export default function Stage4() {
 			<FadeIn position="absolute" right={100} bottom="-50px">
 				<Image src={LionImage} alt="Lion" width={880} height={1100} />
 			</FadeIn>
-			<FadeIn position="absolute" top={230} right={894} sx={{ transform: 'rotate(-10deg)' }}>
+			<FadeIn position="absolute" top={230} right={894} transform='rotate(-10deg)' >
 				<Image src={BirdImage} alt="Bird" width={377} height={308} />
 			</FadeIn>
 			<FadeIn position="absolute" top={664} right={300}>
