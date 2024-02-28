@@ -113,6 +113,7 @@ export default function ControlBoard() {
 
 	const onFinishAllScene2Quest = () => {
 		sendEvent({ messageType: SOCKET_EVENTS.RESTART });
+		window.location.reload();
 	};
 
 	const screens = {
