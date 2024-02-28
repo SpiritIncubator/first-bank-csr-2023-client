@@ -5,8 +5,10 @@ import Box from '@mui/material/Box';
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import ZoomBounce from '@/app/_components/Transitions/ZoomBounce';
 import color from '@/constants/colors';
+import Bird_1_1_Front from '@/lottieAnimations/bird_1-1_front.json';
+import Lottie from 'lottie-react';
 
-const CHAR_ERROR_MESSAGE = '請輸入最少10個字'
+const CHAR_ERROR_MESSAGE = '請輸入最少10個字';
 
 export default function ConfirmModal({
 	open,
@@ -51,7 +53,7 @@ export default function ConfirmModal({
 			}}>
 			<ZoomBounce trigger={open} width="100%" display="flex" justifyContent="center">
 				<Box sx={modalBodyStyle}>
-					<Box
+					{/* <Box
 						sx={{
 							width: '108px',
 							height: '83px',
@@ -61,22 +63,36 @@ export default function ConfirmModal({
 							marginBottom: '14px',
 						}}>
 						<Image fill src="/assets/sendMessage_confirm_bird.svg" alt="bird" />
+					</Box> */}
+					<Box width="168px" height="168px" position="relative" margin="0 auto">
+						<Lottie
+							animationData={Bird_1_1_Front}
+							style={{
+								position: 'absolute',
+								top: '50%',
+								left: '50%',
+								transform: 'translate(-50%, -50%)',
+								width: '100%',
+							}}
+						/>
 					</Box>
 					<Box sx={{ textAlign: 'center', letterSpacing: '1.28px' }}>{message}</Box>
-					{message ===CHAR_ERROR_MESSAGE && <Box
-						sx={{
-							width: '200px',
-							height: '30px',
-							margin: '0 auto',
-							overflow: 'hidden',
-							position: 'relative',
-						}}>
-						<Image
-							src="/assets/stage5_enter_at_least_10_characters.svg"
-							alt="stage5_enter_at_least_10_characters"
-							fill
-						/>
-					</Box>}
+					{message === CHAR_ERROR_MESSAGE && (
+						<Box
+							sx={{
+								width: '200px',
+								height: '30px',
+								margin: '0 auto',
+								overflow: 'hidden',
+								position: 'relative',
+							}}>
+							<Image
+								src="/assets/stage5_enter_at_least_10_characters.svg"
+								alt="stage5_enter_at_least_10_characters"
+								fill
+							/>
+						</Box>
+					)}
 
 					<ImageButton
 						onClick={onConfirm}

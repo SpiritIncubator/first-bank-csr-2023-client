@@ -11,7 +11,7 @@ import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import { createMessage } from '@/api/index';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import Lottie from 'lottie-react';
-import Bird1_3Animation from '@/lottieAnimations/bird_1-3_side_loop.json';
+import Bird1_2InNote from '@/lottieAnimations/bird_1-2_front_ pencil_note.json';
 import FadeInOnView from '@/app/_components/Transitions/FadeInOnView';
 import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 
@@ -108,7 +108,7 @@ export default function SendMessage() {
 									position: 'relative',
 									marginBottom: '16px',
 								}}>
-								<Lottie animationData={Bird1_3Animation} loop={true} />
+								<Lottie animationData={Bird1_2InNote} loop={true} />
 							</Box>
 						</FadeIn>
 						<FadeIn>
