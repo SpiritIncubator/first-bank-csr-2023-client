@@ -7,48 +7,65 @@ import LionImage from '@/app/stage4/_assets/stage4-lion.svg';
 import BirdImage from '@/app/stage4/_assets/stage4-bird.svg';
 import Image from 'next/image';
 import TITLE_IMAGE from './_assets/stage4-home-title.svg';
-import PAGE1_IMAGE from './_assets/stage4-page1.svg';
-import PAGE2_IMAGE from './_assets/stage4-page2.svg';
-import PAGE3_IMAGE from './_assets/stage4-page3.svg';
-import PAGE4_IMAGE from './_assets/stage4-page4.svg';
-import DialogImg from './_assets/stage4-dialog.svg';
+import PAGE1_IMAGE_EN from './_assets/stage4-thumbnail-page1-en.svg';
+import PAGE1_IMAGE_ZH from './_assets/stage4-thumbnail-page1-zh.svg';
+import PAGE2_IMAGE_EN from './_assets/stage4-thumbnail-page2-en.svg';
+import PAGE2_IMAGE_ZH from './_assets/stage4-thumbnail-page2-zh.svg';
+import PAGE3_IMAGE_EN from './_assets/stage4-thumbnail-page3-en.svg';
+import PAGE3_IMAGE_ZH from './_assets/stage4-thumbnail-page3-zh.svg';
+import PAGE4_IMAGE_EN from './_assets/stage4-thumbnail-page4-en.svg';
+import PAGE4_IMAGE_ZH from './_assets/stage4-thumbnail-page4-zh.svg';
+
+import DialogEN from './_assets/stage4-lion-seeMore-en.svg';
+import DialogZH from './_assets/stage4-lion-seeMore-zh.svg';
+
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import I18nButton from '@/app/_components/I18nButton/I18nButton';
 import { useTranslation } from 'react-i18next';
-import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 
-const PAGE_DATA = [
+const PAGE_DATA_EN = [
 	{
-		title: 'title_page1',
-		imageUrl: PAGE1_IMAGE,
-		description: `支持能源技術服務產業簡稱發展，節電、節水。`,
+		imageUrl: PAGE1_IMAGE_EN,
 		link: '/stage4/page1',
 	},
 	{
-		title: 'title_page2',
-		imageUrl: PAGE2_IMAGE,
-		description: `支持能源技術服務產業簡稱發展，節電、節水。`,
+		imageUrl: PAGE2_IMAGE_EN,
 		link: '/stage4/page2',
 	},
 	{
-		title: 'title_page3',
-		imageUrl: PAGE3_IMAGE,
-		description: `支持能源技術服務產業簡稱發展，節電、節水。`,
+		imageUrl: PAGE3_IMAGE_EN,
 		link: '/stage4/page3',
 	},
 	{
-		title: 'title_page4',
-		imageUrl: PAGE4_IMAGE,
-		description: `支持能源技術服務產業簡稱發展，節電、節水。`,
+		imageUrl: PAGE4_IMAGE_EN,
 		link: '/stage4/page4',
 	},
 ];
 
+const PAGE_DATA_ZH = [
+	{
+		imageUrl: PAGE1_IMAGE_ZH,
+		link: '/stage4/page1',
+	},
+	{
+		imageUrl: PAGE2_IMAGE_ZH,
+		link: '/stage4/page2',
+	},
+	{
+		imageUrl: PAGE3_IMAGE_ZH,
+		link: '/stage4/page3',
+	},
+	{
+		imageUrl: PAGE4_IMAGE_ZH,
+		link: '/stage4/page4',
+	},
+];
 export default function Stage4() {
 	const { t, i18n } = useTranslation('stage4');
 	console.log('i18n :');
 	const isEN = i18n.language === LANGUAGE_TYPE.EN;
 
+	const PAGE_DATA = isEN ? PAGE_DATA_EN : PAGE_DATA_ZH;
 	return (
 		<Box py="150px" px="230px">
 			<FadeIn>
@@ -81,7 +98,7 @@ export default function Stage4() {
 
 			<Grid container spacing="120px" sx={{ width: '100%', maxWidth: '2536px', p: 2 }}>
 				{PAGE_DATA.map((pageData, index) => {
-					const { title, description, imageUrl, link } = pageData;
+					const { imageUrl, link } = pageData;
 					return (
 						<Grid
 							key={index}
@@ -95,32 +112,7 @@ export default function Stage4() {
 							<FadeIn delay={0.3 + index * 0.2}>
 								<Link href={link}>
 									<Box display="flex" justifyContent="center" width="100%" mb="40px">
-										<Image src={imageUrl} width="420" height="420" alt="page image" />
-									</Box>
-									<Paper
-										elevation={0}
-										sx={{
-											bgcolor: 'darkgrey',
-											width: '500px',
-											height: '160px',
-											padding: '20px',
-											mb: '40px',
-										}}>
-										<Typography variant="body1" color="white">
-											{title}
-										</Typography>
-									</Paper>
-									<Box
-										sx={{
-											color: 'var(--brown4, #594A39)',
-											width: '500px',
-											fontSize: '46px',
-											fontStyle: 'normal',
-											fontWeight: 500,
-											lineHeight: '160%',
-											letterSpacing: '3.68px',
-										}}>
-										{description}
+										<Image src={imageUrl} width="500" height="847" alt="page image" />
 									</Box>
 								</Link>
 							</FadeIn>
@@ -131,11 +123,11 @@ export default function Stage4() {
 			<FadeIn position="absolute" right={100} bottom="-50px">
 				<Image src={LionImage} alt="Lion" width={880} height={1100} />
 			</FadeIn>
-			<FadeIn position="absolute" top={230} right={894} transform='rotate(-10deg)' >
+			<FadeIn position="absolute" top={230} right={894} transform="rotate(-10deg)">
 				<Image src={BirdImage} alt="Bird" width={377} height={308} />
 			</FadeIn>
 			<FadeIn position="absolute" top={664} right={300}>
-				<Image src={DialogImg} alt="Bird" width={660} height={440} />
+				<Image src={isEN ? DialogEN : DialogZH} alt="Bird" width={660} height={440} />
 			</FadeIn>
 			<FadeIn position="fixed" right="200px" top="180px">
 				<I18nButton size="large" />

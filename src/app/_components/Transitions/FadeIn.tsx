@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import React, { ReactNode, CSSProperties } from 'react';
 
+
 type FadeInProps = {
   children: ReactNode;
   delay?: number;
-} & React.CSSProperties;
+} & React.CSSProperties ;
 
 const FadeIn: React.FC<FadeInProps> = ({ children, delay = 0, ...styles }) => {
   return (
