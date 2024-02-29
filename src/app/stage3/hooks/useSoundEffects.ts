@@ -14,6 +14,9 @@ const useSoundEffect = () => {
   const loopPlayBackgroundScene2 = () => {
     load(`${basePath}/background_scene2.mp3`, { loop: true, autoplay: true });
   };
+  const loopPlayStartView = () => {
+    return load(`${basePath}/background_start.mp3`, { loop: true, autoplay: true });
+  };
 
   // 播放一次性音效
   const playSoundOnce = (src: string) => {
@@ -29,6 +32,7 @@ const useSoundEffect = () => {
   const playWrongAnswerOnce = () => playSoundOnce("wrong_answer.mp3");
 
   return {
+    loopPlayStartView,
     loopPlayBackgroundScene1,
     loopPlayBackgroundScene2,
     playButtonOnce,
