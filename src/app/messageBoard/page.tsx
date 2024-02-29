@@ -49,7 +49,7 @@ const Page = () => {
 			display="flex"
 			flexDirection="column"
 			alignItems="center"
-			px={23.75}
+			px="150px"
 			pt={15}
 			bgcolor={colors.ivory}>
 			<Box width={1539} height={1000} overflow="hidden" position="relative">
@@ -68,6 +68,7 @@ const Page = () => {
 				<StyledBox
 					display="flex"
 					flexWrap="wrap"
+					justifyContent="center"
 					gap={7.5}
 					mt={5}
 					pb="100px"

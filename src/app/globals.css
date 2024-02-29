@@ -8,6 +8,12 @@ body {
   margin:0;
   color: #594A39;
   font-family: "Noto Sans TC";
+  overflow-y: scroll; /* 为了跨浏览器一致性 */
+  scrollbar-width: none; /* 对于Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none; 
 }
 
  *, *:before, *:after {
