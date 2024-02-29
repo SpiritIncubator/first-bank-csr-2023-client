@@ -76,6 +76,18 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, defaultColor }
           alt="colorPicker_select_color"
           fill />
       </Box>
+      <Box sx={{
+        width: "278px",
+        height: "30px",
+        margin: '0 auto',
+        overflow: 'hidden',
+        position: 'relative',
+      }}>
+        <Image
+          src="/assets/stage5_choose_color.svg"
+          alt="stage5_choose_color"
+          fill />
+      </Box>
     </>
   );
 };

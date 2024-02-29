@@ -11,7 +11,7 @@ import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import { createMessage } from '@/api/index';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import Lottie from 'lottie-react';
-import Bird1_3Animation from '@/lottieAnimations/bird_1-3_side_loop.json';
+import Bird1_2InNote from '@/lottieAnimations/bird_1-2_front_ pencil_note.json';
 import FadeInOnView from '@/app/_components/Transitions/FadeInOnView';
 import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 
@@ -43,11 +43,11 @@ export default function SendMessage() {
 			return;
 		}
 		if (message.length < 10) {
-			setErrorMessage('請輸入最少十個字');
+			setErrorMessage('請輸入最少10個字');
 			return;
 		}
 		if (message.length > 50) {
-			setErrorMessage('請輸入最多五十個字');
+			setErrorMessage('請輸入最多50個字');
 			return;
 		}
 		setReadyToSubmit(true);
@@ -108,7 +108,7 @@ export default function SendMessage() {
 									position: 'relative',
 									marginBottom: '16px',
 								}}>
-								<Lottie animationData={Bird1_3Animation} loop={true} />
+								<Lottie animationData={Bird1_2InNote} loop={true} />
 							</Box>
 						</FadeIn>
 						<FadeIn>
@@ -234,6 +234,7 @@ export default function SendMessage() {
 									placeholder="請寫下你會如何在生活中實踐永續，或是今天的觀展心得吧！       （字數限制50字）"
 									className="textarea-base"
 									rows={4}
+									maxLength={50}
 									onChange={e => setMessage(e.target.value)}
 								/>
 								<Box
@@ -246,6 +247,7 @@ export default function SendMessage() {
 										marginBottom: '10px',
 										marginTop: '30px',
 										display: 'flex',
+										justifyContent: 'center',
 									}}>
 									<Image
 										width="107"
@@ -287,7 +289,7 @@ export default function SendMessage() {
 						</FadeInOnView>
 
 						{errorMessage && (
-							<ErrorModal message={errorMessage} open={!!errorMessage} onConfirm={onConfirmError} />
+						<ErrorModal message={errorMessage} open={!!errorMessage} onConfirm={onConfirmError} />
 						)}
 					</Container>
 				</>

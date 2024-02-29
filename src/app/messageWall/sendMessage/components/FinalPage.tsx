@@ -30,6 +30,15 @@ const FinalPage: React.FC = () => {
             height={76}
           />
         </Box>
+        <Box sx={{ mx:'auto' }} textAlign="center">
+          <Image
+            src="/assets/stage5_thank_you.svg"
+            alt="A bird with books"
+            width={108}
+            height={46}
+          />
+        </Box>
+        
       </FadeIn>
 
     </Box>

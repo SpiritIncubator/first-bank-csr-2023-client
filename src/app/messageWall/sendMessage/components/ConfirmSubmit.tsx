@@ -6,6 +6,8 @@ import colors from '@/constants/colors';
 import Paper from '@mui/material/Paper';
 import ZoomBounce from '@/app/_components/Transitions/ZoomBounce';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
+import Bird_1_1_Front from '@/lottieAnimations/bird_1-1_front.json'
+import Lottie from 'lottie-react';
 
 export default function ConfirmSubmit({
   message,
@@ -81,20 +83,16 @@ export default function ConfirmSubmit({
           </Typography>
         </Paper>
       </ZoomBounce>
-      <FadeIn delay={0.4}>
-        <Box
-          sx={{
-            width: "108px",
-            height: "83px",
-            margin: '0 auto',
-            overflow: 'hidden',
-            position: 'relative',
-            marginBottom: '14px'
-          }}>
-          <Image
-            fill
-            src="/assets/sendMessage_confirm_bird.svg"
-            alt="bird" />
+      <FadeIn delay={0.4} display='flex' flexDirection='column' alignItems="center">
+        <Box width="168px" height="168px" position="relative">
+
+        <Lottie animationData={Bird_1_1_Front} style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '100%',
+        }}/>
         </Box>
         <Box
           sx={{
