@@ -40,14 +40,14 @@ const ConversationPage = () => {
 	const { View, getDuration } = useLottie(options);
 	const videoDuration = getDuration() ?? 0;
 
-	// useEffect(() => {
-	// 	receivedEvent(({ messageType }) => {
-	// 		if (messageType === SOCKET_EVENTS.START) {
-	// 			// move position for testing
-	// 			stateAction.send({ type: 'NEXT_TO_START_STAGE2' });
-	// 		}
-	// 	});
-	// }, [stateAction, receivedEvent, sendEvent]);
+	useEffect(() => {
+		receivedEvent(({ messageType }) => {
+			if (messageType === SOCKET_EVENTS.START) {
+				// move position for testing
+				stateAction.send({ type: 'NEXT_TO_START_STAGE2' });
+			}
+		});
+	}, [stateAction, receivedEvent, sendEvent]);
 
 	useEffect(() => {
 		const load = loopPlayStartView();
