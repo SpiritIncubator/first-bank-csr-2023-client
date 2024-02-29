@@ -162,7 +162,8 @@ export const quizEventAnswerMapping: QuizEventAnswerMapping = {
 		mainImage: RainCycleOpen,
 	},
 	[SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_START]: {
-		answer: 0,
+		// 2 means both are correct
+		answer: 2,
 		finishEvent: SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ1_END,
 		optionLeftImage: AquaponicsQuiz1Answer1,
 		optionLeftImageActive: AquaponicsQuiz1Answer1Active,
@@ -171,7 +172,7 @@ export const quizEventAnswerMapping: QuizEventAnswerMapping = {
 		mainImage: AquaponicsOpen,
 	},
 	[SOCKET_EVENTS.QUEST_SOLOARPOWER_QUIZ2_START]: {
-		answer: 0,
+		answer: 1,
 		finishEvent: SOCKET_EVENTS.QUEST_SOLOARPOWER_QUIZ2_END,
 		optionLeftImage: SolarPowerQuiz1Answer1,
 		optionLeftImageActive: SolarPowerQuiz1Answer1Active,
