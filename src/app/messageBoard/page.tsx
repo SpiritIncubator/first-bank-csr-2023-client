@@ -13,9 +13,18 @@ import title from './assets/title.svg';
 import colors from '@/constants/colors';
 import CardQueueAnimation from '../_components/Transitions/CardQueued';
 import { MessageCardType } from '@/app/messageBoard/hooks';
-import LionWriteAnimation from '@/lottieAnimations/stage5-lion-write.json';
-import LionBirdIn from '@/lottieAnimations/stage5-lion-bird-in.json';
+
+import LionBirdInBlue from '@/lottieAnimations/stage5-lion-bird-in-Blue.json';
+import LionBirdInGreen from '@/lottieAnimations/stage5-lion-bird-in-Green.json';
+import LionBirdInPink from '@/lottieAnimations/stage5-lion-bird-in-Pink.json';
+import LionBirdInYellow from '@/lottieAnimations/stage5-lion-bird-in-Yellow.json';
+
+import LionWriteBlue from '@/lottieAnimations/stage5-lion-write-Blue.json';
+import LionWritePink from '@/lottieAnimations/stage5-lion-write-Pink.json';
+import LionWriteYellow from '@/lottieAnimations/stage5-lion-write-Yellow.json';
+import LionWriteGreen from '@/lottieAnimations/stage5-lion-write-Green.json';
 import Lottie from 'lottie-react';
+import { NoteColor } from '@/types/index';
 
 const StyledBox = styled(Box)`
 	::-webkit-scrollbar {
@@ -23,10 +32,25 @@ const StyledBox = styled(Box)`
 	}
 `;
 
+const lionBirdInColorMapping = {
+	[NoteColor.YELLOW]: LionBirdInYellow,
+	[NoteColor.PINK]: LionBirdInPink,
+	[NoteColor.BLUE]: LionBirdInBlue,
+	[NoteColor.GREEN]: LionBirdInGreen,
+};
+
+const lionWriteColorMapping = {
+	[NoteColor.YELLOW]: LionWriteYellow,
+	[NoteColor.PINK]: LionWritePink,
+	[NoteColor.BLUE]: LionWriteBlue,
+	[NoteColor.GREEN]: LionWriteGreen,
+};
+
 const Page = () => {
-	const [currentAnimation, setCurrentAnimation] = useState<any>(LionWriteAnimation);
+	const [currentNoteColor, setCurrentNoteColor] = useState<NoteColor>(NoteColor.YELLOW);
+	const [currentAnimation, setCurrentAnimation] = useState<any>(LionWriteYellow);
 	const [isInitialLoad, setIsInitialLoad] = useState(true);
-	const { messages, loaded } = useMessageBoard();
+	const { messages, loaded, nonKeepMessages } = useMessageBoard();
 	const messageLength = useRef(messages.length);
 
 	const { containerRef, value, handleChangeBarOfValue } = useScrollBar({ loaded });
@@ -35,13 +59,17 @@ const Page = () => {
 		if (isInitialLoad) {
 			setIsInitialLoad(false);
 		} else if (messages.length > messageLength.current) {
-			setCurrentAnimation(LionBirdIn);
+			const latestMessageColor = nonKeepMessages[0];
+			setCurrentNoteColor(latestMessageColor.color as NoteColor);
+			setCurrentAnimation(
+				lionBirdInColorMapping[latestMessageColor.color as NoteColor] || LionBirdInYellow,
+			);
 		}
 		messageLength.current = messages.length;
 	}, [messages.length, isInitialLoad]);
 
 	const handleAnimationComplete = () => {
-		setCurrentAnimation(LionWriteAnimation);
+		setCurrentAnimation((lionWriteColorMapping[currentNoteColor] as any) || LionWriteYellow);
 	};
 
 	return (

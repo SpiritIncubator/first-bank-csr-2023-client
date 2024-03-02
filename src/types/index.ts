@@ -28,3 +28,11 @@ export enum LANGUAGE_TYPE {
   EN = 'en',
   ZH = 'zh',
 }
+
+
+export enum NoteColor {
+  GREEN = '#BBE691',
+  YELLOW = '#F8E47E',
+  PINK = '#F3B8D4',
+  BLUE = '#ADE6E6',
+}
