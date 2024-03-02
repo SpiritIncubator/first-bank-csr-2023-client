@@ -64,7 +64,7 @@ export default function ConfirmModal({
 						}}>
 						<Image fill src="/assets/sendMessage_confirm_bird.svg" alt="bird" />
 					</Box> */}
-					<Box width="168px" height="168px" position="relative" margin="0 auto">
+					<Box width="168px" height="168px" position="relative" margin="0 auto" mb="-20px">
 						<Lottie
 							animationData={Bird_1_1_Front}
 							style={{
@@ -72,7 +72,8 @@ export default function ConfirmModal({
 								top: '50%',
 								left: '50%',
 								transform: 'translate(-50%, -50%)',
-								width: '100%',
+								width: '250px',
+								height: '250px',
 							}}
 						/>
 					</Box>
