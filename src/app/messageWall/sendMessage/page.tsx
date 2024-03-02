@@ -261,7 +261,10 @@ export default function SendMessage() {
 							</Box>
 						</FadeIn>
 						<FadeInOnView>
-							<ColorPicker defaultColor="#F8E47E" onColorChange={setNoteColor} />
+							<ColorPicker
+								defaultColor={NoteColor.YELLOW}
+								onColorChange={color => setNoteColor(color)}
+							/>
 						</FadeInOnView>
 
 						<FadeInOnView>

@@ -38,15 +38,15 @@ const ColorOption = styled('div', {
 }));
 
 interface ColorPickerProps {
-	onColorChange: (color: string) => void;
-	defaultColor: string;
+	onColorChange: (color: NoteColor) => void;
+	defaultColor: NoteColor;
 }
 
 const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, defaultColor }) => {
 	const theme = useTheme();
 	const [selectedColor, setSelectedColor] = React.useState(defaultColor);
 
-	const handleColorChange = (color: string) => {
+	const handleColorChange = (color: NoteColor) => {
 		setSelectedColor(color);
 		onColorChange(color);
 	};
