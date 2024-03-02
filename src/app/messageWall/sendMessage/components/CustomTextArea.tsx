@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
 import colors from '@/constants/colors';
 
-const CustomTextarea = ({ onChange }) => {
+const CustomTextarea = ({ onChange }: { onChange: (params: any) => void }) => {
 	const [message, setMessage] = useState('');
 
 	const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
