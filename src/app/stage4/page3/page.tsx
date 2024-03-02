@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useCallback } from 'react';
 import Box from '@mui/material/Box';
@@ -7,38 +7,57 @@ import Image from 'next/image';
 import ScrollBar, { useScrollBar } from '@/app/_components/ScrollBar';
 
 import DialogImg from '../_assets/stage4-dialog.svg';
-import Header from '../_components/Header';
-import NavBar from '../_components/NavBar/NavBar'
+import { LANGUAGE_TYPE } from '@/types';
+import NavBar from '../_components/NavBar/NavBar';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
-
-const subtitle = '資金用途不限於特定目的。透過長期監控ESG指標，將企業授信戶對溫室氣體排放量、電力、能源及廢棄物總量管控等永續績效與貸款利率定價連結，若達成相關ESG績效指標即可降低融資成本，鼓勵企業授信戶積極管理其低碳轉型風險，並以此議合方式支持落實ESG治理之企業授信戶'
-
+import { useTranslation } from '@/app/_locales/hooks/useTranslation';
+import Stage4Page3TitleEN from '../_assets/stage4-page3-title-en.svg';
+import Stage4Page3TitleZH from '../_assets/stage4-page3-title-zh.svg';
+import Stage4Page3MainEN from '../_assets/stage4-page3-main-en.svg';
+import Stage4Page3MainZH from '../_assets/stage4-page3-main-zh.svg';
+import Stage4ScrollEN from '../_assets/stage4-scroll-en.svg';
+import Stage4ScrollZH from '../_assets/stage4-scroll-zh.svg';
 
 const Page = () => {
-  const { containerRef, value, handleChangeBarOfValue } = useScrollBar({ loaded: true })
+	const { containerRef, value, handleChangeBarOfValue } = useScrollBar({ loaded: true });
+	const { i18n } = useTranslation();
+	const isEN = i18n.language === LANGUAGE_TYPE.EN;
 
-  const DialogContent = useCallback(() => <Image src={DialogImg} alt="dialog" />, [])
+	const MemorizedImage = useCallback(() => {
+		return <Image src={isEN ? Stage4ScrollEN : Stage4ScrollZH} alt="dialog" />;
+	}, [isEN]);
 
-  return (
-    <Box px="210px" py="151px" mr="auto" pb="320px" position="relative" ref={containerRef} height={2160} overflow="auto">
-      <Box maxWidth="2404px">
-        <Box pt={16.75} pl={26.25} pr={20.375}>
-          <Box position="relative">``
-            <FadeIn>
-              <Header subTitle={subtitle} />
-            </FadeIn>
-            <FadeIn delay={0.3}>
-              <Box ref={containerRef} width={2404} height={1200} bgcolor=" rgba(233, 227, 216, 1)" mt={15} />
-            </FadeIn>
-          </Box>
-          <Box position="fixed" top={200} right={183} height={600}>
-            <ScrollBar value={value} onHandleScrollBar={handleChangeBarOfValue} />
-          </Box>
-          <NavBar dialogContent={DialogContent} />
-        </Box>
-      </Box>
-    </Box>
-  )
-}
+	return (
+		<Box
+			px="210px"
+			py="151px"
+			pt="150px"
+			mr="auto"
+			pb="320px"
+			position="relative"
+			ref={containerRef}
+			height={2160}
+			overflow="auto">
+			<Box maxWidth="2404px">
+				<Box>
+					<Box position="relative">
+						<Box>
+							<Image src={isEN ? Stage4Page3TitleEN : Stage4Page3TitleZH} alt="title" />
+						</Box>
+						<FadeIn delay={0.3}>
+							<Box width={2404} height={1200} mt={15}>
+								<Image src={isEN ? Stage4Page3MainEN : Stage4Page3MainZH} alt="title" />
+							</Box>
+						</FadeIn>
+					</Box>
+					<Box position="fixed" top={200} right={183} height={600}>
+						<ScrollBar value={value} onHandleScrollBar={handleChangeBarOfValue} />
+					</Box>
+					<NavBar dialogContent={MemorizedImage} />
+				</Box>
+			</Box>
+		</Box>
+	);
+};
 
-export default Page
+export default Page;

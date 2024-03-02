@@ -39,7 +39,7 @@ const NavBar = ({ dialogContent: DialogContent }: NavBarProps) => {
 
 	const { triggerAnimation } = useTriggerDialogAnimation({
 		disabled: Boolean(disableDialogAnimation),
-		delay: 100,
+		delay: 800,
 	});
 
 	function getHomePageButton({ label, path }: LinkType) {
@@ -60,9 +60,6 @@ const NavBar = ({ dialogContent: DialogContent }: NavBarProps) => {
 	function renderLink(params: LinkType) {
 		if (customPath.includes(params.path)) return getHomePageButton(params);
 		if (!params.buttonImage || !params.buttonImageActive) return '';
-		console.log('params.path :', params.path);
-		console.log('pagePath :', pagePath);
-		console.log('pagePath.includes(params.path)  :', pagePath.includes(params.path));
 		return (
 			<NavLink href={params.path} key={params.path}>
 				<NavLinkItem maxWidth={400} textAlign="center" px={3}>
