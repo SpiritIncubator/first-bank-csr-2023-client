@@ -15,11 +15,12 @@ import Bird1_2InNote from '@/lottieAnimations/bird_1-2_front_ pencil_note.json';
 import FadeInOnView from '@/app/_components/Transitions/FadeInOnView';
 import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 import CustomTextarea from './components/CustomTextArea';
+import { NoteColor } from '@/types/index';
 
 export default function SendMessage() {
 	const [name, setName] = React.useState('');
 	const [message, setMessage] = React.useState('');
-	const [noteColor, setNoteColor] = React.useState('#F8E47E');
+	const [noteColor, setNoteColor] = React.useState(NoteColor.YELLOW);
 	const [errorMessage, setErrorMessage] = React.useState('');
 	const [readyToSubmit, setReadyToSubmit] = React.useState(false);
 	const [finishSubmit, setFinishSubmit] = React.useState(false);
@@ -73,7 +74,7 @@ export default function SendMessage() {
 	return (
 		<Box sx={{ bgcolor: colors.ivory }}>
 			{finishSubmit ? (
-				<FinalPage />
+				<FinalPage noteColor={noteColor} />
 			) : (
 				<>
 					{readyToSubmit && (
