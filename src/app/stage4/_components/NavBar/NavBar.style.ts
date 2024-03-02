@@ -36,10 +36,11 @@ export const NavLinkItem = styled(Typography)`
 		position: absolute;
 		display: inline-block;
     left: -70px;
+    top: 50%;
 		content: '';
 		background-color: #fff;
 		width: 14px;
 		height: 143px;
-		transform: rotate(-165deg);
+		transform: rotate(-165deg) translateY(50%);
 	}
 `;
