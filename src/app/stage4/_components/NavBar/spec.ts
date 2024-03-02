@@ -1,23 +1,23 @@
 import { LinkType } from "./types";
-import Stage4NavbarGreenBoundEN from '@/app/stage4/_assets/navbar/stage4-navbar-green-bonds-en.svg'
-import Stage4NavbarGreenBoundZH from '@/app/stage4/_assets/navbar/stage4-navbar-green-bonds-zh.svg'
-import Stage4NavbarGreenBoundZHActive from '@/app/stage4/_assets/navbar/stage4-navbar-green-bonds-zh-active.svg'
-import Stage4NavbarGreenBoundENActive from '@/app/stage4/_assets/navbar/stage4-navbar-green-bonds-en-active.svg'
+import Stage4NavbarGreenBoundEN from '@/app/stage4/_components/NavBar/assets/stage4-navbar-green-bonds-en.svg'
+import Stage4NavbarGreenBoundZH from '@/app/stage4/_components/NavBar/assets/stage4-navbar-green-bonds-zh.svg'
+import Stage4NavbarGreenBoundZHActive from '@/app/stage4/_components/NavBar/assets/stage4-navbar-green-bonds-zh-active.svg'
+import Stage4NavbarGreenBoundENActive from '@/app/stage4/_components/NavBar/assets/stage4-navbar-green-bonds-en-active.svg'
 
-import Stage4NavbarGreenFinancingEN from '@/app/stage4/_assets/navbar/stage4-navbar-green-financing-en.svg'
-import Stage4NavbarGreenFinancingZH from '@/app/stage4/_assets/navbar/stage4-navbar-green-financing-zh.svg'
-import Stage4NavbarGreenFinancingZHActive from '@/app/stage4/_assets/navbar/stage4-navbar-green-financing-zh-active.svg'
-import Stage4NavbarGreenFinancingENActive from '@/app/stage4/_assets/navbar/stage4-navbar-green-financing-en-active.svg'
+import Stage4NavbarGreenFinancingEN from '@/app/stage4/_components/NavBar/assets/stage4-navbar-green-financing-en.svg'
+import Stage4NavbarGreenFinancingZH from '@/app/stage4/_components/NavBar/assets/stage4-navbar-green-financing-zh.svg'
+import Stage4NavbarGreenFinancingZHActive from '@/app/stage4/_components/NavBar/assets/stage4-navbar-green-financing-zh-active.svg'
+import Stage4NavbarGreenFinancingENActive from '@/app/stage4/_components/NavBar/assets/stage4-navbar-green-financing-en-active.svg'
 
-import Stage4NavbarSixKeyENActive from '@/app/stage4/_assets/navbar/stage4-navbar-sixkey-en-active.svg'
-import Stage4NavbarSixKeyZHActive from '@/app/stage4/_assets/navbar/stage4-navbar-sixkey-zh-active.svg'
-import Stage4NavbarSixKeyEN from '@/app/stage4/_assets/navbar/stage4-navbar-sixkey-en.svg'
-import Stage4NavbarSixKeyZH from '@/app/stage4/_assets/navbar/stage4-navbar-sixkey-zh.svg'
+import Stage4NavbarSixKeyENActive from '@/app/stage4/_components/NavBar/assets/stage4-navbar-sixkey-en-active.svg'
+import Stage4NavbarSixKeyZHActive from '@/app/stage4/_components/NavBar/assets/stage4-navbar-sixkey-zh-active.svg'
+import Stage4NavbarSixKeyEN from '@/app/stage4/_components/NavBar/assets/stage4-navbar-sixkey-en.svg'
+import Stage4NavbarSixKeyZH from '@/app/stage4/_components/NavBar/assets/stage4-navbar-sixkey-zh.svg'
 
-import Stage4NavbarSusFinancingEN from '@/app/stage4/_assets/navbar/stage4-navbar-sustainable-perf-en.svg'
-import Stage4NavbarSusFinancingZH from '@/app/stage4/_assets/navbar/stage4-navbar-sustainable-perf-zh.svg'
-import Stage4NavbarSusFinancingENActive from '@/app/stage4/_assets/navbar/stage4-navbar-sustainable-perf-en-active.svg'
-import Stage4NavbarSusFinancingZHActive from '@/app/stage4/_assets/navbar/stage4-navbar-sustainable-perf-zh-active.svg'
+import Stage4NavbarSusFinancingEN from '@/app/stage4/_components/NavBar/assets/stage4-navbar-sustainable-perf-en.svg'
+import Stage4NavbarSusFinancingZH from '@/app/stage4/_components/NavBar/assets/stage4-navbar-sustainable-perf-zh.svg'
+import Stage4NavbarSusFinancingENActive from '@/app/stage4/_components/NavBar/assets/stage4-navbar-sustainable-perf-en-active.svg'
+import Stage4NavbarSusFinancingZHActive from '@/app/stage4/_components/NavBar/assets/stage4-navbar-sustainable-perf-zh-active.svg'
 
 export const navigationLinksConfigEN: Array<LinkType> = [
 	{

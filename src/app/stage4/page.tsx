@@ -121,13 +121,13 @@ export default function Stage4() {
 				})}
 			</Grid>
 			<FadeIn position="absolute" right={100} bottom="-50px">
-				<Image src={LionImage} alt="Lion" width={880} height={1100} />
+				<Image src={LionImage} alt="Lion" width={880} height={1100} priority />
 			</FadeIn>
 			<FadeIn position="absolute" top={230} right={894} transform="rotate(-10deg)">
-				<Image src={BirdImage} alt="Bird" width={377} height={308} />
+				<Image src={BirdImage} alt="Bird" width={377} height={308} priority />
 			</FadeIn>
 			<FadeIn position="absolute" top={664} right={300}>
-				<Image src={isEN ? DialogEN : DialogZH} alt="Bird" width={660} height={440} />
+				<Image src={isEN ? DialogEN : DialogZH} alt="Bird" width={660} height={440} priority />
 			</FadeIn>
 			<FadeIn position="fixed" right="200px" top="180px">
 				<I18nButton size="large" />
