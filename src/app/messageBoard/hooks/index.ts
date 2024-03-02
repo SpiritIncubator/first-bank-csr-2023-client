@@ -13,6 +13,7 @@ const url = 'https://firstcommercialbank-9ac085739969.herokuapp.com/api/v1/messa
 
 const useMessageBoard = () => {
   const [messages, setMessages] = useState<MessageCardType[]>([]);
+  const [nonKeepMessages, setNonKeepMessages] = useState<MessageCardType[]>([]);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -28,6 +29,7 @@ const useMessageBoard = () => {
 
           const nonKeepTopMessages = data.filter((message: MessageCardType) => !message.keepTop);
           const sortedNonKeepTopMessages = nonKeepTopMessages.reverse();
+          setNonKeepMessages(sortedNonKeepTopMessages);
           setMessages([...sortedKeepTopMessages, ...sortedNonKeepTopMessages]);
           setLoaded(true);
         })
@@ -38,12 +40,12 @@ const useMessageBoard = () => {
 
     fetchMessages();
 
-    const intervalId = setInterval(fetchMessages, 10000);
+    const intervalId = setInterval(fetchMessages, 3000);
 
     return () => clearInterval(intervalId);
   }, []);
 
-  return { messages, loaded };
+  return { messages, loaded, nonKeepMessages };
 
 }
 
