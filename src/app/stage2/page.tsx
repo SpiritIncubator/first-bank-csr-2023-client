@@ -97,7 +97,7 @@ const Page = () => {
 							alignItems="center">
 							<Image src={isEn ? LeftContentEn : LeftContent} alt="left-content" />
 						</Box>
-						<StyledCommonButton variant="contained">
+						<StyledCommonButton>
 							<Image src={isEn ? MoreIconEn : MoreIcon} alt="more-icon" />
 						</StyledCommonButton>
 					</FadeIn>
@@ -123,7 +123,7 @@ const Page = () => {
 							alignItems="center">
 							<Image src={isEn ? RightContentEn : RightContent} alt="right-content" />
 						</Box>
-						<StyledCommonButton variant="contained">
+						<StyledCommonButton>
 							<Image src={isEn ? MoreIconEn : MoreIcon} alt="more-icon" />
 						</StyledCommonButton>
 					</FadeIn>
