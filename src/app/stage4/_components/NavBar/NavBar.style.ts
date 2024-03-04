@@ -23,7 +23,7 @@ export const NavBarWrapper = styled(Box)`
   max-width: 3840px;
   display: inline-flex;
   align-items: center;
-  padding: 78px 200px;
+  padding: 28px 200px;
   background: linear-gradient(90deg, #F3F5DE 60.94%, #FDFDFB 100%);
 `;
 

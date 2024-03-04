@@ -2,6 +2,7 @@
 import { Box, Typography, Paper, Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import colors from '@/constants/colors';
 import { LANGUAGE_TYPE } from '@/types';
 import LionImage from '@/app/stage4/_assets/stage4-lion.svg';
 import BirdImage from '@/app/stage4/_assets/stage4-bird.svg';
@@ -67,7 +68,7 @@ export default function Stage4() {
 
 	const PAGE_DATA = isEN ? PAGE_DATA_EN : PAGE_DATA_ZH;
 	return (
-		<Box py="150px" px="230px">
+		<Box py="150px" px="230px" bgcolor={colors.ivory}>
 			<FadeIn>
 				<Box mb="87px">
 					<Image src={TITLE_IMAGE} alt="title" width="1333" height="283" />
