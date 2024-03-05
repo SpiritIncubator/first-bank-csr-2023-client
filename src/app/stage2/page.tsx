@@ -48,7 +48,7 @@ const Page = () => {
   const router = useRouter();
   const { language } = useStore();
   const isEn = language === 'en';
-  console.log(isEn, 'isEn')
+
   const redirectToCardIntro = () => {
     router.push('/stage2/green-credit-card');
   }
