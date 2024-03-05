@@ -1,21 +1,22 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { Box, Button } from '@mui/material';
+import React from 'react';
+import { Box } from '@mui/material';
+import Button from '@/app/_components/Button/Button';
 import Image from 'next/image';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/navigation';
-import I18nButton from '@/app/_components/I18nButton/I18nButton'
+import I18nButton from '@/app/_components/I18nButton/I18nButton';
 import FadeIn from '../_components/Transitions/FadeIn';
 import CardIntroBg from './assets/card-intro.svg';
 import CardIntroChat from './assets/card-intro-slogan.svg';
 import CardIntroChatEn from './assets/card-intro-slogan-en.svg';
-import CardBird from './assets/intro-bird.svg'
+import CardBird from './assets/intro-bird.svg';
 import LeftCard from './assets/left-card.svg';
 import LeftContent from './assets/left-content.svg';
 import LeftContentEn from './assets/left-content-en.svg';
 import RightCard from './assets/right-card.svg';
-import RightContent from './assets/right-content.svg'
+import RightContent from './assets/right-content.svg';
 import RightContentEn from './assets/right-content-en.svg';
 import Lion from './assets/lion.svg';
 import useStore from '../atoms/useStore';
@@ -25,30 +26,36 @@ import MoreIcon from './assets/more.svg';
 import MoreIconEn from './assets/more-en.svg';
 
 const StyledScaleImage = styled(Image)`
-  transition: all 0.5s ease-in-out;
-  &:hover {
-    transform: scale(1.2);
-  }
+	transition: all 0.5s ease-in-out;
+	&:hover {
+		transform: scale(1.2);
+	}
 `;
 
 const StyledCommonButton = styled(Button)`
-  padding: 25px 68px;
-  background-color: #7DBD36;
-  border: none;
-  border-radius: 84px;
-  color: #ffffff;
-  font-size: 50px;
-  letter-spacing: 20px;
-  &:active,&:focus,&:visited,&:hover{
-    background-color: #B8C318;
-  }
+	padding: 25px 68px;
+	background-color: #7dbd36;
+	border: none;
+	border-radius: 84px;
+	color: #ffffff;
+	font-size: 50px;
+	letter-spacing: 20px;
+	display: inline-block;
+	minwidth: 260px;
+	width: auto;
+	&:active,
+	&:focus,
+	&:visited,
+	&:hover {
+		background-color: #b8c318;
+	}
 `;
 
 const Page = () => {
   const router = useRouter();
   const { language } = useStore();
   const isEn = language === 'en';
-  console.log(isEn, 'isEn')
+
   const redirectToCardIntro = () => {
     router.push('/stage2/green-credit-card');
   }
@@ -103,4 +110,4 @@ const Page = () => {
   ) : <><Box></Box></>
 }
 
-export default Page
+export default Page;

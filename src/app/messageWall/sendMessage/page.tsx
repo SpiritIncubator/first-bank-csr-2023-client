@@ -11,14 +11,16 @@ import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import { createMessage } from '@/api/index';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import Lottie from 'lottie-react';
-import Bird1_3Animation from '@/lottieAnimations/bird_1-3_side_loop.json';
+import Bird1_2InNote from '@/lottieAnimations/bird_1-2_front_ pencil_note.json';
 import FadeInOnView from '@/app/_components/Transitions/FadeInOnView';
 import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
+import CustomTextarea from './components/CustomTextArea';
+import { NoteColor } from '@/types/index';
 
 export default function SendMessage() {
 	const [name, setName] = React.useState('');
 	const [message, setMessage] = React.useState('');
-	const [noteColor, setNoteColor] = React.useState('#F8E47E');
+	const [noteColor, setNoteColor] = React.useState(NoteColor.YELLOW);
 	const [errorMessage, setErrorMessage] = React.useState('');
 	const [readyToSubmit, setReadyToSubmit] = React.useState(false);
 	const [finishSubmit, setFinishSubmit] = React.useState(false);
@@ -30,6 +32,7 @@ export default function SendMessage() {
 		maxWidth: '390px',
 		margin: '0 auto', // Center the container
 		padding: '80px 24px',
+		pt: '0',
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
@@ -43,11 +46,11 @@ export default function SendMessage() {
 			return;
 		}
 		if (message.length < 10) {
-			setErrorMessage('請輸入最少十個字');
+			setErrorMessage('請輸入最少10個字');
 			return;
 		}
 		if (message.length > 50) {
-			setErrorMessage('請輸入最多五十個字');
+			setErrorMessage('請輸入最多50個字');
 			return;
 		}
 		setReadyToSubmit(true);
@@ -71,7 +74,7 @@ export default function SendMessage() {
 	return (
 		<Box sx={{ bgcolor: colors.ivory }}>
 			{finishSubmit ? (
-				<FinalPage />
+				<FinalPage noteColor={noteColor} />
 			) : (
 				<>
 					{readyToSubmit && (
@@ -101,14 +104,24 @@ export default function SendMessage() {
 						<FadeIn>
 							<Box
 								sx={{
-									width: '230px',
-									height: '240px',
 									margin: '0 auto',
 									overflow: 'hidden',
 									position: 'relative',
-									marginBottom: '16px',
+									width: '300px',
+									height: '300px',
+									marginBottom: '20px',
 								}}>
-								<Lottie animationData={Bird1_3Animation} loop={true} />
+								<Box
+									position="absolute"
+									top="50%"
+									left="50%"
+									sx={{
+										width: '300px',
+										height: '240px',
+										transform: 'translate(-50%,-50%)',
+									}}>
+									<Lottie animationData={Bird1_2InNote} loop={true} />
+								</Box>
 							</Box>
 						</FadeIn>
 						<FadeIn>
@@ -167,6 +180,7 @@ export default function SendMessage() {
 									marginBottom: '40px',
 									'& .input-base': {
 										width: '100%',
+										color: colors.brown4,
 										padding: '20px 24px',
 										fontSize: '1rem',
 										borderRadius: '20px',
@@ -181,28 +195,8 @@ export default function SendMessage() {
 											border: `2px solid ${colors.brown2}`,
 										},
 										'&::placeholder': {
-											color: 'rgba(0, 0, 0, 0.6)',
+											color: colors.brown2,
 										},
-									},
-									'& .textarea-base': {
-										letterSpacing: '1.28px',
-										width: '100%',
-										padding: '20px 24px',
-										fontSize: '1rem',
-										borderRadius: '20px',
-										border: `2px solid ${colors.brown1}`,
-										backgroundColor: colors.brown,
-										resize: 'none',
-										boxSizing: 'border-box',
-										outline: 'none',
-										transition: 'border-color 0.2s ease-in-out',
-										'&:focus': {
-											border: `2px solid ${colors.brown2}`,
-										},
-									},
-									'& .input-base::placeholder, & .textarea-base::placeholder': {
-										color: colors.brown2, // Theme color for placeholder
-										opacity: 1, // Full opacity
 									},
 								}}>
 								<Box
@@ -230,12 +224,7 @@ export default function SendMessage() {
 									/>
 								</Box>
 
-								<textarea
-									placeholder="請寫下你會如何在生活中實踐永續，或是今天的觀展心得吧！       （字數限制50字）"
-									className="textarea-base"
-									rows={4}
-									onChange={e => setMessage(e.target.value)}
-								/>
+								<CustomTextarea onChange={setMessage} />
 								<Box
 									sx={{
 										width: '202px',
@@ -246,6 +235,7 @@ export default function SendMessage() {
 										marginBottom: '10px',
 										marginTop: '30px',
 										display: 'flex',
+										justifyContent: 'center',
 									}}>
 									<Image
 										width="107"
@@ -271,7 +261,10 @@ export default function SendMessage() {
 							</Box>
 						</FadeIn>
 						<FadeInOnView>
-							<ColorPicker defaultColor="#F8E47E" onColorChange={setNoteColor} />
+							<ColorPicker
+								defaultColor={NoteColor.YELLOW}
+								onColorChange={color => setNoteColor(color)}
+							/>
 						</FadeInOnView>
 
 						<FadeInOnView>

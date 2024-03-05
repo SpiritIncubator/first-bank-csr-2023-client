@@ -2,6 +2,7 @@
 import { Box, Typography, Paper, Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import colors from '@/constants/colors';
 import { LANGUAGE_TYPE } from '@/types';
 import LionImage from '@/app/stage4/_assets/stage4-lion.svg';
 import BirdImage from '@/app/stage4/_assets/stage4-bird.svg';
@@ -67,7 +68,7 @@ export default function Stage4() {
 
 	const PAGE_DATA = isEN ? PAGE_DATA_EN : PAGE_DATA_ZH;
 	return (
-		<Box py="150px" px="230px">
+		<Box py="150px" px="230px" bgcolor={colors.ivory}>
 			<FadeIn>
 				<Box mb="87px">
 					<Image src={TITLE_IMAGE} alt="title" width="1333" height="283" />
@@ -121,13 +122,13 @@ export default function Stage4() {
 				})}
 			</Grid>
 			<FadeIn position="absolute" right={100} bottom="-50px">
-				<Image src={LionImage} alt="Lion" width={880} height={1100} />
+				<Image src={LionImage} alt="Lion" width={880} height={1100} priority />
 			</FadeIn>
 			<FadeIn position="absolute" top={230} right={894} transform="rotate(-10deg)">
-				<Image src={BirdImage} alt="Bird" width={377} height={308} />
+				<Image src={BirdImage} alt="Bird" width={377} height={308} priority />
 			</FadeIn>
 			<FadeIn position="absolute" top={664} right={300}>
-				<Image src={isEN ? DialogEN : DialogZH} alt="Bird" width={660} height={440} />
+				<Image src={isEN ? DialogEN : DialogZH} alt="Bird" width={660} height={440} priority />
 			</FadeIn>
 			<FadeIn position="fixed" right="200px" top="180px">
 				<I18nButton size="large" />

@@ -10,6 +10,7 @@ import { ConversationContext } from './layout';
 import { SOCKET_EVENTS } from './constants';
 import initialAnimation from './animationData/full_3-1_loop.json';
 import progressingAnimation from './animationData/full_3-2_start.json';
+import useSoundEffect from './hooks/useSoundEffects';
 
 type AnimationOptions = {
 	animationData: any;
@@ -26,6 +27,7 @@ const ConversationPage = () => {
 		channel: 'subscribeChannel',
 		room: 'stage3_controlBoard',
 	});
+	const { loopPlayStartView } = useSoundEffect();
 	const { receivedEvent, sendEvent } = registerRoomHelper();
 	const currentPhaseInfo = ConversationContext.useSelector(state => state.context.phase);
 	const stateAction = ConversationContext.useActorRef();
@@ -48,10 +50,31 @@ const ConversationPage = () => {
 	}, [stateAction, receivedEvent, sendEvent]);
 
 	useEffect(() => {
+		const load = loopPlayStartView();
+		navigator.mediaDevices.getUserMedia({ audio: true });
+		// only load once
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	useEffect(() => {
 		if (currentPhaseInfo.level === 0 && currentPhaseInfo.round === 2) {
 			setOptions(prevState => ({ ...prevState, animationData: progressingAnimation }));
 		}
 	}, [currentPhaseInfo.level, currentPhaseInfo.round]);
+
+	useEffect(() => {
+		let timer: NodeJS.Timeout;
+
+		if (currentPhaseInfo.level === 0 && currentPhaseInfo.round === 1) {
+			timer = setTimeout(() => {
+				// stateAction.send({ type: 'NEXT_TO_START_STAGE2' });
+			}, 4000);
+		}
+
+		return () => {
+			clearTimeout(timer);
+		};
+	});
 
 	useEffect(() => {
 		let timeoutId: NodeJS.Timeout;

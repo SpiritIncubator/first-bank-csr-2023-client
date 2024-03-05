@@ -29,7 +29,7 @@ export default function AnswerZone({
 }) {
 	console.log('currentQuizEvent :', currentQuizEvent);
 	const {
-		answer,
+		answer: quizAnswer,
 		finishEvent,
 		optionLeftImage,
 		optionLeftImageActive,
@@ -51,13 +51,13 @@ export default function AnswerZone({
 
 	const onClickAnswer = (userAnswer: number) => () => {
 		console.log('userAnswer :', userAnswer);
-		if (answer === userAnswer) {
+		// 2 means both are correct
+	  if (quizAnswer === 2 || quizAnswer === userAnswer) {
 			setAnswerResult(Answer.Right);
 			setTimeout(() => {
 				finishEvent && postAnswer(finishEvent);
 			}, 2000);
 		} else {
-			//@set wrong answer state
 			setAnswerResult(Answer.Wrong);
 			setTimeout(() => {
 				setAnswerResult(Answer.Empty);

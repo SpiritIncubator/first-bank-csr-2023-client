@@ -58,15 +58,16 @@ const Scene2Page = () => {
     receivedEvent(({ messageType }) => {
       if (messageType === SOCKET_EVENTS.RAIN_RECYCLE_START) {
         action.send({ type: 'NEXT_TO_SCENE2_RAIN_RECYCLE' });
+        router.push('/stage3/scene2/question');
       }
       if (messageType === SOCKET_EVENTS.SOLAR_POWER_START) {
         action.send({ type: 'NEXT_TO_SCENE2_SOLAR_POWER' });
+        router.push('/stage3/scene2/question');
       }
       if (messageType === SOCKET_EVENTS.AQUAPONICS_START) {
         action.send({ type: 'NEXT_TO_SCENE2_AQUAONICS' });
+        router.push('/stage3/scene2/question');
       }
-
-      router.push('/stage3/scene2/question');
     })
   }, [action, router, receivedEvent])
 

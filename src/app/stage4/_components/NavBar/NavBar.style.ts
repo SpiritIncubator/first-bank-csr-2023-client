@@ -23,7 +23,7 @@ export const NavBarWrapper = styled(Box)`
   max-width: 3840px;
   display: inline-flex;
   align-items: center;
-  padding: 78px 200px;
+  padding: 28px 200px;
   background: linear-gradient(90deg, #F3F5DE 60.94%, #FDFDFB 100%);
 `;
 
@@ -36,10 +36,11 @@ export const NavLinkItem = styled(Typography)`
 		position: absolute;
 		display: inline-block;
     left: -70px;
+    top: 50%;
 		content: '';
 		background-color: #fff;
 		width: 14px;
 		height: 143px;
-		transform: rotate(-165deg);
+		transform: rotate(-165deg) translateY(50%);
 	}
 `;

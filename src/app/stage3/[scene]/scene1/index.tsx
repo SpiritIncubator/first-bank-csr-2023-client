@@ -70,17 +70,18 @@ const Scene1Page = () => {
     receivedEvent(({ messageType }) => {
       if (messageType === SOCKET_EVENTS.DASHBOARD_START) {
         action.send({ type: 'NEXT_TO_SCENE1_DASHBOARD' });
+        router.push('/stage3/scene1/question'); 
       }
 
       if (messageType === SOCKET_EVENTS.GREEN_BUILDING_START) {
         action.send({ type: 'NEXT_TO_SCENE1_GREEN_BUILDING' });
+        router.push('/stage3/scene1/question'); 
       }
 
       if (messageType === SOCKET_EVENTS.CARBON_FOOTPRINT_START) {
         action.send({ type: 'NEXT_TO_SCENE1_CARBON_FOOTPRINT' });
-      }
-
-      router.push('/stage3/scene1/question');      
+        router.push('/stage3/scene1/question'); 
+      }    
     })
   }, [action, receivedEvent, router]);
 

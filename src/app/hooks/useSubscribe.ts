@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import io, { Socket } from 'socket.io-client';
 
-const SOCKET_URL = 'http://localhost:3030';
+// const SOCKET_URL = 'http://localhost:3030';
+const SOCKET_URL = 'https://firstcommercialbank-9ac085739969.herokuapp.com/';
 
 type MessageEventType<T> = {
 	channel?: string;
