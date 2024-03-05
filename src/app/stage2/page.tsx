@@ -19,6 +19,7 @@ import RightContent from './assets/right-content.svg'
 import RightContentEn from './assets/right-content-en.svg';
 import Lion from './assets/lion.svg';
 import useStore from '../atoms/useStore';
+import isServer from '@/utils/isServer';
 
 import MoreIcon from './assets/more.svg';
 import MoreIconEn from './assets/more-en.svg';
@@ -47,7 +48,7 @@ const Page = () => {
   const router = useRouter();
   const { language } = useStore();
   const isEn = language === 'en';
-
+  console.log(isEn, 'isEn')
   const redirectToCardIntro = () => {
     router.push('/stage2/green-credit-card');
   }
@@ -55,7 +56,7 @@ const Page = () => {
     router.push('/stage2/esg-consumer-loans');
   }
 
-  return (
+  return !isServer() ? (
     <Box padding="170px 111px 583px 100px" display="flex" flexDirection="column" height="100%">
       <FadeIn display="flex" marginLeft={60}>
         <Image src={CardIntroBg} alt="card-intro" />
@@ -99,7 +100,7 @@ const Page = () => {
         </Box>
       </Box>
     </Box>
-  )
+  ) : <><Box></Box></>
 }
 
 export default Page

@@ -16,18 +16,17 @@ import StyleButton from '@/app/_components/Button/Button';
 import BarZh from '@/app/_assets/images/bar-zh.svg';
 import BarEn from '@/app/_assets/images/bar-en.svg';
 import animationData from '../assets/animation/bird_1-3_side_loop.json';
-import resultDataOne from '../assets/animation/leo_2-1_shake_item.json';
+import resultDataOne from '../assets/animation/leo_2-3_bottle.json';
 import resultDataTwo from '../assets/animation/leo_2-2_write_note.json';
-import resultDataThree from '../assets/animation/leo_2-3_bottle.json';
-import linkAnimation from '../animationData/bird_1-2_front_ pencil_note.json';
+import resultDataThree from '../assets/animation/leo_2-1_shake_item.json';
 import ResultPageTitle from '@/app/_assets/images/bar.svg';
-import ResultFunnyIcon from '@/app/_assets/images/resultFunny.svg';
 import GoLook from '@/app/_assets/images/go-look.svg';
 import GoLookEn from '@/app/_assets/images/go-look-en.svg';
 import DiviDer from '@/app/_assets/images/divider.svg';
 import Loading from '@/app/_assets/images/loading.svg';
 import { answerList, answerDescription } from './spec';
 import { caveat } from '@/app/layout';
+import { questionList } from '../questions/spec';
 
 const LOADING_DELAY_TIME = 2000;
 
@@ -36,6 +35,14 @@ function getStar(score: number) {
 	if (score > 5) return 2;
 
 	return 1;
+}
+
+function getOrder(index: number): string {
+	if (index === 0) return '(A)';
+	if (index === 1) return '(B)';
+	if (index === 2) return '(C)';
+
+	return ''
 }
 
 function getAnimationData(numberOfStar: number) {
@@ -57,15 +64,18 @@ const ResultPage = () => {
 	const numberOfStar = getStar(score);
 	const description = answerDescription[numberOfStar - 1];
 	const hasAnsweredAllQuestions = questionAnswers.length === answerList.length;
-
 	function renderAnswerList() {
 		return answerList.map((answer, index) => {
 			const questionNumber = index + 1;
+			const question = questionList[index];
+			const [bestAnswer] = question.options
+				.map((option, index) => ({ index, ...option }))
+				.filter(option => option.score === 2);
 
 			return (
 				<FadeInOnView key={`answer-${index}`}>
 					<Box bgcolor="#F9F8F3" mt={4} borderRadius={2.5} px={3} pb={3.75}>
-						<Box display="flex" flexDirection="column" alignItems="center">
+						<Box display="flex" flexDirection="column">
 							<Box height={90} textAlign="left" width="100%">
 								<Typography
 									height="100%"
@@ -77,11 +87,18 @@ const ResultPage = () => {
 									{String(questionNumber).padStart(2, '0')}
 								</Typography>
 							</Box>
-							<Box mb={2.5}>
+							<Box px={1} fontWeight={700} fontSize={18} display="flex" justifyContent="flex-start">
+								{t(question.description)}
+							</Box>
+							<Box mt={2.5} mb={2.5} display="flex" justifyContent="center">
 								<Image src={answer.imgSrc} alt="result-img" />
 							</Box>
 							<Box>
-								<Typography lineHeight={2} letterSpacing={1.2} color="#594A39">
+								<Box display="flex" alignItems="center">
+									<Typography mr={1} fontWeight={700} fontSize={18}>{getOrder(bestAnswer.index)}</Typography>
+									<Typography fontWeight={700} fontSize={18}>{t(bestAnswer.content)}</Typography>
+								</Box>
+								<Typography lineHeight={2} letterSpacing={1.4} color="#594A39" mt={0.5}>
 									{t(answer.content)}
 								</Typography>
 							</Box>
