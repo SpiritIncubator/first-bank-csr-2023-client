@@ -41,11 +41,11 @@ export default function Page1() {
 			overflow="scroll">
 			<Box maxWidth="2404px">
 				<FadeIn>
-					<Box width="1970px" height="349px" position="relative" mb="120px" textAlign="left">
+					<Box width="1840px" height="412px" position="relative" mb="120px" textAlign="left">
 						<Image
 							fill
 							src={isEN ? Stage4Page1TitleEN : Stage4Page1TitleZH}
-							alt="colorPicker_select_color"
+							alt="Stage4Page1Title"
 						/>
 					</Box>
 				</FadeIn>
