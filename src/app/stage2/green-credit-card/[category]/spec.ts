@@ -22,10 +22,30 @@ import YilanCardTitle from './assets/yilan-card-title.svg';
 import LeezenCardTitle from './assets/leezen-card-title.svg';
 import WorldCardTitle from './assets/world-card-title.svg';
 
-import GreenCardSample from './assets/green-card-sample.svg';
-import WorldCardSample from './assets/world-card-sample.svg';
+import GreenCardFront from './assets/cards/green-card-front.svg';
+import GreenCardBack from './assets/cards/green-card-back.svg';
+import GreenCard_QrCode from './assets/cards/green-card-qrcode.svg';
+import GreenCard_QrCodeEn from './assets/cards/green-card-qrcodeEn.svg';
 
-import LeezenQrCode from './assets/leezen-qrcode.svg';
+import TaoyuanCardFront from './assets/cards/taoyuan-card-front.svg';
+import TaoyuanCardBack from './assets/cards/taoyuan-card-back.svg';
+import TaoyuanCard_QrCode from './assets/cards/taoyuan-card-qrcode.svg';
+import TaoyuanCard_QrCodeEn from './assets/cards/taoyuan-card-qrcodeEn.svg';
+
+import YilanCardFront from './assets/cards/yilan-card-front.svg';
+import YilanCardBack from './assets/cards/yilan-card-back.svg';
+import YilanCard_QrCode from './assets/cards/yilan-card-qrcode.svg';
+import YilanCard_QrCodeEn from './assets/cards/yilan-card-qrcodeEn.svg';
+
+import LeezenCardFront from './assets/cards/leezen-card-front.svg';
+import LeezenCardBack from './assets/cards/leezen-card-back.svg';
+import LeezenCard_QrCode from './assets/cards/leezen-card-qrcode.svg';
+import LeezenCard_QrCodeEn from './assets/cards/leezen-card-qrcodeEn.svg';
+
+import WorldCardFront from './assets/cards/world-card-front.svg';
+import WorldCardBack from './assets/cards/world-card-back.svg';
+import WorldCard_QrCode from './assets/cards/world-card-qrcode.svg';
+import WorldCard_QrCodeEn from './assets/cards/world-card-qrcodeEn.svg';
 
 
 type LanguageType = 'en' | 'zh';
@@ -35,7 +55,9 @@ export type CreditCardInfoType = {
 	accumulateAmount: number;
 	descriptions: string[];
 	src: string;
+	srcBack: string
 	code: string;
+	codeEn: string;
 	imgSrc: {
 		[key in LanguageType]: {
 			titleImg: string;
@@ -51,8 +73,10 @@ export const creditCardInfos: Array<CreditCardInfoType> = [
 		circulationAmount: 54439,
 		accumulateAmount: 7280711,
 		descriptions: ['green.card.detail.one'],
-		src: GreenCardSample,
-		code: LeezenQrCode,
+		src: GreenCardFront,
+		srcBack: GreenCardBack,
+		code: GreenCard_QrCode,
+		codeEn: GreenCard_QrCodeEn,
 		imgSrc: {
 			en: {
 				titleImg: GreenCardTitle,
@@ -70,8 +94,10 @@ export const creditCardInfos: Array<CreditCardInfoType> = [
 		circulationAmount: 113921,
 		accumulateAmount: 7077047,
 		descriptions: ['taoyuan.card.detail.one', 'taoyuan.card.detail.two'],
-		src: GreenCardSample,
-		code: LeezenQrCode,
+		src: TaoyuanCardFront,
+		srcBack: TaoyuanCardBack,
+		code: TaoyuanCard_QrCode,
+		codeEn: TaoyuanCard_QrCodeEn,
 		imgSrc: {
 			en: {
 				titleImg: TaoyuanCardTitle,
@@ -89,8 +115,10 @@ export const creditCardInfos: Array<CreditCardInfoType> = [
 		circulationAmount: 50584,
 		accumulateAmount: 10285527,
 		descriptions: ['yilan.card.detail.one', 'taoyuan.card.detail.two'],
-		src: GreenCardSample,
-		code: LeezenQrCode,
+		src: YilanCardFront,
+		srcBack: YilanCardBack,
+		code: YilanCard_QrCode,
+		codeEn: YilanCard_QrCodeEn,
 		imgSrc: {
 			en: {
 				titleImg: YilanCardTitle,
@@ -108,8 +136,10 @@ export const creditCardInfos: Array<CreditCardInfoType> = [
 		circulationAmount: 46453,
 		accumulateAmount: 132143734,
 		descriptions: ['leezen.card.detail.one', 'taoyuan.card.detail.two'],
-		code: LeezenQrCode,
-		src: GreenCardSample,
+		src: LeezenCardFront,
+		srcBack: LeezenCardBack,
+		code: LeezenCard_QrCode,
+		codeEn: LeezenCard_QrCodeEn,
 		imgSrc: {
 			en: {
 				titleImg: LeezenCardTitle,
@@ -127,8 +157,10 @@ export const creditCardInfos: Array<CreditCardInfoType> = [
 		circulationAmount: 5390,
 		accumulateAmount: 5502602,
 		descriptions: ['world.card.detail.one', 'world.card.detail.two'],
-		src: WorldCardSample,
-		code: LeezenQrCode,
+		src: WorldCardFront,
+		srcBack: WorldCardBack,
+		code: WorldCard_QrCode,
+		codeEn: WorldCard_QrCodeEn,
 		imgSrc: {
 			en: {
 				titleImg: WorldCardTitle,

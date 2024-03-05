@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react';
+import React, {useState} from 'react';
 import { Box, Typography, List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
 import Image from 'next/image';
 import CountUp from 'react-countup';
@@ -18,7 +18,8 @@ import { creditCardInfos, CreditCardInfoType } from './spec';
 import SymbolWithYears from './assets/symbol-years.svg';
 import SymbolWithYearsEn from './assets/symbol-en.svg'
 import LastSymbolWithYears from './assets/world-card-bird.svg';
-import LastSymbolWithYearsEn from './assets/last-symbol-en.svg'
+import LastSymbolWithYearsEn from './assets/last-symbol-en.svg';
+import Rotate from './assets/cards/card-rotate.svg';
 
 type PageProps = {
   params: {
@@ -28,6 +29,7 @@ type PageProps = {
 
 const Page = ({ params }: PageProps) => {
   const router = useRouter();
+  const [isFront, setFront] = useState(true);
   const { t } = useTranslation('stage2');
   const detail = creditCardInfos[Number(params.category) - 1];
   const isLastCard = Number(params.category) === creditCardInfos.length;
@@ -39,7 +41,7 @@ const Page = ({ params }: PageProps) => {
   const symbolImg = isLastCard ?
     (isEn) ? LastSymbolWithYearsEn : LastSymbolWithYears
     : (isEn) ? SymbolWithYearsEn : SymbolWithYears;
-
+  
   function renderCardDetail(description: string, index: number) {
     const isHeadRecord = index === 0;
     return (
@@ -58,6 +60,10 @@ const Page = ({ params }: PageProps) => {
     router.back();
   }
 
+  function rotateCard() {
+    setFront(front => !front);
+  }
+
   if (!detail) {
     return null;
   }
@@ -73,21 +79,18 @@ const Page = ({ params }: PageProps) => {
       position="relative"
     >
       {isMounted && (
-        <Box display="flex" flexDirection="column" alignItems="center">
+        <Box display="flex" flexDirection="column" alignItems="center" position="relative">
           <Box height={266} display="flex" alignItems="center">
             <Image src={imgSrc.titleImg} alt="title" /> 
           </Box>
           <Box mt={10}>
-            <Image src={detail.src} alt="card" />
+            <Image src={isFront ? detail.src : detail.srcBack} alt="card" />
           </Box>
           <Box mt={12.5}>
             <Image src={imgSrc.cardNameImg} alt="card-name" />
           </Box>
           <Box mt={5.5}>
             <Image src={imgSrc.releaseDateImg} alt="release-date" />
-          </Box>
-          <Box position="absolute" right={450} top={950}>
-            <Image src={detail.code} alt="link" />
           </Box>
         </Box>
       )}
@@ -133,6 +136,12 @@ const Page = ({ params }: PageProps) => {
         left={0}
         top={1678}
       />
+      <Box position="absolute" left={450} top={650} onClick={rotateCard}>
+        <Image src={Rotate} alt="rotate" />
+      </Box>
+      <Box position="absolute" right={370} top={850}>
+        <Image src={detail.code} alt="link" />
+      </Box>
     </Box>
   )
 }
