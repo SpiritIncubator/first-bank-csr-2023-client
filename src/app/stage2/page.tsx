@@ -86,7 +86,7 @@ const Page = () => {
             <Box mt={7.5} mb={isEn ? 6.25 : 2.5} height={isEn ? 135 : 210} display="flex" justifyContent="center" alignItems="center">
               <Image src={isEn ? LeftContentEn : LeftContent} alt='right-content' />
             </Box>
-            <StyledCommonButton variant='contained'>
+            <StyledCommonButton>
               <Image src={isEn ? MoreIconEn : MoreIcon} alt='more-icon' />
             </StyledCommonButton>
           </FadeIn>
@@ -100,7 +100,7 @@ const Page = () => {
             <Box mt={7.5} mb={isEn ? 6.25 : 2.5} height={isEn ? 135 : 210} display="flex" justifyContent="center" alignItems="center">
               <Image src={isEn ? RightContentEn : RightContent} alt='right-content' />
             </Box>
-            <StyledCommonButton variant='contained'>
+            <StyledCommonButton>
               <Image src={isEn ? MoreIconEn : MoreIcon} alt='more-icon' />
             </StyledCommonButton>
           </FadeIn>
