@@ -71,9 +71,15 @@ export default function ConfirmSubmit({
 					<Typography
 						variant="h6"
 						component="div"
+						lang="en"
 						sx={{
 							fontWeight: '700',
 							letterSpacing: '1.84px',
+							wordWrap: 'break-word',
+							'-webkit-hyphens': 'auto',
+							'-moz-hyphens': 'auto',
+							'-ms-hyphens': 'auto',
+							hyphens: 'auto',
 						}}>
 						{message}
 					</Typography>

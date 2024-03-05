@@ -19,6 +19,9 @@ const CustomTextarea = ({ onChange }: { onChange: (params: any) => void }) => {
 				fullWidth
 				value={message}
 				onChange={onTextChange}
+				inputProps={{
+					maxLength: 50,
+				}}
 				sx={{
 					'.MuiInputBase-root': {
 						padding: '0',

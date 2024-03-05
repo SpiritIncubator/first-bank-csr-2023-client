@@ -27,7 +27,6 @@ export default function Page2() {
 		<Box
 			px="210px"
 			py="151px"
-			pt="50px"
 			mr="auto"
 			pb="320px"
 			height={2160}
@@ -36,7 +35,7 @@ export default function Page2() {
 			position="relative">
 			<Box maxWidth="2592px">
 				<FadeIn>
-					<Box width="100%" height="610px" position="relative" mb="60px" textAlign="left">
+					<Box width="1840px" height="610px" position="relative" mb="60px" textAlign="left">
 						<Image
 							fill
 							src={isEN ? Stage4Page2TitleEN : Stage4Page2TitleZH}
