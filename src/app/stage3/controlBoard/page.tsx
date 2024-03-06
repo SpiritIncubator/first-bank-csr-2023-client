@@ -89,6 +89,22 @@ export default function ControlBoard() {
 		});
 	}, [receivedEvent]);
 
+	useEffect(() => {
+		const params = new URLSearchParams(window.location.search);
+		const jumpTo = params.get('jumpTo');
+		console.log('jumpTo :', jumpTo);
+
+		if (jumpTo === 'scene2') {
+			setCurrentStep(STEPS.SCENE2_QUESTION_LIST);
+			setQuestStatus(prevStatus => ({
+				...prevStatus,
+				[QuestNames.DASHBOARD]: true,
+				[QuestNames.GREEN_BUILDING]: true,
+				[QuestNames.CARBON_FOOTPRINT]: true,
+			}));
+		}
+	}, [setQuestStatus]);
+
 	const onAnswerFinish = () => {
 		setCurrentStep(STEPS.LOOK_AT_SCREEN);
 	};

@@ -20,15 +20,18 @@ export const ControlBoardContext = createContext<{
   questStatus: {
     currentQuest: '',
     currentScene: Scene.Scene1,
-    SCENE2: false,
-    [QuestNames.RAIN_RECYCLE]: false,
-    [QuestNames.AQUAPONICS]: false,
-    [QuestNames.CARBON_FOOTPRINT]: false,
 
     SCENE1: false,
     [QuestNames.DASHBOARD]: false,
     [QuestNames.GREEN_BUILDING]: false,
+    [QuestNames.CARBON_FOOTPRINT]: false,
+
+    SCENE2: false,
+    [QuestNames.RAIN_RECYCLE]: false,
+    [QuestNames.AQUAPONICS]: false,
     [QuestNames.SOLAR_POWER]: false,
+
+
   },
   setQuestStatus: () => { }
 });
