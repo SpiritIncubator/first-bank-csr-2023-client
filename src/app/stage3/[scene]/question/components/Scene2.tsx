@@ -618,7 +618,7 @@ const Scene2Question = () => {
 					left="50%"
 					zIndex={999}>
 					{phaseParams?.video && (
-						<video controls>
+						<video width="100%" height={1100} autoPlay={true} loop muted>
 							<source src={phaseParams?.video} type="video/webm" />
 						</video>
 					)}
