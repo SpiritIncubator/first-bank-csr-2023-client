@@ -281,7 +281,7 @@ const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
 		if (currentPhaseInfo.round === 4) {
 			return {
 				dialog: greenBuildingDialog4,
-				bg: greenBuildingBubble3,
+				bg: greenBuildingBubble2,
 			};
 		}
 
