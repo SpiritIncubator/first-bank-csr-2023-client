@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Box } from '@mui/material';
 import Button from '@/app/_components/Button/Button';
 import Image from 'next/image';
@@ -52,9 +52,16 @@ const StyledCommonButton = styled(Button)`
 `;
 
 const Page = () => {
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const { language } = useStore();
   const isEn = language === 'en';
+
+  useEffect(() => {
+    if (!isServer()) {
+      setMounted(true);
+    }
+  }, []);
 
   const redirectToCardIntro = () => {
     router.push('/stage2/green-credit-card');
@@ -63,7 +70,7 @@ const Page = () => {
     router.push('/stage2/esg-consumer-loans');
   }
 
-  return !isServer() ? (
+  return (
     <Box padding="170px 111px 583px 100px" display="flex" flexDirection="column" height="100%">
       <FadeIn display="flex" marginLeft={60}>
         <Image src={CardIntroBg} alt="card-intro" />
@@ -73,7 +80,9 @@ const Page = () => {
       </FadeIn>
       <Box mt={25}>
         <FadeIn display='flex' alignItems='flex-end' delay={0.5}>
-          <Image src={isEn ? CardIntroChatEn : CardIntroChat} alt="chat" />
+          {mounted && (
+            <Image src={isEn ? CardIntroChatEn : CardIntroChat} alt="chat" />
+          )}
           <Box pl={15}>
             <Image src={CardBird} alt="bird" />
           </Box>
@@ -83,12 +92,17 @@ const Page = () => {
         <Box position="absolute" left={5} bottom="44%" zIndex={999} onClick={redirectToEsgLoan} minWidth={492}>
           <FadeIn delay={1}>
             <StyledScaleImage src={LeftCard} alt="right-card" />
-            <Box mt={7.5} mb={isEn ? 6.25 : 2.5} height={isEn ? 135 : 210} display="flex" justifyContent="center" alignItems="center">
-              <Image src={isEn ? LeftContentEn : LeftContent} alt='right-content' />
-            </Box>
-            <StyledCommonButton>
-              <Image src={isEn ? MoreIconEn : MoreIcon} alt='more-icon' />
-            </StyledCommonButton>
+            {mounted && (
+              <>
+                <Box mt={7.5} mb={isEn ? 6.25 : 2.5} height={isEn ? 135 : 210} display="flex" justifyContent="center" alignItems="center">
+                  <Image src={isEn ? LeftContentEn : LeftContent} alt='right-content' />
+                </Box>
+                <StyledCommonButton>
+                  <Image src={isEn ? MoreIconEn : MoreIcon} alt='more-icon' />
+                </StyledCommonButton>
+              
+              </>
+            )}
           </FadeIn>
         </Box>
         <FadeIn delay={0.5}>
@@ -97,17 +111,21 @@ const Page = () => {
         <Box position="absolute" right={5} bottom="44%" zIndex={999} onClick={redirectToCardIntro} minWidth={492}>
           <FadeIn delay={1.25}>
             <StyledScaleImage src={RightCard} alt="right-card" />
-            <Box mt={7.5} mb={isEn ? 6.25 : 2.5} height={isEn ? 135 : 210} display="flex" justifyContent="center" alignItems="center">
-              <Image src={isEn ? RightContentEn : RightContent} alt='right-content' />
-            </Box>
-            <StyledCommonButton>
-              <Image src={isEn ? MoreIconEn : MoreIcon} alt='more-icon' />
-            </StyledCommonButton>
+            {mounted && (
+              <>
+                <Box mt={7.5} mb={isEn ? 6.25 : 2.5} height={isEn ? 135 : 210} display="flex" justifyContent="center" alignItems="center">
+                  <Image src={isEn ? RightContentEn : RightContent} alt='right-content' />
+                </Box>
+                <StyledCommonButton>
+                  <Image src={isEn ? MoreIconEn : MoreIcon} alt='more-icon' />
+                </StyledCommonButton>
+              </>
+            )}
           </FadeIn>
         </Box>
       </Box>
     </Box>
-  ) : <><Box></Box></>
+  )
 }
 
 export default Page;
