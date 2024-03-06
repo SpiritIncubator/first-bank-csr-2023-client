@@ -2,11 +2,11 @@ import React from 'react'
 import { Box } from '@mui/material';
 import Image from 'next/image';
 
-import CreditCardIcon from '@/app/stage2/assets/creditCard.svg';
-import LeeCard from '@/app/stage2/assets/lee-card.svg';
-import YIlanCard from '@/app/stage2/assets/yilan-card.svg';
-import TyCard from '@/app/stage2/assets/ty-card.svg';
-import WorldCard from '@/app/stage2/assets/world-card.svg';
+import GreenCard from '@/app/stage2/assets/green-card-new.svg';
+import TaoyuanCard from '@/app/stage2/assets/taoyuan-card-new.svg';
+import YilanCard from '@/app/stage2/assets/yilan-card-new.svg';
+import LeezenCard from '@/app/stage2/assets/leezen-card-new.svg';
+import WorldCard from '@/app/stage2/assets/world-card-new.svg';
 
 
 type DemoCardProps = {
@@ -16,16 +16,16 @@ type DemoCardProps = {
 
 const dataMapping = [
   {
-    img: CreditCardIcon
+    img: GreenCard
   },
   {
-    img: TyCard
+    img: TaoyuanCard
   },
   {
-    img: YIlanCard
+    img: YilanCard
   },
   {
-    img: LeeCard
+    img: LeezenCard
   },
   {
     img: WorldCard
