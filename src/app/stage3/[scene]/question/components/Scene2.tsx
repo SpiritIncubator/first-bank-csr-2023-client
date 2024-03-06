@@ -602,7 +602,7 @@ const Scene2Question = () => {
 					greenBuilding: false,
 					carbonFootprint: false,
 				});
-				stateAction.send({ type: 'NEXT_TO_SCENE1_INTRODUCTION' });
+				stateAction.send({ type: 'NEXT_TO_INITIAL' });
 				router.push('/stage3');
 			}
 		});

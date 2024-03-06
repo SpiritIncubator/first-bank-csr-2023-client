@@ -36,7 +36,8 @@ type TEvent =
 	| 'GO_TO_SCENE1_START'
 	| 'GO_TO_SCENE2_START'
 	| 'RESTART_SCENE1'
-	| 'RESTART_SCENE2';
+	| 'RESTART_SCENE2'
+	| 'NEXT_TO_INITIAL';
 
 type EventType = Record<'type', TEvent>;
 export type PhaseValueType = {
@@ -794,6 +795,7 @@ export const conversationMachine = setup({
 				},
 			},
 			on: {
+				NEXT_TO_INITIAL: '.start.stage1',
 				NEXT_TO_SCENE1_INTRODUCTION: '.scene1',
 				NEXT_TO_SCENE2_INTRODUCTION: '.scene2',
 				NEXT_TO_SCENE1_DASHBOARD: '.scene1.dashboard',
