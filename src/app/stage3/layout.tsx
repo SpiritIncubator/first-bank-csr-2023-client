@@ -1,12 +1,12 @@
 'use client';
 
-import { ReactNode, useState, createContext, useContext } from 'react';
+import { ReactNode, useState, createContext, useContext, useCallback } from 'react';
 import Head from 'next/head';
 import Box from '@mui/material/Box';
 import { createActorContext } from '@xstate/react';
 import { ControlBoardContext } from './context/ControlBoardContext';
 import { conversationMachine } from './xstate/conversationMachine';
-import { ControlBoardQuestStatus } from './context/ControlBoardContext';
+import { ControlBoardQuestStatus, controlBoardInitialState } from './context/ControlBoardContext';
 import { Scene, QuestNames } from '@/app/stage3/controlBoard/constants';
 
 type LayoutProps = {
@@ -51,6 +51,11 @@ const Layout = ({ children }: LayoutProps) => {
 		[QuestNames.GREEN_BUILDING]: false,
 		[QuestNames.SOLAR_POWER]: false,
 	});
+
+	const resetControlBoard = useCallback(() => {
+		setQuestStatus(controlBoardInitialState);
+	}, []);
+
 	const [questionStatus, setQuestionStatus] = useState<QuestionStatusType>({
 		rainRecycle: false,
 		aquaponics: false,
@@ -62,7 +67,7 @@ const Layout = ({ children }: LayoutProps) => {
 
 	return (
 		<QuestionContext.Provider value={{ questionStatus, setQuestionStatus }}>
-			<ControlBoardContext.Provider value={{ questStatus, setQuestStatus }}>
+			<ControlBoardContext.Provider value={{ questStatus, setQuestStatus, resetControlBoard }}>
 				<ConversationContext.Provider>
 					<Head>
 						<link rel="preload" href="./assets/scene2-bg-without-border.svg" as="image" />
