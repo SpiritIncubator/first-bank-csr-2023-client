@@ -591,23 +591,6 @@ const Scene2Question = () => {
 		});
 	}, [receivedEvent, stateAction]);
 
-	useEffect(() => {
-		receivedEvent(({ messageType }) => {
-			if (messageType === SOCKET_EVENTS.RESTART) {
-				setQuestionStatus({
-					aquaponics: false,
-					rainRecycle: false,
-					solarPower: false,
-					dashboard: false,
-					greenBuilding: false,
-					carbonFootprint: false,
-				});
-				stateAction.send({ type: 'NEXT_TO_INITIAL' });
-				router.push('/stage3');
-			}
-		});
-	}, [receivedEvent, router, setQuestionStatus, stateAction]);
-
 	const phaseParams = getCurrentPhaseImg(currentPhaseInfo);
 
 	return (

@@ -66,7 +66,7 @@ const Scene2Page = () => {
 					greenBuilding: false,
 					carbonFootprint: false,
 				});
-				action.send({ type: 'NEXT_TO_SCENE1_INTRODUCTION' });
+				action.send({ type: 'NEXT_TO_INITIAL' });
 				router.push('/stage3');
 			}
 		});
