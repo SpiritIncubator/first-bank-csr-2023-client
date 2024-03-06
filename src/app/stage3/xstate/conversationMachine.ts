@@ -746,6 +746,17 @@ export const conversationMachine = setup({
 										NEXT_TO_DIALOG_7: 'dialog7',
 									},
 								},
+								// dialog7: {
+								// 	entry: [
+								// 		{
+								// 			type: 'setCurrentPhase',
+								// 			params: { round: 7, level: 2, question: 'aquaponics' },
+								// 		},
+								// 	],
+								// 	on: {
+								// 		NEXT_TO_DIALOG_8: 'dialog8',
+								// 	},
+								// },
 								dialog7: {
 									entry: [
 										{
@@ -773,17 +784,6 @@ export const conversationMachine = setup({
 										{
 											type: 'setCurrentPhase',
 											params: { round: 9, level: 2, question: 'aquaponics' },
-										},
-									],
-									on: {
-										NEXT_TO_DIALOG_10: 'dialog10',
-									},
-								},
-								dialog10: {
-									entry: [
-										{
-											type: 'setCurrentPhase',
-											params: { round: 10, level: 2, question: 'aquaponics' },
 										},
 									],
 									on: {},

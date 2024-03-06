@@ -105,9 +105,9 @@ export const animationItemsByCategories: Record<Partial<PhaseValueType['question
 	aquaponics: {
 		5: AquaonicsDialog5Animation,
 		6: AquaonicsDialog6Animation,
-		8: AquaonicsDialog8Animation,
-		9: AquaonicsDialog9Animation,
-		10: AquaonicsDialog10Animation,
+		7: AquaonicsDialog8Animation,
+		8: AquaonicsDialog9Animation,
+		9: AquaonicsDialog10Animation,
 	},
 	solarPower: {
 		3: SolarPowerDialog3Animation,
@@ -211,25 +211,25 @@ const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
 				animation: AquaonicsDialog6Animation,
 			};
 		}
+		// if (currentPhaseInfo.round === 7) {
+		// 	return {
+		// 		dialog: AquaonicsDialog7,
+		// 		bg: AquaonicsBg7,
+		// 	};
+		// }
 		if (currentPhaseInfo.round === 7) {
-			return {
-				dialog: AquaonicsDialog7,
-				bg: AquaonicsBg7,
-			};
-		}
-		if (currentPhaseInfo.round === 8) {
 			return {
 				dialog: AquaonicsDialog8,
 				animation: AquaonicsDialog8Animation,
 			};
 		}
-		if (currentPhaseInfo.round === 9) {
+		if (currentPhaseInfo.round === 8) {
 			return {
 				dialog: AquaonicsDialog9,
 				animation: AquaonicsDialog9Animation,
 			};
 		}
-		if (currentPhaseInfo.round === 10) {
+		if (currentPhaseInfo.round === 9) {
 			return {
 				dialog: AquaonicsDialog10,
 				animation: AquaonicsDialog10Animation,
@@ -334,7 +334,7 @@ const Scene2Question = () => {
 
 		if (
 			currentPhaseInfo.question === SCENE2SITUATION.AQUAPONICS &&
-			currentPhaseInfo.round === 10 &&
+			currentPhaseInfo.round === 9 &&
 			!questionStatus.aquaponics
 		) {
 			sendEvent({ messageType: SOCKET_EVENTS.AQUAPONICS_END });
