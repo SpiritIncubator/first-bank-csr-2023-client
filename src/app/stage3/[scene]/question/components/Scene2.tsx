@@ -162,7 +162,7 @@ const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
 		if (currentPhaseInfo.round === 7) {
 			return {
 				dialog: Dialog7,
-				animation: Dialog4Animation,
+				animation: Dialog6Animation,
 			};
 		}
 		if (currentPhaseInfo.round === 8) {
