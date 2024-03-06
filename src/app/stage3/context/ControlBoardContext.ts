@@ -13,25 +13,28 @@ export type ControlBoardQuestStatus = {
   currentScene: Scene;
 } & QuestFinished
 
+
+export const controlBoardInitialState = {
+  currentQuest: '',
+  currentScene: Scene.Scene1,
+
+  SCENE1: false,
+  [QuestNames.DASHBOARD]: false,
+  [QuestNames.GREEN_BUILDING]: false,
+  [QuestNames.CARBON_FOOTPRINT]: false,
+
+  SCENE2: false,
+  [QuestNames.RAIN_RECYCLE]: false,
+  [QuestNames.AQUAPONICS]: false,
+  [QuestNames.SOLAR_POWER]: false,
+}
+
 export const ControlBoardContext = createContext<{
   questStatus: ControlBoardQuestStatus,
+  resetControlBoard: () => void,
   setQuestStatus: Dispatch<SetStateAction<ControlBoardQuestStatus>>
 }>({
-  questStatus: {
-    currentQuest: '',
-    currentScene: Scene.Scene1,
-
-    SCENE1: false,
-    [QuestNames.DASHBOARD]: false,
-    [QuestNames.GREEN_BUILDING]: false,
-    [QuestNames.CARBON_FOOTPRINT]: false,
-
-    SCENE2: false,
-    [QuestNames.RAIN_RECYCLE]: false,
-    [QuestNames.AQUAPONICS]: false,
-    [QuestNames.SOLAR_POWER]: false,
-
-
-  },
-  setQuestStatus: () => { }
+  questStatus: controlBoardInitialState,
+  setQuestStatus: () => { },
+  resetControlBoard: () => { }
 });

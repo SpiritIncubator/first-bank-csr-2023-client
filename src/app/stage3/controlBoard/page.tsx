@@ -31,7 +31,7 @@ enum STEPS {
 }
 
 export default function ControlBoard() {
-	const { questStatus, setQuestStatus } = useContext(ControlBoardContext);
+	const { questStatus, setQuestStatus, resetControlBoard } = useContext(ControlBoardContext);
 	const [currentStep, setCurrentStep] = useState(STEPS.START);
 	const [currentQuizStartEvent, setCurrentQuizStartEvent] = useState('');
 	const [currentQuestEndEvent, setCurrentQuestEndEvent] = useState('');
@@ -40,7 +40,7 @@ export default function ControlBoard() {
 	const { playStartGameOnce } = useSoundEffect();
 
 	const onClickStart = () => {
-		sendEvent({ messageType: SOCKET_EVENTS.START });
+		sendEvent({ messageType: SOCKET_EVENTS.RESTART });
 		setCurrentStep(STEPS.LOOK_AT_SCREEN);
 		playStartGameOnce();
 	};
@@ -92,15 +92,29 @@ export default function ControlBoard() {
 	useEffect(() => {
 		const params = new URLSearchParams(window.location.search);
 		const jumpTo = params.get('jumpTo');
-		console.log('jumpTo :', jumpTo);
+		const finishAllQuest = params.get('finishAllQuest');
+		console.log('finishAllQuest :', finishAllQuest);
 
 		if (jumpTo === 'scene2') {
 			setCurrentStep(STEPS.SCENE2_QUESTION_LIST);
 			setQuestStatus(prevStatus => ({
 				...prevStatus,
+				currentScene: Scene.Scene2,
 				[QuestNames.DASHBOARD]: true,
 				[QuestNames.GREEN_BUILDING]: true,
 				[QuestNames.CARBON_FOOTPRINT]: true,
+			}));
+		} else if (finishAllQuest === 'true') {
+			setCurrentStep(STEPS.SCENE2_QUESTION_LIST);
+			setQuestStatus(prevStatus => ({
+				...prevStatus,
+				currentScene: Scene.Scene2,
+				[QuestNames.DASHBOARD]: true,
+				[QuestNames.GREEN_BUILDING]: true,
+				[QuestNames.CARBON_FOOTPRINT]: true,
+				[QuestNames.RAIN_RECYCLE]: true,
+				[QuestNames.AQUAPONICS]: true,
+				[QuestNames.SOLAR_POWER]: true,
 			}));
 		}
 	}, [setQuestStatus]);
@@ -129,7 +143,8 @@ export default function ControlBoard() {
 
 	const onFinishAllScene2Quest = () => {
 		sendEvent({ messageType: SOCKET_EVENTS.RESTART });
-		window.location.reload();
+		setCurrentStep(STEPS.START);
+		resetControlBoard();
 	};
 
 	const screens = {

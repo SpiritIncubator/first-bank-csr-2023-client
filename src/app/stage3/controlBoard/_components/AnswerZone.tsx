@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
-import { useState } from 'react';
-import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import NextImage from 'next/image';
 import CLICK_BUTTON_BELOW from '@/app/stage3/assets/controlBoard/stage3_click_button_below.svg';
 import {
 	quizEventAnswerMapping,
@@ -41,6 +41,16 @@ export default function AnswerZone({
 	console.log('answerResult :', answerResult);
 	const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
 	const { sendEvent } = registerRoomHelper();
+
+	useEffect(() => {
+		const imagesToPreload = [CircleImage, CrossImage];
+		imagesToPreload.forEach(image => {
+			const img = new Image();
+			img.src = image;
+			img.alt = ''; // Add the alt property
+		});
+	}, []);
+
 	if (!currentQuizEvent) return null;
 
 	const postAnswer = (finishEvent: string) => {
@@ -52,7 +62,7 @@ export default function AnswerZone({
 	const onClickAnswer = (userAnswer: number) => () => {
 		console.log('userAnswer :', userAnswer);
 		// 2 means both are correct
-	  if (quizAnswer === 2 || quizAnswer === userAnswer) {
+		if (quizAnswer === 2 || quizAnswer === userAnswer) {
 			setAnswerResult(Answer.Right);
 			setTimeout(() => {
 				finishEvent && postAnswer(finishEvent);
@@ -79,11 +89,11 @@ export default function AnswerZone({
 				pt: '205px',
 			}}>
 			<Box mx="auto" mb="75px" position="relative" width="1854px" height="462px" textAlign="center">
-				<Image src={CLICK_BUTTON_BELOW} alt="stage3_lion_look_at_screen" fill />
+				<NextImage src={CLICK_BUTTON_BELOW} alt="stage3_lion_look_at_screen" fill />
 			</Box>
 
 			<Box width="866px" height="650px" mb="100px" position="relative">
-				<Image src={mainImage} alt="question" fill />
+				<NextImage src={mainImage} alt="question" fill />
 			</Box>
 
 			<Box display="flex" gap="100px">
@@ -119,8 +129,8 @@ export default function AnswerZone({
 					justifyContent="center"
 					alignItems="center"
 					sx={{ backdropFilter: 'blur(10px)' }}>
-					{answerResult === Answer.Right && <Image src={CircleImage} alt="circle" />}
-					{answerResult === Answer.Wrong && <Image src={CrossImage} alt="cross" />}
+					{answerResult === Answer.Right && <NextImage src={CircleImage} alt="circle" />}
+					{answerResult === Answer.Wrong && <NextImage src={CrossImage} alt="cross" />}
 				</Box>
 			)}
 		</Box>
