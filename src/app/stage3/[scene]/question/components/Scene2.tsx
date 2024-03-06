@@ -16,6 +16,7 @@ import lionAnimationData from '@/app/stage3/animationData/leo_2-11_normal_smile1
 import { STAGE3_ROOM } from '@/constants';
 import { SOCKET_EVENTS } from '@/app/stage3/constants';
 import { useQuestion } from '@/app/stage3/layout';
+import { pickLionType } from '@/app/stage3/utils/pick-lion';
 // rainRecycle
 import Dialog1Bg from '@/app/stage3/assets/rainRecycle/rainCycle-bg-1.svg';
 import Dialog1 from '@/app/stage3/assets/rainRecycle/dialog1.svg';
@@ -315,6 +316,7 @@ const Scene2Question = () => {
 	const videoDuration = videoDurationWithSecond >= 4 ? videoDurationWithSecond * 1000 : DELAY_TIME;
 	const { questionStatus, setQuestionStatus } = useQuestion();
 	const router = useRouter();
+	const lionAnimation = pickLionType(currentPhaseInfo);
 
 	// MARKER: useEffect whether animation is changed or not to update the animation
 	useEffect(() => {
@@ -359,20 +361,23 @@ const Scene2Question = () => {
 		receivedEvent(({ messageType }) => {
 			if (messageType === SOCKET_EVENTS.RAIN_RECYCLE_FINISH) {
 				setQuestionStatus({ ...questionStatus, rainRecycle: true });
+				stateAction.send({ type: 'RESTART_SCENE2' });
 				router.push('/stage3/scene2');
 			}
 
 			if (messageType === SOCKET_EVENTS.AQUAPONICS_FINISH) {
 				setQuestionStatus({ ...questionStatus, aquaponics: true });
+				stateAction.send({ type: 'RESTART_SCENE2' });
 				router.push('/stage3/scene2');
 			}
 
 			if (messageType === SOCKET_EVENTS.SOLAR_POWER_FINISH) {
 				setQuestionStatus({ ...questionStatus, solarPower: true });
+				stateAction.send({ type: 'RESTART_SCENE2' });
 				router.push('/stage3/scene2');
 			}
 		});
-	}, [questionStatus, receivedEvent, router, setQuestionStatus]);
+	}, [questionStatus, receivedEvent, router, setQuestionStatus, stateAction]);
 
 	useEffect(() => {
 		if (
@@ -634,7 +639,7 @@ const Scene2Question = () => {
 					</Box>
 				</Box>
 				<Box position="absolute" right={0} bottom={-100} zIndex={999}>
-					<Lottie style={{ transform: 'scale(1.35)' }} animationData={lionAnimationData} loop />
+					<Lottie style={{ transform: 'scale(1.35)' }} animationData={lionAnimation} loop />
 				</Box>
 			</FadeIn>
 		</Box>

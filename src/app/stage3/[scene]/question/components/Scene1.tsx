@@ -17,6 +17,7 @@ import { SOCKET_EVENTS } from '@/app/stage3/constants';
 import { useQuestion } from '@/app/stage3/layout';
 import { useSubscribe } from '@/app/hooks/useSubscribe';
 import FadeInImage from '@/app/_components/Transitions/FadeInImage';
+import { pickLionType } from '@/app/stage3/utils/pick-lion';
 
 // carbonFootprint
 import carbonFootprintDialog1 from '@/app/stage3/assets/carbonFootprint/carbonFooterprint-dialog1.svg';
@@ -349,6 +350,7 @@ const Scene1Question = () => {
 	const videoDuration = videoDurationWithSecond >= 4 ? videoDurationWithSecond * 1000 : DELAY_TIME;
 	const { questionStatus, setQuestionStatus } = useQuestion();
 	const router = useRouter();
+	const pickLionAnimation = pickLionType(currentPhaseInfo);
 
 	useEffect(() => {
 		setOptions(prevState => ({...prevState, animationData: animation}));
@@ -374,20 +376,23 @@ const Scene1Question = () => {
 		receivedEvent(({ messageType }) => {
 			if (messageType === SOCKET_EVENTS.DASHBOARD_FINISH) {
 				setQuestionStatus({ ...questionStatus, dashboard: true })
+				stateAction.send({ type: 'RESTART_SCENE1'})
 				router.push('/stage3/scene1');
 			}
 
 			if (messageType === SOCKET_EVENTS.GREEN_BUILDING_FINISH) {
 				setQuestionStatus({ ...questionStatus, greenBuilding: true })
+				stateAction.send({ type: 'RESTART_SCENE1' })
 				router.push('/stage3/scene1');
 			}
 
 			if (messageType === SOCKET_EVENTS.CARBON_FOOTPRINT_FINISH) {
 				setQuestionStatus({ ...questionStatus, carbonFootprint: true })
+				stateAction.send({ type: 'RESTART_SCENE1' })
 				router.push('/stage3/scene1');
 			}
 		})
-	}, [currentPhaseInfo, questionStatus, receivedEvent, router, setQuestionStatus])
+	}, [currentPhaseInfo, questionStatus, receivedEvent, router, setQuestionStatus, stateAction])
 
 	useEffect(() => {
 		if (currentPhaseInfo.question === SCENE1SITUATION.GREEN_BUILDING) {
@@ -637,7 +642,7 @@ const Scene1Question = () => {
 					</Box>
 				</Box>
 				<Box position="absolute" right={0} bottom={-100}>
-					<Lottie style={{ transform: 'scale(1.35)' }} animationData={lionAnimationData} loop />
+					<Lottie style={{ transform: 'scale(1.35)' }} animationData={pickLionAnimation} loop />
 				</Box>
 			</FadeIn>
 		</Box>

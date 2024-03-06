@@ -34,7 +34,9 @@ type TEvent =
 	| 'NEXT_TO_SCENE1_GREEN_BUILDING'
 	| 'NEXT_TO_SCENE1_CARBON_FOOTPRINT'
 	| 'GO_TO_SCENE1_START'
-	| 'GO_TO_SCENE2_START';
+	| 'GO_TO_SCENE2_START'
+	| 'RESTART_SCENE1'
+	| 'RESTART_SCENE2';
 
 type EventType = Record<'type', TEvent>;
 export type PhaseValueType = {
