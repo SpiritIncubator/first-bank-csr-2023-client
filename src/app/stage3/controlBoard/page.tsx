@@ -40,7 +40,7 @@ export default function ControlBoard() {
 	const { playStartGameOnce } = useSoundEffect();
 
 	const onClickStart = () => {
-		sendEvent({ messageType: SOCKET_EVENTS.RESTART });
+		sendEvent({ messageType: SOCKET_EVENTS.START });
 		setCurrentStep(STEPS.LOOK_AT_SCREEN);
 		playStartGameOnce();
 	};
@@ -142,6 +142,7 @@ export default function ControlBoard() {
 	};
 
 	const onFinishAllScene2Quest = () => {
+		console.log('onFinishAllScene2Quest :');
 		sendEvent({ messageType: SOCKET_EVENTS.RESTART });
 		setCurrentStep(STEPS.START);
 		resetControlBoard();
