@@ -129,8 +129,18 @@ export default function AnswerZone({
 					justifyContent="center"
 					alignItems="center"
 					sx={{ backdropFilter: 'blur(10px)' }}>
-					{answerResult === Answer.Right && <NextImage src={CircleImage} alt="circle" />}
-					{answerResult === Answer.Wrong && <NextImage src={CrossImage} alt="cross" />}
+					<Box
+						sx={{
+							display: answerResult === Answer.Right ? 'block' : 'none',
+						}}>
+						<NextImage src={CircleImage} alt="circle" />
+					</Box>
+					<Box
+						sx={{
+							display: answerResult === Answer.Wrong ? 'block' : 'none',
+						}}>
+						<NextImage src={CrossImage} alt="cross" />
+					</Box>
 				</Box>
 			)}
 		</Box>

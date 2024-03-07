@@ -35,6 +35,7 @@ enum STEPS {
 
 export default function ControlBoard() {
 	const { questStatus, setQuestStatus, resetControlBoard } = useContext(ControlBoardContext);
+	const [isReadyForInteraction, setIsReadyForInteraction] = useState(true);
 	console.log('questStatus :', questStatus);
 	const [currentStep, setCurrentStep] = useState(STEPS.START);
 	const [currentQuizStartEvent, setCurrentQuizStartEvent] = useState('');
@@ -48,10 +49,6 @@ export default function ControlBoard() {
 		setCurrentStep(STEPS.LOOK_AT_SCREEN);
 		playStartGameOnce();
 	};
-
-	// const clearCurrentQuizEvent = () => {
-	// 	setCurrentQuizEvent('');
-	// };
 
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
@@ -138,12 +135,15 @@ export default function ControlBoard() {
 	};
 
 	const onSingleQuestFinish = () => {
-		console.log('questStatus.currentScene', questStatus.currentScene);
+		setIsReadyForInteraction(false);
 		if (questStatus.currentScene === Scene.Scene2) {
 			setCurrentStep(STEPS.SCENE2_QUESTION_LIST);
 		} else if (questStatus.currentScene === Scene.Scene1) {
 			setCurrentStep(STEPS.SCENE1_QUESTION_LIST);
 		}
+		setTimeout(() => {
+			setIsReadyForInteraction(true);
+		}, 4000);
 	};
 
 	const onFinishAllScene1Quest = () => {
@@ -205,6 +205,19 @@ export default function ControlBoard() {
 					{screens[currentStep]}
 				</motion.div>
 			</AnimatePresence>
+
+			{!isReadyForInteraction && (
+				<Box
+					position="fixed"
+					top="-100%"
+					left="-100%"
+					right="-100%"
+					bottom="-100%"
+					bgcolor="white"
+					sx={{
+						opacity: '0',
+					}}></Box>
+			)}
 		</Box>
 	);
 }
