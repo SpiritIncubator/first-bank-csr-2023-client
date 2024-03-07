@@ -11,7 +11,10 @@ import QuestFinalPage from './_components/QuestFinalPage';
 import AnswerZone from './_components/AnswerZone';
 import { Scene } from './constants';
 import useSoundEffect from '@/app/stage3/hooks/useSoundEffects';
-import { ControlBoardContext } from '@/app/stage3/context/ControlBoardContext';
+import {
+	ControlBoardContext,
+	controlBoardInitialState,
+} from '@/app/stage3/context/ControlBoardContext';
 
 import {
 	SOCKET_EVENTS,
@@ -32,6 +35,7 @@ enum STEPS {
 
 export default function ControlBoard() {
 	const { questStatus, setQuestStatus, resetControlBoard } = useContext(ControlBoardContext);
+	console.log('questStatus :', questStatus);
 	const [currentStep, setCurrentStep] = useState(STEPS.START);
 	const [currentQuizStartEvent, setCurrentQuizStartEvent] = useState('');
 	const [currentQuestEndEvent, setCurrentQuestEndEvent] = useState('');
@@ -90,12 +94,15 @@ export default function ControlBoard() {
 	}, [receivedEvent]);
 
 	useEffect(() => {
+		const url = new URL(window.location.href);
+		console.log('url :', url.pathname);
 		const params = new URLSearchParams(window.location.search);
 		const jumpTo = params.get('jumpTo');
 		const finishAllQuest = params.get('finishAllQuest');
 		console.log('finishAllQuest :', finishAllQuest);
 
 		if (jumpTo === 'scene2') {
+			console.log('jumpTo :', jumpTo);
 			setCurrentStep(STEPS.SCENE2_QUESTION_LIST);
 			setQuestStatus(prevStatus => ({
 				...prevStatus,
@@ -105,6 +112,7 @@ export default function ControlBoard() {
 				[QuestNames.CARBON_FOOTPRINT]: true,
 			}));
 		} else if (finishAllQuest === 'true') {
+			console.log('finishAllQuest :', finishAllQuest);
 			setCurrentStep(STEPS.SCENE2_QUESTION_LIST);
 			setQuestStatus(prevStatus => ({
 				...prevStatus,
@@ -117,6 +125,8 @@ export default function ControlBoard() {
 				[QuestNames.SOLAR_POWER]: true,
 			}));
 		}
+
+		window.history.pushState({}, '', url.pathname);
 	}, [setQuestStatus]);
 
 	const onAnswerFinish = () => {
@@ -143,9 +153,20 @@ export default function ControlBoard() {
 
 	const onFinishAllScene2Quest = () => {
 		console.log('onFinishAllScene2Quest :');
-		sendEvent({ messageType: SOCKET_EVENTS.RESTART });
+
+		setQuestStatus(prevStatus => ({
+			...prevStatus,
+			currentScene: Scene.Scene1,
+			[QuestNames.DASHBOARD]: false,
+			[QuestNames.GREEN_BUILDING]: false,
+			[QuestNames.CARBON_FOOTPRINT]: false,
+			[QuestNames.RAIN_RECYCLE]: false,
+			[QuestNames.AQUAPONICS]: false,
+			[QuestNames.SOLAR_POWER]: false,
+		}));
 		setCurrentStep(STEPS.START);
-		resetControlBoard();
+		sendEvent({ messageType: SOCKET_EVENTS.RESTART });
+		location.reload();
 	};
 
 	const screens = {
