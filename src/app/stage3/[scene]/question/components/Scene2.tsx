@@ -596,7 +596,7 @@ const Scene2Question = () => {
 	return (
 		<Box position="relative" display="flex" justifyContent="center">
 			<FadeIn delay={0.5}>
-				<NextImage src={bg} alt="Unresolved Question" />
+				<NextImage src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjU2MCIgaGVpZ2h0PSIxNDQwIiB2aWV3Qm94PSIwIDAgMjU2MCAxNDQwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KPHJlY3Qgd2lkdGg9IjI1NjAiIGhlaWdodD0iMTQ0MCIgZmlsbD0idXJsKCNwYXR0ZXJuMCkiLz4KPGRlZnM+CjxwYXR0ZXJuIGlkPSJwYXR0ZXJuMCIgcGF0dGVybkNvbnRlbnRVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPgo8dXNlIHhsaW5rOmhyZWY9IiNpbWFnZTBfMTkyMF85ODQiIHRyYW5zZm9ybT0ic2NhbGUoMC4wMDAyND" alt="Unresolved Question" />
 			</FadeIn>
 			<FadeIn delay={0.5}>
 				<Box
