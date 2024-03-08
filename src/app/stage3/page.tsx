@@ -27,7 +27,7 @@ const ConversationPage = () => {
 		channel: 'subscribeChannel',
 		room: 'stage3_controlBoard',
 	});
-	const { loopPlayStartView } = useSoundEffect();
+	const { loopPlayStartView, stop } = useSoundEffect();
 	const { receivedEvent, sendEvent } = registerRoomHelper();
 	const currentPhaseInfo = ConversationContext.useSelector(state => state.context.phase);
 	const stateAction = ConversationContext.useActorRef();
@@ -54,6 +54,10 @@ const ConversationPage = () => {
 		navigator.mediaDevices.getUserMedia({ audio: true });
 		// only load once
 		// eslint-disable-next-line react-hooks/exhaustive-deps
+
+		return () => {
+			stop();
+		}
 	}, []);
 
 	useEffect(() => {

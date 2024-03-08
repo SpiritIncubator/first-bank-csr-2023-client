@@ -18,6 +18,7 @@ import { useQuestion } from '@/app/stage3/layout';
 import { useSubscribe } from '@/app/hooks/useSubscribe';
 import FadeInImage from '@/app/_components/Transitions/FadeInImage';
 import { pickLionType } from '@/app/stage3/utils/pick-lion';
+import useSoundEffect from '@/app/stage3/hooks/useSoundEffects';
 
 // carbonFootprint
 import carbonFootprintDialog1 from '@/app/stage3/assets/carbonFootprint/carbonFooterprint-dialog1.svg';
@@ -345,12 +346,21 @@ const Scene1Question = () => {
 		loop: true,
 		autoplay: true,
 	});
+	const {loopCommentary, stop} = useSoundEffect();
 	const { View, getDuration } = useLottie(options, { width: 2560 });
 	const videoDurationWithSecond = getDuration() ?? 0;
 	const videoDuration = videoDurationWithSecond >= 4 ? videoDurationWithSecond * 1000 : DELAY_TIME;
 	const { questionStatus, setQuestionStatus } = useQuestion();
 	const router = useRouter();
 	const pickLionAnimation = pickLionType(currentPhaseInfo);
+
+	useEffect(() => {
+		loopCommentary();
+
+		return () => {
+			stop()
+		}
+	}, []);
 
 	useEffect(() => {
 		setOptions(prevState => ({...prevState, animationData: animation}));
@@ -434,8 +444,6 @@ const Scene1Question = () => {
 			}
 		});
 	}, [receivedEvent, stateAction]);
-
-	console.log(videoDuration, 'videoDuration')
 
 	useEffect(() => {
 		let timerId: NodeJS.Timeout;

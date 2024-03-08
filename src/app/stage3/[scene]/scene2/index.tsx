@@ -24,6 +24,7 @@ import solarPowerResolvedImg from '../../assets/question-solarpower.svg';
 import aquaponicsResolvedImg from '../../assets/question-aquaponics.svg';
 import Scene2Introduction1 from '../../assets/scene2-introduction1.svg';
 import Scene2Introduction2 from '../../assets/scene2-introduction2.svg';
+import ResolveAllQuestion from '../../assets/resolve_all.svg'
 
 const DELAY_SECONDS = 4000;
 
@@ -39,6 +40,22 @@ const Scene2Page = () => {
 		currentPhaseInfo.level === 2 && currentPhaseInfo.question === 'initial';
 	const isInitialDialog1 = currentPhaseInfo.round === 0 && isScene2InitialPhase;
 	const isDialog2 = currentPhaseInfo.round === 1 && isScene2InitialPhase;
+
+	function getDialogImage() {
+		if (questionStatus.aquaponics === true && questionStatus.rainRecycle === true && questionStatus.solarPower === true) {
+			return ResolveAllQuestion;
+		}
+
+		if (isDialog2) {
+			return Scene2Introduction2;
+		}
+
+		if (isInitialDialog1) {
+			return Scene2Introduction1;
+		}
+
+		return Scene2Introduction2;
+	}
 
 	useEffect(() => {
 		let timer: NodeJS.Timeout;
@@ -126,7 +143,7 @@ const Scene2Page = () => {
 						<Lottie animationData={lionAnimationData} loop />
 					</Box>
 					<Box sx={{ transform: 'translateX(-50%)' }} position="absolute" bottom={0} left="50%">
-						<Image src={isDialog2 ? Scene2Introduction2 : Scene2Introduction1} alt="fake1" />
+						<Image src={getDialogImage()} alt="fake1" />
 					</Box>
 				</FadeIn>
 			)}

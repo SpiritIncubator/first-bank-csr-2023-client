@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useGlobalAudioPlayer } from 'react-use-audio-player';
 
 const useSoundEffect = () => {
@@ -7,13 +8,18 @@ const useSoundEffect = () => {
   const basePath = "/assets/soundEffects";
 
   // 播放背景音乐，循环播放
-  const loopPlayBackgroundScene1 = () => {
+  const loopPlayBackgroundScene1 = useCallback(() => {
     load(`${basePath}/background_scene1.mp3`, { loop: true, autoplay: true });
-  };
+  }, [load]);
 
   const loopPlayBackgroundScene2 = () => {
     load(`${basePath}/background_scene2.mp3`, { loop: true, autoplay: true });
   };
+
+  const loopCommentary = useCallback(() => {
+    load(`${basePath}/commentary.mp3`, { loop: true, autoplay: true });
+  }, [load]);
+
   const loopPlayStartView = () => {
     return load(`${basePath}/background_start.mp3`, { loop: true, autoplay: true });
   };
@@ -32,6 +38,8 @@ const useSoundEffect = () => {
   const playWrongAnswerOnce = () => playSoundOnce("wrong_answer.mp3");
 
   return {
+    stop,
+    loopCommentary,
     loopPlayStartView,
     loopPlayBackgroundScene1,
     loopPlayBackgroundScene2,
