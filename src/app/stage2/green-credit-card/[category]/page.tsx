@@ -5,8 +5,6 @@ import { Box, Typography, List, ListItem, ListItemText, ListItemIcon } from '@mu
 import Image from 'next/image';
 import CountUp from 'react-countup';
 import { useRouter } from 'next/navigation';
-
-import useMount from '@/app/hooks/useMount';
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import BackLeftButton from '@/assets/back_left.svg';
@@ -41,6 +39,7 @@ const Page = ({ params }: PageProps) => {
   const symbolImg = isLastCard ?
     (isEn) ? LastSymbolWithYearsEn : LastSymbolWithYears
     : (isEn) ? SymbolWithYearsEn : SymbolWithYears;
+  // const isMounted = useMount();
   
   function renderCardDetail(description: string, index: number) {
     const isHeadRecord = index === 0;
@@ -140,7 +139,9 @@ const Page = ({ params }: PageProps) => {
         <Image src={Rotate} alt="rotate" />
       </Box>
       <Box position="absolute" right={370} top={850}>
-        <Image src={detail.code} alt="link" />
+        {isMounted && (
+          <Image src={isEn ? detail.codeEn : detail.code} alt="link" />
+        )}
       </Box>
     </Box>
   )

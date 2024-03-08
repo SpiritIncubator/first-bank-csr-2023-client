@@ -32,7 +32,7 @@ import carbonFootprintDialog9 from '@/app/stage3/assets/carbonFootprint/carbonFo
 import carbonFootprintDialog10 from '@/app/stage3/assets/carbonFootprint/carbonFooterprint-dialog10.svg';
 
 import carbonFootprintBubble1 from '@/app/stage3/assets/carbonFootprint/carbonFoorprint-bubble1.svg';
-import carbonFootprintBubble2Animation from '@/app/stage3/animationData/carbonFootprint/carbonFoorprint-bubble2.json';
+import carbonFootprintBubble2Animation from '@/app/stage3/animationData/carbonFootprint/carbonFootprint-bubble2.json';
 import carbonFootprintBubble3 from '@/app/stage3/assets/carbonFootprint/carbonFoorprint-bubble3.svg';
 import carbonFootprintBubble4 from '@/app/stage3/assets/carbonFootprint/carbonFoorprint-bubble4.svg';
 import carbonFootprintBubble5 from '@/app/stage3/assets/carbonFootprint/carbonFoorprint-bubble5.svg';
@@ -435,6 +435,8 @@ const Scene1Question = () => {
 		});
 	}, [receivedEvent, stateAction]);
 
+	console.log(videoDuration, 'videoDuration')
+
 	useEffect(() => {
 		let timerId: NodeJS.Timeout;
 		// MARK: - if I have to refactor 
@@ -470,8 +472,8 @@ const Scene1Question = () => {
 			// animation
 			if (currentPhaseInfo.round === 8) {
 				timerId = setTimeout(() => {
-					stateAction.send({ type: 'NEXT_TO_DIALOG_9' });
-				}, videoDuration);
+					stateAction.send({ type: 'NEXT_TO_DIALOG_9' });					
+				}, 6500);
 			}
 			// animation
 			if (currentPhaseInfo.round === 9) {

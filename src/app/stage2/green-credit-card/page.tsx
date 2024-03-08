@@ -14,6 +14,7 @@ import cardLionIcon from '@/app/stage2/assets/card-lion.svg';
 import BackLeftButton from '@/assets/back_left.svg';
 import ClickLionImg from '@/app/stage2/assets/clicklion.svg';
 import ClickLionEnImg from '@/app/stage2/assets/clicklionEn.svg';
+import useMount from '@/app/hooks/useMount';
 
 import BackLeftActiveButton from '@/assets/back_left_active.svg';
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
@@ -29,6 +30,7 @@ const CardOverview = () => {
   const { t } = useTranslation('stage2');
   const { language } = useStore();
   const isEn = language === 'en';
+  const isMounted = useMount();
 
   const redirectToDetail = useCallback((index: string) => () => {
     router.push(`/stage2/green-credit-card/${index}`);
