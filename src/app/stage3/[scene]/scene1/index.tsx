@@ -130,7 +130,7 @@ const Scene1Page = () => {
       <FadeIn>
         <Image src={Scene1Bg} alt="scene1" priority />
       </FadeIn>
-      <FadeIn>
+      <FadeIn delay={1.5}>
         <Box position="absolute" right={0} bottom={-100} zIndex={999}>
           <Lottie style={{ transform: 'scale(1.35)' }} animationData={lionAnimationData} loop />
         </Box>
