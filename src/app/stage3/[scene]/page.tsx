@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import useSoundEffect from '../hooks/useSoundEffects';
+import { useQuestion } from '@/app/stage3/layout';
 
 import Scene1Page from './scene1';
 import Scene2Page from './scene2';
@@ -16,7 +17,8 @@ import { ConversationContext } from '../layout';
 const ScenePage = () => {
   const conversationState = ConversationContext.useSelector(state => state.value.root ?? {});
   const params = useParams<Record<'scene', keyof typeof conversationState>>()
-  const { loopPlayBackgroundScene1, loopPlayBackgroundScene2, stop } = useSoundEffect();
+  const { questionStatus } = useQuestion();
+  const { loopPlayBackgroundScene1, loopPlayBackgroundScene2, playCongratsPassedOnce, stop } = useSoundEffect();
   const { scene } = params;
 
   useEffect(() => {
@@ -25,6 +27,12 @@ const ScenePage = () => {
     }
 
     if (scene === 'scene2') {
+      if (questionStatus.aquaponics === true && questionStatus.carbonFootprint === true && questionStatus.dashboard === true && questionStatus.greenBuilding === true && questionStatus.rainRecycle === true && questionStatus.solarPower === true) {
+        playCongratsPassedOnce()
+
+        return;
+      }
+
       loopPlayBackgroundScene2();
     }
 
