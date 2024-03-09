@@ -11,6 +11,7 @@ import BackLeftButton from '@/assets/back_left.svg';
 import BackLeftActiveButton from '@/assets/back_left_active.svg';
 import {useTranslation} from '@/app/_locales/hooks/useTranslation';
 import useStore from '@/app/atoms/useStore';
+import useMount from '@/app/hooks/useMount';
 
 import { creditCardInfos, CreditCardInfoType } from './spec';
 import SymbolWithYears from './assets/symbol-years.svg';
