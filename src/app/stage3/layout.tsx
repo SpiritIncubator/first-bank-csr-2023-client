@@ -8,6 +8,9 @@ import { ControlBoardContext } from './context/ControlBoardContext';
 import { conversationMachine } from './xstate/conversationMachine';
 import { ControlBoardQuestStatus, controlBoardInitialState } from './context/ControlBoardContext';
 import { Scene, QuestNames } from '@/app/stage3/controlBoard/constants';
+import CrossImage from '@/app/stage3/assets/controlBoard/stage3_cross.svg';
+
+import CircleImage from '@/app/stage3/assets/controlBoard/stage3_circle.svg';
 
 type LayoutProps = {
 	children: ReactNode;
@@ -51,7 +54,7 @@ const Layout = ({ children }: LayoutProps) => {
 		[QuestNames.GREEN_BUILDING]: false,
 		[QuestNames.SOLAR_POWER]: false,
 	});
-
+	console.log('CrossImage :', CrossImage);
 	const resetControlBoard = useCallback(() => {
 		setQuestStatus(controlBoardInitialState);
 	}, []);
@@ -71,6 +74,8 @@ const Layout = ({ children }: LayoutProps) => {
 				<ConversationContext.Provider>
 					<Head>
 						<link rel="preload" href="./assets/scene2-bg-without-border.svg" as="image" />
+						<link rel="preload" href={CrossImage} as="image" />
+						<link rel="preload" href={CircleImage} as="image" />
 					</Head>
 					<Box>{children}</Box>
 				</ConversationContext.Provider>
