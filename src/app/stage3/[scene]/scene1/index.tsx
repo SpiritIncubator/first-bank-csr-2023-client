@@ -26,6 +26,7 @@ const DELAY_SECONDS = 4000
 
 const Scene1Page = () => {
   const router = useRouter();
+  const [hasLoaded, setHasLoaded] = useState(false);
   const currentPhaseInfo = ConversationContext.useSelector(state => state.context.phase);
   const action = ConversationContext.useActorRef();
   const [delayLoaded, setDelayLoaded] = useState(false);
@@ -115,6 +116,9 @@ const Scene1Page = () => {
 
   return (
     <Box position="relative">
+      {!hasLoaded && (
+        <Box width={2560} height={1440} bgcolor="#fff" position="absolute" zIndex={999} left={0} top={0} />
+      )}
       {delayLoaded && (
         <FadeIn>
           <Box position="absolute" top={250} left={650}>
@@ -135,7 +139,9 @@ const Scene1Page = () => {
         </FadeIn>
       )}
       <FadeIn delay={1}>
-        <Image src={Scene1Bg} alt="scene1" priority />
+        <Image src={Scene1Bg} alt="scene1" priority onLoadingComplete={() => {
+          setHasLoaded(true)
+        }} />
       </FadeIn>
       <FadeIn delay={1.5}>
         <Box position="absolute" right={0} bottom={-100} zIndex={999}>

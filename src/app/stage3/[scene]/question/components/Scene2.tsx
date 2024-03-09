@@ -304,6 +304,7 @@ const getCurrentPhaseImg = (currentPhaseInfo: PhaseValueType): PhaseType => {
 };
 
 const Scene2Question = () => {
+	const [hasLoaded, setHasLoaded] = useState(false);
 	const currentPhaseInfo = ConversationContext.useSelector(state => state.context.phase);
 	const stateAction = ConversationContext.useActorRef();
 	const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
@@ -609,8 +610,13 @@ const Scene2Question = () => {
 
 	return (
 		<Box position="relative" display="flex" justifyContent="center">
+			{!hasLoaded && (
+				<Box width={2560} height={1440} bgcolor="#fff" position="absolute" zIndex={999} left={0} top={0} />
+			)}
 			<FadeIn>
-				<NextImage src={bg} alt="scene2 question" width={2560} height={1440} />
+				<NextImage src={bg} alt="scene2 question" width={2560} height={1440} onLoadingComplete={() => {
+					setHasLoaded(true);
+				}} />
 			</FadeIn>
 			<FadeIn delay={1}>
 				<Box
