@@ -16,6 +16,8 @@ import PAGE3_IMAGE_EN from './_assets/stage4-thumbnail-page3-en.svg';
 import PAGE3_IMAGE_ZH from './_assets/stage4-thumbnail-page3-zh.svg';
 import PAGE4_IMAGE_EN from './_assets/stage4-thumbnail-page4-en.svg';
 import PAGE4_IMAGE_ZH from './_assets/stage4-thumbnail-page4-zh.svg';
+import Leo2_7 from '@/lottieAnimations/leo_2-7.json';
+import Lottie from 'lottie-react';
 
 import DialogEN from './_assets/stage4-lion-seeMore-en.svg';
 import DialogZH from './_assets/stage4-lion-seeMore-zh.svg';
@@ -122,7 +124,19 @@ export default function Stage4() {
 				})}
 			</Grid>
 			<FadeIn position="absolute" right={100} bottom="-50px">
-				<Image src={LionImage} alt="Lion" width={880} height={1100} priority />
+				{/* <Image src={LionImage} alt="Lion" width={880} height={1100} priority /> */}
+				<Box
+					position="absolute"
+					top="50%"
+					left="50%"
+					sx={{
+						transform: 'translate(-50%, -50%)',
+						width: '1320px',
+						height: '1650px',
+						overflow: 'hidden',
+					}}>
+					<Lottie animationData={Leo2_7} style={{ width: 1320, height: 1650 }} />
+				</Box>
 			</FadeIn>
 			<FadeIn position="absolute" top={230} right={894} transform="rotate(-10deg)">
 				<Image src={BirdImage} alt="Bird" width={377} height={308} priority />
