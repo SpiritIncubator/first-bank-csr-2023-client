@@ -7,6 +7,7 @@ import { SOCKET_EVENTS } from '@/app/stage3/constants';
 import { useSubscribe } from '@/app/hooks/useSubscribe';
 import { STAGE3_ROOM } from '@/constants'
 import { ConversationContext } from '../../layout';
+// import { scene1BgBase64 } from './bg-base64';
 import Scene1Bg from '../../assets/scene1-background.svg'
 import DialogBg from '../../assets/dialogBox.svg'
 import UnResolvedQuestion from '../../assets/unResolvedQuestion.svg'
@@ -73,6 +74,7 @@ const Scene1Page = () => {
 
   useEffect(() => {
     receivedEvent(({ messageType }) => {
+      console.log('Scene1 received event', messageType);
       if (messageType === SOCKET_EVENTS.DASHBOARD_START) {
         action.send({ type: 'NEXT_TO_SCENE1_DASHBOARD' });
         router.push('/stage3/scene1/question'); 
@@ -132,7 +134,7 @@ const Scene1Page = () => {
           </Box>
         </FadeIn>
       )}
-      <FadeIn>
+      <FadeIn delay={1}>
         <Image src={Scene1Bg} alt="scene1" priority />
       </FadeIn>
       <FadeIn delay={1.5}>
