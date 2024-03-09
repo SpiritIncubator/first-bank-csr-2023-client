@@ -13,6 +13,7 @@ import { STAGE3_ROOM } from '@/constants';
 import CrossImage from '@/app/stage3/assets/controlBoard/stage3_cross.svg';
 import CircleImage from '@/app/stage3/assets/controlBoard/stage3_circle.svg';
 import { MAX_WIDTH, MAX_HEIGHT } from '@/app/stage3/controlBoard/constants';
+import useSoundEffects from '@/app/stage3/hooks/useSoundEffects';
 
 enum Answer {
 	Right = 0,
@@ -28,6 +29,7 @@ export default function AnswerZone({
 	onFinish?: () => void;
 }) {
 	console.log('currentQuizEvent :', currentQuizEvent);
+	const { playCorrectAnswerOnce, playWrongAnswerOnce } = useSoundEffects();
 	const {
 		answer: quizAnswer,
 		finishEvent,
@@ -38,7 +40,6 @@ export default function AnswerZone({
 		mainImage,
 	} = quizEventAnswerMapping[currentQuizEvent as string];
 	const [answerResult, setAnswerResult] = useState(Answer.Empty);
-	console.log('answerResult :', answerResult);
 	const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
 	const { sendEvent } = registerRoomHelper();
 
@@ -63,11 +64,13 @@ export default function AnswerZone({
 		console.log('userAnswer :', userAnswer);
 		// 2 means both are correct
 		if (quizAnswer === 2 || quizAnswer === userAnswer) {
+			playCorrectAnswerOnce();
 			setAnswerResult(Answer.Right);
 			setTimeout(() => {
 				finishEvent && postAnswer(finishEvent);
 			}, 2000);
 		} else {
+			playWrongAnswerOnce();
 			setAnswerResult(Answer.Wrong);
 			setTimeout(() => {
 				setAnswerResult(Answer.Empty);

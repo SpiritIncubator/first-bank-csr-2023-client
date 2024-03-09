@@ -12,17 +12,18 @@ const useSoundEffect = () => {
     load(`${basePath}/background_scene1.mp3`, { loop: true, autoplay: true });
   }, [load]);
 
-  const loopPlayBackgroundScene2 = () => {
+  const loopPlayBackgroundScene2 = useCallback(() => {
     load(`${basePath}/background_scene2.mp3`, { loop: true, autoplay: true });
-  };
+  }, [load])
 
   const loopCommentary = useCallback(() => {
     load(`${basePath}/commentary.mp3`, { loop: true, autoplay: true });
   }, [load]);
 
-  const loopPlayStartView = () => {
+  const loopPlayStartView = useCallback(() => {
     return load(`${basePath}/background_start.mp3`, { loop: true, autoplay: true });
-  };
+  }, [load]);
+
 
   // 播放一次性音效
   const playSoundOnce = (src: string) => {

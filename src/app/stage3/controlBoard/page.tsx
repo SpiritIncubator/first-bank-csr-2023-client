@@ -42,7 +42,7 @@ export default function ControlBoard() {
 	const [currentQuestEndEvent, setCurrentQuestEndEvent] = useState('');
 	const { registerRoomHelper } = useSubscribe({ channel: 'subscribeChannel', room: STAGE3_ROOM });
 	const { sendEvent, receivedEvent } = registerRoomHelper();
-	const { playStartGameOnce } = useSoundEffect();
+	const { playStartGameOnce, playButtonOnce } = useSoundEffect();
 
 	const onClickStart = () => {
 		sendEvent({ messageType: SOCKET_EVENTS.START });
@@ -71,6 +71,7 @@ export default function ControlBoard() {
 				messageType === SOCKET_EVENTS.QUEST_AQUAPONICS_QUIZ3_START ||
 				messageType === SOCKET_EVENTS.QUEST_SOLOARPOWER_QUIZ2_START
 			) {
+				console.log('STEPS.ANSWER_ZONE :', STEPS.ANSWER_ZONE);
 				setCurrentStep(STEPS.ANSWER_ZONE);
 				setCurrentQuizStartEvent(messageType);
 			}
@@ -131,7 +132,11 @@ export default function ControlBoard() {
 	};
 
 	const onChooseQuest = () => {
-		setCurrentStep(STEPS.LOOK_AT_SCREEN);
+		playButtonOnce();
+		// play sound before going to the next step
+		setTimeout(() => {
+			setCurrentStep(STEPS.LOOK_AT_SCREEN);
+		}, 1000);
 	};
 
 	const onSingleQuestFinish = () => {
