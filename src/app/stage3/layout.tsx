@@ -54,7 +54,7 @@ const Layout = ({ children }: LayoutProps) => {
 		[QuestNames.GREEN_BUILDING]: false,
 		[QuestNames.SOLAR_POWER]: false,
 	});
-	console.log('CrossImage :', CrossImage);
+
 	const resetControlBoard = useCallback(() => {
 		setQuestStatus(controlBoardInitialState);
 	}, []);
