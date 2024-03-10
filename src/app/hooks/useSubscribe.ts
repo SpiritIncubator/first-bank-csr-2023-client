@@ -1,5 +1,5 @@
 /** @format */
-"use client"
+'use client';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import io, { Socket } from 'socket.io-client';
 
@@ -24,10 +24,7 @@ type SubscriptionType = {
 	room?: string;
 };
 
-export const useSubscribe = <
-	T,
-	U extends SubscriptionResponse = any
->({
+export const useSubscribe = <T, U extends SubscriptionResponse = any>({
 	channel,
 	room = '',
 }: SubscriptionType) => {
@@ -59,7 +56,7 @@ export const useSubscribe = <
 		}
 
 		function changeRoomEvent(newRoomId: string) {
-			setSubscription((prevState) => ({ ...prevState, room: newRoomId }));
+			setSubscription(prevState => ({ ...prevState, room: newRoomId }));
 		}
 
 		return { sendEvent, receivedEvent, leaveRoomEvent, changeRoomEvent };

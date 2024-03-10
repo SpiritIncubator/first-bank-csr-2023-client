@@ -380,7 +380,7 @@ const Scene1Question = () => {
 		if (currentPhaseInfo.question === SCENE1SITUATION.CARBON_FOOTPRINT && currentPhaseInfo.round === 10 && !questionStatus.carbonFootprint) {
 			sendEvent({ messageType: SOCKET_EVENTS.CARBON_FOOTPRINT_END });
 		}
-	}, [currentPhaseInfo.question, currentPhaseInfo.round, questionStatus, sendEvent]);
+	}, [currentPhaseInfo.question, currentPhaseInfo.round, questionStatus]);
 
 	// In part of question is finished
 	useEffect(() => {
@@ -403,7 +403,7 @@ const Scene1Question = () => {
 				router.push('/stage3/scene1');
 			}
 		})
-	}, [currentPhaseInfo, questionStatus, receivedEvent, router, setQuestionStatus, stateAction])
+	}, [currentPhaseInfo, questionStatus, router, setQuestionStatus])
 
 	useEffect(() => {
 		if (currentPhaseInfo.question === SCENE1SITUATION.GREEN_BUILDING) {
@@ -424,7 +424,7 @@ const Scene1Question = () => {
 				sendEvent({ messageType: SOCKET_EVENTS.QUEST_CARBONFOOTPRINT_QUIZ1_START });
 			}
 		}
-	}, [currentPhaseInfo.question, currentPhaseInfo.round, sendEvent]);
+	}, [currentPhaseInfo.question, currentPhaseInfo.round]);
 
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
@@ -444,7 +444,7 @@ const Scene1Question = () => {
 				stateAction.send({ type: 'NEXT_TO_DIALOG_2' });
 			}
 		});
-	}, [receivedEvent, stateAction]);
+	}, []);
 
 	useEffect(() => {
 		let timerId: NodeJS.Timeout;
@@ -588,7 +588,7 @@ const Scene1Question = () => {
 		return () => {
 			if (timerId) clearTimeout(timerId);
 		}
-	}, [currentPhaseInfo.question, currentPhaseInfo.round, stateAction, videoDuration, animation]);
+	}, [currentPhaseInfo.question, currentPhaseInfo.round, videoDuration, animation]);
 
 	// next to scene2
 	useEffect(() => {
@@ -598,7 +598,7 @@ const Scene1Question = () => {
 				router.push('/stage3/scene2');
 			}
 		});
-	}, [receivedEvent, router, stateAction]);
+	}, [router ]);
 	// here we go
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
@@ -614,7 +614,7 @@ const Scene1Question = () => {
 				stateAction.send({ type: 'NEXT_TO_SCENE1_CARBON_FOOTPRINT' });
 			}
 		});
-	}, [receivedEvent, stateAction]);
+	}, []);
 
 	useEffect(() => {
 		receivedEvent(({messageType}) => {
@@ -630,7 +630,7 @@ const Scene1Question = () => {
 				stateAction.send({ type: 'NEXT_TO_SCENE1_CARBON_FOOTPRINT' });
 			}
 		})
-	}, [receivedEvent, stateAction]);
+	}, []);
 
 
 	const phaseParams = getCurrentPhaseImg(currentPhaseInfo);

@@ -91,7 +91,7 @@ const Scene1Page = () => {
         router.push('/stage3/scene1/question'); 
       }    
     })
-  }, [action, receivedEvent, router]);
+  }, []);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -112,7 +112,7 @@ const Scene1Page = () => {
         router.push('/stage3/scene2');
       }
     });
-  }, [receivedEvent, router, stateAction]);
+  }, []);
 
   return (
     <Box position="relative">

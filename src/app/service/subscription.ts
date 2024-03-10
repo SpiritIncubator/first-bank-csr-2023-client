@@ -68,6 +68,7 @@ class WebSocket {
   }
 
   sendEvent(message: any) {
+    console.log('library', message, this.room)
     this.socket.emit('sendRoomMsg', {
       room: this.room,
       message,
@@ -75,7 +76,10 @@ class WebSocket {
   }
 
   receivedEvent(callback: (msg: any) => void) {
-    this.socket.on(this.room, callback);
+    this.socket.on(this.room, (msg) => {
+      console.log(msg, 'msg')
+      callback(msg);
+    });
   }
 
   destroyConnection() {

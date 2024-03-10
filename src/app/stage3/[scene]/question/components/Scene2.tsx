@@ -392,7 +392,7 @@ const Scene2Question = () => {
 				router.push('/stage3/scene2');
 			}
 		});
-	}, [questionStatus, receivedEvent, router, setQuestionStatus, stateAction]);
+	}, [questionStatus, router, setQuestionStatus]);
 
 	useEffect(() => {
 		if (
@@ -409,7 +409,7 @@ const Scene2Question = () => {
 		if (currentPhaseInfo.question === SCENE2SITUATION.SOLAR_POWER && currentPhaseInfo.round === 2) {
 			sendEvent({ messageType: SOCKET_EVENTS.QUEST_SOLOARPOWER_QUIZ2_START });
 		}
-	}, [receivedEvent, currentPhaseInfo.question, currentPhaseInfo.round, stateAction, sendEvent]);
+	}, [currentPhaseInfo.question, currentPhaseInfo.round]);
 
 	// received socket from control board
 	useEffect(() => {
@@ -426,7 +426,7 @@ const Scene2Question = () => {
 				stateAction.send({ type: 'NEXT_TO_DIALOG_3' });
 			}
 		});
-	}, [receivedEvent, stateAction]);
+	}, []);
 
 	// Jump to next dialog if control board send the end message
 	useEffect(() => {
@@ -573,7 +573,7 @@ const Scene2Question = () => {
 		return () => {
 			if (timerId) clearTimeout(timerId);
 		};
-	}, [stateAction, currentPhaseInfo.round, currentPhaseInfo.question, videoDuration]);
+	}, [currentPhaseInfo.round, currentPhaseInfo.question, videoDuration]);
 
 	// here we go
 	useEffect(() => {
@@ -590,7 +590,7 @@ const Scene2Question = () => {
 				stateAction.send({ type: 'NEXT_TO_SCENE2_RAIN_RECYCLE' });
 			}
 		});
-	}, [receivedEvent, stateAction]);
+	}, []);
 
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
@@ -604,7 +604,7 @@ const Scene2Question = () => {
 				stateAction.send({ type: 'NEXT_TO_SCENE2_RAIN_RECYCLE' });
 			}
 		});
-	}, [receivedEvent, stateAction]);
+	}, []);
 
 	const phaseParams = getCurrentPhaseImg(currentPhaseInfo);
 

@@ -71,7 +71,7 @@ const Scene2Page = () => {
 		return () => {
 			clearTimeout(timer);
 		};
-	}, [isInitialDialog1, action, sendEvent]);
+	}, [isInitialDialog1]);
 
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
@@ -88,7 +88,7 @@ const Scene2Page = () => {
 				router.push('/stage3');
 			}
 		});
-	}, [action, receivedEvent, router, setQuestionStatus]);
+	}, [router, setQuestionStatus]);
 
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
@@ -105,7 +105,7 @@ const Scene2Page = () => {
 				router.push('/stage3/scene2/question');
 			}
 		});
-	}, [action, router, receivedEvent]);
+	}, [router]);
 
 	useEffect(() => {
 		let timer: NodeJS.Timeout;
