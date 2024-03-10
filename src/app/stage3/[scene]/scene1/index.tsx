@@ -62,7 +62,7 @@ const Scene1Page = () => {
         sendEvent({ messageType: SOCKET_EVENTS.SCENE1_READY_FOR_QUEST });
       }, DELAY_SECONDS);
     }
-  }, [isInitialDialog1, action, sendEvent]);
+  }, [isInitialDialog1]);
 
   useEffect(() => {
     receivedEvent(({ messageType }) => {
