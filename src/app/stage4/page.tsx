@@ -123,16 +123,20 @@ export default function Stage4() {
 					);
 				})}
 			</Grid>
-			<FadeIn position="absolute" right={100} bottom="-50px">
+			<FadeIn
+				position="absolute"
+				right={100}
+				bottom="0px"
+				overflow="hidden"
+				width="1320px"
+				height="1650px">
 				{/* <Image src={LionImage} alt="Lion" width={880} height={1100} priority /> */}
 				<Box
 					position="absolute"
 					top="50%"
 					left="50%"
 					sx={{
-						transform: 'translate(-50%, -50%)',
-						width: '1320px',
-						height: '1650px',
+						transform: 'translate(-40%, -33%) scale(1.65)',
 						overflow: 'hidden',
 					}}>
 					<Lottie animationData={Leo2_7} style={{ width: 1320, height: 1650 }} />
