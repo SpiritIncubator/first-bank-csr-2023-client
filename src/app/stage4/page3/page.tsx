@@ -41,9 +41,11 @@ const Page = () => {
 			<Box maxWidth="2404px">
 				<Box>
 					<Box position="relative">
-						<Box>
-							<Image src={isEN ? Stage4Page3TitleEN : Stage4Page3TitleZH} alt="title" />
-						</Box>
+						<FadeIn>
+							<Box>
+								<Image src={isEN ? Stage4Page3TitleEN : Stage4Page3TitleZH} alt="title" />
+							</Box>
+						</FadeIn>
 						<FadeIn delay={0.3}>
 							<Box width={2404} height={1200} mt={15}>
 								<Image src={isEN ? Stage4Page3MainEN : Stage4Page3MainZH} alt="title" />

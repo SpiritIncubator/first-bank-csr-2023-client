@@ -21,6 +21,8 @@ import FadeIn from '@/app/_components/Transitions/FadeIn';
 import useTriggerDialogAnimation from '../../hooks/useTriggerDialogAnimation';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import { LANGUAGE_TYPE } from '@/types';
+import Leo2_7 from '@/lottieAnimations/leo_2-7.json';
+import Lottie from 'lottie-react';
 
 const customPath = ['/stage4'];
 
@@ -62,7 +64,14 @@ const NavBar = ({ dialogContent: DialogContent }: NavBarProps) => {
 		if (!params.buttonImage || !params.buttonImageActive) return '';
 		return (
 			<NavLink href={params.path} key={params.path}>
-				<NavLinkItem maxWidth={400} textAlign="center" px={3}>
+				<NavLinkItem
+					maxWidth={400}
+					textAlign="center"
+					px={3}
+					sx={{
+						position: 'relative',
+						zIndex: 10,
+					}}>
 					<ImageButton
 						width="400px"
 						height="160px"
@@ -75,12 +84,9 @@ const NavBar = ({ dialogContent: DialogContent }: NavBarProps) => {
 	}
 
 	return (
-		<Box position="fixed" bottom="0" left="0" width="100%">
-			<FadeInVertical direction="up" width="100%">
-				<NavBarWrapper>{navigationLinksConfig.map(renderLink)}</NavBarWrapper>
-			</FadeInVertical>
+		<>
 			<FadeIn delay={0.5}>
-				<Box position="absolute" right={100} bottom="0" display="flex" flexDirection="column">
+				<Box position="fixed" right="300px" top="664px" display="flex" flexDirection="column">
 					{DialogContent &&
 						(disableDialogAnimation ? (
 							<DialogContent />
@@ -89,10 +95,34 @@ const NavBar = ({ dialogContent: DialogContent }: NavBarProps) => {
 								<DialogContent />
 							</ZoomBounce>
 						))}
-					<Image src={LionImage} alt="Lion" width={880} height={1100} />
 				</Box>
 			</FadeIn>
-		</Box>
+			<FadeIn
+				position="fixed"
+				right={50}
+				bottom="0px"
+				zIndex={1}
+				overflow="hidden"
+				width="950px"
+				height="1100px">
+				{/* <Image src={LionImage} alt="Lion" width={880} height={1100} priority /> */}
+				<Box
+					position="absolute"
+					top="50%"
+					left="50%"
+					sx={{
+						transform: 'translate(-50%, -50%) scale(1.65)',
+						overflow: 'hidden',
+					}}>
+					<Lottie animationData={Leo2_7} style={{ width: 1320, height: 1650 }} />
+				</Box>
+			</FadeIn>
+			<Box position="fixed" bottom="0" left="0" width="100%">
+				<FadeInVertical direction="up" width="100%">
+					<NavBarWrapper>{navigationLinksConfig.map(renderLink)}</NavBarWrapper>
+				</FadeInVertical>
+			</Box>
+		</>
 	);
 };
 
