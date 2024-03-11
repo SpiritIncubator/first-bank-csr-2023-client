@@ -114,7 +114,7 @@ export const creditCardInfos: Array<CreditCardInfoType> = [
 	{
 		circulationAmount: 50584,
 		accumulateAmount: 10285527,
-		descriptions: ['yilan.card.detail.one', 'taoyuan.card.detail.two'],
+		descriptions: ['yilan.card.detail.one', 'yilan.card.detail.two'],
 		src: YilanCardFront,
 		srcBack: YilanCardBack,
 		code: YilanCard_QrCode,
