@@ -52,6 +52,7 @@ export default function ControlBoard() {
 
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
+			console.log('messageType _ controlBoard:', messageType);
 			if (messageType === SOCKET_EVENTS.SCENE1_READY_FOR_QUEST) {
 				setCurrentStep(STEPS.SCENE1_QUESTION_LIST);
 			}
@@ -134,9 +135,7 @@ export default function ControlBoard() {
 	const onChooseQuest = () => {
 		playButtonOnce();
 		// play sound before going to the next step
-		setTimeout(() => {
-			setCurrentStep(STEPS.LOOK_AT_SCREEN);
-		}, 1000);
+		setCurrentStep(STEPS.LOOK_AT_SCREEN);
 	};
 
 	const onSingleQuestFinish = () => {
@@ -157,8 +156,6 @@ export default function ControlBoard() {
 	};
 
 	const onFinishAllScene2Quest = () => {
-		console.log('onFinishAllScene2Quest :');
-
 		setQuestStatus(prevStatus => ({
 			...prevStatus,
 			currentScene: Scene.Scene1,
