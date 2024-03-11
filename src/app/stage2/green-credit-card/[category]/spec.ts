@@ -135,7 +135,7 @@ export const creditCardInfos: Array<CreditCardInfoType> = [
 	{
 		circulationAmount: 46453,
 		accumulateAmount: 132143734,
-		descriptions: ['leezen.card.detail.one', 'taoyuan.card.detail.two'],
+		descriptions: ['leezen.card.detail.one', 'leezen.card.detail.two'],
 		src: LeezenCardFront,
 		srcBack: LeezenCardBack,
 		code: LeezenCard_QrCode,
