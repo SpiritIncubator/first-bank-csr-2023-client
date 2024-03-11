@@ -25,12 +25,12 @@ import WorldCardTitle from './assets/world-card-title.svg';
 import GreenCardFront from './assets/cards/green-card-front.svg';
 import GreenCardBack from './assets/cards/green-card-back.svg';
 import GreenCard_QrCode from './assets/cards/green-card-qrcode.svg';
-import GreenCard_QrCodeEn from './assets/cards/green-card-qrcodeEn.svg';
+import GreenCard_QrCodeEn from './assets/cards/green-card-qrcode-en.svg';
 
 import TaoyuanCardFront from './assets/cards/taoyuan-card-front.svg';
 import TaoyuanCardBack from './assets/cards/taoyuan-card-back.svg';
 import TaoyuanCard_QrCode from './assets/cards/taoyuan-card-qrcode.svg';
-import TaoyuanCard_QrCodeEn from './assets/cards/taoyuan-card-qrcodeEn.svg';
+import TaoyuanCard_QrCodeEn from './assets/cards/taoyuan-card-qrcode-en.svg';
 
 import YilanCardFront from './assets/cards/yilan-card-front.svg';
 import YilanCardBack from './assets/cards/yilan-card-back.svg';
@@ -40,7 +40,7 @@ import YilanCard_QrCodeEn from './assets/cards/yilan-card-qrcodeEn.svg';
 import LeezenCardFront from './assets/cards/leezen-card-front.svg';
 import LeezenCardBack from './assets/cards/leezen-card-back.svg';
 import LeezenCard_QrCode from './assets/cards/leezen-card-qrcode.svg';
-import LeezenCard_QrCodeEn from './assets/cards/leezen-card-qrcodeEn.svg';
+import LeezenCard_QrCodeEn from './assets/cards/leezen-card-qrcode-en.svg';
 
 import WorldCardFront from './assets/cards/world-card-front.svg';
 import WorldCardBack from './assets/cards/world-card-back.svg';
