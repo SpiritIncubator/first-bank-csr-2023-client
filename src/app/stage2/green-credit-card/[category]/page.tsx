@@ -13,7 +13,7 @@ import {useTranslation} from '@/app/_locales/hooks/useTranslation';
 import useStore from '@/app/atoms/useStore';
 import useMount from '@/app/hooks/useMount';
 
-import { creditCardInfos, CreditCardInfoType } from './spec';
+import { creditCardInfos } from './spec';
 import SymbolWithYears from './assets/symbol-years.svg';
 import SymbolWithYearsEn from './assets/symbol-en.svg'
 import LastSymbolWithYears from './assets/world-card-bird.svg';
@@ -40,7 +40,6 @@ const Page = ({ params }: PageProps) => {
   const symbolImg = isLastCard ?
     (isEn) ? LastSymbolWithYearsEn : LastSymbolWithYears
     : (isEn) ? SymbolWithYearsEn : SymbolWithYears;
-  // const isMounted = useMount();
   
   function renderCardDetail(description: string, index: number) {
     const isHeadRecord = index === 0;
@@ -108,16 +107,16 @@ const Page = ({ params }: PageProps) => {
                 {isMounted && !isEn && <Typography fontSize={42} mb={0.5}>(張)</Typography>}
               </Box>
               <Typography fontSize={160} fontWeight={900} color={categoryColor}>
-                <CountUp style={{letterSpacing: 20}} start={0} end={detail.circulationAmount} duration={3} />
+                <CountUp style={{ letterSpacing: 15, fontFamily: 'Noto Sans TC'}} start={0} end={detail.circulationAmount} duration={3} />
               </Typography>
             </Box>
             <Box display="flex" alignItems="flex-end">
               <Typography fontSize={isEn ? 38 : 54} fontWeight={700} letterSpacing={2}>
                 {t('card.detail.accumulateAmount')}
               </Typography>
-              <Typography ml={1} fontSize={isEn ? 38 : 42} mb={0.5}>{isEn ? '(NTD)' : '(元)'}</Typography>
+              <Typography ml={1} fontSize={isEn ? 35 : 40} mb={0.5}>{isEn ? '(NTD)' : '(元)'}</Typography>
             </Box>
-            <Typography letterSpacing={15} fontSize={120} fontWeight={900} color={categoryColor}>{new Intl.NumberFormat('en').format(detail.accumulateAmount)}</Typography>
+            <Typography fontFamily="Noto Sans TC" letterSpacing={15} fontSize={120} fontWeight={900} color={categoryColor}>{new Intl.NumberFormat('en').format(detail.accumulateAmount)}</Typography>
           </Box>
         </FadeIn>
       </Box>
@@ -139,7 +138,7 @@ const Page = ({ params }: PageProps) => {
       <Box position="absolute" left={450} top={650} onClick={rotateCard}>
         <Image src={Rotate} alt="rotate" />
       </Box>
-      <Box position="absolute" right={370} top={850}>
+      <Box position="absolute" right={370} top={830}>
         {isMounted && (
           <Image src={isEn ? detail.codeEn : detail.code} alt="link" />
         )}
