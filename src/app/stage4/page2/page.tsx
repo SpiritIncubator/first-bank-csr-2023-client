@@ -35,13 +35,15 @@ export default function Page2() {
 			position="relative">
 			<Box maxWidth="2592px">
 				<FadeIn>
-					<Box width="2748px" height="413px" position="relative" mb="60px" textAlign="left">
-						<Image
-							fill
-							src={isEN ? Stage4Page2TitleEN : Stage4Page2TitleZH}
-							alt="colorPicker_select_color"
-						/>
-					</Box>
+					{isEN ? (
+						<Box width="2748px" height="413px" position="relative" mb="60px" textAlign="left">
+							<Image fill src={Stage4Page2TitleEN} alt="colorPicker_select_color" />
+						</Box>
+					) : (
+						<Box width="1840px" height="610px" position="relative" mb="60px" textAlign="left">
+							<Image fill src={Stage4Page2TitleZH} alt="colorPicker_select_color" />
+						</Box>
+					)}
 				</FadeIn>
 
 				<FadeIn delay={0.5}>
