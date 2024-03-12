@@ -35,7 +35,7 @@ import TaoyuanCard_QrCodeEn from './assets/cards/taoyuan-card-qrcode-en.svg';
 import YilanCardFront from './assets/cards/yilan-card-front.svg';
 import YilanCardBack from './assets/cards/yilan-card-back.svg';
 import YilanCard_QrCode from './assets/cards/yilan-card-qrcode.svg';
-import YilanCard_QrCodeEn from './assets/cards/yilan-card-qrcodeEn.svg';
+import YilanCard_QrCodeEn from './assets/cards/yilan-card-qrcode-en.svg';
 
 import LeezenCardFront from './assets/cards/leezen-card-front.svg';
 import LeezenCardBack from './assets/cards/leezen-card-back.svg';
@@ -45,8 +45,7 @@ import LeezenCard_QrCodeEn from './assets/cards/leezen-card-qrcode-en.svg';
 import WorldCardFront from './assets/cards/world-card-front.svg';
 import WorldCardBack from './assets/cards/world-card-back.svg';
 import WorldCard_QrCode from './assets/cards/world-card-qrcode.svg';
-import WorldCard_QrCodeEn from './assets/cards/world-card-qrcodeEn.svg';
-
+import WorldCard_QrCodeEn from './assets/cards/world-card-qrcode-en.svg';
 
 type LanguageType = 'en' | 'zh';
 
@@ -55,7 +54,7 @@ export type CreditCardInfoType = {
 	accumulateAmount: number;
 	descriptions: string[];
 	src: string;
-	srcBack: string
+	srcBack: string;
 	code: string;
 	codeEn: string;
 	imgSrc: {
@@ -64,9 +63,8 @@ export type CreditCardInfoType = {
 			releaseDateImg: string;
 			cardNameImg: string;
 		};
-	}
+	};
 };
-
 
 export const creditCardInfos: Array<CreditCardInfoType> = [
 	{
