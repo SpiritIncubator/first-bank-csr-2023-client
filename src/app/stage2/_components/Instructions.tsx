@@ -10,6 +10,12 @@ import PreviousButton from '@/assets/back_left.svg';
 import PreviousActiveButton from '@/assets/back_left_active.svg';
 import ImageButton from '@/app/_components/ImageButton/ImageButton';
 import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
+import QA1Img from '@/assets/1.svg';
+import QA2Img from '@/assets/2.svg';
+import QA3Img from '@/assets/3.svg';
+import QA4Img from '@/assets/4.svg';
+import QA5Img from '@/assets/5.svg';
+import QA6Img from '@/assets/6.svg';
 
 type PageType = {
 	title: string;
@@ -19,23 +25,27 @@ type PageType = {
 const IntroductionPages: PageType[] = [
 	{
 		title: 'Introduction1',
-		imgPath: '',
+		imgPath: QA1Img
 	},
 	{
 		title: 'Introduction2',
-		imgPath: '',
+		imgPath: QA2Img
 	},
 	{
 		title: 'Introduction3',
-		imgPath: '',
+		imgPath: QA3Img
 	},
 	{
 		title: 'Introduction4',
-		imgPath: '',
+		imgPath: QA4Img
 	},
 	{
 		title: 'Introduction5',
-		imgPath: '',
+		imgPath: QA5Img
+	},
+	{
+		title: 'Introduction6',
+		imgPath: QA6Img
 	},
 ];
 
@@ -52,9 +62,7 @@ const Instructions = ({ onClickGoHome, title, imgPath }: { onClickGoHome: () => 
 			<Box width="100%" display="flex" justifyContent="flex-end" mb="190px" onClick={onClickGoHome}>
 				<Image src={BackToHome} alt="back to home" width={277} height={96} />
 			</Box>
-			<Box width="1600px" height="2800px" bgcolor="gray">
-				{title}
-			</Box>
+			<Image width={1600} height={2800} src={imgPath} alt={title} />
 		</Box>
 	);
 };
