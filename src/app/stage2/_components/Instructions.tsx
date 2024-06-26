@@ -62,7 +62,7 @@ const Instructions = ({ onClickGoHome, title, imgPath }: { onClickGoHome: () => 
 			<Box width="100%" display="flex" justifyContent="flex-end" mb="190px" onClick={onClickGoHome}>
 				<Image src={BackToHome} alt="back to home" width={277} height={96} />
 			</Box>
-			<Image width={1600} height={2800} src={imgPath} alt={title} />
+			<Image priority={true} width={1600} height={2800} src={imgPath} alt={title} />
 		</Box>
 	);
 };
@@ -112,7 +112,7 @@ export const InstructionButton: React.FC = () => {
 				height="100vh"
 				width="100vw"
 				boxSizing="border-box"
-				// style={{ transition: 'right 0.5s ease-in-out' }}
+				style={{ transition: 'right 0.5s ease-in-out' }}
 			>
 				<Box zIndex={9999} height="100%" display="flex" position="absolute" left={0} alignItems="center">
 					{hasPreviousButton && (
@@ -125,7 +125,7 @@ export const InstructionButton: React.FC = () => {
 						/>
 					)}
 				</Box>
-				<FadeInHorizontal direction='rtl' key={`${pages}/description`}>
+				<FadeInHorizontal delay={0.5} direction='rtl' key={`${pages}/description`}>
 					<Instructions onClickGoHome={toggleOpen} {...page} />
 				</FadeInHorizontal>
 				{hasNextButton && (
