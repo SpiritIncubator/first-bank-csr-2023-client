@@ -74,7 +74,10 @@ export const InstructionButton: React.FC = () => {
 	const hasPreviousButton = pages !== 0;
 	const hasNextButton = pages !== IntroductionPages.length - 1;
 
-	const toggleOpen = () => setOpen(prev => !prev);
+	const toggleOpen = () => {
+		setPages(0);
+		setOpen(prev => !prev)
+	};
 
 	function jumpToNextPage() {
 		if (hasNextButton) {
