@@ -98,7 +98,7 @@ export default function EsgLoanSection() {
 								letterSpacing: '8.4px',
 								marginTop: '-60px',
 							}}>
-							{formatNumberWithCommas(1010)}
+							{formatNumberWithCommas(1584)}
 						</Box>
 						<Typography
 							variant="h4"
@@ -136,12 +136,12 @@ export default function EsgLoanSection() {
 								letterSpacing: '8.4px',
 								marginTop: '-60px',
 							}}>
-							{isEN ? '8.2B' : formatNumberWithCommas(82)}
+							{isEN ? '19.3B' : formatNumberWithCommas(193)}
 						</Box>
 					</Box>
 				</Box>
 				<Box flex="1" position="relative" top="150px" width="660px" height="580px">
-					<Image fill src={`/assets/stage2/2022-score-${lang}.svg`} alt="2022 score" />
+					<Image fill src={`/assets/stage2/2023-score-${lang}.svg`} alt="2022 score" />
 				</Box>
 			</Box>
 		</FadeInHorizontal>
