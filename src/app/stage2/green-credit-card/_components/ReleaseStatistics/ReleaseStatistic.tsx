@@ -23,10 +23,10 @@ const ReleaseStatistic = () => {
           <Image src={isEn ? NumberOfCardEnImg : NumberOfCardImg} alt="number-of-card" />
         </Box>
         <Box width={743} pl={5}>
-          <CountUp style={{ letterSpacing: 15, color: 'rgba(184, 195, 24, 1)', fontSize: 170, fontWeight: 900 }} start={0} end={270787} duration={3} />
+          <CountUp style={{ letterSpacing: 15, color: 'rgba(184, 195, 24, 1)', fontSize: 170, fontWeight: 900 }} start={0} end={1560245} duration={3} />
         </Box>
         <Box flex={1} ml={18}>
-          <Image src={IntroBirdIcon} alt="symbol-bird" />
+          {/* <Image src={IntroBirdIcon} alt="symbol-bird" /> */}
         </Box>
       </Box>
       <Box mt={15} textAlign="center">

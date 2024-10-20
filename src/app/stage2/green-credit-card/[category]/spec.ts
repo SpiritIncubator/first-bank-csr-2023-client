@@ -68,8 +68,8 @@ export type CreditCardInfoType = {
 
 export const creditCardInfos: Array<CreditCardInfoType> = [
 	{
-		circulationAmount: 54439,
-		accumulateAmount: 7280711,
+		circulationAmount: 58138,
+		accumulateAmount: 8914000,
 		descriptions: ['green.card.detail.one'],
 		src: GreenCardFront,
 		srcBack: GreenCardBack,
@@ -89,8 +89,8 @@ export const creditCardInfos: Array<CreditCardInfoType> = [
 		},
 	},
 	{
-		circulationAmount: 113921,
-		accumulateAmount: 7077047,
+		circulationAmount: 131598,
+		accumulateAmount: 14882000,
 		descriptions: ['taoyuan.card.detail.one', 'taoyuan.card.detail.two'],
 		src: TaoyuanCardFront,
 		srcBack: TaoyuanCardBack,
@@ -110,8 +110,8 @@ export const creditCardInfos: Array<CreditCardInfoType> = [
 		},
 	},
 	{
-		circulationAmount: 50584,
-		accumulateAmount: 10285527,
+		circulationAmount: 52976,
+		accumulateAmount: 13436000,
 		descriptions: ['yilan.card.detail.one', 'yilan.card.detail.two'],
 		src: YilanCardFront,
 		srcBack: YilanCardBack,
@@ -131,8 +131,8 @@ export const creditCardInfos: Array<CreditCardInfoType> = [
 		},
 	},
 	{
-		circulationAmount: 46453,
-		accumulateAmount: 132143734,
+		circulationAmount: 44480,
+		accumulateAmount: 142818000,
 		descriptions: ['leezen.card.detail.one', 'leezen.card.detail.two'],
 		src: LeezenCardFront,
 		srcBack: LeezenCardBack,
@@ -152,8 +152,8 @@ export const creditCardInfos: Array<CreditCardInfoType> = [
 		},
 	},
 	{
-		circulationAmount: 5390,
-		accumulateAmount: 5502602,
+		circulationAmount: 8904,
+		accumulateAmount: 6976000,
 		descriptions: ['world.card.detail.one', 'world.card.detail.two'],
 		src: WorldCardFront,
 		srcBack: WorldCardBack,
