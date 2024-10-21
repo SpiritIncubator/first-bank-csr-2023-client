@@ -8,7 +8,7 @@ body {
   overflow-x: hidden;
   margin:0;
   color: #594A39;
-  font-family: "Noto Sans TC";
+  font-family: "Noto Sans TC", sans-serif;
   overflow-y: scroll; /* 为了跨浏览器一致性 */
   scrollbar-width: none; /* 对于Firefox */
 }
