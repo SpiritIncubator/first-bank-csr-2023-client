@@ -3,8 +3,10 @@
 import { useEffect, useState, useMemo } from 'react';
 import Box from '@mui/material/Box';
 import NextImage from 'next/image';
-import Lottie, { useLottie } from 'lottie-react';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
+import { useLottie } from 'lottie-react';
 
 import type { PhaseValueType } from '@/app/stage3/xstate/conversationMachine';
 import { ConversationContext } from '@/app/stage3/layout';

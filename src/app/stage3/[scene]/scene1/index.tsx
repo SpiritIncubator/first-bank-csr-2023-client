@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box'
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import Lottie from 'lottie-react';
+import dynamic from 'next/dynamic';
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 import { SOCKET_EVENTS } from '@/app/stage3/constants';
 import { useSubscribe } from '@/app/hooks/useSubscribe';
 import { STAGE3_ROOM } from '@/constants'

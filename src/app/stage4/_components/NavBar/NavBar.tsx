@@ -22,7 +22,8 @@ import useTriggerDialogAnimation from '../../hooks/useTriggerDialogAnimation';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import { LANGUAGE_TYPE } from '@/types';
 import Leo2_7 from '@/lottieAnimations/leo_2-7.json';
-import Lottie from 'lottie-react';
+import dynamic from 'next/dynamic';
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
 const customPath = ['/stage4'];
 

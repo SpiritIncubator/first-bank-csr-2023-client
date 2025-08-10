@@ -17,7 +17,8 @@ import PAGE3_IMAGE_ZH from './_assets/stage4-thumbnail-page3-zh.svg';
 import PAGE4_IMAGE_EN from './_assets/stage4-thumbnail-page4-en.svg';
 import PAGE4_IMAGE_ZH from './_assets/stage4-thumbnail-page4-zh.svg';
 import Leo2_7 from '@/lottieAnimations/leo_2-7.json';
-import Lottie from 'lottie-react';
+import dynamic from 'next/dynamic';
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
 import DialogEN from './_assets/stage4-lion-seeMore-en.svg';
 import DialogZH from './_assets/stage4-lion-seeMore-zh.svg';
