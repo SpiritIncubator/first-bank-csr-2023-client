@@ -7,7 +7,8 @@ import Paper from '@mui/material/Paper';
 import ZoomBounce from '@/app/_components/Transitions/ZoomBounce';
 import FadeIn from '@/app/_components/Transitions/FadeIn';
 import Bird_1_1_Front from '@/lottieAnimations/bird_1-1_front.json';
-import Lottie from 'lottie-react';
+import dynamic from 'next/dynamic';
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
 export default function ConfirmSubmit({
 	message,

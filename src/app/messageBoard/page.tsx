@@ -23,8 +23,9 @@ import LionWriteBlue from '@/lottieAnimations/stage5-lion-write-Blue.json';
 import LionWritePink from '@/lottieAnimations/stage5-lion-write-Pink.json';
 import LionWriteYellow from '@/lottieAnimations/stage5-lion-write-Yellow.json';
 import LionWriteGreen from '@/lottieAnimations/stage5-lion-write-Green.json';
-import Lottie from 'lottie-react';
 import { NoteColor } from '@/types/index';
+import dynamic from 'next/dynamic';
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
 const StyledBox = styled(Box)`
 	::-webkit-scrollbar {

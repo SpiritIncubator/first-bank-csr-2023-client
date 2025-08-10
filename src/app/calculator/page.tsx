@@ -4,7 +4,9 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import Lottie from 'lottie-react';
+import dynamic from 'next/dynamic';
+
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
 import StyleButton from '@/app/_components/Button/Button';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';

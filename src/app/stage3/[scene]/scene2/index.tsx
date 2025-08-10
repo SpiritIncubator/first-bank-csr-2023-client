@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import Lottie from 'lottie-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 import { useSubscribe } from '@/app/hooks/useSubscribe';
 import { useQuestion } from '@/app/stage3/layout';
 

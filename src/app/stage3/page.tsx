@@ -4,7 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { preload } from 'react-dom';
 import Box from '@mui/material/Box';
 import { useRouter } from 'next/navigation';
-import { useLottie } from 'lottie-react';
+import dynamic from 'next/dynamic';
+
+// Create a client-side Lottie component
+const LottieWrapper = dynamic(() => import('./LottieWrapper'), { ssr: false });
 import { useSubscribe } from '../hooks/useSubscribe';
 import { ConversationContext } from './layout';
 import { SOCKET_EVENTS } from './constants';
@@ -37,8 +40,9 @@ const ConversationPage = () => {
 		loop: true,
 		autoplay: true,
 	});
-	const { View, getDuration } = useLottie(options);
-	const videoDuration = getDuration() ?? 0;
+	const [lottieView, setLottieView] = useState<any>(null);
+	const [getDuration, setGetDuration] = useState<(() => number | undefined) | null>(null);
+	const videoDuration = getDuration?.() ?? 0;
 
 	useEffect(() => {
 		receivedEvent(({ messageType }) => {
@@ -110,7 +114,13 @@ const ConversationPage = () => {
 
 	return (
 		<Box width="100%" height="100%" maxWidth={2560} maxHeight={1440} overflow="hidden">
-			{View}
+			<LottieWrapper 
+				options={options} 
+				onLoad={(view, getDur) => {
+					setLottieView(view);
+					setGetDuration(() => getDur);
+				}} 
+			/>
 		</Box>
 	);
 };
