@@ -1,26 +1,26 @@
 export const ESG_SECTION_METRICS = {
 	greenConsumerLoan: {
-		appliedHouseholds: 1584,
+		appliedHouseholds: 2369,
 		balanceAmount: {
-			zh: 193,
-			en: '19.3B',
+			zh: 405,
+			en: '40.5B',
 		},
 	},
 	oldBuilding: {
-		benefitedHouseholds: 3921,
+		benefitedHouseholds: 4903,
 		independentUpdate: {
 			amount: {
-				zh: 200,
-				en: '20B',
+				zh: 289,
+				en: '28.9B',
 			},
-			pieces: 45,
+			pieces: 48,
 		},
 		builderIntegrated: {
 			amount: {
-				zh: 1601,
-				en: '160.1B',
+				zh: 2042,
+				en: '204.2B',
 			},
-			pieces: 186,
+			pieces: 214,
 		},
 	},
 } as const;
