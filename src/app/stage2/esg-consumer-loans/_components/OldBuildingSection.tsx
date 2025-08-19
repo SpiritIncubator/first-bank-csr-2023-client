@@ -10,6 +10,7 @@ import formatNumberWithCommas from '@/utils/formatNumberWithCommas';
 import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
 import { LANGUAGE_TYPE } from '@/types';
 import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
+import { ESG_SECTION_METRICS } from '@/config/esgMetrics';
 
 export default function OldBuildingSection() {
 	const { t } = useTranslation('stage2');
@@ -97,7 +98,7 @@ export default function OldBuildingSection() {
 										letterSpacing: '8.4px',
 										marginTop: '-60px',
 									}}>
-									{formatNumberWithCommas(3921)}
+									{formatNumberWithCommas(ESG_SECTION_METRICS.oldBuilding.benefitedHouseholds)}
 								</Box>
 							</Box>
 							<Box display="flex">
@@ -151,7 +152,7 @@ export default function OldBuildingSection() {
 											letterSpacing: '6px',
 											marginTop: isEN ? '-40px' : '-60px',
 										}}>
-										{isEN ? '20B' : formatNumberWithCommas(200)}
+										{isEN ? ESG_SECTION_METRICS.oldBuilding.independentUpdate.amount.en : formatNumberWithCommas(ESG_SECTION_METRICS.oldBuilding.independentUpdate.amount.zh)}
 										<Box
 											component="span"
 											ml={isEN ? '0px' : '20px'}
@@ -159,7 +160,7 @@ export default function OldBuildingSection() {
 											fontWeight="700"
 											letterSpacing="4.32px"
 											color="#594A39">
-											/45
+											/{ESG_SECTION_METRICS.oldBuilding.independentUpdate.pieces}
 											{isEN ? (
 												<Box
 													component="span"
@@ -226,7 +227,7 @@ export default function OldBuildingSection() {
 											letterSpacing: '6px',
 											marginTop: isEN ? '-40px' : '-60px',
 										}}>
-										{isEN ? '160.1B' : formatNumberWithCommas(1601)}
+										{isEN ? ESG_SECTION_METRICS.oldBuilding.builderIntegrated.amount.en : formatNumberWithCommas(ESG_SECTION_METRICS.oldBuilding.builderIntegrated.amount.zh)}
 										<Box
 											component="span"
 											fontSize="54px"
@@ -235,7 +236,7 @@ export default function OldBuildingSection() {
 											letterSpacing="4.32px"
 											color="#594A39">
 											{' '}
-											/186
+											/{ESG_SECTION_METRICS.oldBuilding.builderIntegrated.pieces}
 											{isEN ? (
 												<Box
 													component="span"
