@@ -137,12 +137,14 @@ export default function EsgLoanSection() {
 								letterSpacing: '8.4px',
 								marginTop: '-60px',
 							}}>
-							{isEN ? ESG_SECTION_METRICS.greenConsumerLoan.balanceAmount.en : formatNumberWithCommas(ESG_SECTION_METRICS.greenConsumerLoan.balanceAmount.zh)}
+							{isEN
+								? ESG_SECTION_METRICS.greenConsumerLoan.balanceAmount.en
+								: formatNumberWithCommas(ESG_SECTION_METRICS.greenConsumerLoan.balanceAmount.zh)}
 						</Box>
 					</Box>
 				</Box>
 				<Box flex="1" position="relative" top="150px" width="660px" height="580px">
-					<Image fill src={`/assets/stage2/2023-score-${lang}.svg`} alt="2022 score" />
+					<Image fill src={`/assets/stage2/2024-score-${lang}.svg`} alt="2022 score" />
 				</Box>
 			</Box>
 		</FadeInHorizontal>
