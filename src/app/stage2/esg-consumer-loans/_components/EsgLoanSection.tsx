@@ -9,6 +9,7 @@ import FadeInHorizontal from '@/app/_components/Transitions/FadeInHorizontal';
 import { useTranslation } from '@/app/_locales/hooks/useTranslation';
 import { LANGUAGE_TYPE } from '@/types';
 import useFirstBankTranslation from '@/app/_locales/hooks/useFirstBankTranslation';
+import { ESG_SECTION_METRICS } from '@/config/esgMetrics';
 
 export default function EsgLoanSection() {
 	const { t } = useTranslation('stage2');
@@ -98,7 +99,7 @@ export default function EsgLoanSection() {
 								letterSpacing: '8.4px',
 								marginTop: '-60px',
 							}}>
-							{formatNumberWithCommas(1584)}
+							{formatNumberWithCommas(ESG_SECTION_METRICS.greenConsumerLoan.appliedHouseholds)}
 						</Box>
 						<Typography
 							variant="h4"
@@ -136,12 +137,14 @@ export default function EsgLoanSection() {
 								letterSpacing: '8.4px',
 								marginTop: '-60px',
 							}}>
-							{isEN ? '19.3B' : formatNumberWithCommas(193)}
+							{isEN
+								? ESG_SECTION_METRICS.greenConsumerLoan.balanceAmount.en
+								: formatNumberWithCommas(ESG_SECTION_METRICS.greenConsumerLoan.balanceAmount.zh)}
 						</Box>
 					</Box>
 				</Box>
 				<Box flex="1" position="relative" top="150px" width="660px" height="580px">
-					<Image fill src={`/assets/stage2/2023-score-${lang}.svg`} alt="2022 score" />
+					<Image fill src={`/assets/stage2/2024-score-${lang}.svg`} alt="2022 score" />
 				</Box>
 			</Box>
 		</FadeInHorizontal>
