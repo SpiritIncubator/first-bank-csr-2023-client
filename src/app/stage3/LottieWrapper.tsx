@@ -21,7 +21,7 @@ const LottieWrapper: React.FC<LottieWrapperProps> = ({ options, onLoad }) => {
     if (onLoad) {
       onLoad(View, getDuration);
     }
-  }, [View, getDuration, onLoad]);
+  }, []);
 
   return View;
 };
